@@ -6,6 +6,9 @@ module.exports = (router, service) => {
     router.get('/users', getUsers);
     router.delete('/user', removeUser);
 
+    router.post('/post', createPost);
+    router.get('/posts', getAllPosts);
+
     router.use('/', unknownURI);
 
     function createUser(req, res){
@@ -26,6 +29,22 @@ module.exports = (router, service) => {
 
     function removeUser(req, res){
         service.removeUser(req.params.name)
+            .then(
+                (result) => handleSuccess(res, 200, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function createPost(req, res){
+        service.createPost(req.body.owner, req.body.body)
+            .then(
+                (result) => handleSuccess(res, 201, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function getAllPosts(req, res) {
+        service.getAllPosts()
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
