@@ -23,7 +23,7 @@ const api = require('./T-api')(router, service);
 // express initialization
 const app = express();
 app.use(express.json());
-app.use(REQUEST_BASE, router);bp
+app.use(REQUEST_BASE, router);
 
 // server initialization
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
