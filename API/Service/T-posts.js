@@ -6,18 +6,10 @@
     link p/ imagem //not rn
 */
 
-// dependencies
-const mongo = require('mongodb');
-const MongoClient = mongo.MongoClient;
-
-// error module
-const error = require('../T-error')();
-const MODULE = 'SERVICE-POSTS';
-
-// constants
-const URL = "mongodb://localhost:27017/";
 const COLLECTION_NAME = "posts";
-const DB_NAME = "tribute_db";
+
+// repo
+const repo = require('./T-Repository')(COLLECTION_NAME);
 
 module.exports = () => {
     return {
@@ -27,7 +19,6 @@ module.exports = () => {
         getByOwner: getByOwner
     };
 
-    // todo: trocar nome para owner id
     function create(owner_id, body){
         const post = {
             owner_id: owner_id,
@@ -35,42 +26,22 @@ module.exports = () => {
             likes: []
         };
 
-        return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
-            .then(dbo => dbo.collection(COLLECTION_NAME))
-            .then(col => col.insertOne(post))
-            .then(resp => {
-                if (!resp.result.ok) return Promise.reject(error.databaseError(MODULE, COLLECTION_NAME));
-                return Promise.resolve({post_id: resp.insertedId})
-            });
+        return repo.insert(post);
     }
 
     function getAll(){
-        return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
-            .then(db => db.collection(COLLECTION_NAME))
-            .then(col => col.find().toArray());
+        return repo.select()
     }
 
     function getById(id){
-        const query = {
-            _id: mongo.ObjectID(id)
-        };
-
-        return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
-            .then(db => db.collection(COLLECTION_NAME))
-            .then(col => col.find(query).toArray());
+        return repo.selectById(id);
     }
 
     function getByOwner(owner_id){
-        const query ={
-            owner: owner_id
+        const query = {
+            owner_id: owner_id
         };
 
-        return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
-            .then(db => db.collection(COLLECTION_NAME))
-            .then(col => col.find(query).toArray());
+        return repo.selectById(query)
     }
 };

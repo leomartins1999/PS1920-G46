@@ -1,3 +1,6 @@
+// error module
+const error = require('./T-error')();
+
 module.exports = (router, service) => {
 
     router.use('/', log);
@@ -100,13 +103,7 @@ module.exports = (router, service) => {
     }
 
     function unknownURI(req, res){
-        // error
-        let error = {
-            message: "Unknown URI",
-            uri: req.originalUrl
-        };
-
-        handleError(res, 404, error);
+        handleError(res, 404, error.unknownUrl(req.originalUrl));
     }
 
     // logging middleware

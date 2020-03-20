@@ -1,7 +1,8 @@
 module.exports = () => {
     return {
         invalidParameters: invalidParameters,
-        databaseError: databaseError
+        databaseError: databaseError,
+        unknownUrl: unknownUrl
     };
 
     function create(module, type, message){
@@ -18,5 +19,9 @@ module.exports = () => {
 
     function databaseError(module, collection){
         return create(module, 'SERVER', `Failure inserting into collection ${collection}.`);
+    }
+
+    function unknownUrl(url){
+        return create(module, 'API', `Unknown url ${url}.`)
     }
 };
