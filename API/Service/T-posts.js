@@ -7,7 +7,12 @@
 */
 
 // dependencies
-const MongoClient = require('mongodb').MongoClient;
+const mongo = require('mongodb');
+const MongoClient = mongo.MongoClient;
+
+// error module
+const error = require('../T-error')();
+const MODULE = 'SERVICE-POSTS';
 
 // constants
 const URL = "mongodb://localhost:27017/";
@@ -22,9 +27,10 @@ module.exports = () => {
         getByOwner: getByOwner
     };
 
-    function create(owner, body){
+    // todo: trocar nome para owner id
+    function create(owner_id, body){
         const post = {
-            owner: owner,
+            owner_id: owner_id,
             body: body,
             likes: []
         };
@@ -32,7 +38,11 @@ module.exports = () => {
         return MongoClient.connect(URL)
             .then(db => db.db(DB_NAME))
             .then(dbo => dbo.collection(COLLECTION_NAME))
-            .then(col => col.insertOne(post));
+            .then(col => col.insertOne(post))
+            .then(resp => {
+                if (!resp.result.ok) return Promise.reject(error.databaseError(MODULE, COLLECTION_NAME));
+                return Promise.resolve({post_id: resp.insertedId})
+            });
     }
 
     function getAll(){
@@ -42,11 +52,25 @@ module.exports = () => {
             .then(col => col.find().toArray());
     }
 
-    function getById(){
+    function getById(id){
+        const query = {
+            _id: mongo.ObjectID(id)
+        };
 
+        return MongoClient.connect(URL)
+            .then(db => db.db(DB_NAME))
+            .then(db => db.collection(COLLECTION_NAME))
+            .then(col => col.find(query).toArray());
     }
 
-    function getByOwner(){
+    function getByOwner(owner_id){
+        const query ={
+            owner: owner_id
+        };
 
+        return MongoClient.connect(URL)
+            .then(db => db.db(DB_NAME))
+            .then(db => db.collection(COLLECTION_NAME))
+            .then(col => col.find(query).toArray());
     }
 };

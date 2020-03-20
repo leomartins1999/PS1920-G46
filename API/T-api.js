@@ -8,6 +8,8 @@ module.exports = (router, service) => {
 
     router.post('/post', createPost);
     router.get('/posts', getAllPosts);
+    router.get('/posts/:id', getPostById);
+    router.get('/posts/owner/:id', getPostsByOwner);
 
     router.use('/', unknownURI);
 
@@ -45,6 +47,22 @@ module.exports = (router, service) => {
 
     function getAllPosts(req, res) {
         service.getAllPosts()
+            .then(
+                (result) => handleSuccess(res, 200, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function getPostById(req, res){
+        service.getPostById(req.params.id)
+            .then(
+                (result) => handleSuccess(res, 200, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function getPostsByOwner(req, res){
+        service.getPostsByOwner(req.params.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)

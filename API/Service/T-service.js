@@ -1,3 +1,6 @@
+// error module
+const error = require('../T-error')();
+
 module.exports = (users, orgs, posts, events) => {
 
     return {
@@ -6,36 +9,49 @@ module.exports = (users, orgs, posts, events) => {
         removeUser: removeUser,
 
         createPost: createPost,
-        getAllPosts: getAllPosts
+        getAllPosts: getAllPosts,
+        getPostById: getPostById,
+        getPostsByOwner: getPostsByOwner
     };
 
     function createUser(name, color){
         if(!name)
-            return Promise.reject("fuck off");
+            return Promise.reject(error.invalidParameter('name'));
 
-        return users.create(name, color)
+        return users.create(name, color);
     }
 
     function getUsers(){
-        return users.getAll()
+        return users.getAll();
     }
 
     function removeUser(name){
         if(!name)
-            return Promise.reject("fuck off");
+            return Promise.reject(error.invalidParameter('name'));
 
-        return users.remove(name)
+        return users.remove(name);
     }
 
-    function createPost(owner, body){
-        if(!owner || !body)
-            return Promise.reject("fuck off");
+    function createPost(owner_id, body){
+        if(!owner_id || !body)
+            return Promise.reject(error.invalidParameter('owner_id, body'));
 
-        return posts.create(owner, body)
+        return posts.create(owner_id, body);
     }
 
     function getAllPosts(){
-        return posts.getAll()
+        return posts.getAll();
+    }
+
+    function getPostById(post_id){
+        if (!post_id)
+            return Promise.reject(error.invalidParameter('post_id'));
+
+        return posts.getById(post_id);
+    }
+
+    function getPostsByOwner(owner_id){
+        return posts.getByOwner(owner_id);
     }
 
 };
