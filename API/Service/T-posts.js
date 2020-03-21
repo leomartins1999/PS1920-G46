@@ -1,6 +1,6 @@
 /*
     post id
-    owner
+    owner_id
     body (texto)
     id's de users que colocaram "like"
     link p/ imagem //not rn
@@ -16,16 +16,11 @@ module.exports = () => {
         create: create,
         getAll: getAll,
         getById: getById,
-        getByOwner: getByOwner
+        getByOwner: getByOwner,
+        remove: remove
     };
 
-    function create(owner_id, body){
-        const post = {
-            owner_id: owner_id,
-            body: body,
-            likes: []
-        };
-
+    function create(post){
         return repo.insert(post);
     }
 
@@ -42,6 +37,10 @@ module.exports = () => {
             owner_id: owner_id
         };
 
-        return repo.selectById(query)
+        return repo.select(query)
+    }
+
+    function remove(id){
+        return repo.removeById(id)
     }
 };

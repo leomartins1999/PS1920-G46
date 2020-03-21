@@ -23,17 +23,7 @@ module.exports = () => {
         remove: remove
     };
 
-    function create(name, description, phone, mail, siteLink, facebookLink, linkedInLink){
-        const org = {
-            name: name,
-            description: description,
-            phone: phone,
-            mail: mail,
-            siteLink: siteLink,
-            facebookLink: facebookLink,
-            linkedInLink: linkedInLink
-        };
-
+    function create(org){
         return repo.insert(org);
     }
 

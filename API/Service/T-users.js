@@ -1,27 +1,40 @@
-const users = {};
+/*
+  id // gerado
+  Name
+  Descricao
+  ids a que da follow
+  ids dos followers
+  link p/ linkedin
+  Profile pic // mais tarde
+ */
+
+// collection name
+const COLLECTION_NAME = 'users';
+
+// repository
+const repo = require('./T-Repository')(COLLECTION_NAME);
 
 module.exports = () => {
     return {
         create: create,
         getAll: getAll,
+        getById: getById,
         remove: remove
     }
 };
 
-function create(name, color) {
-    return new Promise((resolve, reject) => {
-       users[name] = {name: name, color: color};
-       resolve("Success");
-    });
+function create(user) {
+    return repo.insert(user);
 }
 
 function getAll(){
-    return Promise.resolve(users);
+    return repo.select();
 }
 
-function remove(name){
-    return new Promise((resolve, reject) => {
-        delete users[name];
-        resolve("Success");
-    })
+function getById(id){
+    return repo.selectById(id);
+}
+
+function remove(id){
+    return repo.removeById(id);
 }

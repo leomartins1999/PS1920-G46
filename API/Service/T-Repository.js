@@ -38,6 +38,9 @@ module.exports = (collection) => {
     }
 
     function selectById(id){
+        if(!mongo.ObjectID.isValid(id))
+            return Promise.reject(error.invalidParameters('id'));
+
         const query = {
             _id: mongo.ObjectID(id)
         };
@@ -49,7 +52,11 @@ module.exports = (collection) => {
         return MongoClient.connect(URL)
             .then(db => db.db(DB_NAME))
             .then(db => db.collection(collection))
-            .then(col => col.removeMany(query).toArray());
+            .then(col => col.deleteMany(query))
+            .then(resp => {
+                if (!resp.result.ok) return Promise.reject(error.databaseError(MODULE, collection));
+                return Promise.resolve({status: 'deleted', id: query._id})
+            });
     }
 
     function removeById(id) {
