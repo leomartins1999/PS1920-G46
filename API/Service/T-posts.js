@@ -21,7 +21,14 @@ module.exports = () => {
     };
 
     function create(post){
-        return repo.insert(post);
+        const obj = {
+            owner_id: post.owner_id,
+            body: post.body,
+            likeIds: [],
+            linkImage: ''
+        };
+
+        return repo.insert(obj);
     }
 
     function getAll(){

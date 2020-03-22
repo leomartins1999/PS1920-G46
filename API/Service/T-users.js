@@ -24,7 +24,16 @@ module.exports = () => {
 };
 
 function create(user) {
-    return repo.insert(user);
+    const obj = {
+        name: user.name,
+        body: user.body,
+        following: [],
+        followers: [],
+        linkLinkedIn: user.linkLinkedIn,
+        imageLink: ''
+    };
+
+    return repo.insert(obj);
 }
 
 function getAll(){

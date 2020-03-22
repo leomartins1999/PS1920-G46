@@ -24,7 +24,18 @@ module.exports = () => {
     };
 
     function create(org){
-        return repo.insert(org);
+        const obj = {
+            name: org.name,
+            body: org.body,
+            followers: [],
+            phone: org.phone,
+            mail: org.mail,
+            linkSite: org.linkSite,
+            linkFacebook: org.linkFacebook,
+            linkImage: ''
+        };
+
+        return repo.insert(obj);
     }
 
     function getAll(){

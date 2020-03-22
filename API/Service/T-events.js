@@ -27,9 +27,19 @@ module.exports = () => {
     };
 
     function create(_event) {
+        const obj = {
+            name: _event.name,
+            org_id: _event.org_id,
+            body: _event.body,
+            linkImage: '',
+            capacity: _event.capacity,
+            date: _event.date,
+            location: _event.location,
+            interestedIds: [],
+            participantIds: []
+        };
 
-
-        return repo.insert(_event);
+        return repo.insert(obj);
     }
 
     function getAll() {
