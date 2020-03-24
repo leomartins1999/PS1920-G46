@@ -1,5 +1,6 @@
 module.exports = () => {
     return {
+        authenticationError: authenticationError,
         invalidParameters: invalidParameters,
         databaseError: databaseError,
         unknownUrl: unknownUrl
@@ -13,15 +14,19 @@ module.exports = () => {
         }
     }
 
+    function authenticationError(message){
+        return create('SERVICE', 'CLIENT', message);
+    }
+
     function invalidParameters(params){
         return create('SERVICE', 'CLIENT', `Invalid Parameter(s): ${params}.`)
     }
 
     function databaseError(module, collection){
-        return create(module, 'SERVER', `Failure inserting into collection ${collection}.`);
+        return create('DATABASE', 'SERVER', `Failure inserting into collection ${collection}.`);
     }
 
     function unknownUrl(url){
-        return create(module, 'API', `Unknown url ${url}.`)
+        return create('API', 'CLIENT', `Unknown url ${url}.`)
     }
 };

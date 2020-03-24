@@ -31,6 +31,9 @@ module.exports = (router, service) => {
     router.get('/events/org/:id', getEventsByOrg);
     router.delete('/events/:id', removeEvent);
 
+    router.post('/auth/register', register);
+    router.post('/auth/authenticate', authenticate);
+
     router.use('/', unknownURI);
 
     /*
@@ -190,6 +193,27 @@ module.exports = (router, service) => {
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
+            );
+    }
+
+    /*
+    Authentication
+     */
+
+    function register(req, res){
+        service.register(req.body)
+            .then(
+                (result) => handleSuccess(res, 200, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function authenticate(req, res){
+        service.authenticate(req.body)
+            .then(
+                (result) => {
+                    req.login(result.id, _ => handleSuccess(res, 200, result))
+                }, err => handleError(res, 401, err)
             );
     }
 

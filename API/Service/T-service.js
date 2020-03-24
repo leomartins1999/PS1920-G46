@@ -1,7 +1,12 @@
+// external dependencies
+const stringHash = require('@sindresorhus/string-hash');
+
+const MODULE = "Service";
+
 // error module
 const error = require('../T-error')();
 
-module.exports = (users, orgs, posts, events) => {
+module.exports = (users, orgs, posts, events, auth) => {
 
     return {
         createUser: createUser,
@@ -24,7 +29,10 @@ module.exports = (users, orgs, posts, events) => {
         getAllEvents: getAllEvents,
         getEventsById: getEventsById,
         getEventsByOrg: getEventsFromOrg,
-        removeEvent: removeEvent
+        removeEvent: removeEvent,
+
+        register: register,
+        authenticate: authenticate
     };
 
     /*
@@ -154,6 +162,36 @@ module.exports = (users, orgs, posts, events) => {
             return Promise.reject(error.invalidParameters('id'));
 
         return events.remove(id);
+    }
+
+    /*
+    Authentication
+     */
+
+    function register(authDetails){
+        if (!authDetails.email || !authDetails.password)
+            return Promise.reject(error.invalidParameters('email, password'));
+
+        return auth
+            .get(authDetails)
+            .then(res => {
+                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.')) : Promise.resolve()
+            })
+            .then(() => auth.register(authDetails))
+            .then(res => Promise.resolve({authDetails: authDetails, id: res.id}));
+    }
+
+    function authenticate(authDetails){
+        if (!authDetails.email || !authDetails.password)
+            return Promise.reject(error.invalidParameters('email, password'));
+
+        return auth
+            .get(authDetails)
+            .then(res => {
+                if(!res) return Promise.reject(error.authenticationError('The email is not associated with an account.'));
+                if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
+                return Promise.resolve({authDetails: authDetails, id: res._id});
+            });
     }
 
 };

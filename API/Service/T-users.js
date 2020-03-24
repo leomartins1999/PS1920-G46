@@ -12,7 +12,7 @@
 const COLLECTION_NAME = 'users';
 
 // repository
-const repo = require('./T-Repository')(COLLECTION_NAME);
+const repo = require('./T-repository')(COLLECTION_NAME);
 
 module.exports = () => {
     return {
