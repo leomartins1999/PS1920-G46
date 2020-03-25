@@ -19,51 +19,75 @@ module.exports = (collection) => {
         removeById: removeById
     };
 
-    function insert(obj){
+    function accessCollection(){
         return MongoClient.connect(URL)
             .then(db => db.db(DB_NAME))
-            .then(dbo => dbo.collection(collection))
+            .then(dbo => dbo.collection(collection));
+    }
+
+    function insert(obj){
+        generateId(obj);
+
+        return accessCollection()
             .then(col => col.insertOne(obj))
             .then(resp => {
-                if (!resp.result.ok) return Promise.reject(error.databaseError(MODULE, collection));
+                if (!resp.result.ok) return Promise.reject(error.databaseError(collection, 'insert'));
                 return Promise.resolve({id: resp.insertedId})
             });
     }
 
     function select(query){
-        return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
-            .then(db => db.collection(collection))
+        generateId(query);
+
+        return accessCollection()
             .then(col => col.find(query).toArray());
     }
 
     function selectById(id){
-        if(!mongo.ObjectID.isValid(id))
-            return Promise.reject(error.invalidParameters('id'));
-
         const query = {
-            _id: mongo.ObjectID(id)
+            _id: id
         };
 
-        return select(query);
+        return select(query)
+            .then(res => res[0]);
+    }
+
+    function update(query, update){
+        generateId(query);
+
+        return accessCollection()
+            .then(col => col.update(query, update))
+            .then(res => {
+                if (res.matchedCount === 0) return Promise.reject(error.databaseError(collection, 'update'));
+                return Promise.resolve({status: 'updated', changes: res.modifiedCount})
+            })
     }
 
     function remove(query){
-        return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
-            .then(db => db.collection(collection))
+        generateId(query);
+
+        return accessCollection()
             .then(col => col.deleteMany(query))
             .then(resp => {
-                if (!resp.result.ok) return Promise.reject(error.databaseError(MODULE, collection));
+                if (!resp.result.ok) return Promise.reject(error.databaseError(collection, 'delete'));
                 return Promise.resolve({status: 'deleted', id: query._id})
             });
     }
 
     function removeById(id) {
         const query = {
-            _id: mongo.ObjectID(id)
+            _id: id
         };
 
         return remove(query);
+    }
+
+    function generateId(obj){
+        if(!obj || !obj._id) return;
+
+        if(!mongo.ObjectID.isValid(obj._id))
+            return Promise.reject(error.invalidParameters('id'));
+
+        obj._id = mongo.ObjectID(obj._id)
     }
 };

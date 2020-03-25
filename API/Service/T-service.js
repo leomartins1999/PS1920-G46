@@ -43,7 +43,12 @@ module.exports = (users, orgs, posts, events, auth) => {
         if(!user.name)
             return Promise.reject(error.invalidParameters('name'));
 
-        return users.create(user);
+        return users.getById(user.id)
+            .then((res) => {
+                return (res)?
+                    Promise.reject(error.serviceError('User already exists.')) :
+                    Promise.resolve(users.create(user));
+            })
     }
 
     function getUsers(){
@@ -95,7 +100,7 @@ module.exports = (users, orgs, posts, events, auth) => {
 
     function removePost(id){
         if (!id)
-            return Promise.reject(error.invalidParameters('id'))
+            return Promise.reject(error.invalidParameters('id'));
 
         return posts.remove(id);
     }
@@ -169,8 +174,8 @@ module.exports = (users, orgs, posts, events, auth) => {
      */
 
     function register(authDetails){
-        if (!authDetails.email || !authDetails.password)
-            return Promise.reject(error.invalidParameters('email, password'));
+        if (!authDetails.email || !authDetails.password || !authDetails.user_type)
+            return Promise.reject(error.invalidParameters('email, password, user_type'));
 
         return auth
             .get(authDetails)
@@ -190,7 +195,7 @@ module.exports = (users, orgs, posts, events, auth) => {
             .then(res => {
                 if(!res) return Promise.reject(error.authenticationError('The email is not associated with an account.'));
                 if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
-                return Promise.resolve({authDetails: authDetails, id: res._id});
+                return Promise.resolve({authDetails: authDetails, id: res._id, user_type: res.user_type});
             });
     }
 

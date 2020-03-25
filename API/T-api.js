@@ -9,30 +9,44 @@ module.exports = (router, service) => {
 
     router.use('/', log);
 
-    router.post('/users', createUser);
+    // common endpoints
+
     router.get('/users', getUsers);
     router.get('/users/:id', getUserById);
-    router.delete('/users/:id', removeUser);
 
-    router.post('/posts', createPost);
     router.get('/posts', getAllPosts);
     router.get('/posts/:id', getPostById);
     router.get('/posts/owner/:id', getPostsByOwner);
-    router.delete('/posts/:id', removePost);
 
-    router.post('/orgs', createOrg);
     router.get('/orgs', getAllOrgs);
     router.get('/orgs/:id', getOrgById);
-    router.delete('/orgs/:id', removeOrg);
 
-    router.post('/events', createEvent);
     router.get('/events', getAllEvents);
     router.get('/events/:id', getEventById);
     router.get('/events/org/:id', getEventsByOrg);
-    router.delete('/events/:id', removeEvent);
+
+    // authenticated endpoints
 
     router.post('/auth/register', register);
     router.post('/auth/authenticate', authenticate);
+    router.get('/auth/logout', logout);
+
+    // authentication middlewares
+    router.use('/auth', authenticationMw);
+    router.use('/auth/users', userMw);
+    router.use('/auth/orgs', orgMw);
+
+    router.post('/auth/users', createUser);
+    router.delete('/auth/users/:id', removeUser);
+
+    router.post('/auth/posts', createPost);
+    router.delete('/auth/posts/:id', removePost);
+
+    router.post('/auth/orgs', createOrg);
+    router.delete('/auth/orgs/:id', removeOrg);
+
+    router.post('/auth/events', orgMw, createEvent);
+    router.delete('/auth/events/:id', orgMw, removeEvent);
 
     router.use('/', unknownURI);
 
@@ -41,6 +55,8 @@ module.exports = (router, service) => {
      */
 
     function createUser(req, res){
+        req.body.id = req.user.id;
+
         service.createUser(req.body)
             .then(
                 (result) => handleSuccess(res, 201, result),
@@ -65,7 +81,7 @@ module.exports = (router, service) => {
     }
 
     function removeUser(req, res){
-        service.removeUser(req.params.id)
+        service.removeUser(req.user.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
@@ -212,9 +228,14 @@ module.exports = (router, service) => {
         service.authenticate(req.body)
             .then(
                 (result) => {
-                    req.login(result.id, _ => handleSuccess(res, 200, result))
+                    req.login({id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200, result))
                 }, err => handleError(res, 401, err)
             );
+    }
+
+    function logout(req, res){
+        req.logout();
+        handleSuccess(res, 200, {status: 'Logout completed.'})
     }
 
     function handleSuccess(res, statusCode = 200, result){
@@ -262,4 +283,24 @@ module.exports = (router, service) => {
         // passing to handler
         next();
     }
+
+    // authentication middleware
+    function authenticationMw(req, res, next){
+        (!req.user)?
+            handleError(res, 401 , error.authenticationError('User is not authenticated.')) :
+            next();
+    }
+
+    function userMw(req, res, next){
+        (req.user.user_type !== 'user')?
+            handleError(res, 401, error.authenticationError('Invalid authenticated user type.')) :
+            next();
+    }
+
+    function orgMw(req, res, next){
+        (req.user.user_type !== 'org')?
+            handleError(res, 401, error.authenticationError('Invalid authenticated user type.')) :
+            next();
+    }
+
 };

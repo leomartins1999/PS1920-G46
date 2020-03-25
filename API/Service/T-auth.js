@@ -21,7 +21,8 @@ module.exports = () => {
         const obj = {
             email: authDetails.email,
             salt: salt,
-            hash: hash
+            hash: hash,
+            user_type: authDetails.user_type
         };
 
         return repo.insert(obj);

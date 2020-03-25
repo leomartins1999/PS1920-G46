@@ -25,6 +25,7 @@ module.exports = () => {
 
 function create(user) {
     const obj = {
+        _id: user.id,
         name: user.name,
         body: user.body,
         following: [],

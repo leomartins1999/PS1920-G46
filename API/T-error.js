@@ -3,7 +3,8 @@ module.exports = () => {
         authenticationError: authenticationError,
         invalidParameters: invalidParameters,
         databaseError: databaseError,
-        unknownUrl: unknownUrl
+        unknownUrl: unknownUrl,
+        serviceError: serviceError
     };
 
     function create(module, type, message){
@@ -22,11 +23,15 @@ module.exports = () => {
         return create('SERVICE', 'CLIENT', `Invalid Parameter(s): ${params}.`)
     }
 
-    function databaseError(module, collection){
-        return create('DATABASE', 'SERVER', `Failure inserting into collection ${collection}.`);
+    function databaseError(collection, operation){
+        return create('DATABASE', 'SERVER', `Failure while operating within ${collection} (${operation}).`);
     }
 
     function unknownUrl(url){
         return create('API', 'CLIENT', `Unknown url ${url}.`)
+    }
+
+    function serviceError(message){
+        return create('SERVICE', 'CLIENTE', message);
     }
 };
