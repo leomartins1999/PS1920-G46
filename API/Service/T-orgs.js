@@ -25,6 +25,7 @@ module.exports = () => {
 
     function create(org){
         const obj = {
+            _id: org.id,
             name: org.name,
             body: org.body,
             followers: [],

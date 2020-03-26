@@ -9,10 +9,8 @@ const error = require('../T-error')();
 module.exports = (users, orgs, posts, events, auth) => {
 
     return {
-        createUser: createUser,
         getUsers: getUsers,
         getUserById: getUserById,
-        removeUser: removeUser,
 
         createPost: createPost,
         getAllPosts: getAllPosts,
@@ -20,10 +18,8 @@ module.exports = (users, orgs, posts, events, auth) => {
         getPostsByOwner: getPostsByOwner,
         removePost: removePost,
 
-        createOrg: createOrg,
         getAllOrgs: getAllOrgs,
         getOrgById: getOrgById,
-        removeOrg: removeOrg,
 
         createEvent: createEvent,
         getAllEvents: getAllEvents,
@@ -32,24 +28,13 @@ module.exports = (users, orgs, posts, events, auth) => {
         removeEvent: removeEvent,
 
         register: register,
-        authenticate: authenticate
+        authenticate: authenticate,
+        remove: remove
     };
 
     /*
     Users
      */
-
-    function createUser(user){
-        if(!user.name)
-            return Promise.reject(error.invalidParameters('name'));
-
-        return users.getById(user.id)
-            .then((res) => {
-                return (res)?
-                    Promise.reject(error.serviceError('User already exists.')) :
-                    Promise.resolve(users.create(user));
-            })
-    }
 
     function getUsers(){
         return users.getAll();
@@ -60,13 +45,6 @@ module.exports = (users, orgs, posts, events, auth) => {
             return Promise.reject(error.invalidParameters('id'));
 
         return users.getById(id);
-    }
-
-    function removeUser(id){
-        if(!id)
-            return Promise.reject(error.invalidParameters('id'));
-
-        return users.remove(id);
     }
 
     /*
@@ -109,13 +87,6 @@ module.exports = (users, orgs, posts, events, auth) => {
     Orgs
      */
 
-    function createOrg(org){
-        if (!org.name)
-            return Promise.reject(error.invalidParameters('name'));
-
-        return orgs.create(org)
-    }
-
     function getAllOrgs(){
         return orgs.getAll();
     }
@@ -125,13 +96,6 @@ module.exports = (users, orgs, posts, events, auth) => {
             return Promise.reject(error.invalidParameters('id'));
 
         return orgs.getById(id);
-    }
-
-    function removeOrg(id){
-        if(!id)
-            return Promise.reject(error.invalidParameters('id'));
-
-        return orgs.remove(id);
     }
 
     /*
@@ -173,17 +137,24 @@ module.exports = (users, orgs, posts, events, auth) => {
     Authentication
      */
 
-    function register(authDetails){
-        if (!authDetails.email || !authDetails.password || !authDetails.user_type)
+    function register(credentials){
+        if (!credentials.authDetails.email || !credentials.authDetails.password || !credentials.authDetails.user_type)
             return Promise.reject(error.invalidParameters('email, password, user_type'));
 
+        if (!credentials.data.name)
+            return Promise.reject(error.invalidParameters('name'));
+
+        const createObj = (credentials.authDetails.user_type === 'user')? users.create : orgs.create;
+
         return auth
-            .get(authDetails)
+            .get(credentials.authDetails)
             .then(res => {
-                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.')) : Promise.resolve()
+                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.')) : auth.register(credentials.authDetails)
             })
-            .then(() => auth.register(authDetails))
-            .then(res => Promise.resolve({authDetails: authDetails, id: res.id}));
+            .then(res => {
+                credentials.data.id = res.id;
+                return createObj(credentials.data)
+            })
     }
 
     function authenticate(authDetails){
@@ -197,6 +168,14 @@ module.exports = (users, orgs, posts, events, auth) => {
                 if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
                 return Promise.resolve({authDetails: authDetails, id: res._id, user_type: res.user_type});
             });
+    }
+
+    function remove(user){
+        const removeObj = (user.user_type === 'user')? users.remove : orgs.remove;
+
+        const operations = [auth.remove(user.id), removeObj(user.id)];
+
+        return Promise.all(operations)
     }
 
 };

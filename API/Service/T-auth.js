@@ -11,7 +11,8 @@ const repo = require('./T-repository')(COLLECTION_NAME);
 module.exports = () => {
     return {
         register: register,
-        get: get
+        get: get,
+        remove: remove
     };
 
     function register(authDetails){
@@ -35,5 +36,9 @@ module.exports = () => {
 
         return repo.select(query)
             .then(res => res[0]);
+    }
+
+    function remove(id){
+        return repo.removeById(id);
     }
 };

@@ -29,21 +29,17 @@ module.exports = (router, service) => {
 
     router.post('/auth/register', register);
     router.post('/auth/authenticate', authenticate);
-    router.get('/auth/logout', logout);
 
     // authentication middlewares
     router.use('/auth', authenticationMw);
     router.use('/auth/users', userMw);
     router.use('/auth/orgs', orgMw);
 
-    router.post('/auth/users', createUser);
-    router.delete('/auth/users/:id', removeUser);
+    router.get('/auth/logout', logout);
+    router.delete('/auth/remove', remove);
 
     router.post('/auth/posts', createPost);
     router.delete('/auth/posts/:id', removePost);
-
-    router.post('/auth/orgs', createOrg);
-    router.delete('/auth/orgs/:id', removeOrg);
 
     router.post('/auth/events', orgMw, createEvent);
     router.delete('/auth/events/:id', orgMw, removeEvent);
@@ -53,16 +49,6 @@ module.exports = (router, service) => {
     /*
     Users
      */
-
-    function createUser(req, res){
-        req.body.id = req.user.id;
-
-        service.createUser(req.body)
-            .then(
-                (result) => handleSuccess(res, 201, result),
-                (error) => handleError(res, 400, error)
-            );
-    }
 
     function getUsers(req, res){
         service.getUsers()
@@ -74,14 +60,6 @@ module.exports = (router, service) => {
 
     function getUserById(req, res){
         service.getUserById(req.params.id)
-            .then(
-                (result) => handleSuccess(res, 200, result),
-                (error) => handleError(res, 400, error)
-            );
-    }
-
-    function removeUser(req, res){
-        service.removeUser(req.user.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
@@ -136,14 +114,6 @@ module.exports = (router, service) => {
     Orgs
      */
 
-    function createOrg(req, res){
-        service.createOrg(req.body)
-            .then(
-                (result) => handleSuccess(res, 200, result),
-                (error) => handleError(res, 400, error)
-            );
-    }
-
     function getAllOrgs(req, res){
         service.getAllOrgs()
             .then(
@@ -154,14 +124,6 @@ module.exports = (router, service) => {
 
     function getOrgById(req, res){
         service.getOrgById(req.params.id)
-            .then(
-                (result) => handleSuccess(res, 200, result),
-                (error) => handleError(res, 400, error)
-            );
-    }
-
-    function removeOrg(req, res){
-        service.removeOrg(req.params.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
@@ -230,6 +192,14 @@ module.exports = (router, service) => {
                 (result) => {
                     req.login({id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200, result))
                 }, err => handleError(res, 401, err)
+            );
+    }
+
+    function remove(req, res){
+        service.remove(req.user)
+            .then(
+                (_) => res.redirect('/api/auth/logout'),
+                (error) => handleError(res, 400, error)
             );
     }
 
