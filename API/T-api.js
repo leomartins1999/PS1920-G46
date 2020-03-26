@@ -44,6 +44,15 @@ module.exports = (router, service) => {
     router.post('/auth/events', orgMw, createEvent);
     router.delete('/auth/events/:id', orgMw, removeEvent);
 
+    /*
+    router.put('/auth/posts/:id/like', like);
+
+    router.put('/auth/events/:id/interested', userMw, interested);
+    router.put('/auth/events/:id/participate');
+
+    router.put('/auth/follow', follow);
+     */
+
     router.use('/', unknownURI);
 
     /*
