@@ -52,7 +52,7 @@ module.exports = (users, orgs, posts, events, auth) => {
      */
 
     function createPost(post){
-        if(!post.owner_id || !post.body)
+        if(!post.body)
             return Promise.reject(error.invalidParameters('owner_id, body'));
 
         return posts.create(post);
@@ -76,11 +76,12 @@ module.exports = (users, orgs, posts, events, auth) => {
         return posts.getByOwner(owner_id);
     }
 
-    function removePost(id){
-        if (!id)
-            return Promise.reject(error.invalidParameters('id'));
-
-        return posts.remove(id);
+    function removePost(id, owner_id){
+        return getPostById(id)
+            .then((post) => {
+                if (post.owner_id !== owner_id) return Promise.reject(error.unauthorizedAccess())
+                return posts.remove(id)
+            });
     }
 
     /*
@@ -103,7 +104,7 @@ module.exports = (users, orgs, posts, events, auth) => {
      */
 
     function createEvent(_event){
-        if (!_event.name || !_event.org_id)
+        if (!_event.name)
             return Promise.reject(error.invalidParameters('name, org_id'));
 
         return events.create(_event)
@@ -126,11 +127,16 @@ module.exports = (users, orgs, posts, events, auth) => {
             Promise.reject(error.invalidParameters('org_id'));
     }
 
-    function removeEvent(id){
+    function removeEvent(id, org_id){
         if(!id)
             return Promise.reject(error.invalidParameters('id'));
 
-        return events.remove(id);
+        return events
+            .getById(id)
+            .then(res => {
+                if (res.org_id !== org_id) return Promise.reject(error.unauthorizedAccess());
+                return events.remove(id);
+            });
     }
 
     /*

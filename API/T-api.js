@@ -71,6 +71,8 @@ module.exports = (router, service) => {
      */
 
     function createPost(req, res){
+        req.body.owner_id = req.user.id;
+
         service.createPost(req.body)
             .then(
                 (result) => handleSuccess(res, 201, result),
@@ -103,7 +105,7 @@ module.exports = (router, service) => {
     }
 
     function removePost(req, res){
-        service.removePost(req.params.id)
+        service.removePost(req.params.id, req.user.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
@@ -135,6 +137,8 @@ module.exports = (router, service) => {
      */
 
     function createEvent(req, res){
+        req.body.org_id = req.user.id;
+
         service.createEvent(req.body)
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -167,7 +171,7 @@ module.exports = (router, service) => {
     }
 
     function removeEvent(req, res){
-        service.removeEvent(req.params.id)
+        service.removeEvent(req.params.id, req.user.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)

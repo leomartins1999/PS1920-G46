@@ -4,7 +4,8 @@ module.exports = () => {
         invalidParameters: invalidParameters,
         databaseError: databaseError,
         unknownUrl: unknownUrl,
-        serviceError: serviceError
+        serviceError: serviceError,
+        unauthorizedAccess: unauthorizedAccess
     };
 
     function create(module, type, message){
@@ -32,6 +33,10 @@ module.exports = () => {
     }
 
     function serviceError(message){
-        return create('SERVICE', 'CLIENTE', message);
+        return create('SERVICE', 'CLIENT', message);
+    }
+
+    function unauthorizedAccess(){
+        return create('SERVICE', 'CLIENT', 'Unauthorized.')
     }
 };
