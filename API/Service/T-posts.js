@@ -17,6 +17,7 @@ module.exports = () => {
         getAll: getAll,
         getById: getById,
         getByOwner: getByOwner,
+        update: update,
         remove: remove
     };
 
@@ -24,8 +25,8 @@ module.exports = () => {
         const obj = {
             owner_id: post.owner_id,
             body: post.body,
-            likeIds: [],
-            linkImage: ''
+            likes: {},
+            imageLink: post.imageLink
         };
 
         return repo.insert(obj);
@@ -45,6 +46,16 @@ module.exports = () => {
         };
 
         return repo.select(query)
+    }
+
+    function update(post_id, post){
+        const obj = {
+            body: post.body,
+            likes: post.likes,
+            imageLink: post.imageLink
+        };
+
+        return repo.update({_id: post_id}, obj);
     }
 
     function remove(id){

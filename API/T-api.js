@@ -44,14 +44,12 @@ module.exports = (router, service) => {
     router.post('/auth/events', orgMw, createEvent);
     router.delete('/auth/events/:id', orgMw, removeEvent);
 
-    /*
     router.put('/auth/posts/:id/like', like);
 
-    router.put('/auth/events/:id/interested', userMw, interested);
-    router.put('/auth/events/:id/participate');
-
-    router.put('/auth/follow', follow);
-     */
+    // router.put('/auth/events/:id/interested', userMw, interested);
+    // router.put('/auth/events/:id/participate', orgMw, participate);
+    //
+    // router.put('/auth/follow', follow);
 
     router.use('/', unknownURI);
 
@@ -81,6 +79,7 @@ module.exports = (router, service) => {
 
     function createPost(req, res){
         req.body.owner_id = req.user.id;
+        req.body.user_type = req.user.user_type;
 
         service.createPost(req.body)
             .then(
@@ -115,6 +114,14 @@ module.exports = (router, service) => {
 
     function removePost(req, res){
         service.removePost(req.params.id, req.user.id)
+            .then(
+                (result) => handleSuccess(res, 200, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function like(req, res){
+        service.likePost(req.user.id, req.user.user_type, req.params.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)

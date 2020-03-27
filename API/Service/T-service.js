@@ -17,6 +17,7 @@ module.exports = (users, orgs, posts, events, auth) => {
         getPostById: getPostById,
         getPostsByOwner: getPostsByOwner,
         removePost: removePost,
+        likePost: likePost,
 
         getAllOrgs: getAllOrgs,
         getOrgById: getOrgById,
@@ -79,9 +80,22 @@ module.exports = (users, orgs, posts, events, auth) => {
     function removePost(id, owner_id){
         return getPostById(id)
             .then((post) => {
-                if (post.owner_id !== owner_id) return Promise.reject(error.unauthorizedAccess())
+                if (post.owner_id !== owner_id) return Promise.reject(error.unauthorizedAccess());
                 return posts.remove(id)
             });
+    }
+
+    function likePost(user_id, user_type, post_id){
+        return getPostById(post_id)
+            .then(post => {
+                if (post.likes[user_id]) delete post.likes[user_id];
+                else post.likes[user_id] = user_type;
+                return posts.update(post_id, post);
+            })
+            .then(res => {
+                if (res.status === 'updated') return Promise.resolve({status: 'success'});
+                return Promise.resolve(error.serviceError('Error executing operation.'));
+            })
     }
 
     /*

@@ -15,6 +15,7 @@ module.exports = (collection) => {
         insert: insert,
         select: select,
         selectById: selectById,
+        update: update,
         remove: remove,
         removeById: removeById
     };
@@ -59,7 +60,7 @@ module.exports = (collection) => {
             .then(col => col.update(query, update))
             .then(res => {
                 if (res.matchedCount === 0) return Promise.reject(error.databaseError(collection, 'update'));
-                return Promise.resolve({status: 'updated', changes: res.modifiedCount})
+                return Promise.resolve({status: 'updated'})
             })
     }
 
