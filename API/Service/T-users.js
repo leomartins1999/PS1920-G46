@@ -10,26 +10,28 @@
 
 // collection name
 const COLLECTION_NAME = 'users';
+const FILTER = ["body", "following", "followers", "linkLinkedIn", "imageLink"];
 
 // repository
-const repo = require('./T-repository')(COLLECTION_NAME);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
 
 module.exports = () => {
     return {
         create: create,
         getAll: getAll,
         getById: getById,
+        update: update,
         remove: remove
     }
 };
 
 function create(user) {
     const obj = {
-        _id: user.id,
+        id: user.id,
         name: user.name,
         body: user.body,
-        following: [],
-        followers: [],
+        following: {},
+        followers: {},
         linkLinkedIn: user.linkLinkedIn,
         imageLink: ''
     };
@@ -43,6 +45,10 @@ function getAll(){
 
 function getById(id){
     return repo.selectById(id);
+}
+
+function update(id, user){
+    return repo.updateById(id, user)
 }
 
 function remove(id){

@@ -13,9 +13,10 @@
 
 // collection name
 const COLLECTION_NAME = 'events';
+const FILTER = ["body", "imageLink", "capacity", "date", "location", "interestedIds", "participantIds"];
 
 // repository
-const repo = require('./T-repository')(COLLECTION_NAME);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
 
 module.exports = () => {
     return {
@@ -23,6 +24,7 @@ module.exports = () => {
         getAll: getAll,
         getById: getById,
         getEventsFromOrg: getEventsFromOrg,
+        update: update,
         remove: remove
     };
 
@@ -31,7 +33,7 @@ module.exports = () => {
             name: _event.name,
             org_id: _event.org_id,
             body: _event.body,
-            linkImage: '',
+            imageLink: '',
             capacity: _event.capacity,
             date: _event.date,
             location: _event.location,
@@ -56,6 +58,10 @@ module.exports = () => {
         };
 
         return repo.select(query)
+    }
+
+    function update(id, _event){
+        return repo.updateById(id, _event);
     }
 
     function remove(id) {

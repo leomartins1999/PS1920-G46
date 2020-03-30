@@ -11,15 +11,17 @@
 */
 
 const COLLECTION_NAME = 'orgs';
+const FILTER = ["body", "followers", "following", "phone", "mail", "linkSite", "linkSite", "linkFacebook", "imageLink"];
 
 // Repository
-const repo = require('./T-repository')(COLLECTION_NAME);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
 
 module.exports = () => {
     return {
         create: create,
         getAll: getAll,
         getById: getById,
+        update: update,
         remove: remove
     };
 
@@ -28,12 +30,13 @@ module.exports = () => {
             _id: org.id,
             name: org.name,
             body: org.body,
-            followers: [],
+            followers: {},
+            following: {},
             phone: org.phone,
             mail: org.mail,
             linkSite: org.linkSite,
             linkFacebook: org.linkFacebook,
-            linkImage: ''
+            imageLink: ''
         };
 
         return repo.insert(obj);
@@ -45,6 +48,10 @@ module.exports = () => {
 
     function getById(id){
         return repo.selectById(id);
+    }
+
+    function update(id, org){
+        return repo.updateById(id, org)
     }
 
     function remove(id){

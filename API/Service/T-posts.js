@@ -7,9 +7,10 @@
 */
 
 const COLLECTION_NAME = "posts";
+const FILTER = ["body", "likes", "imageLink"];
 
 // repo
-const repo = require('./T-repository')(COLLECTION_NAME);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
 
 module.exports = () => {
     return {
@@ -49,13 +50,7 @@ module.exports = () => {
     }
 
     function update(post_id, post){
-        const obj = {
-            body: post.body,
-            likes: post.likes,
-            imageLink: post.imageLink
-        };
-
-        return repo.update({_id: post_id}, obj);
+        return repo.updateById(post_id, post)
     }
 
     function remove(id){

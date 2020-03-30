@@ -28,6 +28,8 @@ module.exports = (users, orgs, posts, events, auth) => {
         getEventsByOrg: getEventsFromOrg,
         removeEvent: removeEvent,
 
+        follow: follow,
+
         register: register,
         authenticate: authenticate,
         remove: remove
@@ -151,6 +153,33 @@ module.exports = (users, orgs, posts, events, auth) => {
                 if (res.org_id !== org_id) return Promise.reject(error.unauthorizedAccess());
                 return events.remove(id);
             });
+    }
+
+    function followOperations(type){
+        return (type === 'user')?
+            {get: getUserById, update: users.update}:
+            {get: getOrgById, update: orgs.update};
+    }
+
+    function follow(follower_id, follower_user_type, followed_id, followed_user_type){
+        if (follower_id === followed_id)
+            return Promise.reject(error.serviceError('Attempting to follow self.'));
+
+        const followerOperations = followOperations(follower_user_type);
+        const followedOperations = followOperations(followed_user_type);
+
+        return followedOperations.get(followed_id)
+            .then(followed => {
+                if (followed.followers[follower_id]) delete followed.followers[follower_id];
+                else followed.followers[follower_id] = follower_user_type;
+                return followedOperations.update(followed_id, {followers: followed.followers})
+            })
+            .then((_) => followerOperations.get(follower_id))
+            .then((follower => {
+                if (follower.following[followed_id]) delete follower.following[followed_id];
+                else follower.following[followed_id] = followed_user_type;
+                return followerOperations.update(follower_id, {following: follower.following})
+            }))
     }
 
     /*
