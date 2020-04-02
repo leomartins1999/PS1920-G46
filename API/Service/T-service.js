@@ -24,11 +24,13 @@ module.exports = (users, orgs, posts, events, auth) => {
 
         createEvent: createEvent,
         getAllEvents: getAllEvents,
-        getEventsById: getEventsById,
+        getEventsById: getEventById,
         getEventsByOrg: getEventsFromOrg,
         removeEvent: removeEvent,
 
         follow: follow,
+        interested: interested,
+        participate: participate,
 
         register: register,
         authenticate: authenticate,
@@ -130,7 +132,7 @@ module.exports = (users, orgs, posts, events, auth) => {
         return events.getAll();
     }
 
-    function getEventsById(id){
+    function getEventById(id){
         if(!id)
             return Promise.reject(error.invalidParameters('id'));
 
@@ -180,6 +182,27 @@ module.exports = (users, orgs, posts, events, auth) => {
                 else follower.following[followed_id] = followed_user_type;
                 return followerOperations.update(follower_id, {following: follower.following})
             }))
+    }
+
+    function interested(event_id, user_id){
+        return getEventById(event_id)
+            .then((_event) => {
+                if (_event.interested[user_id]) delete _event.interested[user_id];
+                else _event.interested[user_id] = 'user';
+                return events.update(event_id, _event)
+            })
+    }
+
+    function participate(event_id, org_id, user_id){
+        return getEventById(event_id)
+            .then((_event) => {
+                if (_event.org_id !== org_id) return Promise.reject(error.unauthorizedAccess());
+                if (_event.interested[user_id]) delete _event.interested[user_id];
+                if (_event.participants[user_id]) delete _event.participants[user_id];
+                else _event.participants[user_id] = 'user';
+
+                return events.update(event_id, _event);
+            })
     }
 
     /*

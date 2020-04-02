@@ -13,7 +13,7 @@
 
 // collection name
 const COLLECTION_NAME = 'events';
-const FILTER = ["body", "imageLink", "capacity", "date", "location", "interestedIds", "participantIds"];
+const FILTER = ["body", "imageLink", "capacity", "date", "location", "interested", "participants"];
 
 // repository
 const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
@@ -37,8 +37,8 @@ module.exports = () => {
             capacity: _event.capacity,
             date: _event.date,
             location: _event.location,
-            interestedIds: [],
-            participantIds: []
+            interested: {},
+            participants: {}
         };
 
         return repo.insert(obj);
