@@ -9,8 +9,8 @@
  */
 
 // collection name
-const COLLECTION_NAME = 'users';
-const FILTER = ["body", "following", "followers", "linkLinkedIn", "imageLink"];
+const COLLECTION_NAME = 'volunteers';
+const FILTER = ["description", "following", "followers", "linkedInLink", "imageLink"];
 
 // repository
 const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
@@ -29,10 +29,10 @@ function create(user) {
     const obj = {
         id: user.id,
         name: user.name,
-        body: user.body,
+        description: user.body,
         following: {},
         followers: {},
-        linkLinkedIn: user.linkLinkedIn,
+        linkedInLink: user.linkedInLink,
         imageLink: ''
     };
 

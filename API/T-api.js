@@ -21,6 +21,13 @@ module.exports = (router, service) => {
     router.get('/orgs', getAllOrgs);
     router.get('/orgs/:id', getOrgById);
 
+    
+
+    /*
+    /auth/orgs/:id/events
+    /events
+     */
+
     router.get('/events', getAllEvents);
     router.get('/events/:id', getEventById);
     router.get('/events/org/:id', getEventsByOrg);

@@ -20,7 +20,7 @@ const REQUEST_BASE = '/api';
 const router = express.Router();
 
 // service modules
-const users = require('./Service/T-users')();
+const users = require('./Service/T-volunteers')();
 const orgs = require('./Service/T-orgs')();
 const posts = require('./Service/T-posts')();
 const events = require('./Service/T-events')();
