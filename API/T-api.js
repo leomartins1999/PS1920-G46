@@ -7,20 +7,25 @@ module.exports = (router, service) => {
     Endpoints
      */
 
+    /*
+        New Endpoints
+
+
+     */
+
     router.use('/', log);
 
     // common endpoints
 
-    router.get('/users', getUsers);
-    router.get('/users/:id', getUserById);
+    router.get('/users', getUsers); //
+    router.get('/users/:id', getUserById); //
 
-    router.get('/posts', getAllPosts);
-    router.get('/posts/:id', getPostById);
-    router.get('/posts/owner/:id', getPostsByOwner);
+    router.get('/posts', getAllPosts); //
+    router.get('/posts/:id', getPostById); //
+    router.get('/posts/owner/:id', getPostsByOwner); //
 
-    router.get('/orgs', getAllOrgs);
-    router.get('/orgs/:id', getOrgById);
-
+    router.get('/orgs', getAllOrgs); //
+    router.get('/orgs/:id', getOrgById); //
     
 
     /*
@@ -28,35 +33,35 @@ module.exports = (router, service) => {
     /events
      */
 
-    router.get('/events', getAllEvents);
-    router.get('/events/:id', getEventById);
-    router.get('/events/org/:id', getEventsByOrg);
+    router.get('/events', getAllEvents); //
+    router.get('/events/:id', getEventById); //
+    router.get('/events/org/:id', getEventsByOrg); //
 
     // authenticated endpoints
 
-    router.post('/auth/register', register);
-    router.post('/auth/authenticate', authenticate);
+    router.post('/auth/register', register); //?
+    router.post('/auth/authenticate', authenticate); //?
 
     // authentication middlewares
     router.use('/auth', authenticationMw);
     router.use('/auth/users', userMw);
     router.use('/auth/orgs', orgMw);
 
-    router.get('/auth/logout', logout);
-    router.delete('/auth/remove', remove);
+    router.get('/auth/logout', logout); //
+    router.delete('/auth/remove', remove); //
 
-    router.post('/auth/posts', createPost);
-    router.delete('/auth/posts/:id', removePost);
+    router.post('/auth/posts', createPost); //
+    router.delete('/auth/posts/:id', removePost); //
 
-    router.post('/auth/events', orgMw, createEvent);
-    router.delete('/auth/events/:id', orgMw, removeEvent);
+    router.post('/auth/events', orgMw, createEvent); //
+    router.delete('/auth/events/:id', orgMw, removeEvent); //
 
-    router.put('/auth/posts/:id/like', like);
+    router.put('/auth/posts/:id/like', like); //
 
-    router.put('/auth/follow', follow);
+    router.put('/auth/follow', follow); //
 
-    router.put('/auth/events/:id/interested', userMw, interested);
-    router.put('/auth/events/:id/participate', orgMw, participate);
+    router.put('/auth/events/:id/interested', userMw, interested); //
+    router.put('/auth/events/:id/participate', orgMw, participate); //
 
     router.use('/', unknownURI);
 

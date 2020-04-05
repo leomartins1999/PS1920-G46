@@ -33,7 +33,7 @@ function create(user) {
         following: {},
         followers: {},
         linkedInLink: user.linkedInLink,
-        imageLink: ''
+        imageLink: user.imageLink
     };
 
     return repo.insert(obj);

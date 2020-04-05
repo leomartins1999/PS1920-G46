@@ -11,7 +11,7 @@
 */
 
 const COLLECTION_NAME = 'orgs';
-const FILTER = ["body", "followers", "following", "phone", "mail", "linkSite", "linkSite", "linkFacebook", "imageLink"];
+const FILTER = ["description", "followers", "following", "phone", "mail", "siteLink", "facebookLink", "imageLink"];
 
 // Repository
 const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
@@ -29,14 +29,14 @@ module.exports = () => {
         const obj = {
             _id: org.id,
             name: org.name,
-            body: org.body,
+            description: org.description,
             followers: {},
             following: {},
             phone: org.phone,
             mail: org.mail,
-            linkSite: org.linkSite,
-            linkFacebook: org.linkFacebook,
-            imageLink: ''
+            siteLink: org.siteLink,
+            facebookLink: org.facebookLink,
+            imageLink: org.imageLink
         };
 
         return repo.insert(obj);

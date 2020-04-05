@@ -7,7 +7,7 @@
 */
 
 const COLLECTION_NAME = "posts";
-const FILTER = ["body", "likes", "imageLink"];
+const FILTER = ["description", "likes", "imageLink"];
 
 // repo
 const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
@@ -25,7 +25,7 @@ module.exports = () => {
     function create(post){
         const obj = {
             owner_id: post.owner_id,
-            body: post.body,
+            description: post.description,
             likes: {},
             imageLink: post.imageLink
         };
