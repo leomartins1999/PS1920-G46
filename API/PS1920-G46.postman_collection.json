@@ -1,0 +1,657 @@
+{
+	"info": {
+		"_postman_id": "a282a90d-c1fb-46fa-9f7e-231b585fce4d",
+		"name": "PS1920-G46",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orgs operations",
+			"item": [
+				{
+					"name": "Register org",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"authDetails\": {\n\t\t\"email\": \"org\",\n\t\t\"password\": 123,\n\t\t\"user_type\": \"org\"\n\t},\n\t\"data\": {\n\t\t\"name\": \"org\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate org",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"org\",\n\t\"password\": 123\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"kekW\",\n\t\"date\": \"30-4-2020\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/events/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e7d034758fa8334282f63d9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Participate in event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/events/:id/participate?id=5e821e6be069d32b7c841754",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"events",
+								":id",
+								"participate"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5e821e6be069d32b7c841754"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e86147661c82c4e50a8854c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users operations",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"authDetails\": {\n\t\t\"email\": \"leo\",\n\t\t\"password\": 123,\n\t\t\"user_type\": \"user\"\n\t},\n\t\"data\": {\n\t\t\"name\": \"leo\",\n\t\t\"body\": \"description\",\n\t\t\"linkLinkedIn\": \"www.linkedin.com\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"leo\",\n\t\"password\": 123\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Interested in event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/events/:id/interested",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"events",
+								":id",
+								"interested"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e86147661c82c4e50a8854c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Unauthenticated operations",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e7bb21fa1905a36e0363198"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orgs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orgs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orgs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Org by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orgs/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orgs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e766c57732e483f500fd55c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e751f93328342226c53b424"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posts By Owner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/owner/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"owner",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123 123 123 123 123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e766dff732e483f500fd561"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events by Org",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/org/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"org",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "identificador da organização"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Authenticated operations",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"body\": \"abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/posts/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e7d008f1035e7475089e544"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/posts/:id/like",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"posts",
+								":id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e7e473b4f898c3b640ea14b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow ",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/follow?id=5e82229a1800761368c00ab3&user_type=org",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"follow"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5e82229a1800761368c00ab3"
+								},
+								{
+									"key": "user_type",
+									"value": "org"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/remove",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "InvalidUri",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/wtf",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wtf"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "55cc29ef-2a90-46bc-a004-dcd596ef9633",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b82eda11-9eff-48cf-affe-3931dcb3338d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "85871b2f-1c7c-46eb-8a71-3ff78ad72716",
+			"key": "base_url",
+			"value": "localhost:8000/api",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
