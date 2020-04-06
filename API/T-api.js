@@ -3,81 +3,83 @@ const error = require('./T-error')();
 
 module.exports = (router, service) => {
 
-    /*
-    Endpoints
-     */
-
-    /*
-        New Endpoints
-
-
-     */
-
+    // logging middleware
     router.use('/', log);
 
-    // common endpoints
-
-    router.get('/users', getUsers); //
-    router.get('/users/:id', getUserById); //
-
-    router.get('/posts', getAllPosts); //
-    router.get('/posts/:id', getPostById); //
-    router.get('/posts/owner/:id', getPostsByOwner); //
-
-    router.get('/orgs', getAllOrgs); //
-    router.get('/orgs/:id', getOrgById); //
-    
-
-    /*
-    /auth/orgs/:id/events
-    /events
-     */
-
-    router.get('/events', getAllEvents); //
-    router.get('/events/:id', getEventById); //
-    router.get('/events/org/:id', getEventsByOrg); //
-
-    // authenticated endpoints
-
-    router.post('/auth/register', register); //?
-    router.post('/auth/authenticate', authenticate); //?
-
-    // authentication middlewares
+    // authentication middleware
     router.use('/auth', authenticationMw);
-    router.use('/auth/users', userMw);
-    router.use('/auth/orgs', orgMw);
 
-    router.get('/auth/logout', logout); //
-    router.delete('/auth/remove', remove); //
+    // get volunteers
+    router.get('/volunteers', getVolunteers);
 
-    router.post('/auth/posts', createPost); //
-    router.delete('/auth/posts/:id', removePost); //
+    // get volunteer by id
+    router.get('/volunteers/:volunteer_id', getVolunteerById);
 
-    router.post('/auth/events', orgMw, createEvent); //
-    router.delete('/auth/events/:id', orgMw, removeEvent); //
+    // follow volunteer
+    router.put('/auth/volunteer/:volunteer_id/follow', followVolunteer);
 
-    router.put('/auth/posts/:id/like', like); //
+    // get orgs
+    router.get('/orgs', getOrgs);
 
-    router.put('/auth/follow', follow); //
+    // get org by id
+    router.get('/orgs/:org_id', getOrgById);
 
-    router.put('/auth/events/:id/interested', userMw, interested); //
-    router.put('/auth/events/:id/participate', orgMw, participate); //
+    // follow org
+    router.put('/auth/orgs/:org_id/follow', followOrg);
 
+    // create post
+    router.post('/auth/posts', createPost);
+
+    // get posts
+    router.get('/posts', getPosts);
+
+    // get post by id
+    router.get('/posts/:post_id', getPostById);
+
+    // remove post
+    router.delete('/auth/posts/:post_id', removePost);
+
+    // like post
+    router.put('/auth/posts/:post_id/like', likePost);
+
+    // create event
+    router.post('/auth/orgs/events', createEvent);
+
+    // get events
+    router.get('/orgs/events', getEvents);
+
+    // get events by org
+    router.get('/orgs/:org_id/events', getEventsByOrg);
+
+    // get event by id
+    router.get('/orgs/:org_id/events/:event_id', getEventById);
+
+    // remove event
+    router.delete('/auth/orgs/:org_id/events/:event_id', removeEvent);
+
+    // volunteer interested in event
+    router.put('/auth/orgs/:org_id/events/:event_id/interested', interestedInEvent);
+
+    // volunteer participate in event
+    router.put('/auth/orgs/:org_id/events/:event_id/interested', participateInEvent);
+
+    // register in platform
+    router.post('/register', register);
+
+    // login
+    router.post('/login', login);
+
+    // logout
+    router.post('/auth/logout', logout);
+
+    // unknown URL
     router.use('/', unknownURI);
 
-    /*
-    Users
-     */
-
-    function getUsers(req, res){
-        service.getUsers()
-            .then(
-                (result) => handleSuccess(res, 200, result),
-                (error) => handleError(res, 400, error)
-            );
+    function getVolunteers(req, res){
+        handleRequest(res, 200, 400, service.getUsers);
     }
 
-    function getUserById(req, res){
+    function getVolunteerById(req, res){
         service.getUserById(req.params.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -85,22 +87,15 @@ module.exports = (router, service) => {
             );
     }
 
-    /*
-    Posts
-     */
-
     function createPost(req, res){
-        req.body.owner_id = req.user.id;
-        req.body.user_type = req.user.user_type;
-
-        service.createPost(req.body)
+        service.createPost(new Post(req.user.id, req.body))
             .then(
                 (result) => handleSuccess(res, 201, result),
                 (error) => handleError(res, 400, error)
             );
     }
 
-    function getAllPosts(req, res) {
+    function getPosts(req, res) {
         service.getAllPosts()
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -132,7 +127,7 @@ module.exports = (router, service) => {
             );
     }
 
-    function like(req, res){
+    function likePost(req, res){
         service.likePost(req.user.id, req.user.user_type, req.params.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -144,7 +139,7 @@ module.exports = (router, service) => {
     Orgs
      */
 
-    function getAllOrgs(req, res){
+    function getOrgs(req, res){
         service.getAllOrgs()
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -174,7 +169,7 @@ module.exports = (router, service) => {
             );
     }
 
-    function getAllEvents(req, res){
+    function getEvents(req, res){
         service.getAllEvents()
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -206,7 +201,7 @@ module.exports = (router, service) => {
             );
     }
 
-    function follow(req, res){
+    function followVolunteer(req, res){
         service.follow(req.user.id, req.user.user_type, req.query.id, req.query.user_type)
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -214,7 +209,15 @@ module.exports = (router, service) => {
             );
     }
 
-    function interested(req, res){
+    function followOrg(req, res){
+        service.follow(req.user.id, req.user.user_type, req.query.id, req.query.user_type)
+            .then(
+                (result) => handleSuccess(res, 200, result),
+                (error) => handleError(res, 400, error)
+            );
+    }
+
+    function interestedInEvent(req, res){
         service.interested(req.params.id, req.user.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -222,7 +225,7 @@ module.exports = (router, service) => {
             );
     }
 
-    function participate(req, res){
+    function participateInEvent(req, res){
         service.participate(req.params.id, req.user.id, req.query.id)
             .then(
                 (result) => handleSuccess(res, 200, result),
@@ -242,7 +245,7 @@ module.exports = (router, service) => {
             );
     }
 
-    function authenticate(req, res){
+    function login(req, res){
         service.authenticate(req.body)
             .then(
                 (result) => {
@@ -264,10 +267,18 @@ module.exports = (router, service) => {
         handleSuccess(res, 200, {status: 'Logout completed.'})
     }
 
+    function handleRequest(res, statusCodeSuccess, statusCodeError, serviceFunction, serviceParams){
+        serviceFunction(serviceParams)
+            .then(
+                (result) => handleSuccess(res, statusCodeSuccess, result),
+                (error) => handleError(res, statusCodeError, error)
+            );
+    }
+
     function handleSuccess(res, statusCode = 200, result){
         // body
         let response = {
-            status: "Success",
+            status: "success",
             body: result
         };
 
@@ -282,7 +293,7 @@ module.exports = (router, service) => {
     function handleError(res, statusCode, error){
         // body
         let response = {
-            status: "Error",
+            status: "error",
             body: error
         };
 

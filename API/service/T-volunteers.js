@@ -30,10 +30,10 @@ function create(user) {
         id: user.id,
         name: user.name,
         description: user.body,
+        linkedInLink: user.linkedInLink,
+        imageLink: user.imageLink,
         following: {},
         followers: {},
-        linkedInLink: user.linkedInLink,
-        imageLink: user.imageLink
     };
 
     return repo.insert(obj);

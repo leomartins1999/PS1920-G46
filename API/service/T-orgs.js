@@ -30,13 +30,13 @@ module.exports = () => {
             _id: org.id,
             name: org.name,
             description: org.description,
-            followers: {},
-            following: {},
             phone: org.phone,
             mail: org.mail,
             siteLink: org.siteLink,
             facebookLink: org.facebookLink,
-            imageLink: org.imageLink
+            imageLink: org.imageLink,
+            followers: {},
+            following: {}
         };
 
         return repo.insert(obj);

@@ -20,14 +20,14 @@ const REQUEST_BASE = '/api';
 const router = express.Router();
 
 // service modules
-const users = require('./Service/T-volunteers')();
-const orgs = require('./Service/T-orgs')();
-const posts = require('./Service/T-posts')();
-const events = require('./Service/T-events')();
-const auth = require('./Service/T-auth')();
+const users = require('./service/T-volunteers')();
+const orgs = require('./service/T-orgs')();
+const posts = require('./service/T-posts')();
+const events = require('./service/T-events')();
+const auth = require('./service/T-auth')();
 
 // service
-const service = require('./Service/T-service')(users, orgs, posts, events, auth);
+const service = require('./service/T-service')(users, orgs, posts, events, auth);
 
 // api
 const api = require('./T-api')(router, service);
@@ -36,8 +36,8 @@ const api = require('./T-api')(router, service);
 const app = express();
 app.use(express.json());
 app.use(session);
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize({}));
+app.use(passport.session({}));
 app.use(REQUEST_BASE, router);
 
 // server initialization
