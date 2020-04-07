@@ -75,18 +75,26 @@ module.exports = (router, service) => {
     // unknown URL
     router.use('/', unknownURI);
 
+    // handler for get volunteers
     function getVolunteers(req, res){
-        handleRequest(res, 200, 400, service.getUsers);
+        handleRequest(res, 200, 400, service.getVolunteer, req.query.name);
     }
 
+    // handler for get volunteer by id
     function getVolunteerById(req, res){
-        service.getUserById(req.params.id)
+        handleRequest(res, 200, 400, service.getVolunteerById, req.params.volunteer_id);
+    }
+
+    function followVolunteer(req, res){
+        //handleRequest(res, 200, 400, service.followVolunteer, {user_id: req.user.id, req})
+        service.follow(req.user.id, req.user.user_type, req.query.id, req.query.user_type)
             .then(
                 (result) => handleSuccess(res, 200, result),
                 (error) => handleError(res, 400, error)
             );
     }
 
+    // handler for
     function createPost(req, res){
         service.createPost(new Post(req.user.id, req.body))
             .then(
@@ -201,13 +209,7 @@ module.exports = (router, service) => {
             );
     }
 
-    function followVolunteer(req, res){
-        service.follow(req.user.id, req.user.user_type, req.query.id, req.query.user_type)
-            .then(
-                (result) => handleSuccess(res, 200, result),
-                (error) => handleError(res, 400, error)
-            );
-    }
+
 
     function followOrg(req, res){
         service.follow(req.user.id, req.user.user_type, req.query.id, req.query.user_type)

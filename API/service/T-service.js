@@ -9,8 +9,9 @@ const error = require('../T-error')();
 module.exports = (users, orgs, posts, events, auth) => {
 
     return {
-        getUsers: getUsers,
-        getUserById: getUserById,
+        getVolunteer: getVolunteers,
+        getVolunteerById: getVolunteerById,
+        followVolunteer: followVolunteer,
 
         createPost: createPost,
         getAllPosts: getAllPosts,
@@ -37,24 +38,18 @@ module.exports = (users, orgs, posts, events, auth) => {
         remove: remove
     };
 
-    /*
-    Users
-     */
-
-    function getUsers(){
-        return users.getAll();
+    function getVolunteers(name){
+        return users.getAll(name);
     }
 
-    function getUserById(id){
+    function getVolunteerById(id){
         if (!id)
             return Promise.reject(error.invalidParameters('id'));
 
         return users.getById(id);
     }
 
-    /*
-    Posts
-     */
+    function followVolunteer(){}
 
     function createPost(post){
         if(!post.body)
@@ -159,7 +154,7 @@ module.exports = (users, orgs, posts, events, auth) => {
 
     function followOperations(type){
         return (type === 'user')?
-            {get: getUserById, update: users.update}:
+            {get: getVolunteerById, update: users.update}:
             {get: getOrgById, update: orgs.update};
     }
 
