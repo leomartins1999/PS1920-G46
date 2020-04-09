@@ -12,9 +12,10 @@
 
 const COLLECTION_NAME = 'orgs';
 const FILTER = ["description", "followers", "following", "phone", "mail", "siteLink", "facebookLink", "imageLink"];
+const SEARCH = {name: "text"};
 
 // Repository
-const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
     return {
