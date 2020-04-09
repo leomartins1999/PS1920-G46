@@ -164,12 +164,12 @@ module.exports = (router, service) => {
 
     // handler for interested in event
     function interestedInEvent(req, res){
-        handleRequest(res, 200, 400, service.getEvents, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.interested, new ServiceParams(req))
     }
 
     // handler for participate in event
     function participateInEvent(req, res){
-        handleRequest(res, 200, 400, service.getEvents, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.participate, new ServiceParams(req))
     }
 
     // handler for register
