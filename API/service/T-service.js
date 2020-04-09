@@ -9,7 +9,7 @@ const error = require('../T-error')();
 module.exports = (users, orgs, posts, events, auth) => {
 
     return {
-        getVolunteer: getVolunteers,
+        getVolunteers: getVolunteers,
         getVolunteerById: getVolunteerById,
         followVolunteer: followVolunteer,
 
