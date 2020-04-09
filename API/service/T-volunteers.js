@@ -11,9 +11,10 @@
 // collection name
 const COLLECTION_NAME = 'volunteers';
 const FILTER = ["description", "following", "followers", "linkedInLink", "imageLink"];
+const SEARCH = {name: "text"};
 
 // repository
-const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
     return {
@@ -39,8 +40,10 @@ function create(user) {
     return repo.insert(obj);
 }
 
-function getAll(){
-    return repo.select();
+function getAll(name){
+    const query = name ? { $text: { $search: name }} : {};
+
+    return repo.select(query);
 }
 
 function getById(id){

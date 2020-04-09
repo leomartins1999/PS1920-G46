@@ -10,7 +10,9 @@ const MODULE = 'SERVICE-POSTS';
 const URL = "mongodb://localhost:27017/";
 const DB_NAME = "tribute_db";
 
-module.exports = (collection, filter) => {
+module.exports = (collection, filter, searchables) => {
+    if(searchables) createSearchIdx(searchables);
+
     return {
         insert: insert,
         select: select,
@@ -25,6 +27,10 @@ module.exports = (collection, filter) => {
         return MongoClient.connect(URL)
             .then(db => db.db(DB_NAME))
             .then(dbo => dbo.collection(collection));
+    }
+
+    function createSearchIdx(searchables) {
+        accessCollection().createIndex(searchables);
     }
 
     function insert(obj){

@@ -8,9 +8,10 @@
 
 const COLLECTION_NAME = "posts";
 const FILTER = ["description", "likes", "imageLink"];
+const SEARCH = {owner_id: "text"};
 
 // repo
-const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
+const repo = require('./T-repository')(COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
     return {
