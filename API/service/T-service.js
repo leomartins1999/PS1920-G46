@@ -213,7 +213,7 @@ module.exports = (users, orgs, posts, events, auth) => {
         // if (!credentials.data.name)
         //     return Promise.reject(error.invalidParameters('name'));
 
-        const createObj = (registerParams.user_type === 'user')? users.create : orgs.create;
+        const createObj = (registerParams.user_type === 'volunteer')? users.create : orgs.create;
 
         return auth
             .get(registerParams)
