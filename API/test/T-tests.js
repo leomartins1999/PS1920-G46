@@ -58,8 +58,9 @@ describe('Repository Tests', () => {
     });
 
     it('Select by Id', () => {
-        return repository.selectById('5e821e64e069d32b7c840001')
+        return repository.selectById("5e821e64e069d32b7c840003")
             .then(dto => {
+                console.log(dto);
                 assert.true(objects[0].equals(dto));
             })
     });

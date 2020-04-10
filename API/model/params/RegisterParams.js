@@ -18,7 +18,11 @@ class RegisterParams{
         this.data = (this.user_type === 'volunteer')? new Volunteer(req.body.data) : new Org(req.body.data)
     }
 
-
+    checkFor(properties){
+        for (let i = 0; i < properties.length ; i++)
+            if (!this[properties[i]]) return false;
+        return true;
+    }
 }
 
 module.exports = RegisterParams;

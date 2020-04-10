@@ -42,11 +42,11 @@ module.exports = (users, orgs, posts, events, auth) => {
         return users.getAll(searchParams.name);
     }
 
-    function getVolunteerById(id){
-        if (!id)
-            return Promise.reject(error.invalidParameters('id'));
+    function getVolunteerById(searchParams){
+        if (!searchParams.checkFor('volunteer_id'))
+            return Promise.reject(error.invalidParameters('volunteer_id'));
 
-        return users.getById(id);
+        return users.getById(searchParams.volunteer_id);
     }
 
     function followVolunteer(){}
@@ -204,23 +204,25 @@ module.exports = (users, orgs, posts, events, auth) => {
     Authentication
      */
 
-    function register(credentials){
-        if (!credentials.authDetails.email || !credentials.authDetails.password || !credentials.authDetails.user_type)
-            return Promise.reject(error.invalidParameters('email, password, user_type'));
+    function register(registerParams){
+        if (registerParams.checkFor(['email', 'password', 'user_type', 'data.name']))
+            return Promise.reject(error.invalidParameters('email, password, user_type, data.name'));
 
-        if (!credentials.data.name)
-            return Promise.reject(error.invalidParameters('name'));
+        //
+        //
+        // if (!credentials.data.name)
+        //     return Promise.reject(error.invalidParameters('name'));
 
-        const createObj = (credentials.authDetails.user_type === 'user')? users.create : orgs.create;
+        const createObj = (registerParams.user_type === 'user')? users.create : orgs.create;
 
         return auth
-            .get(credentials.authDetails)
+            .get(registerParams)
             .then(res => {
-                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.')) : auth.register(credentials.authDetails)
+                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.')) : auth.register(registerParams)
             })
             .then(res => {
-                credentials.data.id = res.id;
-                return createObj(credentials.data)
+                registerParams.data.id = res.id;
+                return createObj(registerParams.data)
             })
     }
 

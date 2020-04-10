@@ -18,6 +18,10 @@ class ServiceParams{
         for(let propertyName in obj)
             this[propertyName] = obj[propertyName];
     }
+
+    checkFor(propertyName){
+        return this[propertyName]
+    }
 }
 
 module.exports = ServiceParams;
