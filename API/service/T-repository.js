@@ -30,7 +30,8 @@ module.exports = (collection, filter, searchables) => {
     }
 
     function createSearchIdx(searchables) {
-        accessCollection().createIndex(searchables);
+        accessCollection()
+            .then((col) => col.createIndex(searchables))
     }
 
     function insert(obj){

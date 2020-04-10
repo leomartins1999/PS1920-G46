@@ -38,8 +38,8 @@ module.exports = (users, orgs, posts, events, auth) => {
         remove: remove
     };
 
-    function getVolunteers(name){
-        return users.getAll(name);
+    function getVolunteers(searchParams){
+        return users.getAll(searchParams.name);
     }
 
     function getVolunteerById(id){
