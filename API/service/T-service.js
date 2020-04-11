@@ -14,28 +14,25 @@ module.exports = (users, orgs, posts, events, auth) => {
         followVolunteer: followVolunteer,
 
         createPost: createPost,
-        getAllPosts: getAllPosts,
+        getPosts: getPosts,
         getPostById: getPostById,
-        getPostsByOwner: getPostsByOwner,
         removePost: removePost,
         likePost: likePost,
 
-        getAllOrgs: getAllOrgs,
+        getOrgs: getOrgs,
         getOrgById: getOrgById,
+        followOrg: followOrg,
 
         createEvent: createEvent,
-        getAllEvents: getAllEvents,
+        getEvents: getEvents,
         getEventsById: getEventById,
         getEventsByOrg: getEventsFromOrg,
         removeEvent: removeEvent,
-
-        follow: follow,
-        interested: interested,
-        participate: participate,
+        interestedInEvent: interestedInEvent,
+        participateInEvent: participateInEvent,
 
         register: register,
-        authenticate: authenticate,
-        remove: remove
+        login: login
     };
 
     function getVolunteers(searchParams){
@@ -58,7 +55,7 @@ module.exports = (users, orgs, posts, events, auth) => {
         return posts.create(post);
     }
 
-    function getAllPosts(){
+    function getPosts(){
         return posts.getAll();
     }
 
@@ -67,13 +64,6 @@ module.exports = (users, orgs, posts, events, auth) => {
             return Promise.reject(error.invalidParameters('post_id'));
 
         return posts.getById(post_id);
-    }
-
-    function getPostsByOwner(owner_id){
-        if (!owner_id)
-            return Promise.reject(error.invalidParameters('id'));
-
-        return posts.getByOwner(owner_id);
     }
 
     function removePost(id, owner_id){
@@ -101,15 +91,15 @@ module.exports = (users, orgs, posts, events, auth) => {
     Orgs
      */
 
-    function getAllOrgs(){
-        return orgs.getAll();
+    function getOrgs(searchParams){
+        return orgs.getAll(searchParams.name);
     }
 
-    function getOrgById(id){
-        if(!id)
-            return Promise.reject(error.invalidParameters('id'));
+    function getOrgById(searchParams){
+        if (!searchParams.checkFor('org_id'))
+            return Promise.reject(error.invalidParameters('org_id'));
 
-        return orgs.getById(id);
+        return orgs.getById(searchParams.org_id);
     }
 
     /*
@@ -123,7 +113,7 @@ module.exports = (users, orgs, posts, events, auth) => {
         return events.create(_event)
     }
 
-    function getAllEvents(){
+    function getEvents(){
         return events.getAll();
     }
 
@@ -152,34 +142,7 @@ module.exports = (users, orgs, posts, events, auth) => {
             });
     }
 
-    function followOperations(type){
-        return (type === 'user')?
-            {get: getVolunteerById, update: users.update}:
-            {get: getOrgById, update: orgs.update};
-    }
-
-    function follow(follower_id, follower_user_type, followed_id, followed_user_type){
-        if (follower_id === followed_id)
-            return Promise.reject(error.serviceError('Attempting to follow self.'));
-
-        const followerOperations = followOperations(follower_user_type);
-        const followedOperations = followOperations(followed_user_type);
-
-        return followedOperations.get(followed_id)
-            .then(followed => {
-                if (followed.followers[follower_id]) delete followed.followers[follower_id];
-                else followed.followers[follower_id] = follower_user_type;
-                return followedOperations.update(followed_id, {followers: followed.followers})
-            })
-            .then((_) => followerOperations.get(follower_id))
-            .then((follower => {
-                if (follower.following[followed_id]) delete follower.following[followed_id];
-                else follower.following[followed_id] = followed_user_type;
-                return followerOperations.update(follower_id, {following: follower.following})
-            }))
-    }
-
-    function interested(event_id, user_id){
+    function interestedInEvent(event_id, user_id){
         return getEventById(event_id)
             .then((_event) => {
                 if (_event.interested[user_id]) delete _event.interested[user_id];
@@ -188,7 +151,7 @@ module.exports = (users, orgs, posts, events, auth) => {
             })
     }
 
-    function participate(event_id, org_id, user_id){
+    function participateInEvent(event_id, org_id, user_id){
         return getEventById(event_id)
             .then((_event) => {
                 if (_event.org_id !== org_id) return Promise.reject(error.unauthorizedAccess());
@@ -226,7 +189,7 @@ module.exports = (users, orgs, posts, events, auth) => {
             })
     }
 
-    function authenticate(authDetails){
+    function login(authDetails){
         if (!authDetails.email || !authDetails.password)
             return Promise.reject(error.invalidParameters('email, password'));
 
@@ -235,7 +198,7 @@ module.exports = (users, orgs, posts, events, auth) => {
             .then(res => {
                 if(!res) return Promise.reject(error.authenticationError('The email is not associated with an account.'));
                 if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
-                return Promise.resolve({authDetails: authDetails, id: res._id, user_type: res.user_type});
+                return Promise.resolve({id: res._id, user_type: res.user_type});
             });
     }
 

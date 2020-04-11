@@ -43,8 +43,10 @@ module.exports = () => {
         return repo.insert(obj);
     }
 
-    function getAll(){
-        return repo.select();
+    function getAll(name){
+        const query = name ? { $text: { $search: name }} : {};
+
+        return repo.select(query);
     }
 
     function getById(id){
