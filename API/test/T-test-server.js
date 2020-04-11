@@ -19,17 +19,17 @@ const REQUEST_BASE = '/api';
 // router
 const router = express.Router();
 
+let server = null;
+
 module.exports = () => {
     return {
-        startServer: startServer,
-        closeServer: closeServer,
+        start: start,
+        stop: stop,
 
-        baseURI: `localhost:${PORT}/api`,
+        baseURL: `http://localhost:${PORT}/api`,
     };
 
-    let server = null;
-
-    function startServer(){
+    function start(){
         const router = express.Router();
 
         const service = require('./ServiceMock');
@@ -43,10 +43,11 @@ module.exports = () => {
         app.use(passport.session({}));
         app.use(REQUEST_BASE, router);
 
-        server = app.listen(PORT, () => console.log(`Test Server started at port ${PORT}`));
+        server = app.listen(PORT, () => console.log(`Test server started at port ${PORT}`));
     }
 
-    function closeServer() {
+    function stop() {
         server.close();
+        console.log("Test server closed")
     }
 };

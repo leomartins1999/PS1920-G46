@@ -11,7 +11,7 @@ const COLLECTION_FILTER = ["description", "age"];
 
 const repository = require("../service/T-repository")(COLLECTION_NAME, COLLECTION_FILTER);
 const TestDto = require("./TestDto");
-const server = require("./T-test-server");
+const server = require("./T-test-server")();
 
 const objects = [
     new TestDto("5e821e64e069d32b7c840001","Name1", "Description1", 1),
@@ -19,7 +19,6 @@ const objects = [
     new TestDto("5e821e64e069d32b7c840003", "Name3", "Description3", 3),
     new TestDto("5e821e64e069d32b7c840005", "Name5", "Description5", 5)
 ];
-const BASE_URI = server.baseURI;
 
 describe('Repository Tests', () => {
 
@@ -66,21 +65,25 @@ describe('Repository Tests', () => {
 describe('API tests', () => {
 
     before(() => {
-        server.startServer()
+        server.start()
     });
 
     after(() => {
-        server.startServer()
+        server.stop()
     });
 
     describe('Unauthenticated Tests', () => {
 
-        it('Get Volunteer', function (done) {
+        it('Get Volunteers', function (done) {
             const options = {
-
+                url: `${server.baseURL}/volunteers`
             };
 
-            executeRequest()
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.true(body.status === true);
+            }
         });
 
         it('Get Volunteer by Id', function (done) {
