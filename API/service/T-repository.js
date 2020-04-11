@@ -46,7 +46,7 @@ module.exports = (collection, filter, searchables) => {
     }
 
     function select(query){
-        generateId(query);
+        //generateId(query);
 
         return accessCollection()
             .then(col => col.find(query).toArray());
@@ -54,7 +54,7 @@ module.exports = (collection, filter, searchables) => {
 
     function selectById(id){
         const query = {
-            id: id
+            _id: id
         };
 
         return select(query)

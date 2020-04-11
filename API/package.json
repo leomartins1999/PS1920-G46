@@ -17,7 +17,8 @@
     "mocha": "^7.1.1",
     "mongodb": "^3.5.5",
     "passport": "^0.4.1",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "request": "^2.88.2"
   },
   "dependencies": {}
 }
