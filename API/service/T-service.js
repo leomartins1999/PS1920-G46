@@ -20,7 +20,7 @@ module.exports = (users, orgs, posts, events, auth) => {
         removePost: removePost,
         likePost: likePost,
 
-        getAllOrgs: getAllOrgs,
+        getOrgs: getOrgs,
         getOrgById: getOrgById,
 
         createEvent: createEvent,
@@ -101,7 +101,7 @@ module.exports = (users, orgs, posts, events, auth) => {
     Orgs
      */
 
-    function getAllOrgs(){
+    function getOrgs(){
         return orgs.getAll();
     }
 
@@ -235,7 +235,7 @@ module.exports = (users, orgs, posts, events, auth) => {
             .then(res => {
                 if(!res) return Promise.reject(error.authenticationError('The email is not associated with an account.'));
                 if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
-                return Promise.resolve({authDetails: authDetails, id: res._id, user_type: res.user_type});
+                return Promise.resolve({id: res._id, user_type: res.user_type});
             });
     }
 

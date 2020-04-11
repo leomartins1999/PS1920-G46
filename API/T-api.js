@@ -182,7 +182,7 @@ module.exports = (router, service) => {
         service.authenticate(req.body)
             .then(
                 (result) => {
-                    req.login({id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200, result))
+                    req.login({id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200))
                 }, err => handleError(res, 401, err)
             );
     }
