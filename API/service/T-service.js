@@ -21,7 +21,7 @@ module.exports = (users, orgs, posts, events, auth) => {
 
         getOrgs: getOrgs,
         getOrgById: getOrgById,
-        followOrg: followOrg,
+        //followOrg: followOrg,
 
         createEvent: createEvent,
         getEvents: getEvents,

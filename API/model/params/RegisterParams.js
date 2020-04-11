@@ -23,6 +23,10 @@ class RegisterParams{
             if (!this[properties[i]]) return false;
         return true;
     }
+
+    validate(){
+        return true;
+    }
 }
 
 module.exports = RegisterParams;

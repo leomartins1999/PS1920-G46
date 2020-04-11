@@ -82,12 +82,38 @@ describe('API tests', () => {
             executeRequest(options, cb);
 
             function cb(error, resp, body){
-                assert.true(body.status === true);
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.name, null);
+                done();
+            }
+        });
+
+        it('Get Volunteers by name', function (done) {
+            const options = {
+                url: `${server.baseURL}/volunteers?name=abc`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.name,'abc');
+                done();
             }
         });
 
         it('Get Volunteer by Id', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/volunteers/1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.true(body.status === 'success');
+                assert.true(body.body.name === 'abc');
+                done();
+            }
         });
 
         it('Get Orgs', function (done) {
@@ -229,5 +255,5 @@ function insert(obj){
 }
 
 function executeRequest(options, cb){
-    request(options, cb);
+    request(options, (error, resp, body) => cb(error, resp, JSON.parse(body)));
 }
