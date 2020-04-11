@@ -15,6 +15,9 @@ class _Event{
         this.imageLink = req.body.imageLink;
     }
 
+    validate(){
+        return this.org_id && this.name && this.description;
+    }
 }
 
 module.exports = _Event;

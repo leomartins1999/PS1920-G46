@@ -15,6 +15,9 @@ class Org{
         this.imageLink = data.imageLink;
     }
 
+    validate(){
+        return this.name;
+    }
 }
 
 module.exports = Org;
