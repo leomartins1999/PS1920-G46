@@ -13,6 +13,9 @@ class Volunteer{
         this.imageLink = data.imageLink;
     }
 
+    validate(){
+        return this.name;
+    }
 }
 
 module.exports = Volunteer;
