@@ -11,7 +11,7 @@ const COLLECTION_FILTER = ["description", "age"];
 
 const repository = require("../service/T-repository")(COLLECTION_NAME, COLLECTION_FILTER);
 const TestDto = require("./TestDto");
-const server = require("./T-test-server");
+const server = require("./T-test-server")();
 
 const objects = [
     new TestDto("5e821e64e069d32b7c840001","Name1", "Description1", 1),
@@ -19,7 +19,6 @@ const objects = [
     new TestDto("5e821e64e069d32b7c840003", "Name3", "Description3", 3),
     new TestDto("5e821e64e069d32b7c840005", "Name5", "Description5", 5)
 ];
-const BASE_URI = server.baseURI;
 
 describe('Repository Tests', () => {
 
@@ -66,25 +65,55 @@ describe('Repository Tests', () => {
 describe('API tests', () => {
 
     before(() => {
-        server.startServer()
+        server.start()
     });
 
     after(() => {
-        server.startServer()
+        server.stop()
     });
 
     describe('Unauthenticated Tests', () => {
 
-        it('Get Volunteer', function (done) {
+        it('Get Volunteers', function (done) {
             const options = {
-
+                url: `${server.baseURL}/volunteers`
             };
 
-            executeRequest()
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.name, null);
+                done();
+            }
+        });
+
+        it('Get Volunteers by name', function (done) {
+            const options = {
+                url: `${server.baseURL}/volunteers?name=abc`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.name,'abc');
+                done();
+            }
         });
 
         it('Get Volunteer by Id', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/volunteers/1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body._id, 1);
+                done();
+            }
         });
 
         it('Get Orgs', function (done) {
@@ -226,5 +255,5 @@ function insert(obj){
 }
 
 function executeRequest(options, cb){
-    request(options, cb);
+    request(options, (error, resp, body) => cb(error, resp, JSON.parse(body)));
 }
