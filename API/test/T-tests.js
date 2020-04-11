@@ -110,8 +110,8 @@ describe('API tests', () => {
             executeRequest(options, cb);
 
             function cb(error, resp, body){
-                assert.true(body.status === 'success');
-                assert.true(body.body.name === 'abc');
+                assert.equal(body.status, 'success');
+                assert.equal(body.body._id, 1);
                 done();
             }
         });
