@@ -21,7 +21,7 @@ module.exports = (users, orgs, posts, events, auth) => {
 
         getOrgs: getOrgs,
         getOrgById: getOrgById,
-        followOrg: followOrg,
+        //followOrg: followOrg,
 
         createEvent: createEvent,
         getEvents: getEvents,
@@ -49,21 +49,21 @@ module.exports = (users, orgs, posts, events, auth) => {
     function followVolunteer(){}
 
     function createPost(post){
-        if(!post.body)
+        if(!post.validate())
             return Promise.reject(error.invalidParameters('owner_id, body'));
 
         return posts.create(post);
     }
 
-    function getPosts(){
-        return posts.getAll();
+    function getPosts(searchParams){
+        return posts.getAll(searchParams.owner_id);
     }
 
-    function getPostById(post_id){
-        if (!post_id)
+    function getPostById(searchParams){
+        if (!searchParams.checkFor('post_id'))
             return Promise.reject(error.invalidParameters('post_id'));
 
-        return posts.getById(post_id);
+        return posts.getById(searchParams.post_id);
     }
 
     function removePost(id, owner_id){
@@ -107,8 +107,8 @@ module.exports = (users, orgs, posts, events, auth) => {
      */
 
     function createEvent(_event){
-        if (!_event.name)
-            return Promise.reject(error.invalidParameters('name, org_id'));
+        if (!_event.validate())
+            return Promise.reject(error.invalidParameters('name, org_id, description'));
 
         return events.create(_event)
     }

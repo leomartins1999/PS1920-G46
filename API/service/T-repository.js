@@ -58,7 +58,7 @@ module.exports = (collection, filter, searchables) => {
         };
 
         return select(query)
-            .then(res => res[0]);
+            .then(res => Promise.resolve(res[0]));
     }
 
     function update(query, obj){

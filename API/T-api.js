@@ -179,7 +179,7 @@ module.exports = (router, service) => {
 
     // handler for login
     function login(req, res){
-        service.authenticate(req.body)
+        service.login(req.body)
             .then(
                 (result) => {
                     req.login({id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200))
