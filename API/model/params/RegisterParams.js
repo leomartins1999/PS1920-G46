@@ -25,7 +25,7 @@ class RegisterParams{
     }
 
     validate(){
-        return true;
+        return this.data.validate() && this.email && this.password && this.user_type
     }
 }
 

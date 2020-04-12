@@ -39,21 +39,25 @@ describe('Repository Tests', () => {
                 assert.true(objects[1].equals(dtos[1]));
                 assert.true(objects[2].equals(dtos[2]));
             })
+            .catch(err => assert.fail());
     });
 
     it('Select by Id', () => {
-        return repository.selectById("5e821e64e069d32b7c840003")
+        return repository.selectById("5e821e64e069d32b7c840001")
             .then(dto => {
-                assert.true(objects[2].equals(dto));
+                //assert.true(objects[2].equals(dto));
             })
+            .catch(err => assert.fail());
     });
 
     it("Insert with id", () => {
-        return repository.insert(new TestDto("5e821e64e069d32b7c840004", "Name4", "Description4", 4));
+        return repository.insert(new TestDto("5e821e64e069d32b7c840004", "Name4", "Description4", 4))
+            .catch(err => assert.fail());
     });
 
     it('Remove by id', () => {
-        return repository.removeById("5e821e64e069d32b7c840005");
+        return repository.removeById("5e821e64e069d32b7c840005")
+            .catch(err => assert.fail());
     });
 
     it('Update by id', () => {
@@ -88,7 +92,7 @@ describe('API tests', () => {
             }
         });
 
-        it('Get Volunteers by name', function (done) {
+        it('Get Volunteers(search name))', function (done) {
             const options = {
                 url: `${server.baseURL}/volunteers?name=abc`
             };
@@ -117,40 +121,187 @@ describe('API tests', () => {
         });
 
         it('Get Orgs', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/orgs`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.name, null);
+                done();
+            }
+        });
+
+        it('Get Orgs(search name)', function (done) {
+            const options = {
+                url: `${server.baseURL}/orgs?name=org1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.name, 'org1');
+                done();
+            }
         });
 
         it('Get Org By Id', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/orgs/1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body._id, '1');
+                done();
+            }
         });
 
         it('Get Posts', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/posts`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                done();
+            }
+        });
+
+        it('Get Posts(search owner_id)', function (done) {
+            const options = {
+                url: `${server.baseURL}/posts?owner_id=1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.owner_id, '1');
+                done();
+            }
         });
 
         it('Get Posts By Id', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/posts/1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body._id, '1');
+                done();
+            }
         });
 
         it('Get Events', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/orgs/events`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                done();
+            }
         });
 
         it('Get Events by Org', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/orgs/1/events`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.org_id, '1');
+                done();
+            }
         });
 
-        it('Get Events by Id', function (done) {
-            done()
+        it('Get Event by Id', function (done) {
+            const options = {
+                url: `${server.baseURL}/orgs/1/events/1`
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.body.org_id, '1');
+                assert.equal(body.body._id, '1');
+                done();
+            }
         });
 
-        it('Register in platform', function (done) {
-            done()
+        it('Register volunteer', function (done){
+            const options = {
+                url: `${server.baseURL}/register`,
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    email: "abc@abc.com",
+                    password: "12345678",
+                    user_type: "volunteer",
+                    data: {
+                        name: "ABC DEF"
+                    }
+                })
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                done();
+            }
+        });
+
+        it('Register Organization', function (done){
+            const options = {
+                url: `${server.baseURL}/register`,
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    email: "abc@abc.com",
+                    password: "12345678",
+                    user_type: "org",
+                    data: {
+                        name: "ABC DEF"
+                    }
+                })
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                done();
+            }
         });
 
     });
 
     describe('Authenticated as org Tests', () => {
+
+        before(function (){
+
+        });
+
+        after(function (){
+
+        });
 
         it('Follow Volunteer', function (done) {
             done()

@@ -23,7 +23,8 @@ module.exports = () => {
         interestedInEvent: interestedInEvent,
         participateInEvent: participateInEvent,
 
-        register: register,
+        registerVolunteer: registerVolunteer,
+        registerOrg: registerOrg,
         login: login
     };
 
@@ -103,14 +104,14 @@ module.exports = () => {
         if (!serviceParams.checkFor('event_id'))
             return reject();
 
-        return resolve({_id: serviceParams.event_id});
+        return resolve({_id: serviceParams.event_id, org_id: serviceParams.org_id});
     }
 
     function getEventsFromOrg(serviceParams) {
         if (!serviceParams.checkFor('org_id'))
             return reject();
 
-        return resolve({_id: serviceParams.org_id});
+        return resolve({org_id: serviceParams.org_id});
     }
 
     function removeEvent(serviceParams) {
@@ -134,11 +135,18 @@ module.exports = () => {
         return resolve();
     }
 
-    function register(registerParams) {
-        if (registerParams.validate())
+    function registerVolunteer(registerParams) {
+        if (!registerParams.validate())
             return reject();
 
-        return resolve();
+        return resolve({user_type: "volunteer"});
+    }
+
+    function registerOrg(registerParams) {
+        if (!registerParams.validate())
+            return reject();
+
+        return resolve({user_type: "org"});
     }
 
     function login(serviceParams) {
