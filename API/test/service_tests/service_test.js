@@ -1,70 +1,30 @@
+// npm dependencies
 const request = require("request");
 const assert = require("assert");
-const mongo = require('mongodb');
 
-// mongo
-const MongoClient = mongo.MongoClient;
-const URL = "mongodb://localhost:27017/";
-const DB_NAME = "tribute_db";
-const COLLECTION_NAME = "test";
-const COLLECTION_FILTER = ["description", "age"];
+// server object
+const server = require('./test-server')();
 
-const repository = require("../service/T-repository")(COLLECTION_NAME, COLLECTION_FILTER);
-const TestDto = require("./TestDto");
-const server = require("./T-test-server")();
+function executeRequest(options, cb){
+    request(options, (error, resp, body) => cb(error, resp, JSON.parse(body)));
+}
 
-const objects = [
-    new TestDto("5e821e64e069d32b7c840001","Name1", "Description1", 1),
-    new TestDto("5e821e64e069d32b7c840002", "Name2", "Description2", 2),
-    new TestDto("5e821e64e069d32b7c840003", "Name3", "Description3", 3),
-    new TestDto("5e821e64e069d32b7c840005", "Name5", "Description5", 5)
-];
+function login(user_type, done){
+    const options = {
+        url: `${server.baseURL}/login`,
+        user_type: user_type
+    };
 
-describe('Repository Tests', () => {
+    return executeRequest(options, (err, res, bod) => ( (!err)?done() : assert.fail()) )
+}
 
-    before(() => {
-        return insert(objects[0])
-            .then(() => insert(objects[1]))
-            .then(() => insert(objects[2]));
-    });
+function logout(done){
+    const options = {
+        url: `${server.baseURL}/logout`
+    };
 
-    after(() => {
-        return dropCollection();
-    });
-
-    it('Select All', () => {
-        return repository.select()
-            .then(dtos => {
-                assert.true(objects[0].equals(dtos[0]));
-                assert.true(objects[1].equals(dtos[1]));
-                assert.true(objects[2].equals(dtos[2]));
-            })
-            .catch(err => assert.fail());
-    });
-
-    it('Select by Id', () => {
-        return repository.selectById("5e821e64e069d32b7c840001")
-            .then(dto => {
-                //assert.true(objects[2].equals(dto));
-            })
-            .catch(err => assert.fail());
-    });
-
-    it("Insert with id", () => {
-        return repository.insert(new TestDto("5e821e64e069d32b7c840004", "Name4", "Description4", 4))
-            .catch(err => assert.fail());
-    });
-
-    it('Remove by id', () => {
-        return repository.removeById("5e821e64e069d32b7c840005")
-            .catch(err => assert.fail());
-    });
-
-    it('Update by id', () => {
-        return repository.updateById("5e821e64e069d32b7c840003", {description: "new description"});
-    });
-
-});
+    return executeRequest(options, (err, res, bod) => ( (!err)?done() : assert.fail()) )
+}
 
 describe('API tests', () => {
 
@@ -295,53 +255,162 @@ describe('API tests', () => {
 
     describe('Authenticated as org Tests', () => {
 
-        before(function (){
-
+        before(function (done){
+            return login('org', done);
         });
 
-        after(function (){
-
+        after(function (done){
+            return logout(done);
         });
 
         it('Follow Volunteer', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/volunteers/1/follow`,
+                method: 'PUT'
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.volunteer_id, 1);
+                done();
+            }
         });
 
         it('Follow Org', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/orgs/1/follow`,
+                method: 'PUT'
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.org_id, 2);
+                done();
+            }
         });
 
         it('Create Post', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/posts`,
+                method: 'POST',
+                body: JSON.stringify({
+                    description: 'abc'
+                })
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.description, 'abc');
+                done();
+            }
         });
 
         it('Remove Post', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/posts/1`,
+                method: 'DELETE'
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.post_id, 1);
+                done();
+            }
         });
 
         it('Create Event', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/orgs/events`,
+                method: 'POST',
+                body: JSON.stringify({
+                    name: 'event',
+                    description: 'abc'
+                })
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.event_id, 1);
+                assert.equal(body.name, 'event');
+                assert.equal(body.description, 'abc');
+                done();
+            }
         });
 
         it('Remove Event', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/orgs/events/1`,
+                method: 'DELETE'
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.event_id, 1);
+                done();
+            }
         });
 
         it('Like Post', function (done) {
-            done()
+            const options = {
+                url: `${server.baseURL}/auth/posts/1/like`,
+                method: 'PUT'
+            };
+
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.post_id, 1);
+                done();
+            }
         });
 
         it('Org confirms Volunteer in Event', function (done) {
-            done()
-        });
+            const options = {
+                url: `${server.baseURL}/auth/orgs/events/1/participate?volunteer_id=2`,
+                method: 'PUT'
+            };
 
-        it('Register as org', function (done) {
-            done()
+            executeRequest(options, cb);
+
+            function cb(error, resp, body){
+                assert.equal(body.status, 'success');
+                assert.equal(body.auth_id, 1);
+                assert.equal(body.volunteer_id, 2);
+                done();
+            }
         });
 
     });
 
     describe('Authenticated as user Tests', () => {
+
+        before(function (done){
+            return login('volunteer', done);
+        });
+
+        after(function (done){
+            return logout(done);
+        });
 
         it('Follow Volunteer', function (done) {
             done()
@@ -386,25 +455,3 @@ describe('API tests', () => {
     })
 
 });
-
-assert.true = (value) => assert.equal(true, value);
-
-function accessCollection(){
-    return MongoClient.connect(URL)
-        .then(db => db.db(DB_NAME))
-        .then(dbo => dbo.collection(COLLECTION_NAME));
-}
-
-function dropCollection(){
-    return accessCollection()
-        .then(col => col.drop());
-}
-
-function insert(obj){
-    return accessCollection()
-        .then(col => col.insertOne(obj))
-}
-
-function executeRequest(options, cb){
-    request(options, (error, resp, body) => cb(error, resp, JSON.parse(body)));
-}

@@ -34,7 +34,7 @@ module.exports = () => {
 
         const service = require('./ServiceMock')();
 
-        const api = require("../T-api")(router, service);
+        const api = require("../../T-api")(router, service);
 
         const app = express();
         app.use(express.json());

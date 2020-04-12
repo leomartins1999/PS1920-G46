@@ -12,11 +12,13 @@
  */
 
 // collection name
+const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'events';
 const FILTER = ["description", "imageLink", "capacity", "date", "location", "interested", "participants"];
+const SEARCHABLES = [];
 
 // repository
-const repo = require('./T-repository')(COLLECTION_NAME, FILTER);
+const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCHABLES);
 
 module.exports = () => {
     return {

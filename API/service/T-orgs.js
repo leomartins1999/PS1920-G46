@@ -9,13 +9,13 @@
     link para facebook (opt)
     link p/ imagem (futuro)
 */
-
+const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'orgs';
 const FILTER = ["description", "followers", "following", "phone", "mail", "siteLink", "facebookLink", "imageLink"];
 const SEARCH = {name: "text"};
 
 // Repository
-const repo = require('./T-repository')(COLLECTION_NAME, FILTER, SEARCH);
+const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
     return {

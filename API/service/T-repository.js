@@ -4,13 +4,11 @@ const MongoClient = mongo.MongoClient;
 
 // error module
 const error = require('../T-error')();
-const MODULE = 'SERVICE-POSTS';
 
 // constants
 const URL = "mongodb://localhost:27017/";
-const DB_NAME = "tribute_db";
 
-module.exports = (collection, filter, searchables) => {
+module.exports = (db_name, collection, filter, searchables) => {
     if(searchables) createSearchIdx(searchables);
 
     return {
@@ -25,7 +23,7 @@ module.exports = (collection, filter, searchables) => {
 
     function accessCollection(){
         return MongoClient.connect(URL)
-            .then(db => db.db(DB_NAME))
+            .then(db => db.db(db_name))
             .then(dbo => dbo.collection(collection));
     }
 
@@ -79,7 +77,7 @@ module.exports = (collection, filter, searchables) => {
             id: id
         };
 
-        update(query, updates);
+        return update(query, updates);
     }
 
     function remove(query){
