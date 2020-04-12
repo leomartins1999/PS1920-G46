@@ -31,7 +31,8 @@ module.exports = (users, orgs, posts, events, auth) => {
         interestedInEvent: interestedInEvent,
         participateInEvent: participateInEvent,
 
-        register: register,
+        registerVolunteer: registerVolunteer,
+        registerOrg: registerOrg,
         login: login
     };
 
@@ -117,16 +118,16 @@ module.exports = (users, orgs, posts, events, auth) => {
         return events.getAll();
     }
 
-    function getEventById(id){
-        if(!id)
-            return Promise.reject(error.invalidParameters('id'));
+    function getEventById(searchParams){
+        if(!searchParams.checkFor('event_id'))
+            return Promise.reject(error.invalidParameters('event_id'));
 
-        return events.getById(id);
+        return events.getById(searchParams.event_id);
     }
 
-    function getEventsFromOrg(org_id){
-        return (org_id)?
-            events.getEventsFromOrg(org_id):
+    function getEventsFromOrg(searchParams){
+        return (searchParams.checkFor('org_id'))?
+            events.getEventsFromOrg(searchParams.org_id):
             Promise.reject(error.invalidParameters('org_id'));
     }
 
@@ -142,24 +143,24 @@ module.exports = (users, orgs, posts, events, auth) => {
             });
     }
 
-    function interestedInEvent(event_id, user_id){
-        return getEventById(event_id)
+    function interestedInEvent(searchParams){
+        return getEventById(searchParams)
             .then((_event) => {
-                if (_event.interested[user_id]) delete _event.interested[user_id];
-                else _event.interested[user_id] = 'user';
-                return events.update(event_id, _event)
+                if (_event.interested[searchParams.id]) delete _event.interested[searchParams.id];
+                else _event.interested[searchParams.id] = 'volunteer';
+                return events.update(searchParams.event_id, _event);
             })
     }
 
-    function participateInEvent(event_id, org_id, user_id){
-        return getEventById(event_id)
+    function participateInEvent(searchParams){
+        return getEventById(searchParams)
             .then((_event) => {
-                if (_event.org_id !== org_id) return Promise.reject(error.unauthorizedAccess());
-                if (_event.interested[user_id]) delete _event.interested[user_id];
-                if (_event.participants[user_id]) delete _event.participants[user_id];
-                else _event.participants[user_id] = 'user';
+                if (_event.org_id !== searchParams.id) return Promise.reject(error.unauthorizedAccess());
+                if (_event.interested[searchParams.volunteer_id]) delete _event.interested[searchParams.volunteer_id];
+                if (_event.participants[searchParams.volunteer_id]) delete _event.participants[searchParams.volunteer_id];
+                else _event.participants[searchParams.volunteer_id] = 'volunteer';
 
-                return events.update(event_id, _event);
+                return events.update(searchParams.event_id, _event);
             })
     }
 
@@ -167,7 +168,7 @@ module.exports = (users, orgs, posts, events, auth) => {
     Authentication
      */
 
-    function register(registerParams){
+    function registerVolunteer(registerParams){
         if (registerParams.checkFor(['email', 'password', 'user_type', 'data.name']))
             return Promise.reject(error.invalidParameters('email, password, user_type, data.name'));
 
@@ -188,6 +189,8 @@ module.exports = (users, orgs, posts, events, auth) => {
                 return createObj(registerParams.data)
             })
     }
+
+    function registerOrg(registerParams){}
 
     function login(authDetails){
         if (!authDetails.email || !authDetails.password)

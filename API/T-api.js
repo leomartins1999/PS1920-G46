@@ -53,22 +53,22 @@ module.exports = (router, service) => {
     router.post('/auth/orgs/events', orgMw, createEvent);
 
     // get events
-    router.get('/orgs/events', getEvents);
+    router.get('/events', getEvents);
+
+    // get event by id
+    router.get('/events/:event_id', getEventById);
 
     // get events by org
     router.get('/orgs/:org_id/events', getEventsByOrg);
-
-    // get event by id
-    router.get('/orgs/:org_id/events/:event_id', getEventById);
 
     // remove event
     router.delete('/auth/orgs/:org_id/events/:event_id', removeEvent);
 
     // volunteer interested in event
-    router.put('/auth/orgs/:org_id/events/:event_id/interested', volunteerMw, interestedInEvent);
+    router.put('/auth/orgs/events/:event_id/interested', volunteerMw, interestedInEvent);
 
     // volunteer participate in event
-    router.put('/auth/orgs/:org_id/events/:event_id/interested', orgMw, participateInEvent);
+    router.put('/auth/orgs/events/:event_id/participate', orgMw, participateInEvent);
 
     // register in platform
     router.post('/register', register);
@@ -77,7 +77,7 @@ module.exports = (router, service) => {
     router.post('/login', login);
 
     // logout
-    router.post('/auth/logout', logout);
+    router.get('/logout', logout);
 
     // unknown URL
     router.use('/', unknownURI);
@@ -164,12 +164,12 @@ module.exports = (router, service) => {
 
     // handler for interested in event
     function interestedInEvent(req, res){
-        handleRequest(res, 200, 400, service.interested, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.interestedInEvent, new ServiceParams(req))
     }
 
     // handler for participate in event
     function participateInEvent(req, res){
-        handleRequest(res, 200, 400, service.participate, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.participateInEvent, new ServiceParams(req))
     }
 
     // handler for register
