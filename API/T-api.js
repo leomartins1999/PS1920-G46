@@ -174,7 +174,11 @@ module.exports = (router, service) => {
 
     // handler for register
     function register(req, res){
-        handleRequest(res, 201, 400, service.register, new RegisterParams(req))
+        let func;
+        if (req.body.user_type === "volunteer") func = service.registerVolunteer;
+        else func = service.registerOrg;
+
+        handleRequest(res, 201, 400, func, new RegisterParams(req))
     }
 
     // handler for login

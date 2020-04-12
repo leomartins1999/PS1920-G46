@@ -9,12 +9,13 @@
  */
 
 // collection name
+const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'volunteers';
 const FILTER = ["description", "following", "followers", "linkedInLink", "imageLink"];
 const SEARCH = {name: "text"};
 
 // repository
-const repo = require('./T-repository')(COLLECTION_NAME, FILTER, SEARCH);
+const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
     return {
