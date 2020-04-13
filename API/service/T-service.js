@@ -6,7 +6,7 @@ const MODULE = "Service";
 // error module
 const error = require('../T-error')();
 
-module.exports = (users, orgs, posts, events, auth) => {
+module.exports = (users, orgs, posts, events, auth, pictures) => {
 
     return {
         getVolunteers: getVolunteers,
@@ -33,7 +33,10 @@ module.exports = (users, orgs, posts, events, auth) => {
 
         registerVolunteer: registerVolunteer,
         registerOrg: registerOrg,
-        login: login
+        login: login,
+
+        postImage: postImage,
+        getImage: getImage,
     };
 
     function getVolunteers(searchParams){
@@ -214,4 +217,17 @@ module.exports = (users, orgs, posts, events, auth) => {
         return Promise.all(operations)
     }
 
+    function postImage(image){
+        if (!image.validate(true))
+            return Promise.reject(error.serviceError('No picture found!'));
+
+        return pictures.postImage(image);
+    }
+
+    function getImage(image){
+        if (!image.validate(false))
+            return Promise.reject(error.invalidParameters('id', 'type'));
+
+        return pictures.getImage(image);
+    }
 };

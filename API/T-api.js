@@ -7,6 +7,7 @@ const FollowParams = require('./model/params/FollowParams');
 const RegisterParams = require('./model/params/RegisterParams');
 const Post = require('./model/dtos/Post');
 const _Event = require('./model/dtos/_Event');
+const Image = require('./model/dtos/Image');
 
 module.exports = (router, service, test) => {
 
@@ -78,6 +79,12 @@ module.exports = (router, service, test) => {
 
     // logout
     router.get('/logout', logout);
+
+    // get image
+    router.get('/images/:image_type/:image_id', getImage);
+
+    // post image
+    router.post('/auth/images/:image_type/:image_id', postImage);
 
     // unknown URL
     router.use('/', unknownURI);
@@ -195,6 +202,16 @@ module.exports = (router, service, test) => {
     function logout(req, res){
         req.logout();
         handleSuccess(res, 200, {status: 'Logout completed.'})
+    }
+
+    function postImage(req, res){
+        handleSuccess(res, 200, {});
+    }
+
+    function getImage(req, res){
+        service.getImage(new Image(req))
+            .then(image => res.end(image));
+        //handleRequest(res, 200, 400, service.getImage, new Image(req))
     }
 
     // handler for unknown URL
