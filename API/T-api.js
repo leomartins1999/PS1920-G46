@@ -8,7 +8,7 @@ const RegisterParams = require('./model/params/RegisterParams');
 const Post = require('./model/dtos/Post');
 const _Event = require('./model/dtos/_Event');
 
-module.exports = (router, service) => {
+module.exports = (router, service, test) => {
 
     // logging middleware
     router.use('/', log);
@@ -274,7 +274,7 @@ module.exports = (router, service) => {
 
     // middleware responsible for checking if the user is authenticated
     function authenticationMw(req, res, next){
-        (!req.user)?
+        (!req.user || req.headers.authorization !== 'test' && test)?
             handleError(res, 401 , error.authenticationError('User is not authenticated.')) :
             next();
     }

@@ -15,7 +15,7 @@
 const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'events';
 const FILTER = ["description", "imageLink", "capacity", "date", "location", "interested", "participants"];
-const SEARCHABLES = [];
+const SEARCHABLES = null;
 
 // repository
 const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCHABLES);

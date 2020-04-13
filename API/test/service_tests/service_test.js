@@ -12,7 +12,8 @@ function executeRequest(options, cb){
 function login(user_type, done){
     const options = {
         url: `${server.baseURL}/login`,
-        user_type: user_type
+        user_type: user_type,
+        jar: true
     };
 
     return executeRequest(options, (err, res, bod) => ( (!err)?done() : assert.fail()) )
@@ -192,14 +193,13 @@ describe('API tests', () => {
 
         it('Get Event by Id', function (done) {
             const options = {
-                url: `${server.baseURL}/orgs/1/events/1`
+                url: `${server.baseURL}/events/1`
             };
 
             executeRequest(options, cb);
 
             function cb(error, resp, body){
                 assert.equal(body.status, 'success');
-                assert.equal(body.body.org_id, '1');
                 assert.equal(body.body._id, '1');
                 done();
             }
@@ -269,7 +269,7 @@ describe('API tests', () => {
                 method: 'PUT'
             };
 
-            executeRequest(options, cb);
+            login('org', () => executeRequest(options, cb));
 
             function cb(error, resp, body){
                 assert.equal(body.status, 'success');
