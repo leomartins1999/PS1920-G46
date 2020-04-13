@@ -13,7 +13,7 @@ module.exports = () => {
 
         getOrgs: getOrgs,
         getOrgById: getOrgById,
-        //followOrg: followOrg,
+        followOrg: followOrg,
 
         createEvent: createEvent,
         getEvents: getEvents,
@@ -39,11 +39,11 @@ module.exports = () => {
         return resolve({_id: serviceParams.volunteer_id});
     }
 
-    function followVolunteer(serviceParams) {
-        if (!serviceParams.checkFor('volunteer_id'))
+    function followVolunteer(followParams) {
+        if (!followParams.volunteer_id)
             return reject();
 
-        return resolve();
+        return resolve({volunteer_id: followParams.volunteer_id});
     }
 
     function createPost(post) {
@@ -87,6 +87,13 @@ module.exports = () => {
             return reject();
 
         return resolve({_id: serviceParams.org_id});
+    }
+
+    function followOrg(followParams) {
+        if (!followParams.org_id)
+            return reject();
+
+        return resolve({org_id: followParams.org_id});
     }
 
     function createEvent(_event) {

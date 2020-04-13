@@ -7,12 +7,14 @@ class Org{
      * Constructs from the register operation
      */
     constructor(data) {
-        this.name = data.name;
-        this.description = data.description;
-        this.phone = data.phone;
-        this.siteLink = data.siteLink;
-        this.facebookLink = data.facebookLink;
-        this.imageLink = data.imageLink;
+        this.getPropertiesFromObject(data)
+    }
+
+    getPropertiesFromObject(obj){
+        if (!obj) return;
+
+        for(let propertyName in obj)
+            this[propertyName] = obj[propertyName];
     }
 
     validate(){

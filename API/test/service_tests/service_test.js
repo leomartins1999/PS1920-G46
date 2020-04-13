@@ -273,15 +273,14 @@ describe('API tests', () => {
 
             function cb(error, resp, body){
                 assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.volunteer_id, 1);
+                assert.equal(body.body.volunteer_id, 1);
                 done();
             }
         });
 
         it('Follow Org', function (done) {
             const options = {
-                url: `${server.baseURL}/auth/orgs/1/follow`,
+                url: `${server.baseURL}/auth/orgs/2/follow`,
                 method: 'PUT'
             };
 
@@ -289,8 +288,7 @@ describe('API tests', () => {
 
             function cb(error, resp, body){
                 assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.org_id, 2);
+                assert.equal(body.body.org_id, 2);
                 done();
             }
         });
@@ -300,6 +298,7 @@ describe('API tests', () => {
                 url: `${server.baseURL}/auth/posts`,
                 method: 'POST',
                 body: JSON.stringify({
+                    owner_id: 1,
                     description: 'abc'
                 })
             };
