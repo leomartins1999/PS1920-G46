@@ -76,7 +76,7 @@ module.exports = (users, orgs, posts, events, auth) => {
     }
 
     function likePost(serviceParams){
-        return getPostById(serviceParams.post_id)
+        return getPostById(serviceParams)
             .then(post => {
                 if (post.likes[serviceParams.id]) delete post.likes[serviceParams.id];
                 else post.likes[serviceParams.id] = serviceParams.user_type;
