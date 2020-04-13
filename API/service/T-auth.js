@@ -3,7 +3,7 @@ const randomstring = require("randomstring");
 const stringHash = require('@sindresorhus/string-hash');
 
 const HASH_LENGTH = 8;
-const DB_NAME = 'auth';
+const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'auth';
 
 // repo
