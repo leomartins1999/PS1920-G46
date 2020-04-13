@@ -269,7 +269,7 @@ describe('API tests', () => {
                 method: 'PUT'
             };
 
-            login('org', () => executeRequest(options, cb));
+            executeRequest(options, cb);
 
             function cb(error, resp, body){
                 assert.equal(body.status, 'success');

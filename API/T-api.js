@@ -23,7 +23,7 @@ module.exports = (router, service, test) => {
     router.get('/volunteers/:volunteer_id', getVolunteerById);
 
     // follow volunteer
-    router.put('/auth/volunteer/:volunteer_id/follow', followVolunteer);
+    router.put('/auth/volunteers/:volunteer_id/follow', followVolunteer);
 
     // get orgs
     router.get('/orgs', getOrgs);
@@ -274,7 +274,7 @@ module.exports = (router, service, test) => {
 
     // middleware responsible for checking if the user is authenticated
     function authenticationMw(req, res, next){
-        (!req.user || req.headers.authorization !== 'test' && test)?
+        (!(req.user || test))?
             handleError(res, 401 , error.authenticationError('User is not authenticated.')) :
             next();
     }

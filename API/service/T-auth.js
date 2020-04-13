@@ -3,10 +3,11 @@ const randomstring = require("randomstring");
 const stringHash = require('@sindresorhus/string-hash');
 
 const HASH_LENGTH = 8;
+const DB_NAME = 'auth';
 const COLLECTION_NAME = 'auth';
 
 // repo
-const repo = require('./T-repository')(COLLECTION_NAME);
+const repo = require('./T-repository')(DB_NAME,COLLECTION_NAME);
 
 module.exports = () => {
     return {
