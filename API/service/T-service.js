@@ -75,12 +75,12 @@ module.exports = (users, orgs, posts, events, auth) => {
             });
     }
 
-    function likePost(user_id, user_type, post_id){
-        return getPostById(post_id)
+    function likePost(serviceParams){
+        return getPostById(serviceParams.post_id)
             .then(post => {
-                if (post.likes[user_id]) delete post.likes[user_id];
-                else post.likes[user_id] = user_type;
-                return posts.update(post_id, post);
+                if (post.likes[serviceParams.id]) delete post.likes[serviceParams.id];
+                else post.likes[serviceParams.id] = serviceParams.user_type;
+                return posts.update(serviceParams.post_id, post);
             })
             .then(res => {
                 if (res.status === 'updated') return Promise.resolve({status: 'success'});
@@ -146,6 +146,7 @@ module.exports = (users, orgs, posts, events, auth) => {
     function interestedInEvent(searchParams){
         return getEventById(searchParams)
             .then((_event) => {
+                if (_event.participants[searchParams.id]) return Promise.reject(error.serviceError("User is already a participant!"));
                 if (_event.interested[searchParams.id]) delete _event.interested[searchParams.id];
                 else _event.interested[searchParams.id] = 'volunteer';
                 return events.update(searchParams.event_id, _event);
