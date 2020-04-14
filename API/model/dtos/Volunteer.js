@@ -7,14 +7,9 @@ class Volunteer{
      * Constructs from data given in register call
      */
     constructor(data){
-        this.getPropertiesFromObject(data);
-    }
-
-    getPropertiesFromObject(obj){
-        if (!obj) return;
-
-        for(let propertyName in obj)
-            this[propertyName] = obj[propertyName];
+        this.name = data.name;
+        this.description = data.description;
+        this.linkedInLink = data.linkedInLink;
     }
 
     validate(){

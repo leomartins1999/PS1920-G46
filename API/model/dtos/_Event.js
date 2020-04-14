@@ -8,6 +8,7 @@ class _Event{
      */
     constructor(req){
         this.org_id = req.user.id;
+
         this.name = req.body.name;
         this.description = req.body.name;
         this.date = req.body.date;

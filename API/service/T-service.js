@@ -31,8 +31,8 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         interestedInEvent: interestedInEvent,
         participateInEvent: participateInEvent,
 
-        registerVolunteer: registerVolunteer,
-        registerOrg: registerOrg,
+        registerVolunteer: register,
+        registerOrg: register,
         login: login,
 
         postImage: postImage,
@@ -194,29 +194,22 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     Authentication
      */
 
-    function registerVolunteer(registerParams){
-        if (registerParams.checkFor(['email', 'password', 'user_type', 'data.name']))
+    function register(registerParams){
+        if (!registerParams.validate())
             return Promise.reject(error.invalidParameters('email, password, user_type, data.name'));
-
-        //
-        //
-        // if (!credentials.data.name)
-        //     return Promise.reject(error.invalidParameters('name'));
 
         const createObj = (registerParams.user_type === 'volunteer')? users.create : orgs.create;
 
         return auth
             .get(registerParams)
             .then(res => {
-                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.')) : auth.register(registerParams)
+                return res ? Promise.reject(error.authenticationError('This email is already associated with a user.'))
+                    : auth.register(registerParams)
             })
             .then(res => {
-                registerParams.data.id = res.id;
-                return createObj(registerParams.data)
-            })
+                return createObj(registerParams.data, res.id)
+            });
     }
-
-    function registerOrg(registerParams){}
 
     function login(authDetails){
         if (!authDetails.email || !authDetails.password)

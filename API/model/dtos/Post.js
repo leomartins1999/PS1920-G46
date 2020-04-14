@@ -9,7 +9,6 @@ class Post {
     constructor(req) {
         this.owner_id = req.user.id;
         this.description = req.body.description;
-        this.imageLink = req.body.imageLink;
     }
 
     validate(){

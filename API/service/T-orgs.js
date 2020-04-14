@@ -1,18 +1,10 @@
-/*
-    id (gerado)
-    Nome
-    Descrição
-    followers_ids
-    contato tel(opt)
-    email (opt)
-    link para site (opt)
-    link para facebook (opt)
-    link p/ imagem (futuro)
-*/
 const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'orgs';
 const FILTER = ["description", "followers", "following", "phone", "mail", "siteLink", "facebookLink", "imageLink"];
 const SEARCH = {name: "text"};
+
+// image link generator function
+const imageLink = (id) => `/images/volunteers/${id}`;
 
 // Repository
 const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
@@ -26,21 +18,14 @@ module.exports = () => {
         remove: remove
     };
 
-    function create(org){
-        const obj = {
-            _id: org.id,
-            name: org.name,
-            description: org.description,
-            phone: org.phone,
-            mail: org.mail,
-            siteLink: org.siteLink,
-            facebookLink: org.facebookLink,
-            imageLink: org.imageLink,
-            followers: {},
-            following: {}
-        };
+    function create(org, id){
+        // adding additional properties
+        org._id = id;
+        org.imageLink = imageLink(id);
+        org.followers = {};
+        org.following = {};
 
-        return repo.insert(obj);
+        return repo.insert(org);
     }
 
     function getAll(name){

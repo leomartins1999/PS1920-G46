@@ -14,6 +14,9 @@ const COLLECTION_NAME = 'volunteers';
 const FILTER = ["description", "following", "followers", "linkedInLink", "imageLink"];
 const SEARCH = {name: "text"};
 
+// image link generator function
+const imageLink = (id) => `/images/volunteers/${id}`;
+
 // repository
 const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
 
@@ -27,18 +30,14 @@ module.exports = () => {
     }
 };
 
-function create(user) {
-    const obj = {
-        id: user.id,
-        name: user.name,
-        description: user.body,
-        linkedInLink: user.linkedInLink,
-        imageLink: user.imageLink,
-        following: {},
-        followers: {},
-    };
+function create(volunteer, id) {
+    // add additional properties
+    volunteer._id = id;
+    volunteer.imageLink = imageLink(id);
+    volunteer.following = {};
+    volunteer.followers = {};
 
-    return repo.insert(obj);
+    return repo.insert(volunteer);
 }
 
 function getAll(name){

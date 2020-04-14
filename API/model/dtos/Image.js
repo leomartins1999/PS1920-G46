@@ -1,8 +1,8 @@
 class Image{
 
     constructor(req, content) {
-        this.id = req.params.image_id;
         this.type = req.params.image_type;
+        this.id = req.params.image_id;
 
         if (content) this.content = req.files.file.data;
     }
