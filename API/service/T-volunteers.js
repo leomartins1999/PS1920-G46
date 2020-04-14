@@ -30,13 +30,7 @@ module.exports = () => {
     }
 };
 
-function create(volunteer, id) {
-    // add additional properties
-    volunteer._id = id;
-    volunteer.imageLink = imageLink(id);
-    volunteer.following = {};
-    volunteer.followers = {};
-
+function create(volunteer) {
     return repo.insert(volunteer);
 }
 

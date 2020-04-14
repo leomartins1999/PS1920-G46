@@ -4,7 +4,7 @@ const FILTER = ["description", "followers", "following", "phone", "mail", "siteL
 const SEARCH = {name: "text"};
 
 // image link generator function
-const imageLink = (id) => `/images/volunteers/${id}`;
+const imageLink = (id) => `/images/orgs/${id}`;
 
 // Repository
 const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
@@ -18,13 +18,7 @@ module.exports = () => {
         remove: remove
     };
 
-    function create(org, id){
-        // adding additional properties
-        org._id = id;
-        org.imageLink = imageLink(id);
-        org.followers = {};
-        org.following = {};
-
+    function create(org){
         return repo.insert(org);
     }
 

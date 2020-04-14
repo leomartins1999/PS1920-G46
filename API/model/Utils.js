@@ -1,8 +1,8 @@
-
-module.exports = () => {
+module.exports = (TYPE) => {
     return{
         checkFor: checkFor,
-        cloneObject: cloneObject
+        cloneObject: cloneObject,
+        getImageLink: getImageLink
     };
 
     function checkFor(obj, properties){
@@ -16,6 +16,10 @@ module.exports = () => {
 
         for(let propertyName in from)
             to[propertyName] = from[propertyName];
+    }
+
+    function getImageLink(id){
+        return `/images/${TYPE}s/${id}`
     }
 };
 

@@ -1,3 +1,7 @@
+// utils dependency
+const TYPE = 'org';
+const utils = require('../Utils')(TYPE);
+
 /**
  * Representation of an organization
  */
@@ -13,6 +17,14 @@ class Org{
         this.mail = data.mail;
         this.siteLink = data.siteLink;
         this.facebookLink = data.facebookLink;
+
+        this.followers = {};
+        this.following = {};
+    }
+
+    setId(id){
+        this._id = id;
+        if (!this.imageLink) this.imageLink = utils.getImageLink(id)
     }
 
     /**

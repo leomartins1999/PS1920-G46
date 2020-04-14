@@ -78,7 +78,15 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         if(!post.validate())
             return Promise.reject(error.invalidParameters('owner_id, body'));
 
-        return posts.create(post);
+        return posts.create(post)
+            .then((res => {
+                if (!post.imageLink){
+                    post.setId(res.id);
+                    return posts.update(res.id, {imageLink: post.imageLink})
+                }
+                return Promise.resolve({id: post.id});
+            }))
+            .then(() => Promise.resolve({id: post.id}));
     }
 
     function getPosts(searchParams){
@@ -137,6 +145,14 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             return Promise.reject(error.invalidParameters('name, org_id, description'));
 
         return events.create(_event)
+            .then(res => {
+                if (!_event.imageLink){
+                    _event.setId(res.id);
+                    return events.update(res.id, {imageLink: _event.imageLink})
+                }
+                return Promise.resolve({id: _event.id});
+            })
+            .then(res => Promise.resolve({id: _event.id}));
     }
 
     function getEvents(){
@@ -207,7 +223,8 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
                     : auth.register(registerParams)
             })
             .then(res => {
-                return createObj(registerParams.data, res.id)
+                registerParams.data.setId(res.id);
+                return createObj(registerParams.data)
             });
     }
 

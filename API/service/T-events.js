@@ -17,6 +17,9 @@ const COLLECTION_NAME = 'events';
 const FILTER = ["description", "imageLink", "capacity", "date", "location", "interested", "participants"];
 const SEARCHABLES = null;
 
+// image link generator function
+
+
 // repository
 const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCHABLES);
 
@@ -31,18 +34,7 @@ module.exports = () => {
     };
 
     function create(_event) {
-        const obj = {
-            name: _event.name,
-            org_id: _event.org_id,
-            description: _event.description,
-            date: _event.date,
-            location: _event.location,
-            interested: {},
-            participants: {},
-            imageLink: '',
-        };
-
-        return repo.insert(obj);
+        return repo.insert(_event);
     }
 
     function getAll() {
