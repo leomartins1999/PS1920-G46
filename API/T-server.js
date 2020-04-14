@@ -2,6 +2,7 @@
 const express = require('express');
 const session = require("express-session")({ secret: 'keyboard cat', resave: true, saveUninitialized: true });
 const passport = require("passport");
+const fileupload = require('express-fileupload');
 
 // passport serializer and deserializer
 passport.serializeUser(function (user, done) {
@@ -37,6 +38,7 @@ const api = require('./T-api')(router, service);
 const app = express();
 app.use(express.json());
 app.use(session);
+app.use(fileupload());
 app.use(passport.initialize({}));
 app.use(passport.session({}));
 app.use(REQUEST_BASE, router);

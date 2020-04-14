@@ -205,13 +205,16 @@ module.exports = (router, service, test) => {
     }
 
     function postImage(req, res){
-        handleSuccess(res, 200, {});
+        service.postImage(new Image(req, true))
+            .then(
+                () => handleSuccess(res, 200, {url: req.url})
+            ).catch((err) => handleError(res, 500, err));
     }
 
     function getImage(req, res){
-        service.getImage(new Image(req))
-            .then(image => res.end(image));
-        //handleRequest(res, 200, 400, service.getImage, new Image(req))
+        service.getImage(new Image(req, false))
+            .then(image => res.end(image))
+            .catch(err => handleError(res, 500, err));
     }
 
     // handler for unknown URL

@@ -11,7 +11,7 @@ module.exports = (baseDir) => {
         return new Promise((resolve, reject) => {
             fs.writeFile(`${baseDir}/${image.type}/${image.id}.png`, image.content, function (err) {
                 if (err) return reject(err);
-                else return resolve();
+                else return resolve({url: `/images/${image.type}/${image.id}`});
             })
         })
     }

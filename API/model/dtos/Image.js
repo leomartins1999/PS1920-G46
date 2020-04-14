@@ -1,10 +1,10 @@
 class Image{
 
-    constructor(req) {
+    constructor(req, content) {
         this.id = req.params.image_id;
         this.type = req.params.image_type;
 
-        this.content = req.body.content;
+        if (content) this.content = req.files.file.data;
     }
 
     validate(content){
