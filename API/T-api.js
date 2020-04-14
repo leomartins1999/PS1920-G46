@@ -101,7 +101,7 @@ module.exports = (router, service, test) => {
 
     // handler for follow volunteer
     function followVolunteer(req, res){
-        handleRequest(res, 200, 400, service.followVolunteer, new FollowParams(req));
+        handleRequest(res, 200, 400, service.followVolunteer, new FollowParams(req, true));
     }
 
     // handler for get orgs
@@ -116,7 +116,7 @@ module.exports = (router, service, test) => {
 
     // handler for follow org
     function followOrg(req, res){
-        handleRequest(res, 200, 400, service.followOrg, new FollowParams(req))
+        handleRequest(res, 200, 400, service.followOrg, new FollowParams(req, false))
     }
 
     // handler for create post

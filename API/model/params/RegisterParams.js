@@ -2,6 +2,9 @@
 const Volunteer = require("../dtos/Volunteer");
 const Org = require("../dtos/Org");
 
+// utils dependency
+const utils = require('../Utils')();
+
 /**
  * Structure used while executing the register operation
  */
@@ -18,12 +21,16 @@ class RegisterParams{
         this.data = (this.user_type === 'volunteer')? new Volunteer(req.body.data) : new Org(req.body.data)
     }
 
-    checkFor(properties){
-        for (let i = 0; i < properties.length ; i++)
-            if (!this[properties[i]]) return false;
-        return true;
-    }
+    /**
+     * check for specific
+     * @param properties
+     * @returns {boolean}
+     */
+    checkFor(properties){ return utils.checkFor(this, properties) }
 
+    /**
+     * validates the consistency of the object
+     */
     validate(){
         return this.data.validate() && this.email && this.password && this.user_type
     }
