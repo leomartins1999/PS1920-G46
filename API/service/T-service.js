@@ -47,7 +47,29 @@ module.exports = (users, orgs, posts, events, auth) => {
         return users.getById(searchParams.volunteer_id);
     }
 
-    function followVolunteer(){}
+    //TODO: cry
+    function followVolunteer(serviceParams){
+        if (!serviceParams.checkFor('volunteer_id'))
+            return Promise.reject(error.invalidParameters('volunteer_id'));
+        follower = serviceParams.user_type === 'volunteer' ?
+            getVolunteerById(new ServiceParams({params: {volunteer_id: serviceParams.id}})) :
+            getOrgById(new ServiceParams({params: {org_id: serviceParams.id}}));
+        return getVolunteerById(serviceParams)
+            .then(volunteer => {
+                if (volunteer.followers[serviceParams.id]) {
+                    delete volunteer.followers[serviceParams.id];
+                    delete follower.following[serviceParams.volunteer_id];
+                }
+                else {
+                    volunteer.followers[serviceParams.id] = serviceParams.user_type;
+                    follower.following[serviceParams.volunteer_id] = 'volunteer';
+                }
+                users.update(serviceParams.volunteer_id, volunteer);
+                serviceParams.user_type === 'volunteer' ?
+                    users.update(serviceParams.id, follower) :
+                    orgs.update(serviceParams.id, follower);
+            })
+    }
 
     function createPost(post){
         if(!post.validate())
