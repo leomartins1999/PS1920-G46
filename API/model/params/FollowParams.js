@@ -1,3 +1,6 @@
+// utils dependency
+const utils = require('../Utils')();
+
 /**
  * Structure used while executing the follow operation
  */
@@ -12,6 +15,8 @@ class FollowParams{
         this.volunteer_id = req.params.volunteer_id;
         this.org_id = req.params.org_id;
     }
+
+    checkFor(properties){ utils.checkFor(this, properties) }
 
 }
 

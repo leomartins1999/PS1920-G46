@@ -1,3 +1,6 @@
+// utils dependency
+const utils = require('../Utils')();
+
 /**
  * Parameters for service operations
  */
@@ -12,15 +15,15 @@ class ServiceParams{
         this.getPropertiesFromObject(req.query);
     }
 
+    checkFor(properties){
+        return utils.checkFor(properties)
+    }
+
     getPropertiesFromObject(obj){
         if (!obj) return;
 
         for(let propertyName in obj)
             this[propertyName] = obj[propertyName];
-    }
-
-    checkFor(propertyName){
-        return this[propertyName]
     }
 }
 
