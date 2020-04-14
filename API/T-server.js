@@ -25,9 +25,10 @@ const orgs = require('./service/T-orgs')();
 const posts = require('./service/T-posts')();
 const events = require('./service/T-events')();
 const auth = require('./service/T-auth')();
+const pictures = require('./service/T-pictures')('images');
 
 // service
-const service = require('./service/T-service')(users, orgs, posts, events, auth);
+const service = require('./service/T-service')(users, orgs, posts, events, auth, pictures);
 
 // api
 const api = require('./T-api')(router, service);
