@@ -21,20 +21,17 @@ module.exports = () => {
         return repo.insert(_event);
     }
 
-    function getAll() {
-        return repo.select();
+    function getAll(query_options) {
+        return repo.select(query_options);
     }
 
-    function getById(id) {
-        return repo.selectById(id);
+    function getById(query_options, id) {
+        return repo.selectById(query_options, id);
     }
 
-    function getEventsFromOrg(org_id){
-        const query = {
-            org_id: org_id
-        };
-
-        return repo.select(query)
+    function getEventsFromOrg(query_options, org_id){
+        query_options.searchFor('org_id', org_id);
+        return repo.select(query_options)
     }
 
     function update(id, _event){

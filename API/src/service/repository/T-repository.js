@@ -43,19 +43,17 @@ module.exports = (db_name, collection, filter, searchables) => {
             });
     }
 
-    function select(query, options){
-        generateId(query);
+    function select(query_options){
+        generateId(query_options.query);
 
         return accessCollection()
-            .then(col => col.find(query, options).toArray());
+            .then(col => col.find(query_options.query, query_options.options).toArray());
     }
 
-    function selectById(id){
-        const query = {
-            id: id
-        };
+    function selectById(query_options, id){
+        query_options.searchById(id);
 
-        return select(query)
+        return select(query_options)
             .then(res => Promise.resolve(res[0]));
     }
 

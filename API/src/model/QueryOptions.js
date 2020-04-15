@@ -7,23 +7,30 @@ class QueryOptions {
         this.query = {};
 
         this.options = {
-            limit: limit? limit: DEFAULT_LIMIT,
-            skip: skip? skip: DEFAULT_SKIP
+            limit: limit? parseInt(limit): DEFAULT_LIMIT,
+            skip: skip? parseInt(skip): DEFAULT_SKIP
         }
     }
 
-    searchByValue(value){
+    searchFor(fieldName, value){
+        this.query[fieldName] = value;
+        return this
+    }
+
+    searchById(id){
+        return this.searchFor('id', id);
+    }
+
+    similarTo(value){
         this.query = {
             $query: {$text: {$search: value}}
-        }
+        };
+        return this
     }
 
     sortBy(fieldName, asc){
-        this.addOption('sort', [[fieldName][asc? 'asc': 'desc']])
-    }
-
-    addOption(name, option){
-        this.options[name] = option
+        this.options.sort = [[fieldName, asc? 'asc': 'desc']];
+        return this
     }
 
 }

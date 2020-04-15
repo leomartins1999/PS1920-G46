@@ -20,20 +20,15 @@ module.exports = () => {
         return repo.insert(post);
     }
 
-    function getAll(owner_id){
-        const query = {
-            $query: owner_id? {$text: { $search: owner_id }}: {}
-        };
+    function getAll(query_options, owner_id){
+        if (owner_id) query_options.searchFor('owner_id', owner_id);
+        query_options.sortBy('time', false);
 
-        const options = {
-            sort: [['time', 'desc']]
-        };
-
-        return repo.select(query, options);
+        return repo.select(query_options);
     }
 
-    function getById(id){
-        return repo.selectById(id);
+    function getById(query_options, id){
+        return repo.selectById(query_options, id);
     }
 
     function update(post_id, post){

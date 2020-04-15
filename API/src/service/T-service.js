@@ -47,7 +47,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         if (!serviceParams.checkFor(['volunteer_id']))
             return Promise.reject(error.invalidParameters('volunteer_id'));
 
-        return users.getById(serviceParams.volunteer_id);
+        return users.getById(serviceParams.query_options, serviceParams.volunteer_id);
     }
 
     function followOperations(type){
@@ -59,8 +59,10 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     function follow(followParams){
         if (!followParams.validate())
             return Promise.reject(error.serviceError('Invalid follow parameters.'));
+
         const followerOperations = followOperations(followParams.user_type);
         const followedOperations = followOperations(followParams.followed_type);
+
         return followedOperations.get(followParams.followed_id)
             .then(followed => {
                 if (followed.followers[followParams.id]) delete followed.followers[followParams.id];
@@ -76,14 +78,14 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     function getOrgs(serviceParams){
-        return orgs.getAll(serviceParams.name);
+        return orgs.getAll(serviceParams.query_options, serviceParams.name);
     }
 
     function getOrgById(serviceParams){
         if (!serviceParams.checkFor(['org_id']))
             return Promise.reject(error.invalidParameters('org_id'));
 
-        return orgs.getById(serviceParams.org_id);
+        return orgs.getById(serviceParams.query_options, serviceParams.org_id);
     }
 
     function createPost(post){
@@ -102,14 +104,14 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     function getPosts(serviceParams){
-        return posts.getAll(serviceParams.owner_id);
+        return posts.getAll(serviceParams.query_options, serviceParams.owner_id);
     }
 
     function getPostById(serviceParams){
         if (!serviceParams.checkFor(['post_id']))
             return Promise.reject(error.invalidParameters('post_id'));
 
-        return posts.getById(serviceParams.post_id);
+        return posts.getById(serviceParams.query_options, serviceParams.post_id);
     }
 
     function removePost(serviceParams){
@@ -144,20 +146,20 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             .then(_ => Promise.resolve({id: _event.id}));
     }
 
-    function getEvents(){
-        return events.getAll();
+    function getEvents(serviceParams){
+        return events.getAll(serviceParams.query_options);
     }
 
     function getEventById(serviceParams){
         if(!serviceParams.checkFor(['event_id']))
             return Promise.reject(error.invalidParameters('event_id'));
 
-        return events.getById(serviceParams.event_id);
+        return events.getById(serviceParams.query_options, serviceParams.event_id);
     }
 
     function getEventsFromOrg(serviceParams){
         return (serviceParams.checkFor(['org_id']))?
-            events.getEventsFromOrg(serviceParams.org_id):
+            events.getEventsFromOrg(serviceParams.query_options, serviceParams.org_id):
             Promise.reject(error.invalidParameters('org_id'));
     }
 
@@ -225,14 +227,6 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
                 if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
                 return Promise.resolve({id: res._id, user_type: res.user_type});
             });
-    }
-
-    function remove(user){
-        const removeObj = (user.user_type === 'user')? users.remove : orgs.remove;
-
-        const operations = [auth.remove(user.id), removeObj(user.id)];
-
-        return Promise.all(operations)
     }
 
     function postImage(image){

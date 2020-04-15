@@ -20,14 +20,14 @@ module.exports = () => {
         return repo.insert(org);
     }
 
-    function getAll(name){
-        const query = name ? { $text: { $search: name }} : {};
+    function getAll(query_options, org_name){
+        if (org_name) query_options.similarTo(org_name);
 
-        return repo.select(query);
+        return repo.select(query_options);
     }
 
-    function getById(id){
-        return repo.selectById(id);
+    function getById(query_options, id){
+        return repo.selectById(query_options, id);
     }
 
     function update(id, org){

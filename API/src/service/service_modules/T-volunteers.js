@@ -21,12 +21,14 @@ function create(volunteer) {
     return repo.insert(volunteer);
 }
 
-function getAll(query_options){
-    return repo.select(query_options.query, query_options.options);
+function getAll(query_options, name){
+    if (name) query_options.similarTo(name);
+
+    return repo.select(query_options);
 }
 
-function getById(id){
-    return repo.selectById(id);
+function getById(query_options, id){
+    return repo.selectById(query_options, id);
 }
 
 function update(id, user){
