@@ -11,7 +11,7 @@ class _Event{
      * Constructs from API
      */
     constructor(req){
-        this.org_id = req.user.id;
+        this.org_id = req.user.user_id;
 
         this.name = req.body.name;
         this.description = req.body.name;
@@ -24,7 +24,7 @@ class _Event{
     }
 
     setId(id){
-        this._id = id;
+        this.id = id;
         if (!this.imageLink) this.imageLink = utils.getImageLink(id)
     }
 

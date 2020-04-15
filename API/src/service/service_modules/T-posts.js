@@ -24,14 +24,7 @@ module.exports = () => {
     };
 
     function create(post){
-        const obj = {
-            owner_id: post.owner_id,
-            description: post.description,
-            likes: {},
-            imageLink: post.imageLink
-        };
-
-        return repo.insert(obj);
+        return repo.insert(post);
     }
 
     function getAll(owner_id){
