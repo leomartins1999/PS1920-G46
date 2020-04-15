@@ -23,7 +23,7 @@ class FollowParams{
      * validates the consistency of the object
      */
     validate(){
-        return this.id && this.user_type && this.followed_id
+        return this.id && this.user_type && this.followed_id && this.followed_type
     }
 
 }

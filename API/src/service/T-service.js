@@ -50,59 +50,27 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return users.getById(serviceParams.volunteer_id);
     }
 
-    //TODO: cry
-    function followVolunteer(followParams){
-        if (!followParams.validate())
-            return Promise.reject(error.invalidParameters('followed_id'));
-
-        let follower = followParams.user_type === 'volunteer' ?
-            users.getById(followParams.id):
-            orgs.getById(followParams.id);
-        let followed = users.getById(followParams.followedId);
-
-        return Promise.all([follower, followed])
-            .then(values => {
-                let follower = values[0];
-                let followed = values[1];
-                if (followed.followers[followParams.id]) {
-                    delete followed.followers[followParams.id];
-                    delete follower.following[followParams.followedId];
-                }
-                else {
-                    followed.followers[followParams.id] = followParams.user_type;
-                    follower.following[followParams.followedId] = 'volunteer';
-                }
-                return Promise.all([
-                    users.update(followParams.followedId, followed),
-                    followParams.user_type === 'volunteer' ?
-                        users.update(followParams.id, follower) :
-                        orgs.update(followParams.id, follower)
-                    ]);
-            })
-            .then(results => Promise.resolve());
-    }
-
     function followOperations(type){
         return (type === 'user')?
             {get: users.getById, update: users.update}:
             {get: orgs.getById, update: orgs.update};
     }
-    function follow(follower_id, follower_user_type, followed_id, followed_user_type){
-        if (follower_id === followed_id)
-            return Promise.reject(error.serviceError('Attempting to follow self.'));
-        const followerOperations = followOperations(follower_user_type);
-        const followedOperations = followOperations(followed_user_type);
-        return followedOperations.get(followed_id)
+    function followVolunteer(followParams){
+        if (followParams.validate())
+            return Promise.reject(error.serviceError('Invalid follow parameters.'));
+        const followerOperations = followOperations(followParams.user_type);
+        const followedOperations = followOperations(followParams.followed_type);
+        return followedOperations.get(followParams.followed_id)
             .then(followed => {
-                if (followed.followers[follower_id]) delete followed.followers[follower_id];
-                else followed.followers[follower_id] = follower_user_type;
-                return followedOperations.update(followed_id, {followers: followed.followers})
+                if (followed.followers[followParams.id]) delete followed.followers[followParams.id];
+                else followed.followers[followParams.id] = followParams.user_type;
+                return followedOperations.update(followParams.id, {followers: followed.followers})
             })
-            .then((_) => followerOperations.get(follower_id))
+            .then((_) => followerOperations.get(followParams.id))
             .then((follower => {
-                if (follower.following[followed_id]) delete follower.following[followed_id];
-                else follower.following[followed_id] = followed_user_type;
-                return followerOperations.update(follower_id, {following: follower.following})
+                if (follower.following[followParams.followed_id]) delete follower.following[followParams.followed_id];
+                else follower.following[followParams.followed_id] = followParams.followed_type;
+                return followerOperations.update(followParams.id, {following: follower.following})
             }))
     }
 
