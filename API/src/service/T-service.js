@@ -11,7 +11,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     return {
         getVolunteers: getVolunteers,
         getVolunteerById: getVolunteerById,
-        followVolunteer: followVolunteer,
+        follow: follow,
 
         createPost: createPost,
         getPosts: getPosts,
@@ -55,7 +55,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             {get: users.getById, update: users.update}:
             {get: orgs.getById, update: orgs.update};
     }
-    function followVolunteer(followParams){
+    function follow(followParams){
         if (followParams.validate())
             return Promise.reject(error.serviceError('Invalid follow parameters.'));
         const followerOperations = followOperations(followParams.user_type);
