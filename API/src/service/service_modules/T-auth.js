@@ -30,12 +30,10 @@ module.exports = () => {
         return repo.insert(obj);
     }
 
-    function get(authDetails){
-        const query = {
-            email: authDetails.email
-        };
+    function get(query_options, authDetails){
+        query_options.searchFor('email', authDetails.email);
 
-        return repo.select(query)
+        return repo.select(query_options)
             .then(res => res[0]);
     }
 

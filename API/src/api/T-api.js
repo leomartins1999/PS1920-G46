@@ -5,14 +5,13 @@ const error = require('../error/T-error')();
 const ServiceParams = require('../model/params/ServiceParams');
 const FollowParams = require('../model/params/FollowParams');
 const RegisterParams = require('../model/params/RegisterParams');
+const AuthenticationParams = require('../model/params/AuthenticationParams');
 
 // dtos modules
 const Post = require('../model/dtos/Post');
 const _Event = require('../model/dtos/_Event');
 const Image = require('../model/dtos/Image');
 const User = require('../model/dtos/User');
-
-
 
 module.exports = (router, service, test) => {
 
@@ -195,7 +194,7 @@ module.exports = (router, service, test) => {
 
     // handler for login
     function login(req, res){
-        service.login(req.body)
+        service.login(new AuthenticationParams(req))
             .then(
                 (result) => {
                     req.login(new User(result.id, result.user_type), _ => handleSuccess(res, 200, {user_details: req.user}))

@@ -1,3 +1,6 @@
+// query options import
+const QueryOptions = require('../QueryOptions');
+
 /**
  * Structure used while executing the follow operation
  */
@@ -17,6 +20,8 @@ class FollowParams{
             this.followed_id = req.params.org_id;
             this.followed_type = 'org';
         }
+
+        this.query_options = new QueryOptions(req.query.limit, req.query.skip)
     }
 
     /**

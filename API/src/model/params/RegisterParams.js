@@ -5,6 +5,9 @@ const Org = require("../dtos/Org");
 // utils dependency
 const utils = require('../Utils')();
 
+// query options import
+const QueryOptions = require('../QueryOptions');
+
 /**
  * Structure used while executing the register operation
  */
@@ -19,6 +22,8 @@ class RegisterParams{
         this.user_type = req.body.user_type;
 
         this.data = (this.user_type === 'volunteer')? new Volunteer(req.body.data) : new Org(req.body.data)
+
+        this.query_options = new QueryOptions(req.query.limit, req.query.skip)
     }
 
     /**

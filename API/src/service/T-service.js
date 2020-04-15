@@ -1,8 +1,6 @@
 // external dependencies
 const stringHash = require('@sindresorhus/string-hash');
 
-const MODULE = "Service";
-
 // error module
 const error = require('../error/T-error')();
 
@@ -63,13 +61,13 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         const followerOperations = followOperations(followParams.user_type);
         const followedOperations = followOperations(followParams.followed_type);
 
-        return followedOperations.get(followParams.followed_id)
+        return followedOperations.get(followParams.query_options, followParams.followed_id)
             .then(followed => {
                 if (followed.followers[followParams.id]) delete followed.followers[followParams.id];
                 else followed.followers[followParams.id] = followParams.user_type;
                 return followedOperations.update(followParams.followed_id, followed);
             })
-            .then((_) => followerOperations.get(followParams.id))
+            .then((_) => followerOperations.get(followParams.query_options, followParams.id))
             .then((follower => {
                 if (follower.following[followParams.followed_id]) delete follower.following[followParams.followed_id];
                 else follower.following[followParams.followed_id] = followParams.followed_type;
@@ -168,7 +166,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             return Promise.reject(error.invalidParameters('id'));
 
         return events
-            .getById(serviceParams.event_id)
+            .getById(serviceParams.query_options, serviceParams.event_id)
             .then(res => {
                 if (res.org_id !== serviceParams.user_id) return Promise.reject(error.unauthorizedAccess());
                 return events.remove(serviceParams.event_id);
@@ -205,7 +203,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         const createObj = (registerParams.user_type === 'volunteer')? users.create : orgs.create;
 
         return auth
-            .get(registerParams)
+            .get(registerParams.query_options, registerParams)
             .then(res => {
                 return res ? Promise.reject(error.authenticationError('This email is already associated with a user.'))
                     : auth.register(registerParams)
@@ -216,15 +214,15 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             });
     }
 
-    function login(authDetails){
-        if (!authDetails.email || !authDetails.password)
+    function login(authParams){
+        if (!authParams.email || !authParams.password)
             return Promise.reject(error.invalidParameters('email, password'));
 
         return auth
-            .get(authDetails)
+            .get(authParams.query_options, authParams)
             .then(res => {
                 if(!res) return Promise.reject(error.authenticationError('The email is not associated with an account.'));
-                if(res.hash !== stringHash(`${authDetails.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
+                if(res.hash !== stringHash(`${authParams.password}${res.salt}`)) return Promise.reject(error.authenticationError('The given password is incorrect.'));
                 return Promise.resolve({id: res._id, user_type: res.user_type});
             });
     }
