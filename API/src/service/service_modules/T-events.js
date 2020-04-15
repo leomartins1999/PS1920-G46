@@ -1,24 +1,8 @@
-/*
-    id // gerado
-    Nome
-    Org ID
-    Body
-    picture // mais tarde
-    Nº pessoas
-    Data
-    Localização
-    ids inscritos
-    ids interessados
- */
-
-// collection name
+// repository fields
 const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'events';
 const FILTER = ["description", "imageLink", "capacity", "date", "location", "interested", "participants"];
 const SEARCHABLES = null;
-
-// image link generator function
-
 
 // repository
 const repo = require('../repository/T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCHABLES);

@@ -1,10 +1,8 @@
+// repository fields
 const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'orgs';
 const FILTER = ["description", "followers", "following", "phone", "mail", "siteLink", "facebookLink", "imageLink"];
 const SEARCH = {name: "text"};
-
-// image link generator function
-const imageLink = (id) => `/images/orgs/${id}`;
 
 // Repository
 const repo = require('../repository/T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);

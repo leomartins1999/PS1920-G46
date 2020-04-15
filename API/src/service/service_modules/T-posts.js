@@ -1,16 +1,10 @@
-/*
-    post id
-    owner_id
-    body (texto)
-    id's de users que colocaram "like"
-    link p/ imagem //not rn
-*/
+// repository fields
 const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = "posts";
 const FILTER = ["description", "likes", "imageLink"];
 const SEARCH = {owner_id: "text"};
 
-// repo
+// repository
 const repo = require('../repository/T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
@@ -18,7 +12,6 @@ module.exports = () => {
         create: create,
         getAll: getAll,
         getById: getById,
-        getByOwner: getByOwner,
         update: update,
         remove: remove
     };
@@ -28,21 +21,19 @@ module.exports = () => {
     }
 
     function getAll(owner_id){
-        const query = owner_id ? { $text: { $search: owner_id }} : {};
+        const query = {
+            $query: owner_id? {$text: { $search: owner_id }}: {}
+        };
 
-        return repo.select(query);
+        const options = {
+            sort: [['time', 'desc']]
+        };
+
+        return repo.select(query, options);
     }
 
     function getById(id){
         return repo.selectById(id);
-    }
-
-    function getByOwner(owner_id){
-        const query = {
-            owner_id: owner_id
-        };
-
-        return repo.select(query)
     }
 
     function update(post_id, post){

@@ -16,11 +16,13 @@ class Post {
         this.description = req.body.description;
         this.imageLink = req.body.imageLink;
 
+        this.time = Date.now();
+
         this.likes = {}
     }
 
     validate(){
-        return this.owner_id && this.description;
+        return this.owner_id && this.description && this.time;
     }
 
     setId(id){

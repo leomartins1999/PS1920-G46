@@ -40,7 +40,10 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     };
 
     function getVolunteers(serviceParams){
-        return users.getAll(serviceParams.name);
+        if (serviceParams.checkFor('name'))
+            serviceParams.query_options.searchByValue(serviceParams.name);
+
+        return users.getAll(serviceParams.query_options);
     }
 
     function getVolunteerById(serviceParams){

@@ -43,11 +43,11 @@ module.exports = (db_name, collection, filter, searchables) => {
             });
     }
 
-    function select(query){
+    function select(query, options){
         generateId(query);
 
         return accessCollection()
-            .then(col => col.find(query).toArray());
+            .then(col => col.find(query, options).toArray());
     }
 
     function selectById(id){
