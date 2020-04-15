@@ -13,6 +13,15 @@ class Image{
             this.id && this.type;
     }
 
+    canPost(user_type){
+        let type = user_type + 's';
+
+        if (type === this.type || this.type === 'posts') return true;
+        if (type === 'orgs' && this.type === 'events') return true;
+
+        return false;
+    }
+
 
 }
 

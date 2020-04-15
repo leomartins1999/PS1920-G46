@@ -74,6 +74,17 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             }))
     }
 
+    function getOrgs(serviceParams){
+        return orgs.getAll(serviceParams.name);
+    }
+
+    function getOrgById(serviceParams){
+        if (!serviceParams.checkFor(['org_id']))
+            return Promise.reject(error.invalidParameters('org_id'));
+
+        return orgs.getById(serviceParams.org_id);
+    }
+
     function createPost(post){
         if(!post.validate())
             return Promise.reject(error.invalidParameters('owner_id, body'));
@@ -100,53 +111,22 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return posts.getById(serviceParams.post_id);
     }
 
-    // function removePost(id, owner_id){
-    //     return getPostById(id)
-    //         .then((post) => {
-    //             if (post.owner_id !== owner_id) return Promise.reject(error.unauthorizedAccess());
-    //             return posts.remove(id)
-    //         });
-    // }
-
     function removePost(serviceParams){
-        return getPostById(serviceParams.post_id)
+        return getPostById(serviceParams)
             .then((post) => {
                 if (post.owner_id !== serviceParams.user_id) return Promise.reject(error.unauthorizedAccess());
-                return posts.remove(post_id)
+                return posts.remove(serviceParams.post_id)
             });
     }
 
     function likePost(serviceParams){
         return getPostById(serviceParams)
             .then(post => {
-                if (post.likes[serviceParams.id]) delete post.likes[serviceParams.id];
-                else post.likes[serviceParams.id] = serviceParams.user_type;
+                if (post.likes[serviceParams.user_id]) delete post.likes[serviceParams.user_id];
+                else post.likes[serviceParams.user_id] = serviceParams.user_type;
                 return posts.update(serviceParams.post_id, post);
             })
-            .then(res => {
-                if (res.status === 'updated') return Promise.resolve({status: 'success'});
-                return Promise.resolve(error.serviceError('Error executing operation.'));
-            })
     }
-
-    /*
-    Orgs
-     */
-
-    function getOrgs(searchParams){
-        return orgs.getAll(searchParams.name);
-    }
-
-    function getOrgById(searchParams){
-        if (!searchParams.checkFor('org_id'))
-            return Promise.reject(error.invalidParameters('org_id'));
-
-        return orgs.getById(searchParams.org_id);
-    }
-
-    /*
-    Events
-     */
 
     function createEvent(_event){
         if (!_event.validate())
@@ -160,63 +140,60 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
                 }
                 return Promise.resolve({id: _event.id});
             })
-            .then(res => Promise.resolve({id: _event.id}));
+            .then(_ => Promise.resolve({id: _event.id}));
     }
 
     function getEvents(){
         return events.getAll();
     }
 
-    function getEventById(searchParams){
-        if(!searchParams.checkFor('event_id'))
+    function getEventById(serviceParams){
+        if(!serviceParams.checkFor(['event_id']))
             return Promise.reject(error.invalidParameters('event_id'));
 
-        return events.getById(searchParams.event_id);
+        return events.getById(serviceParams.event_id);
     }
 
-    function getEventsFromOrg(searchParams){
-        return (searchParams.checkFor('org_id'))?
-            events.getEventsFromOrg(searchParams.org_id):
+    function getEventsFromOrg(serviceParams){
+        return (serviceParams.checkFor(['org_id']))?
+            events.getEventsFromOrg(serviceParams.org_id):
             Promise.reject(error.invalidParameters('org_id'));
     }
 
-    function removeEvent(id, org_id){
-        if(!id)
+    function removeEvent(serviceParams){
+        if(!serviceParams.event_id)
             return Promise.reject(error.invalidParameters('id'));
 
         return events
-            .getById(id)
+            .getById(serviceParams.event_id)
             .then(res => {
-                if (res.org_id !== org_id) return Promise.reject(error.unauthorizedAccess());
-                return events.remove(id);
+                if (res.org_id !== serviceParams.user_id) return Promise.reject(error.unauthorizedAccess());
+                return events.remove(serviceParams.event_id);
             });
     }
 
-    function interestedInEvent(searchParams){
-        return getEventById(searchParams)
+    function interestedInEvent(serviceParams){
+        return getEventById(serviceParams)
             .then((_event) => {
-                if (_event.participants[searchParams.id]) return Promise.reject(error.serviceError("User is already a participant!"));
-                if (_event.interested[searchParams.id]) delete _event.interested[searchParams.id];
-                else _event.interested[searchParams.id] = 'volunteer';
-                return events.update(searchParams.event_id, _event);
+                if (_event.participants[serviceParams.user_id]) return Promise.reject(error.serviceError("User is already a participant!"));
+                if (_event.interested[serviceParams.user_id]) delete _event.interested[serviceParams.user_id];
+                else _event.interested[serviceParams.user_id] = 'volunteer';
+                return events.update(serviceParams.event_id, _event);
             })
     }
 
-    function participateInEvent(searchParams){
-        return getEventById(searchParams)
+    function participateInEvent(serviceParams){
+        return getEventById(serviceParams)
             .then((_event) => {
-                if (_event.org_id !== searchParams.id) return Promise.reject(error.unauthorizedAccess());
-                if (_event.interested[searchParams.volunteer_id]) delete _event.interested[searchParams.volunteer_id];
-                if (_event.participants[searchParams.volunteer_id]) delete _event.participants[searchParams.volunteer_id];
-                else _event.participants[searchParams.volunteer_id] = 'volunteer';
+                if (_event.org_id !== serviceParams.user_id) return Promise.reject(error.unauthorizedAccess());
+                if (!_event.interested[serviceParams.volunteer_id]) return Promise.reject(error.unauthorizedAccess());
+                else delete _event.interested[serviceParams.volunteer_id];
+                if (_event.participants[serviceParams.volunteer_id]) delete _event.participants[serviceParams.volunteer_id];
+                else _event.participants[serviceParams.volunteer_id] = 'volunteer';
 
-                return events.update(searchParams.event_id, _event);
+                return events.update(serviceParams.event_id, _event);
             })
     }
-
-    /*
-    Authentication
-     */
 
     function register(registerParams){
         if (!registerParams.validate())

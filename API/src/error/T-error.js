@@ -1,5 +1,6 @@
 module.exports = () => {
     return {
+        fileNotFound: fileNotFound,
         authenticationError: authenticationError,
         invalidParameters: invalidParameters,
         databaseError: databaseError,
@@ -14,6 +15,10 @@ module.exports = () => {
             type: type,
             message: message
         }
+    }
+
+    function fileNotFound(type, id){
+        return create('API', 'CLIENT', `The requested file was not found: {type: ${type}, id: ${id}}`)
     }
 
     function authenticationError(message){

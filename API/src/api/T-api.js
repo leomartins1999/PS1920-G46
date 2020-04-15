@@ -1,13 +1,18 @@
 // error module
 const error = require('../error/T-error')();
 
-// Object modules
+// Params modules
 const ServiceParams = require('../model/params/ServiceParams');
 const FollowParams = require('../model/params/FollowParams');
 const RegisterParams = require('../model/params/RegisterParams');
+
+// dtos modules
 const Post = require('../model/dtos/Post');
 const _Event = require('../model/dtos/_Event');
 const Image = require('../model/dtos/Image');
+const User = require('../model/dtos/User');
+
+
 
 module.exports = (router, service, test) => {
 
@@ -193,7 +198,7 @@ module.exports = (router, service, test) => {
         service.login(req.body)
             .then(
                 (result) => {
-                    req.login({user_id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200))
+                    req.login(new User(result.id, result.user_type), _ => handleSuccess(res, 200, {user_details: req.user}))
                 }, err => handleError(res, 401, err)
             );
     }
@@ -205,6 +210,13 @@ module.exports = (router, service, test) => {
     }
 
     function postImage(req, res){
+        // create image object
+        let image = new Image(req, true);
+
+        // check if user can post this image
+        if (!image.canPost(req.user.user_type)) return handleError(res, 401, error.unauthorizedAccess());
+
+        // execute service call
         service.postImage(new Image(req, true))
             .then(
                 () => handleSuccess(res, 200, {url: req.url})
@@ -212,9 +224,11 @@ module.exports = (router, service, test) => {
     }
 
     function getImage(req, res){
-        service.getImage(new Image(req, false))
+        let image = new Image(req, false);
+
+        service.getImage(image)
             .then(image => res.end(image))
-            .catch(err => handleError(res, 500, err));
+            .catch(err => handleError(res, 500, error.fileNotFound(image.type, image.id)));
     }
 
     // handler for unknown URL
