@@ -51,12 +51,13 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     function followOperations(type){
-        return (type === 'user')?
+        return (type === 'volunteer')?
             {get: users.getById, update: users.update}:
             {get: orgs.getById, update: orgs.update};
     }
+
     function follow(followParams){
-        if (followParams.validate())
+        if (!followParams.validate())
             return Promise.reject(error.serviceError('Invalid follow parameters.'));
         const followerOperations = followOperations(followParams.user_type);
         const followedOperations = followOperations(followParams.followed_type);
@@ -64,13 +65,13 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             .then(followed => {
                 if (followed.followers[followParams.id]) delete followed.followers[followParams.id];
                 else followed.followers[followParams.id] = followParams.user_type;
-                return followedOperations.update(followParams.id, {followers: followed.followers})
+                return followedOperations.update(followParams.followed_id, followed);
             })
             .then((_) => followerOperations.get(followParams.id))
             .then((follower => {
                 if (follower.following[followParams.followed_id]) delete follower.following[followParams.followed_id];
                 else follower.following[followParams.followed_id] = followParams.followed_type;
-                return followerOperations.update(followParams.id, {following: follower.following})
+                return followerOperations.update(followParams.id, follower)
             }))
     }
 
