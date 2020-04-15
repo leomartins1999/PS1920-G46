@@ -253,153 +253,153 @@ describe('API tests', () => {
 
     });
 
-    describe('Authenticated as org Tests', () => {
-
-        before(function (done){
-            return login('org', done);
-        });
-
-        after(function (done){
-            return logout(done);
-        });
-
-        it('Follow Volunteer', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/volunteers/1/follow`,
-                method: 'PUT'
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.body.volunteer_id, 1);
-                done();
-            }
-        });
-
-        it('Follow Org', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/orgs/2/follow`,
-                method: 'PUT'
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.body.org_id, 2);
-                done();
-            }
-        });
-
-        it('Create Post', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/posts`,
-                method: 'POST',
-                body: JSON.stringify({
-                    owner_id: 1,
-                    description: 'abc'
-                })
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.description, 'abc');
-                done();
-            }
-        });
-
-        it('Remove Post', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/posts/1`,
-                method: 'DELETE'
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.post_id, 1);
-                done();
-            }
-        });
-
-        it('Create Event', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/orgs/events`,
-                method: 'POST',
-                body: JSON.stringify({
-                    name: 'event',
-                    description: 'abc'
-                })
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.event_id, 1);
-                assert.equal(body.name, 'event');
-                assert.equal(body.description, 'abc');
-                done();
-            }
-        });
-
-        it('Remove Event', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/orgs/events/1`,
-                method: 'DELETE'
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.event_id, 1);
-                done();
-            }
-        });
-
-        it('Like Post', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/posts/1/like`,
-                method: 'PUT'
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.post_id, 1);
-                done();
-            }
-        });
-
-        it('Org confirms Volunteer in Event', function (done) {
-            const options = {
-                url: `${server.baseURL}/auth/orgs/events/1/participate?volunteer_id=2`,
-                method: 'PUT'
-            };
-
-            executeRequest(options, cb);
-
-            function cb(error, resp, body){
-                assert.equal(body.status, 'success');
-                assert.equal(body.auth_id, 1);
-                assert.equal(body.volunteer_id, 2);
-                done();
-            }
-        });
-
-    });
+    // describe('Authenticated as org Tests', () => {
+    //
+    //     before(function (done){
+    //         return login('org', done);
+    //     });
+    //
+    //     after(function (done){
+    //         return logout(done);
+    //     });
+    //
+    //     it('Follow Volunteer', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/volunteers/1/follow`,
+    //             method: 'PUT'
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.body.volunteer_id, 1);
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Follow Org', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/orgs/2/follow`,
+    //             method: 'PUT'
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.body.org_id, 2);
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Create Post', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/posts`,
+    //             method: 'POST',
+    //             body: JSON.stringify({
+    //                 owner_id: 1,
+    //                 description: 'abc'
+    //             })
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.auth_id, 1);
+    //             assert.equal(body.description, 'abc');
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Remove Post', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/posts/1`,
+    //             method: 'DELETE'
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.auth_id, 1);
+    //             assert.equal(body.post_id, 1);
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Create Event', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/orgs/events`,
+    //             method: 'POST',
+    //             body: JSON.stringify({
+    //                 name: 'event',
+    //                 description: 'abc'
+    //             })
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.auth_id, 1);
+    //             assert.equal(body.event_id, 1);
+    //             assert.equal(body.name, 'event');
+    //             assert.equal(body.description, 'abc');
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Remove Event', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/orgs/events/1`,
+    //             method: 'DELETE'
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.auth_id, 1);
+    //             assert.equal(body.event_id, 1);
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Like Post', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/posts/1/like`,
+    //             method: 'PUT'
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.auth_id, 1);
+    //             assert.equal(body.post_id, 1);
+    //             done();
+    //         }
+    //     });
+    //
+    //     it('Org confirms Volunteer in Event', function (done) {
+    //         const options = {
+    //             url: `${server.baseURL}/auth/orgs/events/1/participate?volunteer_id=2`,
+    //             method: 'PUT'
+    //         };
+    //
+    //         executeRequest(options, cb);
+    //
+    //         function cb(error, resp, body){
+    //             assert.equal(body.status, 'success');
+    //             assert.equal(body.auth_id, 1);
+    //             assert.equal(body.volunteer_id, 2);
+    //             done();
+    //         }
+    //     });
+    //
+    // });
 
     describe('Authenticated as user Tests', () => {
 

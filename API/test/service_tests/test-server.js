@@ -32,7 +32,7 @@ module.exports = () => {
     function start(){
         const router = express.Router();
 
-        const service = require('./ServiceMock')();
+        const service = require('./service-mock')();
 
         const api = require("../../src/api/T-api")(router, service, true);
 

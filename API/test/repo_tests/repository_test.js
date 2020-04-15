@@ -15,6 +15,9 @@ const COLLECTION_FILTER = ['description', 'age'];
 const repository = require("../../src/service/repository/T-repository")(DB_NAME, COLLECTION_NAME, COLLECTION_FILTER);
 const TestDto = require("./TestDto");
 
+// import of object query options
+const QueryOptions = require("../../src/model/QueryOptions");
+
 // test objects
 const objects = [
     new TestDto("5e821e64e069d32b7c840001","Name1", "Description1", 1),
@@ -71,7 +74,9 @@ describe('Repository Tests', () => {
     });
 
     it('Select All', () => {
-        return repository.select()
+        let query = new QueryOptions(0, 0);
+
+        return repository.select(query)
             .then(dtos => {
                 assert.true(objects[0].equals(dtos[0]));
                 assert.true(objects[1].equals(dtos[1]));
@@ -82,7 +87,9 @@ describe('Repository Tests', () => {
 
     // generated ids do not work
     it('Select by Id', () => {
-        return repository.selectById("5e821e64e069d32b7c840001")
+        let query = new QueryOptions(0, 0);
+
+        return repository.selectById(query, "5e821e64e069d32b7c840001")
             .then(dto => {
                 //assert.true(objects[2].equals(dto));
             })
