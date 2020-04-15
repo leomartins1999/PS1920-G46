@@ -7,7 +7,7 @@ class FollowParams{
      * Constructs object from API data
      */
     constructor(req, volunteer) {
-        this.id = req.user.id;
+        this.id = req.user.user_id;
         this.user_type = req.user.user_type;
         if (volunteer){
             this.followed_id = req.params.volunteer_id;

@@ -16,7 +16,7 @@ class ServiceParams{
     }
 
     checkFor(properties){
-        return utils.checkFor(properties)
+        return utils.checkFor(this, properties)
     }
 
     getPropertiesFromObject(obj){

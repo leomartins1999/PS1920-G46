@@ -3,7 +3,7 @@ const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
 
 // error module
-const error = require('../T-error')();
+const error = require('../../error/T-error')();
 
 // constants
 const URL = "mongodb://localhost:27017/";

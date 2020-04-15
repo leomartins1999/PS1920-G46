@@ -4,7 +4,7 @@ const stringHash = require('@sindresorhus/string-hash');
 const MODULE = "Service";
 
 // error module
-const error = require('../T-error')();
+const error = require('../error/T-error')();
 
 module.exports = (users, orgs, posts, events, auth, pictures) => {
 
@@ -39,15 +39,15 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         getImage: getImage,
     };
 
-    function getVolunteers(searchParams){
-        return users.getAll(searchParams.name);
+    function getVolunteers(serviceParams){
+        return users.getAll(serviceParams.name);
     }
 
-    function getVolunteerById(searchParams){
-        if (!searchParams.checkFor('volunteer_id'))
+    function getVolunteerById(serviceParams){
+        if (!serviceParams.checkFor(['volunteer_id']))
             return Promise.reject(error.invalidParameters('volunteer_id'));
 
-        return users.getById(searchParams.volunteer_id);
+        return users.getById(serviceParams.volunteer_id);
     }
 
     //TODO: cry
@@ -121,22 +121,30 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             .then(() => Promise.resolve({id: post.id}));
     }
 
-    function getPosts(searchParams){
-        return posts.getAll(searchParams.owner_id);
+    function getPosts(serviceParams){
+        return posts.getAll(serviceParams.owner_id);
     }
 
-    function getPostById(searchParams){
-        if (!searchParams.checkFor('post_id'))
+    function getPostById(serviceParams){
+        if (!serviceParams.checkFor(['post_id']))
             return Promise.reject(error.invalidParameters('post_id'));
 
-        return posts.getById(searchParams.post_id);
+        return posts.getById(serviceParams.post_id);
     }
 
-    function removePost(id, owner_id){
-        return getPostById(id)
+    // function removePost(id, owner_id){
+    //     return getPostById(id)
+    //         .then((post) => {
+    //             if (post.owner_id !== owner_id) return Promise.reject(error.unauthorizedAccess());
+    //             return posts.remove(id)
+    //         });
+    // }
+
+    function removePost(serviceParams){
+        return getPostById(serviceParams.post_id)
             .then((post) => {
-                if (post.owner_id !== owner_id) return Promise.reject(error.unauthorizedAccess());
-                return posts.remove(id)
+                if (post.owner_id !== serviceParams.user_id) return Promise.reject(error.unauthorizedAccess());
+                return posts.remove(post_id)
             });
     }
 

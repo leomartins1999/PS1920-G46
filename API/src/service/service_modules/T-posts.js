@@ -11,7 +11,7 @@ const FILTER = ["description", "likes", "imageLink"];
 const SEARCH = {owner_id: "text"};
 
 // repo
-const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
+const repo = require('../repository/T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCH);
 
 module.exports = () => {
     return {

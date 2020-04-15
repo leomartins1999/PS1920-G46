@@ -1,13 +1,13 @@
 // error module
-const error = require('./T-error')();
+const error = require('../error/T-error')();
 
 // Object modules
-const ServiceParams = require('./model/params/ServiceParams');
-const FollowParams = require('./model/params/FollowParams');
-const RegisterParams = require('./model/params/RegisterParams');
-const Post = require('./model/dtos/Post');
-const _Event = require('./model/dtos/_Event');
-const Image = require('./model/dtos/Image');
+const ServiceParams = require('../model/params/ServiceParams');
+const FollowParams = require('../model/params/FollowParams');
+const RegisterParams = require('../model/params/RegisterParams');
+const Post = require('../model/dtos/Post');
+const _Event = require('../model/dtos/_Event');
+const Image = require('../model/dtos/Image');
 
 module.exports = (router, service, test) => {
 
@@ -63,7 +63,7 @@ module.exports = (router, service, test) => {
     router.get('/orgs/:org_id/events', getEventsByOrg);
 
     // remove event
-    router.delete('/auth/orgs/:org_id/events/:event_id', removeEvent);
+    router.delete('/auth/orgs/events/:event_id', removeEvent);
 
     // volunteer interested in event
     router.put('/auth/orgs/events/:event_id/interested', volunteerMw, interestedInEvent);
@@ -193,7 +193,7 @@ module.exports = (router, service, test) => {
         service.login(req.body)
             .then(
                 (result) => {
-                    req.login({id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200))
+                    req.login({user_id: result.id, user_type: result.user_type}, _ => handleSuccess(res, 200))
                 }, err => handleError(res, 401, err)
             );
     }

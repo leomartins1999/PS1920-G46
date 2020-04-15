@@ -21,7 +21,7 @@ const SEARCHABLES = null;
 
 
 // repository
-const repo = require('./T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCHABLES);
+const repo = require('../repository/T-repository')(DB_NAME, COLLECTION_NAME, FILTER, SEARCHABLES);
 
 module.exports = () => {
     return {

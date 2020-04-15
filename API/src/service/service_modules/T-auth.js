@@ -7,7 +7,7 @@ const DB_NAME = 'tribute_db';
 const COLLECTION_NAME = 'auth';
 
 // repo
-const repo = require('./T-repository')(DB_NAME,COLLECTION_NAME);
+const repo = require('../repository/T-repository')(DB_NAME,COLLECTION_NAME);
 
 module.exports = () => {
     return {

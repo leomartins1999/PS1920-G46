@@ -33,7 +33,7 @@ module.exports = () => {
     }
 
     function getVolunteerById(serviceParams) {
-        if (!serviceParams.checkFor('volunteer_id'))
+        if (!serviceParams.checkFor(['volunteer_id']))
             return reject();
 
         return resolve({_id: serviceParams.volunteer_id});
@@ -58,21 +58,21 @@ module.exports = () => {
     }
 
     function getPostById(serviceParams) {
-        if (!serviceParams.checkFor('post_id'))
+        if (!serviceParams.checkFor(['post_id']))
             return reject();
 
         return resolve({_id: serviceParams.post_id})
     }
 
     function removePost(serviceParams) {
-        if (!serviceParams.checkFor('post_id'))
+        if (!serviceParams.checkFor(['post_id']))
             return reject();
 
         return resolve();
     }
 
     function likePost(serviceParams) {
-        if (!serviceParams.checkFor('post_id'))
+        if (!serviceParams.checkFor(['post_id']))
             return reject();
 
         return resolve()
@@ -83,7 +83,7 @@ module.exports = () => {
     }
 
     function getOrgById(serviceParams) {
-        if (!serviceParams.checkFor('org_id'))
+        if (!serviceParams.checkFor(['org_id']))
             return reject();
 
         return resolve({_id: serviceParams.org_id});
@@ -108,35 +108,35 @@ module.exports = () => {
     }
 
     function getEventById(serviceParams) {
-        if (!serviceParams.checkFor('event_id'))
+        if (!serviceParams.checkFor(['event_id']))
             return reject();
 
         return resolve({_id: serviceParams.event_id, org_id: serviceParams.org_id});
     }
 
     function getEventsFromOrg(serviceParams) {
-        if (!serviceParams.checkFor('org_id'))
+        if (!serviceParams.checkFor(['org_id']))
             return reject();
 
         return resolve({org_id: serviceParams.org_id});
     }
 
     function removeEvent(serviceParams) {
-        if (!serviceParams.checkFor('event_id'))
+        if (!serviceParams.checkFor(['event_id']))
             return reject();
 
         return resolve();
     }
 
     function interestedInEvent(serviceParams) {
-        if (!serviceParams.checkFor('event_id') && serviceParams.checkFor('id'))
+        if (!serviceParams.checkFor(['event_id', 'id']))
             return reject();
 
         return resolve();
     }
 
     function participateInEvent(serviceParams) {
-        if (!serviceParams.checkFor('event_id') && serviceParams.checkFor('id'))
+        if (!serviceParams.checkFor('event_id', 'id'))
             return reject();
 
         return resolve();

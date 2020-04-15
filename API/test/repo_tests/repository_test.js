@@ -12,7 +12,7 @@ const COLLECTION_NAME = 'test';
 const COLLECTION_FILTER = ['description', 'age'];
 
 // repository import and TestDto import
-const repository = require("../../service/T-repository")(DB_NAME, COLLECTION_NAME, COLLECTION_FILTER);
+const repository = require("../../src/service/repository/T-repository")(DB_NAME, COLLECTION_NAME, COLLECTION_FILTER);
 const TestDto = require("./TestDto");
 
 // test objects

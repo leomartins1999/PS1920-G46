@@ -21,18 +21,18 @@ const REQUEST_BASE = '/api';
 const router = express.Router();
 
 // service modules
-const users = require('./service/T-volunteers')();
-const orgs = require('./service/T-orgs')();
-const posts = require('./service/T-posts')();
-const events = require('./service/T-events')();
-const auth = require('./service/T-auth')();
-const pictures = require('./service/T-pictures')('images');
+const users = require('./service/service_modules/T-volunteers')();
+const orgs = require('./service/service_modules/T-orgs')();
+const posts = require('./service/service_modules/T-posts')();
+const events = require('./service/service_modules/T-events')();
+const auth = require('./service/service_modules/T-auth')();
+const pictures = require('./service/service_modules/T-pictures')('images');
 
 // service
 const service = require('./service/T-service')(users, orgs, posts, events, auth, pictures);
 
 // api
-const api = require('./T-api')(router, service);
+const api = require('./api/T-api')(router, service);
 
 // express initialization
 const app = express();
