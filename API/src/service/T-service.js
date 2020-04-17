@@ -229,14 +229,14 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
 
     function postImage(image){
         if (!image.validate(true))
-            return Promise.reject(error.serviceError('No picture found!'));
+            return Promise.reject(error.serviceError('No picture given!'));
 
         return pictures.postImage(image);
     }
 
     function getImage(image){
         if (!image.validate(false))
-            return Promise.reject(error.invalidParameters('id', 'type'));
+            return Promise.reject(error.invalidParameters('id, type'));
 
         return pictures.getImage(image);
     }

@@ -1,6 +1,6 @@
 // utils dependency
-const TYPE = 'org';
-const utils = require('../Utils')(TYPE);
+const TYPE = 'orgs';
+const utils = require('../Utils')();
 
 /**
  * Representation of an organization
@@ -8,7 +8,8 @@ const utils = require('../Utils')(TYPE);
 class Org{
 
     /**
-     * Constructs from the register operation
+     * Standard constructor used by the RegisterParams
+     * @param data register candidate fields (org's fields)
      */
     constructor(data) {
         this.name = data.name;
@@ -22,13 +23,18 @@ class Org{
         this.following = {};
     }
 
+    /**
+     * sets the object's ID and, if necessary, updates the image link
+     * @param id new id
+     */
     setId(id){
         this._id = id;
-        if (!this.imageLink) this.imageLink = utils.getImageLink(id)
+        if (!this.imageLink) this.imageLink = utils.getImageLink(TYPE, id)
     }
 
     /**
-     * validates the object to be inserted in database
+     * Validates if the object has the required fields to be put in the database
+     * @returns boolean true if valid; false is invalid
      */
     validate(){
         return this.name;

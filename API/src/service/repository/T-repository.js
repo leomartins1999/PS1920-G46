@@ -5,6 +5,9 @@ const MongoClient = mongo.MongoClient;
 // error module
 const error = require('../../error/T-error')();
 
+// utils module
+const utils = require('../../model/Utils')();
+
 // constants
 const URL = "mongodb://localhost:27017/";
 
@@ -108,14 +111,7 @@ module.exports = (db_name, collection, filter, searchables) => {
     }
 
     function filterProperties(obj){
-        let res = {};
-
-        for(let i = 0; i < filter.length; i++){
-            let name = filter[i];
-            if (obj[name]) res[name] = obj[name]
-        }
-
-        return res
+        return utils.filter(obj, filter);
     }
 
 };

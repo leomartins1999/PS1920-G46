@@ -1,14 +1,15 @@
 // utils dependency
-const TYPE = 'event';
-const utils = require('../Utils')(TYPE);
+const TYPE = 'events';
+const utils = require('../Utils')();
 
 /**
- * Event representation
+ * Representation of an Event
  */
 class _Event{
 
     /**
-     * Constructs from API
+     * Standard constructor used by the API
+     * @param req Express' Request
      */
     constructor(req){
         this.org_id = req.user.user_id;
@@ -23,11 +24,19 @@ class _Event{
         this.participants = {};
     }
 
+    /**
+     * sets the object's ID and, if necessary, updates the image link
+     * @param id new id
+     */
     setId(id){
         this.id = id;
-        if (!this.imageLink) this.imageLink = utils.getImageLink(id)
+        if (!this.imageLink) this.imageLink = utils.getImageLink(TYPE, id)
     }
 
+    /**
+     * Validates if the object has the required fields to be put in the database
+     * @returns boolean true if valid; false is invalid
+     */
     validate(){
         return this.org_id && this.name && this.description;
     }

@@ -1,12 +1,12 @@
 /**
- * Representation of user session
+ * Representation of an user session
  */
 class User{
 
     /**
-     * Primary constructor
-     * @param user_id
-     * @param user_type
+     * Primary constructer
+     * @param user_id user's id
+     * @param user_type user's type
      */
     constructor(user_id, user_type){
         this.user_id = user_id;

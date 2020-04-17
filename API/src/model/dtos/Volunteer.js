@@ -1,14 +1,15 @@
 // utils dependency
-const TYPE = 'volunteer';
-const utils = require('../Utils')(TYPE);
+const TYPE = 'volunteers';
+const utils = require('../Utils')();
 
 /**
- * Representation of volunteer
+ * Representation of a volunteer
  */
 class Volunteer{
 
     /**
-     * Constructs from data given in register call
+     * Standard constructor used by the RegisterParams
+     * @param data register candidate fields (volunteer's fields)
      */
     constructor(data){
         this.name = data.name;
@@ -20,11 +21,19 @@ class Volunteer{
         this.followers = {};
     }
 
+    /**
+     * sets the object's ID and, if necessary, updates the image link
+     * @param id new id
+     */
     setId(id){
         this._id = id;
-        if (!this.imageLink) this.imageLink = utils.getImageLink(id)
+        if (!this.imageLink) this.imageLink = utils.getImageLink(TYPE, id)
     }
 
+    /**
+     * Validates if the object has the required fields to be put in the database
+     * @returns boolean true if valid; false is invalid
+     */
     validate(){
         return this.name;
     }

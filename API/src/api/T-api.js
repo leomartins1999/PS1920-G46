@@ -293,7 +293,12 @@ module.exports = (router, service, test) => {
         res.end(JSON.stringify(response));
     }
 
-    // middleware responsible for logging the reception of a request
+    /**
+     * middleware responsible for logging the reception of a request
+     * @param req request object
+     * @param res response object
+     * @param next next function to be executed
+     */
     function log(req, res, next){
         // date object
         let date = new Date();
@@ -306,20 +311,37 @@ module.exports = (router, service, test) => {
     }
 
     // middleware responsible for checking if the user is authenticated
+
+    /**
+     *  middleware responsible for checking if the user is authenticated
+     * @param req request object
+     * @param res response object
+     * @param next next function to be executed
+     */
     function authenticationMw(req, res, next){
         (!(req.user || test))?
             handleError(res, 401 , error.authenticationError('User is not authenticated.')) :
             next();
     }
 
-    // middleware responsible for checking if the user is a volunteer
+    /**
+     * middleware responsible for checking if the user is a volunteer
+     * @param req request object
+     * @param res response object
+     * @param next next function to be executed
+     */
     function volunteerMw(req, res, next){
         (req.user.user_type !== 'volunteer')?
             handleError(res, 401, error.authenticationError('Invalid authenticated user type.')) :
             next();
     }
 
-    // middleware responsible for checking if the user is an org
+    /**
+     * middleware responsible for checking if the user is an org
+     * @param req request object
+     * @param res response object
+     * @param next next function to be executed
+     */
     function orgMw(req, res, next){
         (req.user.user_type !== 'org')?
             handleError(res, 401, error.authenticationError('Invalid authenticated user type.')) :

@@ -5,30 +5,33 @@ const utils = require('../Utils')();
 const QueryOptions = require('../QueryOptions');
 
 /**
- * Parameters for service operations
+ * Class instantiated by the default when executing an API operation
+ * This object collects all existing parameters in the
  */
 class ServiceParams{
 
     /**
-     * Constructs for API layer's request
+     * Standard constructor used by the API
+     * Retrieves all properties in user (session object),
+     * params(path parameters) given in URL and query
+     * (query parameters) contained in the query string
+     * @param req Express' Request
      */
     constructor(req) {
-        this.getPropertiesFromObject(req.user);
-        this.getPropertiesFromObject(req.params);
-        this.getPropertiesFromObject(req.query);
+        utils.cloneObject(this, req.user);
+        utils.cloneObject(this, req.params);
+        utils.cloneObject(this, req.query);
 
-        this.query_options = new QueryOptions(req.query.limit, req.query.skip)
+        this.query_options = new QueryOptions(this.limit, this.skip)
     }
 
+    /**
+     * Checks if properties exist in this object
+     * @param properties array of property names
+     * @returns boolean true if all properties exist; false if not
+     */
     checkFor(properties){
         return utils.checkFor(this, properties)
-    }
-
-    getPropertiesFromObject(obj){
-        if (!obj) return;
-
-        for(let propertyName in obj)
-            this[propertyName] = obj[propertyName];
     }
 }
 

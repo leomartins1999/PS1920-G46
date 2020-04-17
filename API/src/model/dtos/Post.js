@@ -1,14 +1,15 @@
 // utils dependency
-const TYPE = 'post';
-const utils = require('../Utils')(TYPE);
+const TYPE = 'posts';
+const utils = require('../Utils')();
 
 /**
- * Class Representative of posts
+ * Representation of a post
  */
 class Post {
 
     /**
-     * Constructs object from API layer
+     * Standard constructor used by the API
+     * @param req Express' Request
      */
     constructor(req) {
         this.owner_id = req.user.user_id;
@@ -21,13 +22,21 @@ class Post {
         this.likes = {}
     }
 
+    /**
+     * Validates if the object has the required fields to be put in the database
+     * @returns boolean true if valid; false is invalid
+     */
     validate(){
         return this.owner_id && this.description && this.time;
     }
 
+    /**
+     * sets the object's ID and, if necessary, updates the image link
+     * @param id new id
+     */
     setId(id){
         this.id = id;
-        if (!this.imageLink) this.imageLink = utils.getImageLink(id)
+        if (!this.imageLink) this.imageLink = utils.getImageLink(TYPE, id)
     }
 
 }

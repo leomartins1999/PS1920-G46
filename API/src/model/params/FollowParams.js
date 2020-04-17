@@ -2,12 +2,14 @@
 const QueryOptions = require('../QueryOptions');
 
 /**
- * Structure used while executing the follow operation
+ * Object generated when attempting to execute an follow operation
  */
 class FollowParams{
 
     /**
-     * Constructs object from API data
+     * Standard constructor used by the API
+     * @param req Express' Request
+     * @param volunteer boolean indicating if the user being followed in an volunteer
      */
     constructor(req, volunteer) {
         this.id = req.user.user_id;
@@ -25,7 +27,8 @@ class FollowParams{
     }
 
     /**
-     * validates the consistency of the object
+     * Validates if the object has the required fields
+     * @returns boolean true if valid; false is invalid
      */
     validate(){
         return this.id && this.user_type && this.followed_id && this.followed_type
