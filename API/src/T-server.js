@@ -38,7 +38,7 @@ const api = require('./api/T-api')(router, service);
 const app = express();
 app.use(express.json());
 app.use(session);
-app.use(fileupload());
+app.use(fileupload({}));
 app.use(passport.initialize({}));
 app.use(passport.session({}));
 app.use(REQUEST_BASE, router);
