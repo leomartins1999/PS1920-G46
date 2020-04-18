@@ -17,24 +17,57 @@ module.exports = () => {
     }
 };
 
+/**
+ * Creates an volunteer
+ * @param volunteer Volunteer Object
+ * @returns {Promise<Promise>} resolves with id if successful
+ * rejects with error otherwise
+ */
 function create(volunteer) {
     return repo.insert(volunteer);
 }
 
+/**
+ * Gets all volunteers
+ * @param query_options Query Options object
+ * @param name (optional) name of volunteer to search by
+ * @returns {Promise<Promise|void|any[]>} resolves with id if successful
+ * rejects with error otherwise
+ */
 function getAll(query_options, name){
     if (name) query_options.similarTo(name);
 
     return repo.select(query_options);
 }
 
+/**
+ * Gets a specific volunteer
+ * @param query_options Query Options object
+ * @param id id of volunteer
+ * @returns {Promise<Promise|void|any[]>} resolves with id if successful
+ * rejects with error otherwise
+ */
 function getById(query_options, id){
     return repo.selectById(query_options, id);
 }
 
+/**
+ * Updates an volunteer
+ * @param id id of volunteer
+ * @param user fields to be updated to
+ * @returns {Promise<Promise>} resolves with status message if successful
+ * rejects with error otherwise
+ */
 function update(id, user){
     return repo.updateById(id, user)
 }
 
+/**
+ * Removes an volunteer
+ * @param id id of volunteer
+ * @returns {Promise<Promise>} resolves with status message if successful
+ * rejects with error otherwise
+ */
 function remove(id){
     return repo.removeById(id);
 }

@@ -16,20 +16,34 @@ module.exports = () => {
         remove: remove
     };
 
-    function register(authDetails){
+    /**
+     * Generates salt and hash to be stored in the database and stores the data
+     * @param registerParams RegisterParams object
+     * @returns {Promise<Promise>} resolves if successful, with ID
+     * rejects with error otherwise
+     */
+    function register(registerParams){
         const salt = randomstring.generate(HASH_LENGTH);
-        const hash = stringHash(`${authDetails.password}${salt}`);
+        const hash = stringHash(`${registerParams.password}${salt}`);
 
         const obj = {
-            email: authDetails.email,
+            email: registerParams.email,
             salt: salt,
             hash: hash,
-            user_type: authDetails.user_type
+            user_type: registerParams.user_type
         };
 
         return repo.insert(obj);
     }
 
+    /**
+     * Retrieves the corresponding document
+     * @param query_options Query Options object
+     * @param authDetails Service Params object, containing user's email
+     * @returns {Promise<Promise | void | any[]>} resolves if successful, with user's
+     * authentication details
+     * rejects with error otherwise
+     */
     function get(query_options, authDetails){
         query_options.searchFor('email', authDetails.email);
 
@@ -37,6 +51,12 @@ module.exports = () => {
             .then(res => res[0]);
     }
 
+    /**
+     * Removes the document referenced by the ID
+     * @param id id of document to be removed
+     * @returns {Promise<Promise>} Resolves if successful, with status message
+     * rejects with error otherwise
+     */
     function remove(id){
         return repo.removeById(id);
     }

@@ -37,10 +37,20 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         getImage: getImage,
     };
 
+    /**
+     * Gets volunteers
+     * @param serviceParams ServiceParams object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with results
+     */
     function getVolunteers(serviceParams){
         return users.getAll(serviceParams.query_options, serviceParams.name);
     }
 
+    /**
+     * Gets a specific volunteer
+     * @param serviceParams ServiceParams object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with results
+     */
     function getVolunteerById(serviceParams){
         if (!serviceParams.checkFor(['volunteer_id']))
             return Promise.reject(error.invalidParameters('volunteer_id'));
@@ -48,12 +58,25 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return users.getById(serviceParams.query_options, serviceParams.volunteer_id);
     }
 
+    /**
+     * Operations used in function follow to update documents
+     * @param type user_type
+     * @returns {{get: getById, update: *}} object with get and update operations
+     */
     function followOperations(type){
         return (type === 'volunteer')?
             {get: users.getById, update: users.update}:
             {get: orgs.getById, update: orgs.update};
     }
 
+    /**
+     * Executes a follow/unfollow operation. If user A already follows user B, it occurs
+     * an "unfollow", occurring an "follow" otherwise. This function needs to update 2 fields
+     * in separate documents and is composed form promise concatenation
+     * @param followParams Follow Params Object
+     * @returns {Promise<never>|PromiseLike<T>} resolves with status message if successful
+     * rejects with error otherwise
+     */
     function follow(followParams){
         if (!followParams.validate())
             return Promise.reject(error.serviceError('Invalid follow parameters.'));
@@ -75,10 +98,20 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             }))
     }
 
+    /**
+     * Get Orgs
+     * @param serviceParams Service Params Object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with orgs
+     */
     function getOrgs(serviceParams){
         return orgs.getAll(serviceParams.query_options, serviceParams.name);
     }
 
+    /**
+     * Get an org by its id
+     * @param serviceParams Service Params Object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with org
+     */
     function getOrgById(serviceParams){
         if (!serviceParams.checkFor(['org_id']))
             return Promise.reject(error.invalidParameters('org_id'));
@@ -86,6 +119,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return orgs.getById(serviceParams.query_options, serviceParams.org_id);
     }
 
+    /**
+     * Creates a post
+     * @param post Post object
+     * @returns {Promise<never>|PromiseLike<{id: *}>} resolves with id if successful
+     * rejects with error otherwise
+     */
     function createPost(post){
         if(!post.validate())
             return Promise.reject(error.invalidParameters('owner_id, body'));
@@ -101,10 +140,20 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             .then(() => Promise.resolve({id: post.id}));
     }
 
+    /**
+     * Gets all posts
+     * @param serviceParams ServiceParams Object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with posts
+     */
     function getPosts(serviceParams){
         return posts.getAll(serviceParams.query_options, serviceParams.owner_id);
     }
 
+    /**
+     * Gets an post by its id
+     * @param serviceParams ServiceParams Object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with post
+     */
     function getPostById(serviceParams){
         if (!serviceParams.checkFor(['post_id']))
             return Promise.reject(error.invalidParameters('post_id'));
@@ -112,6 +161,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return posts.getById(serviceParams.query_options, serviceParams.post_id);
     }
 
+    /**
+     * Deletes a post
+     * @param serviceParams Service Params object
+     * @returns {Promise<never>|PromiseLike<{id: *}>} resolves with status message if successful
+     * rejects with error otherwise
+     */
     function removePost(serviceParams){
         return getPostById(serviceParams)
             .then((post) => {
@@ -120,6 +175,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             });
     }
 
+    /**
+     * Likes a post
+     * @param serviceParams Service Params Object
+     * @returns {Promise<T>} resolves with status message if successful
+     * rejects with error otherwise
+     */
     function likePost(serviceParams){
         return getPostById(serviceParams)
             .then(post => {
@@ -129,6 +190,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             })
     }
 
+    /**
+     * Creates an event
+     * @param _event _Event Object
+     * @returns {Promise<never>|PromiseLike<{id: *}>} resolves with event id if successful
+     * rejects with error otherwise
+     */
     function createEvent(_event){
         if (!_event.validate())
             return Promise.reject(error.invalidParameters('name, org_id, description'));
@@ -144,10 +211,20 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             .then(_ => Promise.resolve({id: _event.id}));
     }
 
+    /**
+     * Gets events
+     * @param serviceParams Service Params object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with events
+     */
     function getEvents(serviceParams){
         return events.getAll(serviceParams.query_options);
     }
 
+    /**
+     * Gets an event by its id
+     * @param serviceParams Service Params object
+     * @returns {Promise<never>|Promise<Promise|void|any[]>} resolves with event
+     */
     function getEventById(serviceParams){
         if(!serviceParams.checkFor(['event_id']))
             return Promise.reject(error.invalidParameters('event_id'));
@@ -155,12 +232,23 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return events.getById(serviceParams.query_options, serviceParams.event_id);
     }
 
+    /**
+     * Gets the events from a specific org
+     * @param serviceParams Service Params object
+     * @returns {*} resolves with events
+     */
     function getEventsFromOrg(serviceParams){
         return (serviceParams.checkFor(['org_id']))?
             events.getEventsFromOrg(serviceParams.query_options, serviceParams.org_id):
             Promise.reject(error.invalidParameters('org_id'));
     }
 
+    /**
+     * Removes event
+     * @param serviceParams Service Params object
+     * @returns {Promise<never>|Promise<Promise | void | any[]>} resolves with status message if successful
+     * rejects with error otherwise
+     */
     function removeEvent(serviceParams){
         if(!serviceParams.event_id)
             return Promise.reject(error.invalidParameters('id'));
@@ -173,6 +261,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             });
     }
 
+    /**
+     * Flags an user as interested in an event. Executed by users
+     * @param serviceParams Service Params object
+     * @returns {Promise<T>} resolves with status message if successful
+     * rejects with error otherwise
+     */
     function interestedInEvent(serviceParams){
         return getEventById(serviceParams)
             .then((_event) => {
@@ -183,6 +277,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             })
     }
 
+    /**
+     * Flags an user as a participant in an event. Executed by orgs
+     * @param serviceParams Service Params
+     * @returns {Promise<T>} resolves with status message if successful
+     * rejects with error otherwise
+     */
     function participateInEvent(serviceParams){
         return getEventById(serviceParams)
             .then((_event) => {
@@ -196,6 +296,11 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             })
     }
 
+    /**
+     * Registers an user in the platform, creating its corresponding entry in the users
+     * @param registerParams
+     * @returns {Promise<never>|PromiseLike<T>}
+     */
     function register(registerParams){
         if (!registerParams.validate())
             return Promise.reject(error.invalidParameters('email, password, user_type, data.name'));
