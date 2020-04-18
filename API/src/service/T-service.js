@@ -297,9 +297,10 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Registers an user in the platform, creating its corresponding entry in the users
-     * @param registerParams
-     * @returns {Promise<never>|PromiseLike<T>}
+     * Registers an user in the platform, creating its corresponding entry in the volunteers/orgs modules
+     * @param registerParams RegisterParams object
+     * @returns {Promise<never>|PromiseLike<T>} resolves with registration data if successful
+     * rejects otherwise
      */
     function register(registerParams){
         if (!registerParams.validate())
@@ -319,6 +320,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             });
     }
 
+    /**
+     * Executes the necessary verification so that a user can login in the platform
+     * @param authParams Authentication Params
+     * @returns {Promise<never>|PromiseLike<any>|Promise<any>} resolves with an User object if successful
+     * rejects otherwise
+     */
     function login(authParams){
         if (!authParams.email || !authParams.password)
             return Promise.reject(error.invalidParameters('email, password'));
@@ -332,6 +339,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             });
     }
 
+    /**
+     * Stores an image in the server
+     * @param image Image object
+     * @returns {Promise<never>|Promise<unknown>} resolves with url if successful
+     * rejects with error otherwise
+     */
     function postImage(image){
         if (!image.validate(true))
             return Promise.reject(error.serviceError('No picture given!'));
@@ -339,6 +352,12 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         return pictures.postImage(image);
     }
 
+    /**
+     * Retrieves an image from the server
+     * @param image Image Object
+     * @returns {Promise<never>|Promise<unknown>} resolves with image if successful
+     * rejects with error otherwise
+     */
     function getImage(image){
         if (!image.validate(false))
             return Promise.reject(error.invalidParameters('id, type'));
