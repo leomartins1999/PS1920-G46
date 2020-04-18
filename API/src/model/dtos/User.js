@@ -1,10 +1,10 @@
 /**
- * Representation of an user session
+ * Representation of a user session
  */
 class User{
 
     /**
-     * Primary constructer
+     * Primary constructor
      * @param user_id user's id
      * @param user_type user's type
      */

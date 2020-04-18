@@ -6,7 +6,7 @@ class Image{
     /**
      * Standard constructor used by the API
      * @param req Express' Request
-     * @param content if the file contains content (is to be uploaded to the API)
+     * @param content if the file has content (to be uploaded to the API)
      */
     constructor(req, content) {
         this.type = req.params.image_type;

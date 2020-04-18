@@ -2,14 +2,14 @@
 const QueryOptions = require('../QueryOptions');
 
 /**
- * Object generated when attempting to execute an follow operation
+ * Object generated when attempting to execute a follow operation
  */
 class FollowParams{
 
     /**
      * Standard constructor used by the API
      * @param req Express' Request
-     * @param volunteer boolean indicating if the user being followed in an volunteer
+     * @param volunteer boolean indicating if the user being followed is an volunteer
      */
     constructor(req, volunteer) {
         this.id = req.user.user_id;

@@ -55,7 +55,7 @@ class MongoQuery {
     }
 
     /**
-     * Queries the database to sort the results basing on a
+     * Queries the database to sort the results based on a
      * specific field
      * @param fieldName the field's name
      * @param asc true if results are to be ascending, false if the results

@@ -43,7 +43,7 @@ module.exports = (db_name, collection, filter, searchables) => {
 
     /**
      * Creates a search index. This operation is required when the collection
-     * support searching by a similar name
+     * supports searching by a similar name
      * @param searchables properties which are searchable
      */
     function createSearchIdx(searchables) {

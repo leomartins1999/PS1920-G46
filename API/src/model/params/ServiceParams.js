@@ -5,8 +5,8 @@ const utils = require('../Utils')();
 const QueryOptions = require('../QueryOptions');
 
 /**
- * Class instantiated by the default when executing an API operation
- * This object collects all existing parameters in the
+ * Class instantiated by default when executing an API operation
+ * This object collects all existing parameters in the request
  */
 class ServiceParams{
 
