@@ -70,9 +70,9 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Executes a follow/unfollow operation. If user A already follows user B, it occurs
-     * an "unfollow", occurring an "follow" otherwise. This function needs to update 2 fields
-     * in separate documents and is composed form promise concatenation
+     * Executes a follow/unfollow operation. If user A already follows user B, it
+     * "unfollows", otherwise, it "follows". This function needs to update 2 fields
+     * in separate documents and is composed from promise concatenation
      * @param followParams Follow Params Object
      * @returns {Promise<never>|PromiseLike<T>} resolves with status message if successful
      * rejects with error otherwise
@@ -150,7 +150,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Gets an post by its id
+     * Gets a post by its id
      * @param serviceParams ServiceParams Object
      * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with post
      */
@@ -262,7 +262,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Flags an user as interested in an event. Executed by users
+     * Flags a volunteer as interested in an event. Executed by volunteers
      * @param serviceParams Service Params object
      * @returns {Promise<T>} resolves with status message if successful
      * rejects with error otherwise
@@ -278,7 +278,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Flags an user as a participant in an event. Executed by orgs
+     * Flags a volunteer as a participant in an event. Executed by orgs
      * @param serviceParams Service Params
      * @returns {Promise<T>} resolves with status message if successful
      * rejects with error otherwise
@@ -297,7 +297,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Registers an user in the platform, creating its corresponding entry in the volunteers/orgs modules
+     * Registers a user in the platform, creating its corresponding entry in the volunteers/orgs modules
      * @param registerParams RegisterParams object
      * @returns {Promise<never>|PromiseLike<T>} resolves with registration data if successful
      * rejects otherwise
@@ -321,9 +321,9 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Executes the necessary verification so that a user can login in the platform
+     * Executes the necessary verification so that a user can login to the platform
      * @param authParams Authentication Params
-     * @returns {Promise<never>|PromiseLike<any>|Promise<any>} resolves with an User object if successful
+     * @returns {Promise<never>|PromiseLike<any>|Promise<any>} resolves with a User object if successful
      * rejects otherwise
      */
     function login(authParams){
