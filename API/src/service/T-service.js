@@ -4,12 +4,14 @@ const stringHash = require('@sindresorhus/string-hash');
 // error module
 const error = require('../error/T-error')();
 
-module.exports = (users, orgs, posts, events, auth, pictures) => {
+module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
 
     return {
+        follow: follow,
+
         getVolunteers: getVolunteers,
         getVolunteerById: getVolunteerById,
-        follow: follow,
+        updateVolunteer: updateVolunteer,
 
         createPost: createPost,
         getPosts: getPosts,
@@ -19,7 +21,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
 
         getOrgs: getOrgs,
         getOrgById: getOrgById,
-        //followOrg: followOrg,
+        updateOrg: updateOrg,
 
         createEvent: createEvent,
         getEvents: getEvents,
@@ -38,34 +40,13 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     };
 
     /**
-     * Gets volunteers
-     * @param serviceParams ServiceParams object
-     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with results
-     */
-    function getVolunteers(serviceParams){
-        return users.getAll(serviceParams.query_options, serviceParams.name);
-    }
-
-    /**
-     * Gets a specific volunteer
-     * @param serviceParams ServiceParams object
-     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with results
-     */
-    function getVolunteerById(serviceParams){
-        if (!serviceParams.checkFor(['volunteer_id']))
-            return Promise.reject(error.invalidParameters('volunteer_id'));
-
-        return users.getById(serviceParams.query_options, serviceParams.volunteer_id);
-    }
-
-    /**
      * Operations used in function follow to update documents
      * @param type user_type
      * @returns {{get: getById, update: *}} object with get and update operations
      */
     function followOperations(type){
         return (type === 'volunteer')?
-            {get: users.getById, update: users.update}:
+            {get: volunteers.getById, update: volunteers.update}:
             {get: orgs.getById, update: orgs.update};
     }
 
@@ -99,6 +80,31 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
     }
 
     /**
+     * Gets volunteers
+     * @param serviceParams ServiceParams object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with results
+     */
+    function getVolunteers(serviceParams){
+        return volunteers.getAll(serviceParams.query_options, serviceParams.name);
+    }
+
+    /**
+     * Gets a specific volunteer
+     * @param serviceParams ServiceParams object
+     * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with results
+     */
+    function getVolunteerById(serviceParams){
+        if (!serviceParams.checkFor(['volunteer_id']))
+            return Promise.reject(error.invalidParameters('volunteer_id'));
+
+        return volunteers.getById(serviceParams.query_options, serviceParams.volunteer_id);
+    }
+
+    function updateVolunteer(){
+
+    }
+
+    /**
      * Get Orgs
      * @param serviceParams Service Params Object
      * @returns {string[] | Promise<Promise|void|any[]> | IDBRequest<any[]> | FormDataEntryValue[]} resolves with orgs
@@ -117,6 +123,10 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
             return Promise.reject(error.invalidParameters('org_id'));
 
         return orgs.getById(serviceParams.query_options, serviceParams.org_id);
+    }
+
+    function updateOrg(){
+
     }
 
     /**
@@ -306,7 +316,7 @@ module.exports = (users, orgs, posts, events, auth, pictures) => {
         if (!registerParams.validate())
             return Promise.reject(error.invalidParameters('email, password, user_type, data.name'));
 
-        const createObj = (registerParams.user_type === 'volunteer')? users.create : orgs.create;
+        const createObj = (registerParams.user_type === 'volunteer')? volunteers.create : orgs.create;
 
         return auth
             .get(registerParams.query_options, registerParams)
