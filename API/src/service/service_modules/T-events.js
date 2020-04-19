@@ -38,7 +38,7 @@ module.exports = () => {
     }
 
     /**
-     * Gets an event with an specific id
+     * Gets an event with a specific id
      * @param query_options Query Options object
      * @param id id of document
      * @returns {Promise<Promise|void|any[]>} resolves if successful, with Event

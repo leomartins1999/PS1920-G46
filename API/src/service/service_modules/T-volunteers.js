@@ -18,7 +18,7 @@ module.exports = () => {
 };
 
 /**
- * Creates an volunteer
+ * Creates a volunteer
  * @param volunteer Volunteer Object
  * @returns {Promise<Promise>} resolves with id if successful
  * rejects with error otherwise
@@ -30,7 +30,7 @@ function create(volunteer) {
 /**
  * Gets all volunteers
  * @param query_options Query Options object
- * @param name (optional) name of volunteer to search by
+ * @param name (optional) name of volunteer to search for
  * @returns {Promise<Promise|void|any[]>} resolves with id if successful
  * rejects with error otherwise
  */
@@ -52,7 +52,7 @@ function getById(query_options, id){
 }
 
 /**
- * Updates an volunteer
+ * Updates a volunteer
  * @param id id of volunteer
  * @param user fields to be updated to
  * @returns {Promise<Promise>} resolves with status message if successful
@@ -63,7 +63,7 @@ function update(id, user){
 }
 
 /**
- * Removes an volunteer
+ * Removes a volunteer
  * @param id id of volunteer
  * @returns {Promise<Promise>} resolves with status message if successful
  * rejects with error otherwise
