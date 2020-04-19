@@ -100,8 +100,22 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         return volunteers.getById(serviceParams.query_options, serviceParams.volunteer_id);
     }
 
-    function updateVolunteer(){
+    /**
+     * Updates a volunteer's data
+     * @param updateParams Update Params object
+     * @returns {Promise<never>|*} resolves with status message
+     * rejects with error
+     */
+    function updateVolunteer(updateParams){
+        // check if authenticated user is making the changes
+        if (updateParams.params.user_id !== updateParams.params.volunteer_id)
+            return Promise.reject(error.unauthorizedAccess());
 
+        // delete unchangeable properties
+        delete updateParams.data.followers;
+        delete updateParams.data.following;
+
+        return volunteers.update(updateParams.params.user_id, updateParams.data);
     }
 
     /**
@@ -125,8 +139,22 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         return orgs.getById(serviceParams.query_options, serviceParams.org_id);
     }
 
-    function updateOrg(){
+    /**
+     * Updates a volunteer's data
+     * @param updateParams Update Params object
+     * @returns {Promise<never>|*} resolves with status message
+     * rejects with error
+     */
+    function updateOrg(updateParams){
+        // check if authenticated user is making the changes
+        if (updateParams.params.user_id !== updateParams.params.org_id)
+            return Promise.reject(error.unauthorizedAccess());
 
+        // delete unchangeable properties
+        delete updateParams.data.followers;
+        delete updateParams.data.following;
+
+        return orgs.update(updateParams.params.user_id, updateParams.data);
     }
 
     /**

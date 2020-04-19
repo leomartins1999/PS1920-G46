@@ -17,3 +17,5 @@ class UpdateParams {
 
 
 }
+
+module.exports = UpdateParams;

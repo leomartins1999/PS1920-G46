@@ -6,12 +6,15 @@ const ServiceParams = require('../model/params/ServiceParams');
 const FollowParams = require('../model/params/FollowParams');
 const RegisterParams = require('../model/params/RegisterParams');
 const AuthenticationParams = require('../model/params/AuthenticationParams');
+const UpdateParams = require('../model/params/UpdateParams');
 
 // dtos modules
 const Post = require('../model/dtos/Post');
 const _Event = require('../model/dtos/_Event');
 const Image = require('../model/dtos/Image');
 const User = require('../model/dtos/User');
+const Volunteer = require("../model/dtos/Volunteer");
+const Org = require("../model/dtos/Org");
 
 module.exports = (router, service, test) => {
 
@@ -28,7 +31,7 @@ module.exports = (router, service, test) => {
     router.get('/volunteers/:volunteer_id', getVolunteerById);
 
     // update volunteer
-    router.put('/volunteers/:volunteer_id', updateVolunteer);
+    router.put('/auth/volunteers/:volunteer_id', updateVolunteer);
 
     // follow volunteer
     router.put('/auth/volunteers/:volunteer_id/follow', followVolunteer);
@@ -38,6 +41,9 @@ module.exports = (router, service, test) => {
 
     // get org by id
     router.get('/orgs/:org_id', getOrgById);
+
+    // put org by id
+    router.put('/auth/orgs/:org_id', updateOrg);
 
     // follow org
     router.put('/auth/orgs/:org_id/follow', followOrg);
@@ -107,7 +113,7 @@ module.exports = (router, service, test) => {
     }
 
     // handler for update volunteer
-    function updateVolunteer(){
+    function updateVolunteer(req, res){
         handleRequest(res, 200, 400, service.updateVolunteer, new UpdateParams(req, new Volunteer(req.body)))
     }
 
@@ -124,6 +130,11 @@ module.exports = (router, service, test) => {
     // handler for get org by Id
     function getOrgById(req, res){
         handleRequest(res, 200, 400, service.getOrgById, new ServiceParams(req));
+    }
+
+    // handler for update org
+    function updateOrg(req, res){
+        handleRequest(res, 200, 400, service.updateOrg, new UpdateParams(req, new Org(req.body)))
     }
 
     // handler for follow org
