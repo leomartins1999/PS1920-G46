@@ -27,6 +27,9 @@ module.exports = (router, service, test) => {
     // get volunteer by id
     router.get('/volunteers/:volunteer_id', getVolunteerById);
 
+    // update volunteer
+    router.put('/volunteers/:volunteer_id', updateVolunteer);
+
     // follow volunteer
     router.put('/auth/volunteers/:volunteer_id/follow', followVolunteer);
 
@@ -101,6 +104,11 @@ module.exports = (router, service, test) => {
     // handler for get volunteer by id
     function getVolunteerById(req, res){
         handleRequest(res, 200, 400, service.getVolunteerById, new ServiceParams(req));
+    }
+
+    // handler for update volunteer
+    function updateVolunteer(){
+        handleRequest(res, 200, 400, service.updateVolunteer, new UpdateParams(req, new Volunteer(req.body)))
     }
 
     // handler for follow volunteer
