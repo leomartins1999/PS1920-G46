@@ -16,6 +16,7 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         createPost: createPost,
         getPosts: getPosts,
         getPostById: getPostById,
+        updatePost: updatePost,
         removePost: removePost,
         likePost: likePost,
 
@@ -26,6 +27,7 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         createEvent: createEvent,
         getEvents: getEvents,
         getEventsById: getEventById,
+        updateEvent: updateEvent,
         getEventsByOrg: getEventsFromOrg,
         removeEvent: removeEvent,
         interestedInEvent: interestedInEvent,
@@ -171,6 +173,10 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         return posts.getById(serviceParams.query_options, serviceParams.post_id);
     }
 
+    function updatePost(updateParams) {
+
+    }
+
     /**
      * Deletes a post
      * @param serviceParams Service Params object
@@ -240,6 +246,19 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
             return Promise.reject(error.invalidParameters('event_id'));
 
         return events.getById(serviceParams.query_options, serviceParams.event_id);
+    }
+
+    function updateEvent(updateParams){
+        if( !updateParams.params.checkFor(['event_id']) )              // Check for valid params
+            return Promise.reject(error.invalidParameters('event_id'));
+        if ( updateParams.params.org_id !== updateParams.params.user_id )       // Check if the user owns the event
+            return Promise.reject(error.unauthorizedAccess());
+
+        // Remove properties that shouldn't be altered
+        delete updateParams.data.interested;
+        delete updateParams.data.participants;
+
+        return events.update(updateParams.params.event_id, updateParams.data);
     }
 
     /**

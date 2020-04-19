@@ -52,7 +52,7 @@ module.exports = (router, service, test) => {
     router.get('/posts/:post_id', getPostById);
 
     // edit post by id
-    router.put('/posts/:post_id', updatePost);
+    router.put('/auth/posts/:post_id', updatePost);
 
     // remove post
     router.delete('/auth/posts/:post_id', removePost);
@@ -70,7 +70,7 @@ module.exports = (router, service, test) => {
     router.get('/events/:event_id', getEventById);
 
     // update event
-    router.put('/events/:event_id', updateEvent);
+    router.put('/auth/events/:event_id', updateEvent);
 
     // get events by org
     router.get('/orgs/:org_id/events', getEventsByOrg);
@@ -189,7 +189,7 @@ module.exports = (router, service, test) => {
 
     // handler for update event
     function updateEvent(req, res){
-        handleRequest(res, 200, 400, service.updateEvent, new ServiceParams(req));
+        handleRequest(res, 200, 400, service.updateEvent, new UpdateParams(req, new _Event(req)));
     }
 
     // handler for remove event
