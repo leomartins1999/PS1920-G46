@@ -15,7 +15,7 @@ class _Event{
         this.org_id = req.user.user_id;
 
         this.name = req.body.name;
-        this.description = req.body.name;
+        this.description = req.body.description;
         this.date = req.body.date;
         this.location = req.body.location;
         this.imageLink = req.body.imageLink;
