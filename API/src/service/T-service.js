@@ -140,7 +140,7 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
     }
 
     /**
-     * Updates a volunteer's data
+     * Updates an org's data
      * @param updateParams Update Params object
      * @returns {Promise<never>|*} resolves with status message
      * rejects with error
