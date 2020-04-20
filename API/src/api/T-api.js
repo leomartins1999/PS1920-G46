@@ -57,6 +57,9 @@ module.exports = (router, service, test) => {
     // get post by id
     router.get('/posts/:post_id', getPostById);
 
+    // edit post by id
+    router.put('/auth/posts/:post_id', updatePost);
+
     // remove post
     router.delete('/auth/posts/:post_id', removePost);
 
@@ -71,6 +74,9 @@ module.exports = (router, service, test) => {
 
     // get event by id
     router.get('/events/:event_id', getEventById);
+
+    // update event
+    router.put('/auth/events/:event_id', updateEvent);
 
     // get events by org
     router.get('/orgs/:org_id/events', getEventsByOrg);
@@ -139,7 +145,7 @@ module.exports = (router, service, test) => {
 
     // handler for follow org
     function followOrg(req, res){
-        handleRequest(res, 200, 400, service.follow, new FollowParams(req, false))
+        handleRequest(res, 200, 400, service.follow, new FollowParams(req, false));
     }
 
     // handler for create post
@@ -149,47 +155,57 @@ module.exports = (router, service, test) => {
 
     // handler for get posts
     function getPosts(req, res) {
-        handleRequest(res, 200, 400, service.getPosts, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.getPosts, new ServiceParams(req));
     }
 
     // handler for get post by id
     function getPostById(req, res){
-        handleRequest(res, 200, 400, service.getPostById, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.getPostById, new ServiceParams(req));
+    }
+
+    // handler for update post
+    function updatePost(req, res){
+        handleRequest(res, 200,400, service.updatePost, new UpdateParams(req, new Post(req)));
     }
 
     // handler for remove post
     function removePost(req, res){
-        handleRequest(res, 200, 400, service.removePost, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.removePost, new ServiceParams(req));
     }
 
     // handler for like post
     function likePost(req, res){
-        handleRequest(res, 200, 400, service.likePost, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.likePost, new ServiceParams(req));
     }
 
     // handler for create event
     function createEvent(req, res){
-        handleRequest(res, 201, 400, service.createEvent, new _Event(req))
+        handleRequest(res, 201, 400, service.createEvent, new _Event(req));
     }
 
     // handler for get events
     function getEvents(req, res){
-        handleRequest(res, 200, 400, service.getEvents, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.getEvents, new ServiceParams(req));
     }
 
     // handler for get events by org
     function getEventsByOrg(req, res){
-        handleRequest(res, 200, 400, service.getEventsByOrg, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.getEventsByOrg, new ServiceParams(req));
     }
 
-    // handler for get events by id
+    // handler for get event by id
     function getEventById(req, res){
-        handleRequest(res, 200, 400, service.getEventsById, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.getEventsById, new ServiceParams(req));
+    }
+
+    // handler for update event
+    function updateEvent(req, res){
+        handleRequest(res, 200, 400, service.updateEvent, new UpdateParams(req, new _Event(req)));
     }
 
     // handler for remove event
     function removeEvent(req, res){
-        handleRequest(res, 200, 400, service.removeEvent, new ServiceParams(req))
+        handleRequest(res, 200, 400, service.removeEvent, new ServiceParams(req));
     }
 
     // handler for interested in event
