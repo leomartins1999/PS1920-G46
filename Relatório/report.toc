@@ -3,17 +3,25 @@
 \contentsline {section}{\numberline {2}Abstract}{5}%
 \contentsline {section}{\numberline {3}Lista de acrónimos}{9}%
 \contentsline {section}{\numberline {4}Introdução}{10}%
-\contentsline {section}{\numberline {5}Estado da arte}{13}%
-\contentsline {subsection}{\numberline {5.1}Análise}{13}%
+\contentsline {section}{\numberline {5}Estado da arte}{12}%
+\contentsline {subsection}{\numberline {5.1}Análise}{12}%
 \contentsline {subsection}{\numberline {5.2}Requisitos funcionais}{13}%
-\contentsline {section}{\numberline {6}Modelo de Arquitetura}{15}%
+\contentsline {section}{\numberline {6}Modelo de Arquitetura}{14}%
 \contentsline {subsection}{\numberline {6.1}REST API}{15}%
-\contentsline {subsection}{\numberline {6.2}\textit {Mobile App}}{15}%
-\contentsline {subsection}{\numberline {6.3}\textit {Web App}}{15}%
+\contentsline {subsection}{\numberline {6.2}Aplicação \textit {Mobile}}{16}%
+\contentsline {subsection}{\numberline {6.3}Aplicação \textit {Web}}{16}%
 \contentsline {subsection}{\numberline {6.4}Tecnologias e ferramentas}{16}%
-\contentsline {section}{\numberline {7}API}{17}%
-\contentsline {section}{\numberline {8}\textit {Mobile App}}{18}%
-\contentsline {section}{\numberline {9}\textit {Web App}}{19}%
-\contentsline {section}{\numberline {10}Planeamento do projeto}{20}%
-\contentsline {section}{\numberline {11}Conclusão}{21}%
-\contentsline {section}{\numberline {12}Referências}{22}%
+\contentsline {section}{\numberline {7}API}{19}%
+\contentsline {subsection}{\numberline {7.1}Server}{19}%
+\contentsline {subsection}{\numberline {7.2}API}{19}%
+\contentsline {subsection}{\numberline {7.3}Serviço}{19}%
+\contentsline {subsection}{\numberline {7.4}Repositórios e acesso a base de dados}{19}%
+\contentsline {subsection}{\numberline {7.5}Base de Dados}{20}%
+\contentsline {subsection}{\numberline {7.6}Autenticação}{20}%
+\contentsline {subsection}{\numberline {7.7}Imagens}{20}%
+\contentsline {subsection}{\numberline {7.8}Documentação e definição da API}{20}%
+\contentsline {section}{\numberline {8}\textit {Mobile App}}{22}%
+\contentsline {section}{\numberline {9}\textit {Web App}}{23}%
+\contentsline {section}{\numberline {10}Planeamento do projeto}{24}%
+\contentsline {section}{\numberline {11}Conclusão}{25}%
+\contentsline {section}{\numberline {12}Referências}{26}%
