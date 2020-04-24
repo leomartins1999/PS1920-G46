@@ -16,11 +16,13 @@
 \contentsline {subsection}{\numberline {7.2}Serviço}{21}%
 \contentsline {subsection}{\numberline {7.3}Repositórios e acesso a base de dados}{21}%
 \contentsline {subsection}{\numberline {7.4}Base de Dados}{21}%
-\contentsline {subsection}{\numberline {7.5}Autenticação}{21}%
-\contentsline {subsection}{\numberline {7.6}Imagens}{21}%
-\contentsline {subsection}{\numberline {7.7}Documentação e definição da API}{21}%
-\contentsline {section}{\numberline {8}\textit {Mobile App}}{23}%
-\contentsline {section}{\numberline {9}\textit {Web App}}{24}%
-\contentsline {section}{\numberline {10}Planeamento do projeto}{25}%
-\contentsline {section}{\numberline {11}Conclusão}{26}%
-\contentsline {section}{\numberline {12}Referências}{27}%
+\contentsline {subsection}{\numberline {7.5}Autenticação}{22}%
+\contentsline {subsection}{\numberline {7.6}Imagens}{22}%
+\contentsline {subsection}{\numberline {7.7}Paginação e limitação de resultados}{22}%
+\contentsline {subsection}{\numberline {7.8}Dados e imagens de utilizadores}{22}%
+\contentsline {subsection}{\numberline {7.9}Documentação e definição da API}{22}%
+\contentsline {section}{\numberline {8}\textit {Mobile App}}{24}%
+\contentsline {section}{\numberline {9}\textit {Web App}}{26}%
+\contentsline {section}{\numberline {10}Planeamento e desenvolvimento do projeto}{28}%
+\contentsline {section}{\numberline {11}Conclusão}{30}%
+\contentsline {section}{\numberline {12}Referências}{32}%
