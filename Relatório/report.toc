@@ -12,16 +12,15 @@
 \contentsline {subsection}{\numberline {6.3}Aplicação \textit {Web}}{16}%
 \contentsline {subsection}{\numberline {6.4}Tecnologias e ferramentas}{16}%
 \contentsline {section}{\numberline {7}API}{19}%
-\contentsline {subsection}{\numberline {7.1}Server}{19}%
-\contentsline {subsection}{\numberline {7.2}API}{19}%
-\contentsline {subsection}{\numberline {7.3}Serviço}{19}%
-\contentsline {subsection}{\numberline {7.4}Repositórios e acesso a base de dados}{19}%
-\contentsline {subsection}{\numberline {7.5}Base de Dados}{20}%
-\contentsline {subsection}{\numberline {7.6}Autenticação}{20}%
-\contentsline {subsection}{\numberline {7.7}Imagens}{20}%
-\contentsline {subsection}{\numberline {7.8}Documentação e definição da API}{20}%
-\contentsline {section}{\numberline {8}\textit {Mobile App}}{22}%
-\contentsline {section}{\numberline {9}\textit {Web App}}{23}%
-\contentsline {section}{\numberline {10}Planeamento do projeto}{24}%
-\contentsline {section}{\numberline {11}Conclusão}{25}%
-\contentsline {section}{\numberline {12}Referências}{26}%
+\contentsline {subsection}{\numberline {7.1}API}{19}%
+\contentsline {subsection}{\numberline {7.2}Serviço}{21}%
+\contentsline {subsection}{\numberline {7.3}Repositórios e acesso a base de dados}{21}%
+\contentsline {subsection}{\numberline {7.4}Base de Dados}{21}%
+\contentsline {subsection}{\numberline {7.5}Autenticação}{21}%
+\contentsline {subsection}{\numberline {7.6}Imagens}{21}%
+\contentsline {subsection}{\numberline {7.7}Documentação e definição da API}{21}%
+\contentsline {section}{\numberline {8}\textit {Mobile App}}{23}%
+\contentsline {section}{\numberline {9}\textit {Web App}}{24}%
+\contentsline {section}{\numberline {10}Planeamento do projeto}{25}%
+\contentsline {section}{\numberline {11}Conclusão}{26}%
+\contentsline {section}{\numberline {12}Referências}{27}%

@@ -75,11 +75,11 @@ module.exports = (router, service, test) => {
     // get event by id
     router.get('/events/:event_id', getEventById);
 
-    // update event
-    router.put('/auth/events/:event_id', updateEvent);
-
     // get events by org
     router.get('/orgs/:org_id/events', getEventsByOrg);
+
+    // update event
+    router.put('/auth/events/:event_id', updateEvent);
 
     // remove event
     router.delete('/auth/orgs/events/:event_id', removeEvent);
