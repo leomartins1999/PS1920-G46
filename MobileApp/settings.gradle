@@ -1,0 +1,2 @@
+rootProject.name='TributeApp'
+include ':app'
