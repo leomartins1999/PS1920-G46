@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TributeApp</string>
+    <string name="posts">Posts</string>
 </resources>

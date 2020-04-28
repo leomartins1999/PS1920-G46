@@ -23,16 +23,28 @@
 % graphics configuration
 \graphicspath{{./images/}}
 
+\addto\captionsportuguese{% Replace "english" with the language you use
+	\renewcommand{\contentsname}%
+	{Índice}%
+}
+
 \begin{document}
 	
+\pagestyle{empty}
+	
 \input{cover}	
-\newpage~\newpage
+
+\newpage  \thispagestyle{empty}
+
+\newpage  \thispagestyle{empty}
 
 \input{abstract_pt}
 \newpage~\newpage
 
 \input{abstract_en}
 \newpage~\newpage 
+
+\pagestyle{plain}
 
 \input{index}
 \newpage
