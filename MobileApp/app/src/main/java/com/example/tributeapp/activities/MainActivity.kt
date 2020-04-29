@@ -1,19 +1,16 @@
 package com.example.tributeapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.example.tributeapp.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+    override val toolbar: Toolbar
+        get() = findViewById(R.id.toolbar)
+    override val activityIdentifier: String
+        get() = "Posts"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        super.onCreate(savedInstanceState, R.layout.activity_main)
     }
 }

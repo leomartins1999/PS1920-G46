@@ -1,13 +1,12 @@
 package com.example.tributeapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.example.tributeapp.R
+import androidx.appcompat.widget.Toolbar
 
-class OrgsActivity : AppCompatActivity() {
+class OrgsActivity: BaseActivity(){
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_orgs)
-    }
+    override val toolbar: Toolbar
+        get() = TODO("Not yet implemented")
+    override val activityIdentifier: String
+        get() = TODO("Not yet implemented")
+
 }
