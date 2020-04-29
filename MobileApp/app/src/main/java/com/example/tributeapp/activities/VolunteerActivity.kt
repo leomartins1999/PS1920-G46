@@ -1,14 +1,13 @@
-package com.example.tributeapp.activities.mainActivity
+package com.example.tributeapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tributeapp.R
 
-class MainActivity : AppCompatActivity() {
+class VolunteerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.topAppBar))
+        setContentView(R.layout.activity_volunteer)
     }
 }

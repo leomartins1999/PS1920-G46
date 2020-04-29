@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activities.mainActivity.MainActivity">
+        <activity android:name=".activities.OrgActivity" />
+        <activity android:name=".activities.OrgsActivity" />
+        <activity android:name=".activities.VolunteerActivity" />
+        <activity android:name=".activities.VolunteersActivity" />
+        <activity android:name=".activities.EventsActivity" />
+        <activity
+            android:name=".activities.EventActivity"
+            android:label="@string/title_activity_event" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
