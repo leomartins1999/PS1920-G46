@@ -1,47 +1,53 @@
-\section{Estado da arte}
+\section{Formulação do problema}
+Neste capítulo, vamos começar por referir os problemas típicos do uso de redes sociais e \textit{websites} para divulgação de ações de voluntariado, apresentando também dois casos de plataformas já existentes e levantando a problemática principal das mesmas. Concluiremos este capítulo definindo os requisitos funcionais do projeto. \par \bigskip
+
 Tal como já foi referido, a interação voluntário-organização é tipicamente feita através de dois tipos de plataformas: redes sociais e \textit{websites} das organizações. \par \bigskip
+
 As redes sociais, por não serem, por desenho, vocacionadas para este tipo de ações, apresentam alguns problemas de utilização, como filtragem de informação e integração de múltiplas plataformas de voluntariado na mesma rede social. \par \bigskip
-Por norma, cada organização tem o seu próprio \textit{website}, algo que complica o processo de navegação do voluntário, caso este esteja interessado em múltiplas associações. \par \bigskip
-A seguir descrevem-se duas plataformas que possuem objetivos semelhantes aos do presente projeto: \par \bigskip
 
-A Bolsa de Voluntariado$^{[3]}$ é um projeto lançado em 2006 pela ENTRAJUDA com o objetivo de facilitar a procura de trabalho voluntário.  \par \medskip
-Este objetivo é concretizado através duma plataforma \textit{web} que serve de ponto de encontro entre a procura e oferta de oportunidades de voluntariado. A plataforma permite consultar ações que irão decorrer, oferencendo ainda a possibilidade aos utilizadores de as filtrarem consoante os seus interesses e visa também facilitar o processo de candidatura às mesmas. \par \bigskip
+Por norma, cada organização tem o seu próprio \textit{website}, algo que complica o processo de navegação do voluntário, caso este esteja interessado em colaborar com múltiplas associações de voluntariado. \par \bigskip
+A seguir descrevem-se duas plataformas que possuem objetivos semelhantes aos do presente projeto. \par \bigskip
 
-A plataforma \textit{Online Volunteering}$^{[4]}$, desenvolvida pela UN (\textit{United Nations}) e lançada em 2000, é uma plataforma que, através do voluntariado \textit{online}, pretende reunir voluntários de múltiplas origens de maneira a auxiliarem na resolução de desafios tecnológicos das mais variadas áreas.  \par \medskip
+\subsection{Estado da Arte}
+
+A Bolsa de Voluntariado$^{\cite{bolsa_voluntariado}}$ é um projeto lançado em 2006 pela associação ENTRAJUDA com o objetivo de facilitar a procura de trabalho voluntário.  \par \medskip
+Este objetivo é concretizado através duma plataforma \textit{web} que serve de ponto de encontro entre a procura e oferta de oportunidades de voluntariado. A plataforma permite consultar ações que irão decorrer, oferecendo ainda a possibilidade aos utilizadores de as filtrarem consoante os seus interesses e visa também facilitar o processo de candidatura às mesmas. \par \bigskip
+
+A plataforma \textit{Online Volunteering}$^{\cite{online_volunteering}}$, desenvolvida pela UN (\textit{United Nations}) e lançada em 2000, é uma plataforma que, através do voluntariado \textit{online}, pretende reunir voluntários de múltiplas origens de maneira a auxiliarem na resolução de desafios tecnológicos das mais variadas áreas.  \par \medskip
 Esta aplicação permite a filtragem das oportunidades consoante a área de interesse e também auxilia o processo de candidatura às mesmas. \bigskip
 
 \subsection{Análise}
-A principal problemática presente nestas plataformas é o facto de as mesmas realizarem o que é uma divulgação passiva (apresentar ações solicitadas pelo utilizador) em vez daquilo que é uma divulgação ativa (sugerir aos utilizadores ações de possível interesse). \par \bigskip
-Esta pode ser combatida através do uso de mecanismos de interação similares aos das redes sociais, como ferramentas de “seguimento” de organizações ou tipos de ações. Essas ferramentas irão simplificar o processo de executar a divulgação ativa, e como tal, a personalização da experiência do uso da aplicação de utilizador para utilizador. \par \bigskip
+A principal problemática presente nestas plataformas é o facto de as mesmas realizarem uma divulgação passiva (apresentar ações solicitadas pelo utilizador) em vez de uma divulgação ativa (sugerir aos utilizadores ações de possível interesse). \par \bigskip
+Esta limitação pode ser combatida através do uso de mecanismos de interação similares aos das redes sociais, como ferramentas de “seguimento” de organizações ou tipos de ações. Essas ferramentas irão simplificar o processo de executar a divulgação ativa, e como tal, a personalização da experiência do uso da aplicação de utilizador para utilizador. \par \bigskip
 
 \subsection{Requisitos funcionais}
 
-O sistema a desenvolver é composto por uma \textit{web} API, uma aplicação \textit{mobile} e uma aplicação \textit{web}.
+O sistema a desenvolver é composto por uma \textit{web} API, uma aplicação \textit{mobile} e uma aplicação \textit{web}. A seguir elencam-se os requisitos funcionais destes componentes.
 
 \subsection*{\textit{Web} API}
 
 \begin{enumerate}
-	\item Possibilidade de efetuar pesquisas relativamente ao dados existentes na plataforma (voluntários, organizações, eventos, posts);
-	\item Possibilidade de criar/alterar/apagar entradas já existentes na plataforma;
-	\item Autenticação de maneira a disponibilizar uma experiência personalizada para cada utilizador;
-	\item Disponibilizar operações típicas de redes sociais (como seguimento de perfis);
-	\item Auxiliar no processo de inscrição de voluntários em eventos.
+	\item Possibilidade de efetuar pesquisas relativamente ao dados existentes na plataforma (voluntários, organizações, eventos, \textit{posts});
+	\item possibilidade de criar/alterar/apagar entradas já existentes na plataforma;
+	\item autenticação de maneira a disponibilizar uma experiência personalizada para cada utilizador;
+	\item disponibilizar operações típicas de redes sociais (como seguimento de perfis);
+	\item auxiliar no processo de inscrição de voluntários em eventos.
 \end{enumerate}
 
 \subsection*{Aplicação \textit{mobile}}
 
 \begin{enumerate}
-	\item Possibilidade de efetuar registo na plataforma.
-	\item Existência de um modo para utilizadores não autenticados e autenticados, sendo que certas operações apenas poderão ser efetuados por estes últimos;
-	\item Apresentação de resultados das pesquisas possíveis de efetuar na API e possibilidade de efetuar filtros nas mesmas;
-	\item Funcionalidade de poder modificar o seu perfil, criar/alterar posts e seguir outros utilizadores/organizações, entre outros.
+	\item Possibilidade de efetuar registo na plataforma;
+	\item existência de um modo para utilizadores não autenticados e autenticados, sendo que certas operações apenas poderão ser efetuados por estes últimos;
+	\item apresentação de resultados das pesquisas possíveis de efetuar na API e possibilidade de efetuar filtros nas mesmas;
+	\item funcionalidade de poder modificar o seu perfil, criar/alterar \textit{posts} e seguir outros utilizadores/organizações, entre outros.
 \end{enumerate}
 
 \subsection*{Aplicação \textit{Web}}
 
 \begin{enumerate}
-	\item Possibilidade de solicitar registo na plataforma (esta plataforma será apenas organizações autenticadas);
-	\item Apresentação de resultados das pesquisas da API.
-	\item Funcionalidade de edição de perfil;
-	\item Criação e gestão de posts e eventos;
+	\item Possibilidade de solicitar registo na plataforma (esta plataforma será apenas destinada a organizações autenticadas);
+	\item apresentação de resultados das pesquisas da API;
+	\item funcionalidade de edição de perfil;
+	\item criação e gestão de \textit{posts} e eventos.
 \end{enumerate}

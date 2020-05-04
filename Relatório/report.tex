@@ -29,22 +29,29 @@
 }
 
 \begin{document}
-	
+
 \pagestyle{empty}
 	
 \input{cover}	
 
-\newpage  \thispagestyle{empty}
+\pagenumbering{roman}
 
-\newpage  \thispagestyle{empty}
+\newpage
+
+\newpage 
 
 \input{abstract_pt}
+\thispagestyle{plain}
 \newpage~\newpage
 
 \input{abstract_en}
+\thispagestyle{plain}
 \newpage~\newpage 
 
 \pagestyle{plain}
+
+\pagenumbering{arabic}
+\setcounter{page}{5}
 
 \input{index}
 \newpage
@@ -56,6 +63,7 @@
 \newpage
 
 \input{intro}
+
 \newpage
 
 \input{state_of_art}

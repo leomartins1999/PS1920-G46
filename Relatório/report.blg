@@ -1,0 +1,27 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
+The style file: unsrt.bst
+Database file #1: refs.bib
+Warning--entry type for "online_volunteering" isn't style-file defined
+--line 3 of file refs.bib
+Warning--entry type for "estatistica_2019" isn't style-file defined
+--line 9 of file refs.bib
+You're missing a field name---line 19 of file refs.bib
+ :         
+ :         = {Decreto Lei nº 71/98 de 3 de Novembro. Diário da República n.º 254/1998, Série I-A de 1998-11-03. Assembleia da República. Lisboa},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--entry type for "bolsa_voluntariado" isn't style-file defined
+--line 22 of file refs.bib
+Warning--entry type for "mean_stack_explained" isn't style-file defined
+--line 28 of file refs.bib
+Warning--entry type for "angular_vs_react" isn't style-file defined
+--line 36 of file refs.bib
+Warning--entry type for "mean_stack_ref" isn't style-file defined
+--line 60 of file refs.bib
+Warning--empty publisher in oreilly_web_apis
+Warning--empty year in oreilly_web_apis
+Warning--empty publisher in lauret_design_web_apis
+Warning--empty year in lauret_design_web_apis
+Warning--empty publisher in nodejs_the_right_way
+Warning--empty year in nodejs_the_right_way
+(There was 1 error message)

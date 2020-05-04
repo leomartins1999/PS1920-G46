@@ -1,0 +1,67 @@
+% Encoding: UTF-8
+
+@WWW{online_volunteering,
+  author = {Online Volunteering},
+  date   = {2020-03-13},
+  url    = {https://www.onlinevolunteering.org/},
+}
+
+@Online{estatistica_2019,
+  author = {Instituto Nacional de Estatística},
+  date   = {2019},
+  title  = {Inquérito ao Trabalho Voluntário},
+  year   = {2019},
+}
+
+@Misc{decreto_lei_71/98,
+  date  = {03-11-1998},
+  title = {Decreto Lei nº 71/98 de 3 de Novembro.},
+        = {Decreto Lei nº 71/98 de 3 de Novembro. Diário da República n.º 254/1998, Série I-A de 1998-11-03. Assembleia da República. Lisboa},
+}
+
+@Online{bolsa_voluntariado,
+  author = {Bolsa do Voluntariado},
+  date   = {2020-03-13},
+  url    = {https://bolsadovoluntariado.pt},
+}
+
+@WWW{mean_stack_explained,
+  author       = {Jeremy M Williams},
+  date         = {2017-01-18},
+  title        = {What is The MEAN STACK ?},
+  url          = {https://medium.com/@jeremyvsjeremy/what-is-the-mean-stack-9d11ae2cd384},
+  organization = {Coding Dojo},
+}
+
+@WWW{angular_vs_react,
+  date  = {2020-05-02},
+  title = {React vs Angular vs Vue.js — What to choose in 2020?},
+  url   = {https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d},
+}
+
+@Book{oreilly_web_apis,
+  author = {Brenda Jin, Saurabh Sahni, Amir Shevat},
+  date   = {2018-09-01},
+  title  = {Designing Web APIs},
+}
+
+@Book{lauret_design_web_apis,
+  author = {Arnaud Lauret},
+  date   = {2019-11-06},
+  title  = {The Design of Web APIs},
+}
+
+@Book{nodejs_the_right_way,
+  author = {Jim R. Wilson},
+  date   = {2018-01-01},
+  title  = {Node.js 8 the Right Way},
+}
+
+@WWW{mean_stack_ref,
+  date         = {2020-05-02},
+  organization = {Coding Dojo},
+  title        = {What is MEAN stack},
+  url          = {https://www.codingdojo.com/what-is-the-mean-stack},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

@@ -1,8 +1,10 @@
 \babel@toc {portuguese}{}
-\contentsline {section}{\numberline {1}Introdução}{9}%
-\contentsline {section}{\numberline {2}Estado da arte}{11}%
-\contentsline {subsection}{\numberline {2.1}Análise}{11}%
-\contentsline {subsection}{\numberline {2.2}Requisitos funcionais}{12}%
+\contentsline {section}{\numberline {1}Introdução}{8}%
+\contentsline {subsection}{\numberline {1.1}Organização do relatório}{9}%
+\contentsline {section}{\numberline {2}Formulação do problema}{10}%
+\contentsline {subsection}{\numberline {2.1}Estado da Arte}{10}%
+\contentsline {subsection}{\numberline {2.2}Análise}{11}%
+\contentsline {subsection}{\numberline {2.3}Requisitos funcionais}{11}%
 \contentsline {section}{\numberline {3}Modelo de Arquitetura}{13}%
 \contentsline {subsection}{\numberline {3.1}REST API}{14}%
 \contentsline {subsection}{\numberline {3.2}Aplicação \textit {Mobile}}{15}%
@@ -22,4 +24,3 @@
 \contentsline {section}{\numberline {6}\textit {Web App}}{25}%
 \contentsline {section}{\numberline {7}Planeamento e desenvolvimento do projeto}{27}%
 \contentsline {section}{\numberline {8}Conclusão}{29}%
-\contentsline {section}{\numberline {9}Referências}{31}%
