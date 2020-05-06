@@ -1,38 +1,31 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
 \bibitem{estatistica_2019}
 Instituto~Nacional de~Estatística.
 \newblock Inquérito ao trabalho voluntário, 2019.
 
 \bibitem{decreto_lei_71/98}
-Decreto lei nº 71/98 de 3 de novembro.
+Assembleia da~República.
+\newblock Decreto lei nº 71/98 de 3 de novembro.
 
 \bibitem{bolsa_voluntariado}
-Bolsa do~Voluntariado.
+Entrajuda.
+\newblock Bolsa do voluntariado.
 
 \bibitem{online_volunteering}
-Online Volunteering.
+United Nations.
+\newblock Online volunteering.
 
 \bibitem{mean_stack_explained}
 Jeremy~M Williams.
 \newblock What is the mean stack ?
 
 \bibitem{angular_vs_react}
-React vs angular vs vue.js — what to choose in 2020?
-
-\bibitem{oreilly_web_apis}
-Amir~Shevat Brenda~Jin, Saurabh~Sahni.
-\newblock {\em Designing Web APIs}.
-
-\bibitem{lauret_design_web_apis}
-Arnaud Lauret.
-\newblock {\em The Design of Web APIs}.
+TechMagic.
+\newblock React vs angular vs vue.js — what to choose in 2020?
 
 \bibitem{nodejs_the_right_way}
 Jim~R. Wilson.
 \newblock {\em Node.js 8 the Right Way}.
-
-\bibitem{mean_stack_ref}
-What is mean stack.
 
 \end{thebibliography}

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.tributeapp.R
 
 class MainActivity : BaseActivity() {
+
     override val toolbar: Toolbar
         get() = findViewById(R.id.toolbar)
     override val activityIdentifier: String

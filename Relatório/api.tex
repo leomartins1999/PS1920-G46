@@ -1,6 +1,6 @@
 \section{API}
 
-A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP o \textit{Service} é responsável por implementar a lógica do sistema, existem ainda os repositórios (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o índice de imagens (responsável por tratar todas as operações associadas às mesmas).
+A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP o \textit{Service} é responsável por implementar a lógica do sistema, existem ainda os repositórios (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o índice de imagens (responsável por tratar todas as operações associadas às mesmas)$^{\cite{nodejs_the_right_way}}$.\par \medskip
 
 \begin{figure}[h]
 	\centering
@@ -9,7 +9,7 @@ A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Se
 \end{figure}
 
 \subsection{API}
-Este módulo é responsável por definir os \textit{endpoints} e lidar com a receção e envio dos pedidos/respostas HTTP. Cada \textit{endpoint} tem associada uma função que é executada e que efetua a chamada adequada ao serviço para realizar a operação solicitada pelo utilizador. \par \medskip
+Este módulo é responsável por definir os \textit{endpoints} e lidar com a recepção e envio dos pedidos/respostas HTTP. Cada \textit{endpoint} tem associada uma função que é executada e que efetua a chamada adequada ao serviço para realizar a operação solicitada pelo utilizador. \par \medskip
 
 A figura 6 ilustra a tabela de operações disponibilizadas pela API. Refere-se também o método e o URL do pedido.	 \par \medskip
 
@@ -23,7 +23,7 @@ A figura 6 ilustra a tabela de operações disponibilizadas pela API. Refere-se 
 	\caption{Lista de \textit{endpoints}}
 \end{figure}
 
-Para além das funções já referidas, são também definidos (e utilizados) \textit{middlewares} nesta camada de maneira a garantir o cumprimento da necessidade de autenticação aquando de certas operações. A API é ainda responsável por transformar os paramêtros dados pelo cliente através do \textit{URL}, da \textit{query string} e do \textit{body} do \textit{request} (e do objecto sessão quando aplicável) para objetos conhecidos pelo \textit{serviço}. \medskip
+Para além das funções já referidas, são também definidos (e utilizados) \textit{middlewares} nesta camada de maneira a garantir o cumprimento da necessidade de autenticação aquando de certas operações. A API é ainda responsável por transformar os parâmetros dados pelo cliente através do \textit{URL}, da \textit{query string} e do \textit{body} do \textit{request} (e do objecto sessão quando aplicável) para objetos conhecidos pelo \textit{serviço}. \medskip
 
 \newpage
 
@@ -32,9 +32,9 @@ O módulo \textit{Service} cumpre a função de implementar a lógica da aplica�
 
 Este módulo tem as seguintes responsabilidades:
 \begin{itemize}
-	\item Verificar a validade dos paramêtros fornecidos pela API;
+	\item Verificar a validade dos parâmetros fornecidos pela API;
 	\item Executar as chamadas necessárias aos módulos adjacentes (\textit{repositories} e \textit{pictures}) de maneira a cumprir a operação solicitada (quer esta seja a inserção em base de dados ou a recolha de informações para verificar a lógica necessária);
-	\item Implementar a lógica da aplicação, isto é, quando necessário, efetuar as verificações necessárias e gerar os objectos a colocar/alterar na base de dados.
+	\item Implementar a lógica da aplicação, isto é, quando necessário, efetuar as verificações necessárias e gerar os objetos a colocar/alterar na base de dados.
 \end{itemize}
 
 \subsection{Repositórios e acesso a base de dados}
@@ -46,7 +46,7 @@ Para cada índice na base de dados, existe uma variação de implementação de 
 O motor de base de dados escolhido foi o MongoDB. Este segue o padrão \textit{noSQL},apresentando um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
 
 \begin{itemize}
-	\item Flexibilidade. Tendo em conta que este tipo de plataformas customa ter um crescimento exponencial, a adição de novas \textit{features} é constante. Num modelo SQL, por vezes é dispendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice).
+	\item Flexibilidade. Tendo em conta que este tipo de plataformas costuma ter um crescimento exponencial, a adição de novas \textit{features} é constante. Num modelo SQL, por vezes é dispendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice).
 	\item integração com Javascript. Os documentos inseridos nesta base de dados têm um formato JSON, algo que se integra facilmente com esta tecnologia.
 \end{itemize} 
 
@@ -61,10 +61,10 @@ De maneira a implementar na sua totalidade um conceito de rede social, nesta apl
 O \textit{upload} de imagens para esta plataforma é apenas possível para utilizadores autenticados, no entanto, o \textit{download} das mesmas é possível a qualquer cliente da API.
 
 \subsection{Paginação e limitação de resultados}
-Todas as operações da API que tenham como resultado um conjunto de entidades (por exemplo, um conjunto de \textit{posts}), retornam por omissão um número fixo de resultados. Contudo, a nossa API suporta paginação e \textit{skipping} (isto é, saltar resultados) através dos paramêtros \textit{limit} e \textit{skip} da \textit{query string}.
+Todas as operações da API que tenham como resultado um conjunto de entidades (por exemplo, um conjunto de \textit{posts}), retornam por omissão um número fixo de resultados. Contudo, a nossa API suporta paginação e \textit{skipping} (isto é, saltar resultados) através dos parâmetros \textit{limit} e \textit{skip} da \textit{query string}.
 
 \subsection{Dados e imagens de utilizadores}
-Dada a natureza deste projeto, todos os dados (perfis/fotos/\textit{posts}) serão públicos para todos, e como tal, aquando do registo nas aplicações cliente, os utilizadores das mesmas serão sensilibizados relativamente à visibilidade dos seus dados.
+Dada a natureza deste projeto, todos os dados (perfis/fotos/\textit{posts}) serão públicos para todos, e como tal, aquando do registo nas aplicações cliente, os utilizadores das mesmas serão sensibilizados relativamente à visibilidade dos seus dados.
 
 \subsection{Documentação e definição da API}
 Toda a documentação sobre as regras e indicações relativamente à utilização desta API encontram-se na \textit{wiki} do repositório do projeto, sendo que o acesso será avaliado quando solicitado aos autores. Esta \textit{wiki} contém informações relativamente à definição mais explícita dos \textit{endpoints}, erros, entre outros.
