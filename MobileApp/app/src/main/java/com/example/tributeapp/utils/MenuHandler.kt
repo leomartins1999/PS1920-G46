@@ -1,4 +1,4 @@
-package com.example.tributeapp
+package com.example.tributeapp.utils
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.startActivity
+import com.example.tributeapp.R
 import com.example.tributeapp.activities.*
 import java.util.*
 
