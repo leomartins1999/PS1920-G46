@@ -2,8 +2,10 @@ package com.example.tributeapp.activities
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.tributeapp.R
 import com.example.tributeapp.utils.MenuHandler
 
 abstract class BaseActivity: AppCompatActivity(){
@@ -13,13 +15,17 @@ abstract class BaseActivity: AppCompatActivity(){
     abstract val toolbar: Toolbar
     abstract val activityIdentifier: String
 
-    fun onCreate(savedInstanceState: Bundle?, layoutID: Int) {
-        super.onCreate(savedInstanceState)
+    fun onCreate(layoutID: Int) {
         setContentView(layoutID)
 
         setSupportActionBar(toolbar)
 
         menuHandler.menuListener(this, toolbar)
+    }
+
+    override fun setContentView(view: View?) {
+        super.setContentView(view)
+        view!!.setBackgroundColor(R.color.background)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{

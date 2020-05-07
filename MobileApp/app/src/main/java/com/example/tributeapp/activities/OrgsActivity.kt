@@ -12,7 +12,8 @@ class OrgsActivity: BaseActivity(){
         get() = "Orgs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState, R.layout.activity_orgs)
+        super.onCreate(savedInstanceState)
+        super.onCreate(R.layout.activity_orgs)
     }
 
 }

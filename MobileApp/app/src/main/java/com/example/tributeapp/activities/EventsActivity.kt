@@ -13,6 +13,7 @@ class EventsActivity : BaseActivity() {
         get() = "Events"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState, R.layout.activity_events)
+        super.onCreate(savedInstanceState)
+        super.onCreate(R.layout.activity_events)
     }
 }

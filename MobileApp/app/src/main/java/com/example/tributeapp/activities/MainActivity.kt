@@ -3,8 +3,10 @@ package com.example.tributeapp.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.APP_TAG
@@ -21,7 +23,7 @@ class MainActivity : BaseActivity() {
         get() = "Posts"
 
     private val adapter: PostListAdapter by lazy {
-        PostListAdapter(model)
+        PostListAdapter(model){id, cb -> handleLike(id, cb)}
     }
 
     private val model: PostsViewModel by lazy {
@@ -29,9 +31,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState, R.layout.activity_main)
-
-        startActivity(Intent(this, VolunteerActivity::class.java))
+        super.onCreate(savedInstanceState)
+        super.onCreate(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.posts)
         recyclerView.adapter = adapter
@@ -43,4 +44,11 @@ class MainActivity : BaseActivity() {
 
         model.updatePosts()
     }
+
+    private fun handleLike(postId: String, onSuccess: () -> Unit){
+        model.likePost("-1", postId, onSuccess){
+            Toast.makeText(this, getText(R.string.error_performing_action), Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

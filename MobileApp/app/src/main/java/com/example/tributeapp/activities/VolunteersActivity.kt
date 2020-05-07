@@ -21,7 +21,8 @@ class VolunteersActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState, R.layout.activity_volunteers)
+        super.onCreate(savedInstanceState)
+        super.onCreate(R.layout.activity_volunteers)
 
         model.observe(this){
             if (it.isNotEmpty()){

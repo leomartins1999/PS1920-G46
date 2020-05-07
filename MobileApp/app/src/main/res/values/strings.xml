@@ -26,4 +26,7 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="like">Like</string>
+    <string name="post_image">Image of Post</string>
+    <string name="error_performing_action">Error performing action</string>
 </resources>
