@@ -2,7 +2,7 @@ package com.example.tributeapp.model
 
 import org.json.JSONObject
 
-data class Post(val json: JSONObject){
+data class Post(private val json: JSONObject){
     val id = json.getString("_id")
     val owner_id = json.getString("owner_id")
     val description = json.getString("description")

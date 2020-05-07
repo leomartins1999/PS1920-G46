@@ -1,5 +1,6 @@
 package com.example.tributeapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.Toolbar
@@ -29,6 +30,8 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState, R.layout.activity_main)
+
+        startActivity(Intent(this, VolunteerActivity::class.java))
 
         val recyclerView = findViewById<RecyclerView>(R.id.posts)
         recyclerView.adapter = adapter

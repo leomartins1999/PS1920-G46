@@ -8,9 +8,12 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.model.Post
+import com.example.tributeapp.model.Volunteer
 
 const val BASE_URL = "http://tribute-api.duckdns.org/api"
+
 const val POSTS_URL = "posts"
+const val VOLUNTEER_URL = "volunteers"
 
 class API(ctx: Context){
 
@@ -26,6 +29,19 @@ class API(ctx: Context){
         )
 
         Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(POSTS_URL)}")
+        queue.add(req)
+    }
+
+    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit){
+        val parser = ListParser(onSuccess){Volunteer(it)}
+        val req = StringRequest(
+            Request.Method.GET,
+            buildRequestURL(VOLUNTEER_URL),
+            Response.Listener { parser.execute(it) },
+            Response.ErrorListener {Log.v(APP_TAG, "Error: $it")}
+        )
+
+        Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEER_URL)}")
         queue.add(req)
     }
 
