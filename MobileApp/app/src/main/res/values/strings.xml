@@ -29,4 +29,5 @@
     <string name="like">Like</string>
     <string name="post_image">Image of Post</string>
     <string name="error_performing_action">Error performing action</string>
+    <string name="volunteer_picture_description">Picture of volunteer</string>
 </resources>

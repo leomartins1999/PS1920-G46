@@ -1,4 +1,4 @@
-package com.example.tributeapp.model
+package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.App
 import org.json.JSONObject
@@ -10,9 +10,13 @@ data class Volunteer(private val json: JSONObject): Serializable{
     val name: String = json.getString("name")
     val description: String = json.getString("description")
     val linkedInLink: String = json.getString("linkedInLink")
-    val imageLink: String = json.getString("imageLink")
-    val following = getUsers(json.getJSONObject("following"))
-    val followers = getUsers(json.getJSONObject("followers"))
+    val imageLink: String =
+        if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")
+        else com.example.tributeapp.api.BASE_URL + json.getString("imageLink")
+    val following =
+        getUsers(json.getJSONObject("following"))
+    val followers =
+        getUsers(json.getJSONObject("followers"))
 
     init {
         cacheService.addVolunteer(this)

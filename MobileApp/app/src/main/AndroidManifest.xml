@@ -13,15 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar" >
-        <activity android:name=".activities.OrgActivity" />
-        <activity android:name=".activities.OrgsActivity" />
-        <activity android:name=".activities.VolunteerActivity" />
-        <activity android:name=".activities.VolunteersActivity" />
-        <activity android:name=".activities.EventsActivity" />
+        <activity android:name=".activities.activities.OrgActivity" />
+        <activity android:name=".activities.activities.OrgsActivity" />
+        <activity android:name=".activities.activities.VolunteerActivity" />
+        <activity android:name=".activities.activities.VolunteersActivity" />
+        <activity android:name=".activities.activities.EventsActivity" />
         <activity
-            android:name=".activities.EventActivity"
+            android:name=".activities.activities.EventActivity"
             android:label="@string/title_activity_event" />
-        <activity android:name=".activities.MainActivity" >
+        <activity android:name=".activities.activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

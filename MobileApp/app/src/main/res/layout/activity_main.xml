@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.activities.MainActivity">
     
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

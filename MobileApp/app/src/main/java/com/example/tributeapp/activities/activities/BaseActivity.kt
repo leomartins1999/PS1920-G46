@@ -1,12 +1,11 @@
-package com.example.tributeapp.activities
+package com.example.tributeapp.activities.activities
 
-import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.tributeapp.R
-import com.example.tributeapp.utils.MenuHandler
+import com.example.tributeapp.activities.MenuHandler
 
 abstract class BaseActivity: AppCompatActivity(){
 

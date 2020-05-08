@@ -2,7 +2,7 @@ package com.example.tributeapp
 
 import android.app.Application
 import com.example.tributeapp.api.API
-import com.example.tributeapp.caches.CacheService
+import com.example.tributeapp.model.caches.CacheService
 
 const val APP_TAG = "TRIBUTE_APP"
 

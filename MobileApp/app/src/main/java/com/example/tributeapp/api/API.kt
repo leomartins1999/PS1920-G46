@@ -8,8 +8,8 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.tributeapp.APP_TAG
-import com.example.tributeapp.model.Post
-import com.example.tributeapp.model.Volunteer
+import com.example.tributeapp.model.dtos.Post
+import com.example.tributeapp.model.dtos.Volunteer
 
 const val BASE_URL = "http://tribute-api.duckdns.org/api"
 
@@ -22,7 +22,11 @@ class API(ctx: Context){
     private val queue = Volley.newRequestQueue(ctx)
 
     fun getPosts(onSuccess: (List<Post>) -> Unit, onError: (VolleyError) -> Unit){
-        val parser = ListParser(onSuccess){Post(it)}
+        val parser = ListParser(onSuccess){
+            Post(
+                it
+            )
+        }
         val req = StringRequest(
             Request.Method.GET,
             buildRequestURL(POSTS_URL),
@@ -39,7 +43,11 @@ class API(ctx: Context){
     }
 
     fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit){
-        val parser = ListParser(onSuccess){Volunteer(it)}
+        val parser = ListParser(onSuccess){
+            Volunteer(
+                it
+            )
+        }
         val req = StringRequest(
             Request.Method.GET,
             buildRequestURL(VOLUNTEERS_URL),
@@ -52,7 +60,11 @@ class API(ctx: Context){
     }
 
     fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit){
-        val parser = SingletonParser(onSuccess){Volunteer(it)}
+        val parser = SingletonParser(onSuccess){
+            Volunteer(
+                it
+            )
+        }
         val req = StringRequest(
             Request.Method.GET,
             buildRequestURL(volunteerURL(key)),

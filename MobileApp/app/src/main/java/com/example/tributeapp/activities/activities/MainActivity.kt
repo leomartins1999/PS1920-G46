@@ -1,19 +1,14 @@
-package com.example.tributeapp.activities
+package com.example.tributeapp.activities.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.R
-import com.example.tributeapp.adapters.PostListAdapter
-import com.example.tributeapp.view_model_factories.PostsViewModelProviderFactory
-import com.example.tributeapp.view_models.PostsViewModel
+import com.example.tributeapp.model.adapters.PostListAdapter
+import com.example.tributeapp.activities.view_model_factories.PostsViewModelProviderFactory
+import com.example.tributeapp.activities.view_models.PostsViewModel
 
 class MainActivity : BaseActivity() {
 

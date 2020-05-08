@@ -1,4 +1,4 @@
-package com.example.tributeapp.model
+package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.api.BASE_URL
 import org.json.JSONObject
@@ -11,7 +11,8 @@ data class Post(private val json: JSONObject){
         if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")
         else BASE_URL + json.getString("imageLink")
     val time = json.getLong("time")
-    val likes = getUsers(json.getJSONObject("likes"))
+    val likes =
+        getUsers(json.getJSONObject("likes"))
 
     override fun toString(): String {
         return "Post(json=$json, id='$id', owner_id='$owner_id', description='$description', imageLink='$imageLink', time=$time)"

@@ -1,6 +1,4 @@
-package com.example.tributeapp.caches
-
-import com.example.tributeapp.model.Volunteer
+package com.example.tributeapp.model.caches
 
 class Cache<T>(private val source: (String, (T) -> Unit) -> Unit){
 

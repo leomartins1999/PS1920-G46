@@ -1,10 +1,15 @@
-package com.example.tributeapp.model
+package com.example.tributeapp.model.dtos
 
 import org.json.JSONObject
 
 fun getUsers(json: JSONObject): MutableList<User> {
     val users = mutableListOf<User>()
-    json.keys().forEach { users.add(User(it!!, json.getString(it))) }
+    json.keys().forEach { users.add(
+        User(
+            it!!,
+            json.getString(it)
+        )
+    ) }
     return users
 }
 

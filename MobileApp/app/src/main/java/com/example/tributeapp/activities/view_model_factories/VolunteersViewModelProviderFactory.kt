@@ -1,9 +1,9 @@
-package com.example.tributeapp.view_model_factories
+package com.example.tributeapp.activities.view_model_factories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.tributeapp.App
-import com.example.tributeapp.view_models.VolunteersViewModel
+import com.example.tributeapp.activities.view_models.VolunteersViewModel
 
 class VolunteersViewModelProviderFactory: ViewModelProvider.Factory {
 

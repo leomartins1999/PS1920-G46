@@ -1,4 +1,4 @@
-package com.example.tributeapp.utils
+package com.example.tributeapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.startActivity
 import com.example.tributeapp.R
-import com.example.tributeapp.activities.*
+import com.example.tributeapp.activities.activities.EventsActivity
+import com.example.tributeapp.activities.activities.MainActivity
+import com.example.tributeapp.activities.activities.OrgsActivity
+import com.example.tributeapp.activities.activities.VolunteersActivity
 import java.util.*
 
 class MenuHandler{

@@ -1,4 +1,4 @@
-package com.example.tributeapp.adapters
+package com.example.tributeapp.model.adapters
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tributeapp.R
-import com.example.tributeapp.model.Post
-import com.example.tributeapp.view_models.PostsViewModel
-import org.w3c.dom.Text
+import com.example.tributeapp.model.dtos.Post
+import com.example.tributeapp.activities.view_models.PostsViewModel
 
 class PostListAdapter(private val model: PostsViewModel, private val likeHandler: (String, () -> Unit) -> Unit)
     : RecyclerView.Adapter<PostsViewHolder>() {

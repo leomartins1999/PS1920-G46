@@ -1,4 +1,4 @@
-package com.example.tributeapp.view_models
+package com.example.tributeapp.activities.view_models
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.API
-import com.example.tributeapp.model.Volunteer
+import com.example.tributeapp.model.dtos.Volunteer
 
 class VolunteersViewModel(private val api: API) : ViewModel(){
 
