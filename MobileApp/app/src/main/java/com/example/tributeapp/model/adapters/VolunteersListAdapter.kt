@@ -39,6 +39,7 @@ class VolunteersViewHolder(private val volunteerView: LinearLayout)
 
     private val image = volunteerView.findViewById<ImageView>(R.id.image)
     private val name = volunteerView.findViewById<TextView>(R.id.name)
+    private val followers = volunteerView.findViewById<TextView>(R.id.followers_count)
 
     fun bindTo(volunteer: Volunteer){
         Glide
@@ -52,6 +53,8 @@ class VolunteersViewHolder(private val volunteerView: LinearLayout)
             .into(image)
 
         name.text = volunteer.name
+
+        followers.text = "${volunteer.followers.size}"
 
         volunteerView.setOnClickListener{
             val intent = Intent(volunteerView.context, VolunteerActivity::class.java)

@@ -35,7 +35,7 @@ class PostsViewHolder(private val postsView: LinearLayout, private val likeHandl
     private val grayLike = postsView.context.getDrawable(R.drawable.ic_like_gray)!!
     private val blueLike = postsView.context.getDrawable(R.drawable.ic_like_blue)!!
 
-    private val owner: TextView = postsView.findViewById(R.id.owner)
+    private val owner: TextView = postsView.findViewById(R.id.owner_name)
     private val description: TextView = postsView.findViewById(R.id.description)
     private val image: ImageView = postsView.findViewById(R.id.image)
     private val likeCount: TextView = postsView.findViewById(R.id.like_count)

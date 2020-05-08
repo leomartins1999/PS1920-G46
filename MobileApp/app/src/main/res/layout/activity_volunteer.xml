@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:adjustViewBounds="false"
         android:baselineAlignBottom="false"
-        app:srcCompat="@drawable/ic_volunteer"
+        app:srcCompat="@drawable/ic_volunteer_white"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -66,7 +66,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/followers"
+                android:id="@+id/followers_count"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
