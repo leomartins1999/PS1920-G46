@@ -1,17 +1,22 @@
 package com.example.tributeapp.model
 
+import com.example.tributeapp.App
 import org.json.JSONObject
 import java.io.Serializable
 
 data class Volunteer(private val json: JSONObject): Serializable{
 
-    val id = json.getString("_id")
-    val name = json.getString("name")
-    val description = json.getString("description")
-    val linkedInLink = json.getString("linkedInLink")
-    val imageLink = json.getString("imageLink")
+    val id: String = json.getString("_id")
+    val name: String = json.getString("name")
+    val description: String = json.getString("description")
+    val linkedInLink: String = json.getString("linkedInLink")
+    val imageLink: String = json.getString("imageLink")
     val following = getUsers(json.getJSONObject("following"))
     val followers = getUsers(json.getJSONObject("followers"))
+
+    init {
+        cacheService.addVolunteer(this)
+    }
 
     override fun toString(): String {
         return "Volunteer(json=$json, id='$id', name='$name', description='$description', linkedInLink='$linkedInLink', imageLink='$imageLink')"
@@ -32,5 +37,8 @@ data class Volunteer(private val json: JSONObject): Serializable{
         return id.hashCode() ?: 0
     }
 
+    companion object{
+        val cacheService = App.cacheService
+    }
 
 }

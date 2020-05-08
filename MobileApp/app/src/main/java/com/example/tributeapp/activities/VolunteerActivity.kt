@@ -28,7 +28,7 @@ class VolunteerActivity : AppCompatActivity() {
         name.text = volunteer.name
         linkedin.text = volunteer.linkedInLink
         description.text = volunteer.description
-        followingCount.text = 5.toString()
-        followersCount.text = 2.toString()
+        followingCount.text = "${volunteer.following.size}"
+        followersCount.text = "${volunteer.followers.size}"
     }
 }

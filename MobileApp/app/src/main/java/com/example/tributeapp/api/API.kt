@@ -14,7 +14,8 @@ import com.example.tributeapp.model.Volunteer
 const val BASE_URL = "http://tribute-api.duckdns.org/api"
 
 const val POSTS_URL = "posts"
-const val VOLUNTEER_URL = "volunteers"
+const val VOLUNTEERS_URL = "volunteers"
+fun volunteerURL(key: String) = "volunteers/$key"
 
 class API(ctx: Context){
 
@@ -41,12 +42,25 @@ class API(ctx: Context){
         val parser = ListParser(onSuccess){Volunteer(it)}
         val req = StringRequest(
             Request.Method.GET,
-            buildRequestURL(VOLUNTEER_URL),
+            buildRequestURL(VOLUNTEERS_URL),
             Response.Listener { parser.execute(it) },
             Response.ErrorListener {Log.v(APP_TAG, "Error: $it")}
         )
 
-        Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEER_URL)}")
+        Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEERS_URL)}")
+        queue.add(req)
+    }
+
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit){
+        val parser = SingletonParser(onSuccess){Volunteer(it)}
+        val req = StringRequest(
+            Request.Method.GET,
+            buildRequestURL(volunteerURL(key)),
+            Response.Listener { parser.execute(it) },
+            Response.ErrorListener {Log.v(APP_TAG, "Error: $it")}
+        )
+
+        Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEERS_URL)}")
         queue.add(req)
     }
 
