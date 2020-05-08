@@ -1,5 +1,6 @@
 package com.example.tributeapp.model.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tributeapp.R
+import com.example.tributeapp.activities.activities.VOLUNTEER_ID_KEY
+import com.example.tributeapp.activities.activities.VolunteerActivity
 import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.activities.view_models.VolunteersViewModel
 
@@ -31,15 +34,15 @@ class VolunteersListAdapter(private val model: VolunteersViewModel)
 
 }
 
-class VolunteersViewHolder(private val volunteersView: LinearLayout)
-    : RecyclerView.ViewHolder(volunteersView){
+class VolunteersViewHolder(private val volunteerView: LinearLayout)
+    : RecyclerView.ViewHolder(volunteerView){
 
-    private val image = volunteersView.findViewById<ImageView>(R.id.image)
-    private val name = volunteersView.findViewById<TextView>(R.id.name)
+    private val image = volunteerView.findViewById<ImageView>(R.id.image)
+    private val name = volunteerView.findViewById<TextView>(R.id.name)
 
     fun bindTo(volunteer: Volunteer){
         Glide
-            .with(volunteersView.context)
+            .with(volunteerView.context)
             .applyDefaultRequestOptions(
                 RequestOptions()
                     .placeholder(R.drawable.ic_error_image)
@@ -49,6 +52,12 @@ class VolunteersViewHolder(private val volunteersView: LinearLayout)
             .into(image)
 
         name.text = volunteer.name
+
+        volunteerView.setOnClickListener{
+            val intent = Intent(volunteerView.context, VolunteerActivity::class.java)
+            intent.putExtra(VOLUNTEER_ID_KEY, volunteer.id)
+            volunteerView.context.startActivity(intent)
+        }
     }
 
 }

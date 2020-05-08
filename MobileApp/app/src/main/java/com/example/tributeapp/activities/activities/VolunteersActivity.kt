@@ -35,9 +35,6 @@ class VolunteersActivity : BaseActivity() {
 
         model.observe(this){
             adapter.notifyDataSetChanged()
-
-            //to test volunteerActivity
-            //startActivity(Intent(this, VolunteerActivity::class.java))
         }
 
         model.updateVolunteers()
