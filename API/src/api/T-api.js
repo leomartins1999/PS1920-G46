@@ -301,7 +301,7 @@ module.exports = (router, service, test) => {
 
         // status code and headers
         res.statusCode =  statusCode;
-        res.setHeader("Content-Type", "application/json");
+        res.setHeader("content-type", "application/json ; charset=utf-8");
 
         // writing body
         res.end(JSON.stringify(response));
