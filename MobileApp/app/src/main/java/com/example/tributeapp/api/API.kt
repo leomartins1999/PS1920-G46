@@ -8,6 +8,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.tributeapp.APP_TAG
+import com.example.tributeapp.model.dtos.Org
 import com.example.tributeapp.model.dtos.Post
 import com.example.tributeapp.model.dtos.Volunteer
 
@@ -15,18 +16,16 @@ const val BASE_URL = "http://tribute-api.duckdns.org/api"
 
 const val POSTS_URL = "posts"
 const val VOLUNTEERS_URL = "volunteers"
-fun volunteerURL(key: String) = "volunteers/$key"
 
-class API(ctx: Context){
+fun volunteerURL(key: String) = "volunteers/$key"
+fun orgURL(key: String) = "orgs/$key"
+
+class API(ctx: Context) {
 
     private val queue = Volley.newRequestQueue(ctx)
 
-    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: (VolleyError) -> Unit){
-        val parser = ListParser(onSuccess){
-            Post(
-                it
-            )
-        }
+    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: (VolleyError) -> Unit) {
+        val parser = ListParser(onSuccess) { Post(it) }
         val req = StringRequest(
             Request.Method.GET,
             buildRequestURL(POSTS_URL),
@@ -38,12 +37,17 @@ class API(ctx: Context){
         queue.add(req)
     }
 
-    fun likePost(userID: String, postID: String, onSuccess: () -> Unit, onError: (VolleyError) -> Unit) {
+    fun likePost(
+        userID: String,
+        postID: String,
+        onSuccess: () -> Unit,
+        onError: (VolleyError) -> Unit
+    ) {
         onSuccess()
     }
 
-    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit){
-        val parser = ListParser(onSuccess){
+    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit) {
+        val parser = ListParser(onSuccess) {
             Volunteer(
                 it
             )
@@ -52,31 +56,39 @@ class API(ctx: Context){
             Request.Method.GET,
             buildRequestURL(VOLUNTEERS_URL),
             Response.Listener { parser.execute(it) },
-            Response.ErrorListener {Log.v(APP_TAG, "Error: $it")}
+            Response.ErrorListener { Log.v(APP_TAG, "Error: $it") }
         )
 
         Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEERS_URL)}")
         queue.add(req)
     }
 
-    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit){
-        val parser = SingletonParser(onSuccess){
-            Volunteer(
-                it
-            )
-        }
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit) {
+        val parser = SingletonParser(onSuccess) { Volunteer(it) }
         val req = StringRequest(
             Request.Method.GET,
             buildRequestURL(volunteerURL(key)),
             Response.Listener { parser.execute(it) },
-            Response.ErrorListener {Log.v(APP_TAG, "Error: $it")}
+            Response.ErrorListener { Log.v(APP_TAG, "Error: $it") }
         )
 
         Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEERS_URL)}")
         queue.add(req)
     }
 
-    private fun buildRequestURL(url: String)
-            = "$BASE_URL/$url"
+    private fun buildRequestURL(url: String) = "$BASE_URL/$url"
+
+    fun getOrg(key: String, onSuccess: (Org) -> Unit) {
+        val parser = SingletonParser(onSuccess) { Org(it) }
+        val req = StringRequest(
+            Request.Method.GET,
+            buildRequestURL(orgURL(key)),
+            Response.Listener { parser.execute(it) },
+            Response.ErrorListener { Log.v(APP_TAG, "Error: $it") }
+        )
+
+        Log.v(APP_TAG, "Executing request to url: ${buildRequestURL(VOLUNTEERS_URL)}")
+        queue.add(req)
+    }
 
 }

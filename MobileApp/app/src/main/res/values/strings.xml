@@ -31,5 +31,5 @@
     <string name="error_performing_action">Error performing action</string>
     <string name="volunteer_picture_description">Picture of volunteer</string>
     <string name="followers">Followers</string>
-    <string name="post_owner">Owner of pos</string>
+    <string name="post_owner">Owner of post</string>
 </resources>

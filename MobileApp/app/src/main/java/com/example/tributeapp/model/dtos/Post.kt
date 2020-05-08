@@ -6,6 +6,7 @@ import org.json.JSONObject
 data class Post(private val json: JSONObject){
     val id = json.getString("_id")
     val owner_id = json.getString("owner_id")
+    val owner_type = json.getString("owner_type")
     val description = json.getString("description")
     val imageLink =
         if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")

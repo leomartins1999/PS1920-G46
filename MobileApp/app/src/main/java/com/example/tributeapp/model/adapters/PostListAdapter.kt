@@ -3,13 +3,20 @@ package com.example.tributeapp.model.adapters
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.model.dtos.Post
 import com.example.tributeapp.activities.view_models.PostsViewModel
+import com.example.tributeapp.model.dtos.Post
+import com.example.tributeapp.model.dtos.User
+import org.ocpsoft.prettytime.PrettyTime
+import java.util.*
+
 
 class PostListAdapter(private val model: PostsViewModel, private val likeHandler: (String, () -> Unit) -> Unit)
     : RecyclerView.Adapter<PostsViewHolder>() {
@@ -35,11 +42,16 @@ class PostsViewHolder(private val postsView: LinearLayout, private val likeHandl
     private val grayLike = postsView.context.getDrawable(R.drawable.ic_like_gray)!!
     private val blueLike = postsView.context.getDrawable(R.drawable.ic_like_blue)!!
 
-    private val owner: TextView = postsView.findViewById(R.id.owner_name)
+    private val owner_thumb: ImageView = postsView.findViewById(R.id.owner_pic)
+    private val owner_name: TextView = postsView.findViewById(R.id.owner_name)
+
     private val description: TextView = postsView.findViewById(R.id.description)
-    private val image: ImageView = postsView.findViewById(R.id.image)
+    private val post_image: ImageView = postsView.findViewById(R.id.image)
+
     private val likeCount: TextView = postsView.findViewById(R.id.like_count)
     private val like: ImageView = postsView.findViewById(R.id.like_image)
+
+    private val time: TextView = postsView.findViewById(R.id.time)
 
     private var post: Post? = null
 
@@ -58,7 +70,39 @@ class PostsViewHolder(private val postsView: LinearLayout, private val likeHandl
     fun bindTo(post: Post) {
         this.post = post
 
-        owner.text = post.owner_id
+        when(post.owner_type){
+            "org" -> {
+                App.cacheService.getOrg(post.owner_id){
+                    Glide
+                        .with(postsView.context)
+                        .applyDefaultRequestOptions(
+                            RequestOptions()
+                                .placeholder(R.drawable.ic_error_image)
+                                .error(R.drawable.ic_error_image)
+                        )
+                        .load(it.imageLink)
+                        .into(owner_thumb)
+
+                    owner_name.text = it.name
+                }
+            }
+            "volunteer" -> {
+                App.cacheService.getVolunteer(post.owner_id){
+                    Glide
+                        .with(postsView.context)
+                        .applyDefaultRequestOptions(
+                            RequestOptions()
+                                .placeholder(R.drawable.ic_error_image)
+                                .error(R.drawable.ic_error_image)
+                        )
+                        .load(it.imageLink)
+                        .into(owner_thumb)
+
+                    owner_name.text = it.name
+                }
+            }
+        }
+
         description.text = post.description
         Glide
             .with(postsView.context)
@@ -68,10 +112,15 @@ class PostsViewHolder(private val postsView: LinearLayout, private val likeHandl
                     .error(R.drawable.ic_error_image)
             )
             .load(post.imageLink)
-            .into(image)
+            .into(post_image)
 
         // todo: user's session
         likeCount.text = "${post.getNumberOfLikes()}"
         like.setImageDrawable(if (false) blueLike else grayLike)
+
+        val prettyTime = PrettyTime(Locale.getDefault())
+        val ago = prettyTime.format(Date(post.time))
+
+        time.text = ago
     }
 }

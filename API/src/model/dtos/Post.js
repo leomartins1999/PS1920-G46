@@ -13,6 +13,7 @@ class Post {
      */
     constructor(req) {
         this.owner_id = req.user.user_id;
+        this.owner_type = req.user.user_type
 
         this.description = req.body.description;
         this.imageLink = req.body.imageLink;
@@ -27,7 +28,7 @@ class Post {
      * @returns boolean true if valid; false is invalid
      */
     validate(){
-        return this.owner_id && this.description && this.time;
+        return this.owner_id && this.owner_type && this.description && this.time;
     }
 
     /**
