@@ -21,7 +21,7 @@ class OrgsActivity: BaseActivity(){
     private val adapter: EntityListAdapter by lazy{
         EntityListAdapter(model){
             val intent = Intent(this, OrgActivity::class.java)
-            intent.putExtra()
+            intent.putExtra(ORG_KEY, it)
             startActivity(intent)
         }
     }

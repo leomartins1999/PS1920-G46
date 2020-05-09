@@ -1,5 +1,6 @@
 package com.example.tributeapp.activities.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -18,7 +19,11 @@ class VolunteersActivity : BaseActivity() {
         get() = "Volunteers"
 
     private val adapter: EntityListAdapter by lazy {
-        EntityListAdapter(model)
+        EntityListAdapter(model){
+            val intent = Intent(this, VolunteerActivity::class.java)
+            intent.putExtra(VOLUNTEER_KEY, it)
+            startActivity(intent)
+        }
     }
 
     private val model: VolunteersViewModel by lazy {

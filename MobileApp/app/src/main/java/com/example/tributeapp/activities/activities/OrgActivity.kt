@@ -9,7 +9,7 @@ import com.example.tributeapp.model.dtos.Org
 import kotlinx.android.synthetic.main.activity_org.*
 import org.json.JSONObject
 
-const val ORG_ID_KEY = "ORGANIZATION"
+const val ORG_KEY = "ORG"
 
 class OrgActivity : AppCompatActivity() {
 

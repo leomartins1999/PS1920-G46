@@ -8,7 +8,7 @@ import com.example.tributeapp.Utils
 import com.example.tributeapp.model.dtos.Volunteer
 import kotlinx.android.synthetic.main.activity_volunteer.*
 
-const val VOLUNTEER_ID_KEY = "VOLUNTEER"
+const val VOLUNTEER_KEY = "VOLUNTEER"
 
 class VolunteerActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class VolunteerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_volunteer)
 
-       App.cacheService.getVolunteer(intent.getStringExtra(VOLUNTEER_ID_KEY)!!){
+       App.cacheService.getVolunteer(intent.getStringExtra(VOLUNTEER_KEY)!!){
            updateFields(it)
            updateImage(it)
            println(it)

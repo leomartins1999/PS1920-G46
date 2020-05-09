@@ -9,19 +9,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
-import com.example.tributeapp.activities.activities.VOLUNTEER_ID_KEY
+import com.example.tributeapp.activities.activities.VOLUNTEER_KEY
 import com.example.tributeapp.activities.activities.VolunteerActivity
 import com.example.tributeapp.activities.view_models.EntityViewModel
 import com.example.tributeapp.model.dtos.Entity
-import com.example.tributeapp.model.dtos.Volunteer
 
-class EntityListAdapter(private val model: EntityViewModel)
+class EntityListAdapter(private val model: EntityViewModel, private val onClick: (String) -> Unit)
     : RecyclerView.Adapter<EntityViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntityViewHolder {
         val volunteersView = LayoutInflater.from(parent.context)
             .inflate(R.layout.volunteer_list_element, parent, false) as LinearLayout
-        return EntityViewHolder(volunteersView)
+        return EntityViewHolder(volunteersView, onClick)
     }
 
     override fun getItemCount(): Int {
@@ -34,7 +33,7 @@ class EntityListAdapter(private val model: EntityViewModel)
 
 }
 
-class EntityViewHolder(private val entityLayout: LinearLayout)
+class EntityViewHolder(private val entityLayout: LinearLayout, private val onClick: (String) -> Unit)
     : RecyclerView.ViewHolder(entityLayout){
 
     private val image = entityLayout.findViewById<ImageView>(R.id.image)
@@ -48,11 +47,7 @@ class EntityViewHolder(private val entityLayout: LinearLayout)
 
         followers.text = "${entity.followers.size}"
 
-        entityLayout.setOnClickListener{
-            val intent = Intent(entityLayout.context, VolunteerActivity::class.java)
-            intent.putExtra(VOLUNTEER_ID_KEY, entity.id)
-            entityLayout.context.startActivity(intent)
-        }
+        entityLayout.setOnClickListener{onClick(entity.id)}
     }
 
 }
