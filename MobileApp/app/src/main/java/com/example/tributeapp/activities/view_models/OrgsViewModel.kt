@@ -9,11 +9,11 @@ import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.APIService
 import com.example.tributeapp.model.dtos.Org
 
-class OrgsViewModel(private val api: APIService): ViewModel(){
+class OrgsViewModel(private val api: APIService): EntityViewModel(){
 
     private var liveData: MutableLiveData<List<Org>> = MutableLiveData(listOf())
 
-    val orgs: List<Org>
+    override val model: List<Org>
         get() = liveData.value!!
 
     fun updateOrgs(onError: () -> Unit){

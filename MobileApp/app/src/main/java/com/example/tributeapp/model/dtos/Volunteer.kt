@@ -8,15 +8,16 @@ data class Volunteer(private val json: JSONObject): Entity(){
 
     override val id: String = json.getString("_id")
     override val name: String = json.getString("name")
-    val description: String? = json.optString("description")
-    val linkedInLink: String? = json.optString("linkedInLink")
-    val imageLink: String? =
+    override val followers = getUsers(json.getJSONObject("followers"))
+    override val imageLink: String =
         if (!json.optString("imageLink").startsWith("/images")) json.optString("imageLink")
         else com.example.tributeapp.api.BASE_URL + json.optString("imageLink")
+
+    val description: String? = json.optString("description")
+    val linkedInLink: String? = json.optString("linkedInLink")
+
     val following =
         getUsers(json.getJSONObject("following"))
-    val followers =
-        getUsers(json.getJSONObject("followers"))
 
     init {
         cacheService.addVolunteer(this)

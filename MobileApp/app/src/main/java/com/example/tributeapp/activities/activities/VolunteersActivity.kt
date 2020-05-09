@@ -1,13 +1,12 @@
 package com.example.tributeapp.activities.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
-import com.example.tributeapp.model.adapters.VolunteersListAdapter
+import com.example.tributeapp.model.adapters.EntityListAdapter
 import com.example.tributeapp.activities.view_model_factories.VolunteersViewModelProviderFactory
 import com.example.tributeapp.activities.view_models.VolunteersViewModel
 
@@ -18,8 +17,8 @@ class VolunteersActivity : BaseActivity() {
     override val activityIdentifier: String
         get() = "Volunteers"
 
-    private val adapter: VolunteersListAdapter by lazy {
-        VolunteersListAdapter(model)
+    private val adapter: EntityListAdapter by lazy {
+        EntityListAdapter(model)
     }
 
     private val model: VolunteersViewModel by lazy {
