@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tributeapp.App
 import com.example.tributeapp.R
+import com.example.tributeapp.Utils
 import com.example.tributeapp.model.dtos.Volunteer
 import kotlinx.android.synthetic.main.activity_volunteer.*
-import org.json.JSONObject
 
 const val VOLUNTEER_ID_KEY = "VOLUNTEER"
 
@@ -18,8 +18,13 @@ class VolunteerActivity : AppCompatActivity() {
 
        App.cacheService.getVolunteer(intent.getStringExtra(VOLUNTEER_ID_KEY)!!){
            updateFields(it)
+           updateImage(it)
            println(it)
        }
+    }
+
+    private fun updateImage(volunteer: Volunteer) {
+        Utils.loadImage(this, image, volunteer.imageLink, R.drawable.ic_volunteer_gray)
     }
 
     private fun updateFields(volunteer: Volunteer) {
