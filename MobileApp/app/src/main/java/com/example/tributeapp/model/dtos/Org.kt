@@ -3,18 +3,18 @@ package com.example.tributeapp.model.dtos
 import com.example.tributeapp.App
 import org.json.JSONObject
 
-data class Org(private val json: JSONObject){
+data class Org(private val json: JSONObject): Entity(){
 
-    val id = json.getString("_id")
-    val name = json.getString("name")
-    val description = json.getString("description")
-    val phone = json.getString("phone")
-    val mail = json.getString("mail")
-    val siteLink = json.getString("siteLink")
-    val facebookLink = json.getString("facebookLink")
+    override val id: String = json.getString("_id")
+    override val name: String = json.getString("name")
+    val description: String? = json.optString("description")
+    val phone: String? = json.optString("phone")
+    val mail: String? = json.optString("mail")
+    val siteLink: String? = json.optString("siteLink")
+    val facebookLink: String? = json.optString("facebookLink")
     val imageLink =
-        if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")
-        else com.example.tributeapp.api.BASE_URL + json.getString("imageLink")
+        if (!json.optString("imageLink").startsWith("/images")) json.optString("imageLink")
+        else com.example.tributeapp.api.BASE_URL + json.optString("imageLink")
     val followers = getUsers(json.getJSONObject("followers"))
     val following = getUsers(json.getJSONObject("following"))
 

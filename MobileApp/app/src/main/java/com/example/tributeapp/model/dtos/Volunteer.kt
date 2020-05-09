@@ -4,15 +4,15 @@ import com.example.tributeapp.App
 import org.json.JSONObject
 import java.io.Serializable
 
-data class Volunteer(private val json: JSONObject){
+data class Volunteer(private val json: JSONObject): Entity(){
 
-    val id: String = json.getString("_id")
-    val name: String = json.getString("name")
-    val description: String = json.getString("description")
-    val linkedInLink: String = json.getString("linkedInLink")
-    val imageLink: String =
-        if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")
-        else com.example.tributeapp.api.BASE_URL + json.getString("imageLink")
+    override val id: String = json.getString("_id")
+    override val name: String = json.getString("name")
+    val description: String? = json.optString("description")
+    val linkedInLink: String? = json.optString("linkedInLink")
+    val imageLink: String? =
+        if (!json.optString("imageLink").startsWith("/images")) json.optString("imageLink")
+        else com.example.tributeapp.api.BASE_URL + json.optString("imageLink")
     val following =
         getUsers(json.getJSONObject("following"))
     val followers =
