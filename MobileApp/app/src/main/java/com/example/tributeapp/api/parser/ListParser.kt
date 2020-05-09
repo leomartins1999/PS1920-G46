@@ -1,4 +1,4 @@
-package com.example.tributeapp.api
+package com.example.tributeapp.api.parser
 
 import android.os.AsyncTask
 import org.json.JSONObject
