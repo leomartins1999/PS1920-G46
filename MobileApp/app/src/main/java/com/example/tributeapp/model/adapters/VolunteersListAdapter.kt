@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tributeapp.R
+import com.example.tributeapp.Utils
 import com.example.tributeapp.activities.activities.VOLUNTEER_ID_KEY
 import com.example.tributeapp.activities.activities.VolunteerActivity
 import com.example.tributeapp.model.dtos.Volunteer
@@ -42,15 +43,7 @@ class VolunteersViewHolder(private val volunteerView: LinearLayout)
     private val followers = volunteerView.findViewById<TextView>(R.id.followers_count)
 
     fun bindTo(volunteer: Volunteer){
-        Glide
-            .with(volunteerView.context)
-            .applyDefaultRequestOptions(
-                RequestOptions()
-                    .placeholder(R.drawable.ic_error_image)
-                    .error(R.drawable.ic_error_image)
-            )
-            .load(volunteer.imageLink)
-            .into(image)
+        Utils.loadImage(volunteerView.context, image, volunteer.imageLink, R.drawable.ic_volunteer_gray)
 
         name.text = volunteer.name
 
