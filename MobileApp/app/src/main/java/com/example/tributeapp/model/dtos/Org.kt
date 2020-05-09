@@ -22,4 +22,8 @@ data class Org(private val json: JSONObject){
         App.cacheService.addOrg(this)
     }
 
+    override fun toString(): String {
+        return "Org(id='$id', name='$name', description='$description', phone='$phone', mail='$mail', siteLink='$siteLink', facebookLink='$facebookLink', imageLink='$imageLink', followers=$followers, following=$following)"
+    }
+
 }

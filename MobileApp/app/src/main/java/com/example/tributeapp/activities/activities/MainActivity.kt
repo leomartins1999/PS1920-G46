@@ -37,7 +37,13 @@ class MainActivity : BaseActivity() {
             adapter.notifyDataSetChanged()
         }
 
-        model.updatePosts()
+        updatePosts()
+    }
+
+    private fun updatePosts(){
+        model.updatePosts{
+            Toast.makeText(this, "Error while retrieving posts.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun handleLike(postId: String, onSuccess: () -> Unit){

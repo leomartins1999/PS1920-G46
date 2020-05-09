@@ -4,7 +4,7 @@ import com.example.tributeapp.App
 import org.json.JSONObject
 import java.io.Serializable
 
-data class Volunteer(private val json: JSONObject): Serializable{
+data class Volunteer(private val json: JSONObject){
 
     val id: String = json.getString("_id")
     val name: String = json.getString("name")

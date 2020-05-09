@@ -7,25 +7,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.APIService
-import com.example.tributeapp.model.dtos.Volunteer
+import com.example.tributeapp.model.dtos.Org
 
-class VolunteersViewModel(private val api: APIService) : ViewModel(){
+class OrgsViewModel(private val api: APIService): ViewModel(){
 
-    private var liveData: MutableLiveData<List<Volunteer>> = MutableLiveData(listOf())
+    private var liveData: MutableLiveData<List<Org>> = MutableLiveData(listOf())
 
-    val volunteers: List<Volunteer>
+    val orgs: List<Org>
         get() = liveData.value!!
 
-    fun updateVolunteers(onError: () -> Unit){
-        Log.v(APP_TAG, "Updating volunteers")
-        api.getVolunteers({
+    fun updateOrgs(onError: () -> Unit){
+        Log.v(APP_TAG, "Updating orgs")
+        api.getOrgs({
             Log.v(APP_TAG, "Success")
             liveData.value = it
         }, onError)
     }
 
-    fun observe(owner: LifecycleOwner, observer: (List<Volunteer>) -> Unit){
-        liveData.observe(owner, Observer{
+    fun observe(owner: LifecycleOwner, observer: (List<Org>) -> Unit) {
+        liveData.observe(owner, Observer {
             observer(it)
         })
     }

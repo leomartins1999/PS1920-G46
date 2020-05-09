@@ -6,24 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.tributeapp.APP_TAG
-import com.example.tributeapp.api.API
+import com.example.tributeapp.api.APIService
 import com.example.tributeapp.model.dtos.Post
 
-class PostsViewModel(private val api: API) : ViewModel() {
+class PostsViewModel(private val api: APIService) : ViewModel() {
 
     private var liveData: MutableLiveData<List<Post>> = MutableLiveData(emptyList())
 
     val posts: List<Post>
         get() = liveData.value!!
 
-    fun updatePosts() {
+    fun updatePosts(onError: () -> Unit) {
         Log.v(APP_TAG, "Update posts -> call")
         api.getPosts({
             Log.v(APP_TAG, "Update posts -> success $it")
             liveData.value = it
-        }, {
-            Log.v(APP_TAG, "Update posts -> error: $it")
-        })
+        }, onError)
     }
 
     fun likePost(userID: String, postID: String, onSuccess: () -> Unit, onError: () -> Unit) {
@@ -31,10 +29,7 @@ class PostsViewModel(private val api: API) : ViewModel() {
         api.likePost(userID, postID, {
             Log.v(APP_TAG, "Like post -> success")
             onSuccess()
-        }, {
-            Log.v(APP_TAG, "Like post -> error: $it")
-            onError()
-        })
+        }, onError)
     }
 
     fun observe(owner: LifecycleOwner, observer: (List<Post>) -> Unit) {

@@ -2,6 +2,7 @@ package com.example.tributeapp.activities.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,10 @@ class VolunteersActivity : BaseActivity() {
             adapter.notifyDataSetChanged()
         }
 
-        model.updateVolunteers()
+        updateVolunteers()
+    }
+
+    private fun updateVolunteers(){
+        model.updateVolunteers{ Toast.makeText(this, "Error while retrieving volunteers.", Toast.LENGTH_SHORT).show()}
     }
 }

@@ -1,0 +1,10 @@
+package com.example.tributeapp.api
+
+const val BASE_URL = "http://tribute-api.duckdns.org/api"
+
+const val POSTS_URL = "posts"
+const val ORGS_URL = "orgs"
+const val VOLUNTEERS_URL = "volunteers"
+
+fun volunteerURL(key: String) = "volunteers/$key"
+fun orgURL(key: String) = "orgs/$key"

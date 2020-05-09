@@ -43,6 +43,7 @@ class PostsViewHolder(
     private val likeHandler: (String, () -> Unit) -> Unit
 ) : RecyclerView.ViewHolder(postsView) {
 
+    // todo: turn references into static ones
     private val grayLike = postsView.context.getDrawable(R.drawable.ic_like_gray)!!
     private val blueLike = postsView.context.getDrawable(R.drawable.ic_like_blue)!!
 
