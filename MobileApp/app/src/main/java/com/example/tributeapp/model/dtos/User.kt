@@ -1,6 +1,7 @@
 package com.example.tributeapp.model.dtos
 
 import org.json.JSONObject
+import java.io.Serializable
 
 fun getUsers(json: JSONObject): MutableList<User> {
     val users = mutableListOf<User>()
@@ -13,7 +14,7 @@ fun getUsers(json: JSONObject): MutableList<User> {
     return users
 }
 
-data class User(val id: String, val type: String){
+data class User(val id: String, val type: String): Serializable{
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

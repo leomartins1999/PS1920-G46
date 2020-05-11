@@ -10,6 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
+import com.example.tributeapp.model.dtos.Event
 import com.example.tributeapp.model.dtos.Org
 import com.example.tributeapp.model.dtos.Post
 import com.example.tributeapp.model.dtos.Volunteer
@@ -19,20 +20,23 @@ class APIService(ctx: Context) {
 
     private val queue = Volley.newRequestQueue(ctx)
 
-    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit)
-            = get(POSTS_URL, ListParser(onSuccess) { Post(it) }, onError)
+    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
+        get(POSTS_URL, ListParser(onSuccess) { Post(it) }, onError)
 
-    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit)
-            = get(VOLUNTEERS_URL, ListParser(onSuccess) { Volunteer(it) }, onError)
+    fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
+        get(EVENTS_URL, ListParser(onSuccess) { Event(it) }, onError)
 
-    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit)
-            = get(volunteerURL(key), SingletonParser(onSuccess) { Volunteer(it) }, onError)
+    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
+        get(VOLUNTEERS_URL, ListParser(onSuccess) { Volunteer(it) }, onError)
 
-    fun getOrg(key: String, onSuccess: (Org) -> Unit, onError: () -> Unit)
-            = get(orgURL(key), SingletonParser(onSuccess) { Org(it) }, onError)
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
+        get(volunteerURL(key), SingletonParser(onSuccess) { Volunteer(it) }, onError)
 
-    fun getOrgs(onSuccess: (List<Org>) -> Unit, onError: () -> Unit)
-            = get(ORGS_URL, ListParser(onSuccess) { Org(it) }, onError)
+    fun getOrg(key: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
+        get(orgURL(key), SingletonParser(onSuccess) { Org(it) }, onError)
+
+    fun getOrgs(onSuccess: (List<Org>) -> Unit, onError: () -> Unit) =
+        get(ORGS_URL, ListParser(onSuccess) { Org(it) }, onError)
 
     private fun buildRequestURL(url: String) = "$BASE_URL/$url"
 
@@ -40,7 +44,7 @@ class APIService(ctx: Context) {
         url: String,
         parser: AsyncTask<String, Int, T>,
         onError: () -> Unit
-    ){
+    ) {
         val reqUrl = buildRequestURL(url)
 
         val req = StringRequest(
