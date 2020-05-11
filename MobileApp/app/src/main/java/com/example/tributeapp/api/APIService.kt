@@ -1,13 +1,10 @@
 package com.example.tributeapp.api
 
 import android.content.Context
-import android.os.AsyncTask
-import android.util.Log
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.example.tributeapp.APP_TAG
+import com.example.tributeapp.api.controllers.EventsController
+import com.example.tributeapp.api.controllers.OrgsController
+import com.example.tributeapp.api.controllers.PostsController
+import com.example.tributeapp.api.controllers.VolunteersController
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
 import com.example.tributeapp.model.dtos.Event
@@ -18,51 +15,31 @@ import com.example.tributeapp.model.dtos.Volunteer
 
 class APIService(ctx: Context) {
 
-    private val queue = Volley.newRequestQueue(ctx)
+    private val executor = RequestExecutor(ctx)
 
-    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
-        get(POSTS_URL, ListParser(onSuccess) { Post(it) }, onError)
-
-    fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
-        get(EVENTS_URL, ListParser(onSuccess) { Event(it) }, onError)
-
-    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
-        get(VOLUNTEERS_URL, ListParser(onSuccess) { Volunteer(it) }, onError)
-
-    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
-        get(volunteerURL(key), SingletonParser(onSuccess) { Volunteer(it) }, onError)
-
-    fun getOrg(key: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
-        get(orgURL(key), SingletonParser(onSuccess) { Org(it) }, onError)
+    private val volunteers = VolunteersController(executor)
+    private val orgs = OrgsController(executor)
+    private val posts = PostsController(executor)
+    private val events = EventsController(executor)
 
     fun getOrgs(onSuccess: (List<Org>) -> Unit, onError: () -> Unit) =
-        get(ORGS_URL, ListParser(onSuccess) { Org(it) }, onError)
+        orgs.getOrgs(onSuccess, onError)
 
-    private fun buildRequestURL(url: String) = "$BASE_URL/$url"
+    fun getOrg(key: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
+        orgs.getOrg(key, onSuccess, onError)
 
-    private fun <T> get(
-        url: String,
-        parser: AsyncTask<String, Int, T>,
-        onError: () -> Unit
-    ) {
-        val reqUrl = buildRequestURL(url)
+    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
+        volunteers.getVolunteers(onSuccess, onError)
 
-        val req = StringRequest(
-            Request.Method.GET,
-            reqUrl,
-            Response.Listener { parser.execute(it) },
-            Response.ErrorListener {
-                Log.v(APP_TAG, "Error: $it")
-                onError()
-            }
-        )
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
+        volunteers.getVolunteer(key, onSuccess, onError)
 
-        Log.v(APP_TAG, "Executing request to url: $reqUrl")
-        queue.add(req)
-    }
+    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
+        posts.getPosts(onSuccess, onError)
 
-    fun likePost(userID: String, postID: String, onSuccess: () -> Unit, onError: () -> Unit) {
+    fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         onSuccess()
-    }
 
+    fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
+        events.getEvents(onSuccess, onError)
 }

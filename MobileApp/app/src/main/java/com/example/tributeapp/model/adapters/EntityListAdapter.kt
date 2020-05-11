@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
-import com.example.tributeapp.activities.view_models.EntityViewModel
+import com.example.tributeapp.ui.view_models.EntityViewModel
 import com.example.tributeapp.model.dtos.Entity
 
 class EntityListAdapter(private val model: EntityViewModel, private val onClick: (String) -> Unit)

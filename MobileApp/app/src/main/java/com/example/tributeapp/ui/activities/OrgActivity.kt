@@ -1,8 +1,7 @@
-package com.example.tributeapp.activities.activities
+package com.example.tributeapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.example.tributeapp.model.dtos.Org

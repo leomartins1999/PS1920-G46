@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
-import com.example.tributeapp.activities.activities.EVENT_KEY
-import com.example.tributeapp.activities.activities.EventActivity
-import com.example.tributeapp.activities.view_models.EventsViewModel
+import com.example.tributeapp.ui.activities.EVENT_KEY
+import com.example.tributeapp.ui.activities.EventActivity
+import com.example.tributeapp.ui.view_models.EventsViewModel
 import com.example.tributeapp.model.dtos.Event
 
 class EventsListAdapter(

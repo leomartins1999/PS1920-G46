@@ -1,10 +1,9 @@
-package com.example.tributeapp.activities.view_models
+package com.example.tributeapp.ui.view_models
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.APIService
 import com.example.tributeapp.model.dtos.Volunteer

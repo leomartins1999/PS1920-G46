@@ -6,7 +6,7 @@ import org.json.JSONObject
 class ListParser<T>(
         private val onSuccess: (List<T>) -> Unit,
         private val constructor: (JSONObject) -> T
-) : AsyncTask<String, Int, List<T>>() {
+) : Parser<List<T>>() {
 
     override fun doInBackground(vararg params: String?): List<T> {
         return JSONObject(params[0]!!)

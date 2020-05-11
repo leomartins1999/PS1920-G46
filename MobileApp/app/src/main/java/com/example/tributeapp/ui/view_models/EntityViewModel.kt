@@ -1,4 +1,4 @@
-package com.example.tributeapp.activities.view_models
+package com.example.tributeapp.ui.view_models
 
 import androidx.lifecycle.ViewModel
 import com.example.tributeapp.model.dtos.Entity

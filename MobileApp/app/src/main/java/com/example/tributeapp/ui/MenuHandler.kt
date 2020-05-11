@@ -1,4 +1,4 @@
-package com.example.tributeapp.activities
+package com.example.tributeapp.ui
 
 import android.content.Context
 import android.content.Intent
@@ -8,16 +8,16 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.startActivity
 import com.example.tributeapp.R
-import com.example.tributeapp.activities.activities.EventsActivity
-import com.example.tributeapp.activities.activities.MainActivity
-import com.example.tributeapp.activities.activities.OrgsActivity
-import com.example.tributeapp.activities.activities.VolunteersActivity
+import com.example.tributeapp.ui.activities.EventsActivity
+import com.example.tributeapp.ui.activities.MainActivity
+import com.example.tributeapp.ui.activities.OrgsActivity
+import com.example.tributeapp.ui.activities.VolunteersActivity
 import java.util.*
 
 class MenuHandler{
 
     fun inflateMenu(menuInflater: MenuInflater, menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.main, menu)
         return true
     }
 

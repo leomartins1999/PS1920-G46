@@ -1,4 +1,4 @@
-package com.example.tributeapp.activities.activities
+package com.example.tributeapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
-import com.example.tributeapp.activities.view_model_factories.OrgsViewModelProviderFactory
-import com.example.tributeapp.activities.view_models.OrgsViewModel
+import com.example.tributeapp.ui.view_model_factories.OrgsViewModelProviderFactory
+import com.example.tributeapp.ui.view_models.OrgsViewModel
 import com.example.tributeapp.model.adapters.EntityListAdapter
 
 class OrgsActivity: BaseActivity(){

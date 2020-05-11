@@ -12,16 +12,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar" >
-        <activity android:name=".activities.activities.OrgActivity" />
-        <activity android:name=".activities.activities.OrgsActivity" />
-        <activity android:name=".activities.activities.VolunteerActivity" />
-        <activity android:name=".activities.activities.VolunteersActivity" />
-        <activity android:name=".activities.activities.EventsActivity" />
+        android:theme="@style/AppTheme" >
+        <activity android:name=".ui.activities.OrgActivity" />
+        <activity android:name=".ui.activities.OrgsActivity" />
+        <activity android:name=".ui.activities.VolunteerActivity" />
+        <activity android:name=".ui.activities.VolunteersActivity" />
+        <activity android:name=".ui.activities.EventsActivity" />
         <activity
-            android:name=".activities.activities.EventActivity"
+            android:name=".ui.activities.EventActivity"
             android:label="@string/title_activity_event" />
-        <activity android:name=".activities.activities.MainActivity" >
+        <activity android:name=".ui.activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.tributeapp.activities.view_models
+package com.example.tributeapp.ui.view_models
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
@@ -26,7 +26,7 @@ class PostsViewModel(private val api: APIService) : ViewModel() {
 
     fun likePost(userID: String, postID: String, onSuccess: () -> Unit, onError: () -> Unit) {
         Log.v(APP_TAG, "Like post -> call - userID: $userID, postID: $postID")
-        api.likePost(userID, postID, {
+        api.likePost(postID, {
             Log.v(APP_TAG, "Like post -> success")
             onSuccess()
         }, onError)

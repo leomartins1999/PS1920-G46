@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/posts"
+        android:id="@+id/posts_fragment"
         android:icon="@drawable/ic_post"
         android:title="@string/posts"
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/volunteers"
+        android:id="@+id/volunteers_fragment"
         android:icon="@drawable/ic_volunteer_white"
         android:title="@string/volunteers"
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/orgs"
+        android:id="@+id/orgs_fragment"
         android:icon="@drawable/ic_org"
         android:title="@string/organizations"
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/events"
+        android:id="@+id/events_fragment"
         android:icon="@drawable/ic_event"
         android:title="@string/events"
         android:visible="true"

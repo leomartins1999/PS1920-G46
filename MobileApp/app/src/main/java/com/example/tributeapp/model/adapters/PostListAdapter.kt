@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
-import com.example.tributeapp.activities.view_models.PostsViewModel
+import com.example.tributeapp.ui.view_models.PostsViewModel
 import com.example.tributeapp.model.dtos.Post
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*

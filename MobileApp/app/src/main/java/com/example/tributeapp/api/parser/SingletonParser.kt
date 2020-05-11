@@ -6,7 +6,7 @@ import org.json.JSONObject
 class SingletonParser<T>(
     private val onSuccess: (T) -> Unit,
     private val constructor: (JSONObject) -> T
-): AsyncTask<String, Int, T>(){
+): Parser<T>(){
 
     override fun doInBackground(vararg params: String?): T {
         return constructor(JSONObject(params[0]!!)

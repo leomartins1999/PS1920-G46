@@ -1,4 +1,4 @@
-package com.example.tributeapp.activities.activities
+package com.example.tributeapp.ui.activities
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,9 +6,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
-import com.example.tributeapp.activities.activities.BaseActivity
-import com.example.tributeapp.activities.view_model_factories.EventsViewModelProviderFactory
-import com.example.tributeapp.activities.view_models.EventsViewModel
+import com.example.tributeapp.ui.view_model_factories.EventsViewModelProviderFactory
+import com.example.tributeapp.ui.view_models.EventsViewModel
 import com.example.tributeapp.model.adapters.EventsListAdapter
 
 class EventsActivity : BaseActivity() {

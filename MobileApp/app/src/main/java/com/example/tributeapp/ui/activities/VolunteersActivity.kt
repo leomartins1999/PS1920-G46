@@ -1,4 +1,4 @@
-package com.example.tributeapp.activities.activities
+package com.example.tributeapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
 import com.example.tributeapp.model.adapters.EntityListAdapter
-import com.example.tributeapp.activities.view_model_factories.VolunteersViewModelProviderFactory
-import com.example.tributeapp.activities.view_models.VolunteersViewModel
+import com.example.tributeapp.ui.view_model_factories.VolunteersViewModelProviderFactory
+import com.example.tributeapp.ui.view_models.VolunteersViewModel
 
 class VolunteersActivity : BaseActivity() {
 
@@ -34,7 +34,7 @@ class VolunteersActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         super.onCreate(R.layout.activity_volunteers)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.volunteers)
+        val recyclerView = findViewById<RecyclerView>(R.id.volunteers_recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
