@@ -1,7 +1,8 @@
 package com.example.tributeapp.model.dtos
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import org.json.JSONObject
-import java.io.Serializable
 
 fun getUsers(json: JSONObject): MutableList<User> {
     val users = mutableListOf<User>()
@@ -14,7 +15,8 @@ fun getUsers(json: JSONObject): MutableList<User> {
     return users
 }
 
-data class User(val id: String, val type: String): Serializable{
+@Parcelize
+class User(val id: String, val type: String): Parcelable{
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
