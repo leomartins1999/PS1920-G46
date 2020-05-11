@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.example.tributeapp.ui.activities.ORG_KEY
-import com.example.tributeapp.ui.activities.OrgsActivity
 import com.example.tributeapp.ui.view_model_factories.OrgsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.OrgsViewModel
 import com.example.tributeapp.model.adapters.EntityListAdapter
