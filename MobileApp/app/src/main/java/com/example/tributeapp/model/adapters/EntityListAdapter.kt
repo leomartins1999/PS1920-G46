@@ -1,6 +1,5 @@
 package com.example.tributeapp.model.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,8 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
-import com.example.tributeapp.activities.activities.VOLUNTEER_KEY
-import com.example.tributeapp.activities.activities.VolunteerActivity
 import com.example.tributeapp.activities.view_models.EntityViewModel
 import com.example.tributeapp.model.dtos.Entity
 
@@ -18,9 +15,9 @@ class EntityListAdapter(private val model: EntityViewModel, private val onClick:
     : RecyclerView.Adapter<EntityViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntityViewHolder {
-        val volunteersView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.volunteer_list_element, parent, false) as LinearLayout
-        return EntityViewHolder(volunteersView, onClick)
+        val entityView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.entity_list_element, parent, false) as LinearLayout
+        return EntityViewHolder(entityView, onClick)
     }
 
     override fun getItemCount(): Int {
