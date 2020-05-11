@@ -41,29 +41,6 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/following"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Following"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/followingCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/followers_count"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -84,6 +61,29 @@
                     android:text="0"
                     android:textSize="20sp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/following"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Following"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/followingCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
