@@ -2,8 +2,9 @@ package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.api.BASE_URL
 import org.json.JSONObject
+import java.io.Serializable
 
-data class Event(private val json: JSONObject){
+class Event(val json: JSONObject): Serializable{
 
     val id = json.getString("_id")
     val org_id = json.getString("org_id")

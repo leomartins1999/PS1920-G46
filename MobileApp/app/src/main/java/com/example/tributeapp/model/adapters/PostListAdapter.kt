@@ -15,6 +15,7 @@ import com.example.tributeapp.model.dtos.Post
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
+val prettyTime = PrettyTime(Locale.getDefault())
 
 class PostListAdapter(
     private val model: PostsViewModel,
@@ -35,8 +36,6 @@ class PostListAdapter(
         holder.bindTo(model.posts[position])
     }
 }
-
-val prettyTime = PrettyTime(Locale.getDefault())
 
 class PostsViewHolder(
     private val postsView: LinearLayout,
