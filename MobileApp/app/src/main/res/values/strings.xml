@@ -32,4 +32,6 @@
     <string name="volunteer_picture_description">Picture of volunteer</string>
     <string name="followers">Followers</string>
     <string name="post_owner">Owner of post</string>
+    <string name="user">User</string>
+    <string name="login">Login</string>
 </resources>
