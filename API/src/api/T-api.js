@@ -233,7 +233,7 @@ module.exports = (router, service, test) => {
             .then(
                 (result) => {
                     req.login(new User(result.id, result.user_type), _ => handleSuccess(res, 200, {user_details: req.user}))
-                }, err => handleError(res, 401, err)
+                }, err => handleError(res, 400, err)
             );
     }
 

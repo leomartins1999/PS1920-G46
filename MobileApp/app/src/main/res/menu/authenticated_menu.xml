@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:checkableBehavior="single"
+    >
+
+    <item
+        android:id="@+id/posts_fragment"
+        android:icon="@drawable/ic_post"
+        android:title="@string/posts"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/volunteers_fragment"
+        android:icon="@drawable/ic_volunteer_white"
+        android:title="@string/volunteers"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/orgs_fragment"
+        android:icon="@drawable/ic_org"
+        android:title="@string/organizations"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/events_fragment"
+        android:icon="@drawable/ic_event"
+        android:title="@string/events"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item android:title="@string/user">
+        <menu>
+            <item
+                android:id="@+id/logout_fragment"
+                android:icon="@drawable/ic_authenticate"
+                android:title="@string/logout"
+                android:visible="true"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+
+</menu>

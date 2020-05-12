@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.example.tributeapp.ui.view_model_factories.LoginViewModelProviderFactory
@@ -28,7 +29,15 @@ class LoginFragment: Fragment(){
             val email = root.login_email.text.toString()
             val password = root.login_password.text.toString()
 
-            model.login(email, password, { Utils.makeToast(context, "Success")}, {Utils.makeToast(context, "Error")})
+            model.login(
+                email,
+                password,
+                {
+                    Utils.makeToast(context, "Success!")
+                    this.requireActivity().onBackPressed()
+                },
+                {Utils.makeToast(context, "Error")}
+            )
         }
 
         return root

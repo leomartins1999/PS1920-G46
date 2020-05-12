@@ -1,18 +1,14 @@
 package com.example.tributeapp.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.tributeapp.APP_TAG
-import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -21,7 +17,8 @@ private val FRAGMENTS = setOf(
     R.id.volunteers_fragment,
     R.id.orgs_fragment,
     R.id.events_fragment,
-    R.id.login_fragment
+    R.id.login_fragment,
+    R.id.logout_fragment
 )
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +46,9 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(FRAGMENTS, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        // associate navigation view w/ session to update it
+        App.session = SessionViewModel(navView)
     }
 
     override fun onSupportNavigateUp(): Boolean {

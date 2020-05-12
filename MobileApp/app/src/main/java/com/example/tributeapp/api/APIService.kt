@@ -4,10 +4,7 @@ import android.content.Context
 import com.example.tributeapp.api.controllers.*
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
-import com.example.tributeapp.model.dtos.Event
-import com.example.tributeapp.model.dtos.Org
-import com.example.tributeapp.model.dtos.Post
-import com.example.tributeapp.model.dtos.Volunteer
+import com.example.tributeapp.model.dtos.*
 
 
 class APIService(ctx: Context) {
@@ -41,6 +38,6 @@ class APIService(ctx: Context) {
     fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
         events.getEvents(onSuccess, onError)
 
-    fun login(email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit) =
+    fun login(email: String, password: String, onSuccess: (User) -> Unit, onError: () -> Unit) =
         auth.login(email, password, onSuccess, onError)
 }

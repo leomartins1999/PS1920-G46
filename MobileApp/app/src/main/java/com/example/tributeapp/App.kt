@@ -11,6 +11,7 @@ class App: Application(){
     companion object{
         lateinit var api: APIService
         lateinit var cacheService: CacheService
+        var session: SessionViewModel? = null
     }
 
     override fun onCreate() {
