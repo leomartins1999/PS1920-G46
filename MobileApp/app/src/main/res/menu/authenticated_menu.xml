@@ -33,7 +33,7 @@
         <menu>
             <item
                 android:id="@+id/logout_fragment"
-                android:icon="@drawable/ic_authenticate"
+                android:icon="@drawable/ic_logout"
                 android:title="@string/logout"
                 android:visible="true"
                 app:showAsAction="ifRoom" />

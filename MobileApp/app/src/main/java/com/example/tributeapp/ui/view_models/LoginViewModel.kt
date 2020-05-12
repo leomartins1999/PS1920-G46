@@ -8,7 +8,7 @@ class LoginViewModel(private val api: APIService) : ViewModel(){
 
     fun login(email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit){
         api.login(email, password, {
-            App.session!!.updateSession(it)
+            App.session!!.newSession(it)
             onSuccess()
         }, onError)
     }

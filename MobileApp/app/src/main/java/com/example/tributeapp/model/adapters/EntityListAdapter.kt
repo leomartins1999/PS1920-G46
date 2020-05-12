@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.example.tributeapp.ui.view_models.EntityViewModel
@@ -36,6 +37,7 @@ class EntityViewHolder(private val entityLayout: LinearLayout, private val onCli
     private val image = entityLayout.findViewById<ImageView>(R.id.image)
     private val name = entityLayout.findViewById<TextView>(R.id.name)
     private val followers = entityLayout.findViewById<TextView>(R.id.followers_count)
+    private val followerImage = entityLayout.findViewById<ImageView>(R.id.followers_image)
 
     fun bindTo(entity: Entity){
         Utils.loadImage(entityLayout.context, image, entity.imageLink, R.drawable.ic_volunteer_gray)
@@ -43,6 +45,13 @@ class EntityViewHolder(private val entityLayout: LinearLayout, private val onCli
         name.text = entity.name
 
         followers.text = "${entity.followers.size}"
+
+        if (App.session!!.session){
+            if (entity.id == App.session!!.user.id)
+                 followerImage.setImageDrawable(entityLayout.context.getDrawable(R.drawable.ic_volunteer_dark_blue))
+            else if (entity.followers.contains(App.session!!.user))
+                followerImage.setImageDrawable(entityLayout.context.getDrawable(R.drawable.ic_volunteer_light_blue))
+        }
 
         entityLayout.setOnClickListener{onClick(entity.id)}
     }

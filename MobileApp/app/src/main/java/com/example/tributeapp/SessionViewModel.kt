@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class SessionViewModel(private val navView: NavigationView) {
 
+    var session = false
     lateinit var user: User
     lateinit var volunteer: Volunteer
 
@@ -14,19 +15,21 @@ class SessionViewModel(private val navView: NavigationView) {
         return "Session(user=$user, volunteer=$volunteer)"
     }
 
-    fun updateSession(user: User){
+    fun newSession(user: User){
+        session = true
         this.user = user
         App.cacheService.getVolunteer(user.id){
             volunteer = it
-            updateSessionView()
+            newSessionView()
         }
     }
 
-    fun removeSession(){
-        removeSessionView()
+    fun logout(){
+        session = false
+        logoutSessionView()
     }
 
-    private fun updateSessionView(){
+    private fun newSessionView(){
         Utils.loadImage(navView.context, navView.user_picture, volunteer.imageLink, R.drawable.ic_volunteer_gray)
         navView.user_name.text = volunteer.name
 
@@ -34,7 +37,7 @@ class SessionViewModel(private val navView: NavigationView) {
         navView.inflateMenu(R.menu.authenticated_menu)
     }
 
-    private fun removeSessionView(){
+    private fun logoutSessionView(){
         navView.user_picture.setImageDrawable(navView.context.getDrawable(R.drawable.ic_volunteer_gray))
         navView.user_name.text = navView.context.getString(R.string.nav_header_title)
 

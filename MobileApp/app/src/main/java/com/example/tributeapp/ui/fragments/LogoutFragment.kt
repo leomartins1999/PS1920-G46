@@ -8,7 +8,7 @@ class LogoutFragment: Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.session!!.removeSession()
+        App.session!!.logout()
         this.requireActivity().onBackPressed()
     }
 
