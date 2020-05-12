@@ -1,6 +1,7 @@
 package com.example.tributeapp.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
@@ -9,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.google.android.material.navigation.NavigationView
@@ -18,7 +20,8 @@ private val FRAGMENTS = setOf(
     R.id.posts_fragment,
     R.id.volunteers_fragment,
     R.id.orgs_fragment,
-    R.id.events_fragment
+    R.id.events_fragment,
+    R.id.login_fragment
 )
 
 class MainActivity : AppCompatActivity() {

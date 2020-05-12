@@ -1,10 +1,7 @@
 package com.example.tributeapp.api
 
 import android.content.Context
-import com.example.tributeapp.api.controllers.EventsController
-import com.example.tributeapp.api.controllers.OrgsController
-import com.example.tributeapp.api.controllers.PostsController
-import com.example.tributeapp.api.controllers.VolunteersController
+import com.example.tributeapp.api.controllers.*
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
 import com.example.tributeapp.model.dtos.Event
@@ -21,6 +18,7 @@ class APIService(ctx: Context) {
     private val orgs = OrgsController(executor)
     private val posts = PostsController(executor)
     private val events = EventsController(executor)
+    private val auth = AuthController(executor)
 
     fun getOrgs(onSuccess: (List<Org>) -> Unit, onError: () -> Unit) =
         orgs.getOrgs(onSuccess, onError)
@@ -42,4 +40,7 @@ class APIService(ctx: Context) {
 
     fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
         events.getEvents(onSuccess, onError)
+
+    fun login(email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        auth.login(email, password, onSuccess, onError)
 }

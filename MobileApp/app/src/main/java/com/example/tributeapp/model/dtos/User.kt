@@ -18,6 +18,9 @@ fun getUsers(json: JSONObject): MutableList<User> {
 @Parcelize
 class User(val id: String, val type: String): Parcelable{
 
+    constructor(json: JSONObject):
+            this(json.getString("user_id"), json.getString("user_type"))
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

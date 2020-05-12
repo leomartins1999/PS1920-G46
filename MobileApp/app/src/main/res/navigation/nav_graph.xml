@@ -22,5 +22,9 @@
         android:id="@+id/events_fragment"
         android:name="com.example.tributeapp.ui.fragments.EventsFragment"
         android:label="@string/events" />
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.example.tributeapp.ui.fragments.LoginFragment"
+        android:label="@string/login" />
 
 </navigation>

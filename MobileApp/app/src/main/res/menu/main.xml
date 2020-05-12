@@ -32,7 +32,7 @@
     <item android:title="@string/user">
         <menu>
             <item
-                android:id="@+id/login"
+                android:id="@+id/login_fragment"
                 android:icon="@drawable/ic_authenticate"
                 android:title="@string/login"
                 android:visible="true"

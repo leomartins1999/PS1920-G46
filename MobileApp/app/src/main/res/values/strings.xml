@@ -34,4 +34,6 @@
     <string name="post_owner">Owner of post</string>
     <string name="user">User</string>
     <string name="login">Login</string>
+    <string name="login_email_hint">email</string>
+    <string name="login_password_hint">password</string>
 </resources>
