@@ -32,7 +32,7 @@
                 android:id="@+id/OrgName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Org Name"
+                android:text="Organization"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -66,6 +66,15 @@
             android:orientation="vertical"
             android:gravity="center_vertical"
             >
+
+            <TextView
+                android:id="@+id/eventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event name"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +120,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Show Interest"
+                android:text="@string/interested_button"
                 >
             </Button>
 
@@ -143,7 +152,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Interested"
+                    android:text="@string/interested"
                     android:textSize="20sp" />
 
                 <TextView
@@ -165,7 +174,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Participating"
+                    android:text="@string/participants"
                     android:textSize="20sp" />
 
                 <TextView
@@ -183,8 +192,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
         >
 
         <TextView
