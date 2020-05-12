@@ -34,4 +34,7 @@
     <string name="post_owner">Owner of post</string>
     <string name="user">User</string>
     <string name="login">Login</string>
+    <string name="interested_button">Show Interest</string>
+    <string name="interested">Interested</string>
+    <string name="participants">Participants</string>
 </resources>

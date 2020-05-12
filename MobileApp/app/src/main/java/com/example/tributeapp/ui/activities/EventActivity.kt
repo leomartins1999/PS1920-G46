@@ -30,6 +30,7 @@ class EventActivity : AppCompatActivity() {
     }
 
     private fun updateEventFields(event: Event) {
+        eventName.text = event.name
         Utils.loadImage(this, EventImage, event.imageLink)
         location.text = event.location
         date.text = event.date
