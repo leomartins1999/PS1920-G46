@@ -7,17 +7,17 @@ import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class SessionViewModel(private val navView: NavigationView) {
 
-    var session = false
+    var hasSession = false
+
     lateinit var user: User
+
     lateinit var volunteer: Volunteer
 
-    override fun toString(): String {
-        return "Session(user=$user, volunteer=$volunteer)"
-    }
+    fun login(user: User){
+        hasSession = true
 
-    fun newSession(user: User){
-        session = true
         this.user = user
+
         App.cacheService.getVolunteer(user.id){
             volunteer = it
             newSessionView()
@@ -25,7 +25,7 @@ class SessionViewModel(private val navView: NavigationView) {
     }
 
     fun logout(){
-        session = false
+        hasSession = false
         logoutSessionView()
     }
 
@@ -43,6 +43,13 @@ class SessionViewModel(private val navView: NavigationView) {
 
         navView.menu.clear()
         navView.inflateMenu(R.menu.unauthenticated_menu)
+    }
+
+    override fun toString(): String {
+        return if (hasSession)
+            "SessionViewModel(session=$hasSession, user=$user)"
+        else
+            "SessionViewModel(session=$hasSession)"
     }
 
 }

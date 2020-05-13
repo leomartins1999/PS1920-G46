@@ -11,5 +11,6 @@ const val ORGS_URL = "orgs"
 fun orgURL(key: String) = "orgs/$key"
 
 const val POSTS_URL = "posts"
+fun likeURL(key: String) = "auth/posts/$key/like"
 
 const val EVENTS_URL = "events"

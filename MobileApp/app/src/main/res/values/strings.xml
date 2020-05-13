@@ -40,4 +40,5 @@
     <string name="interested_button">Show Interest</string>
     <string name="interested">Interested</string>
     <string name="participants">Participants</string>
+    <string name="executed_logout">Successfully logged out</string>
 </resources>

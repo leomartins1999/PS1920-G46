@@ -60,7 +60,7 @@ class PostsViewHolder(
     private var post: Post? = null
 
     init {
-        if (App.session!!.session){
+        if (App.session!!.hasSession){
             like.setOnClickListener {
                 val newState: Boolean = like.drawable == grayLike
                 val image: Drawable? = if (newState) blueLike else grayLike
@@ -93,7 +93,7 @@ class PostsViewHolder(
 
         // todo: user's session
         likeCount.text = "${post.getNumberOfLikes()}"
-        like.setImageDrawable(if (App.session!!.session && post.likes.contains(App.session!!.user)) blueLike else grayLike)
+        like.setImageDrawable(if (App.session!!.hasSession && post.likes.contains(App.session!!.user)) blueLike else grayLike)
 
         val prettyTime = PrettyTime(Locale.getDefault())
 
