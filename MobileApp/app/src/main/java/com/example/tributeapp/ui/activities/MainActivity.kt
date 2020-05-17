@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tributeapp.*
+import com.example.tributeapp.ui.Session
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // associate navigation view w/ session to update it
-        App.session = SessionViewModel(navView)
+        App.session = Session(navView)
     }
 
     override fun onSupportNavigateUp(): Boolean {

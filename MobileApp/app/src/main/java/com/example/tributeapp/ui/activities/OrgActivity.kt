@@ -2,8 +2,10 @@ package com.example.tributeapp.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.toolbox.ImageLoader
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.image_loader.ImageLoader.Companion.loadImage
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.model.dtos.Org
 import kotlinx.android.synthetic.main.activity_org.*
 import org.json.JSONObject
@@ -22,13 +24,11 @@ class OrgActivity : AppCompatActivity() {
         updateImage(org)
         println(org)
 
-        followButton.setOnClickListener{Utils.makeToast(this, "folllow action")}
-
-
+        followButton.setOnClickListener{ UIUtils.makeToast(this, "folllow action")}
     }
 
     private fun updateImage(org: Org) {
-        //Utils.loadImage(this, org_image, org.imageLink, R.drawable.ic_volunteer_gray)
+        //ImageLoader.loadImage(this, , org.imageLink, R.drawable.ic_volunteer_gray)
     }
 
     private fun updateFields(org: Org) {

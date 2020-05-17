@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import com.example.tributeapp.model.dtos.Post
@@ -73,7 +73,7 @@ class PostsViewHolder(
                     likeCount.text = post!!.likes.size.toString()
                 }
             }
-        else like.setOnClickListener{Utils.onClickAuthenticatedMessage(it)}
+        else like.setOnClickListener{ UIUtils.onClickAuthenticatedMessage(it)}
     }
 
     fun bindTo(post: Post) {

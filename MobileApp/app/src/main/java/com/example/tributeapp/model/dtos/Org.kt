@@ -1,7 +1,8 @@
 package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.App
-import com.example.tributeapp.Utils
+import com.example.tributeapp.model.ModelUtils
+import com.example.tributeapp.ui.UIUtils
 import org.json.JSONObject
 import kotlin.String
 
@@ -9,7 +10,7 @@ data class Org(private val json: JSONObject): Entity(){
 
     override val id: String = json.getString("_id")
     override val name: String = json.getString("name")
-    override val imageLink: String? = Utils.parseImageLink(json.optString("imageLink"))
+    override val imageLink: String? = ModelUtils.parseImageLink(json.optString("imageLink"))
     override val followers = getUsers(json.getJSONObject("followers"))
 
     val description: String? = json.optString("description")

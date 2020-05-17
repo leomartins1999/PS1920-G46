@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.ui.view_model_factories.LoginViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.view.*
@@ -32,10 +32,10 @@ class LoginFragment: Fragment(){
                 email,
                 password,
                 {
-                    Utils.makeToast(context, resources.getString(R.string.executed_login))
+                    UIUtils.makeToast(context, resources.getString(R.string.executed_login))
                     this.requireActivity().onBackPressed()
                 },
-                {Utils.makeToast(context, "Error")}
+                { UIUtils.makeToast(context, "Error")}
             )
         }
 

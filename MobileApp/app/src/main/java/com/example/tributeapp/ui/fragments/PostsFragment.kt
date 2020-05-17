@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.model.adapters.PostListAdapter
 import com.example.tributeapp.ui.view_model_factories.PostsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.PostsViewModel
@@ -18,7 +18,7 @@ class PostsFragment : Fragment() {
     private val adapter by lazy {
         PostListAdapter(model) { postId, onSuccess ->
             model.likePost(postId, onSuccess) {
-                Utils.makeToast(context, "Error liking post")
+                UIUtils.makeToast(context, "Error liking post")
             } }
     }
 
@@ -38,7 +38,7 @@ class PostsFragment : Fragment() {
 
         model.observe(this) { adapter.notifyDataSetChanged() }
 
-        model.updatePosts { Utils.makeToast(context, "Error loading posts") }
+        model.updatePosts { UIUtils.makeToast(context, "Error loading posts") }
 
         return root
     }

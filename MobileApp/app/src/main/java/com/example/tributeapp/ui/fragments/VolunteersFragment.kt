@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.ui.activities.VOLUNTEER_KEY
 import com.example.tributeapp.ui.activities.VolunteerActivity
 import com.example.tributeapp.ui.view_model_factories.VolunteersViewModelProviderFactory
@@ -45,7 +45,7 @@ class VolunteersFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
-        model.updateVolunteers { Utils.makeToast(context, "Error loading volunteers!") }
+        model.updateVolunteers { UIUtils.makeToast(context, "Error loading volunteers!") }
 
         return root
     }

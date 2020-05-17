@@ -2,8 +2,9 @@ package com.example.tributeapp.model.dtos
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.tributeapp.model.ModelUtils
 import org.json.JSONObject
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import kotlin.String
 
 data class Event(private val json: JSONObject): Parcelable{
@@ -16,7 +17,7 @@ data class Event(private val json: JSONObject): Parcelable{
 
     val date: String? = json.optString("date")
     val location: String? = json.optString("location")
-    val imageLink: String? = Utils.parseImageLink(json.optString("imageLink"))
+    val imageLink: String? = ModelUtils.parseImageLink(json.optString("imageLink"))
 
     val interested = getUsers(json.getJSONObject("interested"))
     val participants = getUsers(json.getJSONObject("participants"))

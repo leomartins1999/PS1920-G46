@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.ui.view_model_factories.EventsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.EventsViewModel
 import com.example.tributeapp.model.adapters.EventsListAdapter
@@ -38,7 +38,7 @@ class EventsFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
-        model.updateEvents { Utils.makeToast(context, "Error retrieving events!") }
+        model.updateEvents { UIUtils.makeToast(context, "Error retrieving events!") }
 
         return root
     }

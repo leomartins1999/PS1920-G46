@@ -1,6 +1,6 @@
 package com.example.tributeapp.model.dtos
 
-import com.example.tributeapp.Utils
+import com.example.tributeapp.model.ModelUtils
 import org.json.JSONObject
 import kotlin.String
 
@@ -11,7 +11,7 @@ data class Post(private val json: JSONObject){
     val ownerType: String = json.getString("owner_type")
 
     val description: String = json.getString("description")
-    val imageLink: String? = Utils.parseImageLink(json.getString("imageLink"))
+    val imageLink: String? = ModelUtils.parseImageLink(json.getString("imageLink"))
     val time: Long = json.getLong("time")
 
     val likes =
