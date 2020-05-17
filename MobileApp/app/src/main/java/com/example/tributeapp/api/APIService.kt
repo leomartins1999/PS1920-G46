@@ -1,6 +1,7 @@
 package com.example.tributeapp.api
 
 import android.content.Context
+import com.example.tributeapp.App
 import com.example.tributeapp.api.controllers.*
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
@@ -33,7 +34,7 @@ class APIService(ctx: Context) {
         posts.getPosts(onSuccess, onError)
 
     fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
-        onSuccess()
+        posts.likePost(App.session!!.user.id, postID, onSuccess, onError)
 
     fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
         events.getEvents(onSuccess, onError)

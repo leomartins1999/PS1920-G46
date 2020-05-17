@@ -46,7 +46,7 @@ class EntityViewHolder(private val entityLayout: LinearLayout, private val onCli
 
         followers.text = "${entity.followers.size}"
 
-        if (App.session!!.session){
+        if (App.session!!.hasSession){
             if (entity.id == App.session!!.user.id)
                  followerImage.setImageDrawable(entityLayout.context.getDrawable(R.drawable.ic_volunteer_dark_blue))
             else if (entity.followers.contains(App.session!!.user))

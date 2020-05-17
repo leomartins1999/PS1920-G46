@@ -4,18 +4,24 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.parser.Parser
-import com.example.tributeapp.model.dtos.User
+import com.example.tributeapp.api.request_executor.APIRequest
+import com.example.tributeapp.api.request_executor.LoginRequest
 import org.json.JSONObject
-import java.lang.Exception
 
 class RequestExecutor(ctx: Context) {
 
     private val queue = Volley.newRequestQueue(ctx)
+
+    /**
+     * todo: add limit and skip
+     */
+    private fun buildRequestURL(url: String): String {
+        return "$BASE_URL/$url"
+    }
 
     fun <T> get(
         url: String,
@@ -38,24 +44,12 @@ class RequestExecutor(ctx: Context) {
         queue.add(req)
     }
 
-    /**
-     * todo: add limit and skip
-     */
-    private fun buildRequestURL(url: String): String {
-        return "$BASE_URL/$url"
-    }
+    fun put(url: String, body: JSONObject, onSuccess: (JSONObject) -> Unit, onError: () -> Unit) {
+        val reqURL = buildRequestURL(url)
 
-    fun post(
-        url: String,
-        body: JSONObject,
-        onSuccess: (JSONObject) -> Unit,
-        onError: () -> Unit
-    ) {
-        val reqUrl = buildRequestURL(url)
-
-        val req = JsonObjectRequest(
-            Request.Method.POST,
-            reqUrl,
+        val req = APIRequest(
+            Request.Method.PUT,
+            reqURL,
             body,
             Response.Listener {
                 onSuccess(it)
@@ -65,7 +59,26 @@ class RequestExecutor(ctx: Context) {
             }
         )
 
-        Log.v(APP_TAG, "Executing request to url: $reqUrl")
+        Log.v(APP_TAG, "Executing request to url: $reqURL")
+        queue.add(req)
+    }
+
+    fun login(body: JSONObject, onSuccess: (JSONObject) -> Unit, onError: () -> Unit) {
+        val reqURL = buildRequestURL(LOGIN_URL)
+
+        val req = LoginRequest(
+            reqURL,
+            body,
+            Response.Listener {
+                onSuccess(it!!)
+            },
+            Response.ErrorListener {
+                Log.v(APP_TAG, "$it")
+                onError()
+            }
+        )
+
+        Log.v(APP_TAG, "Executing request to url: $reqURL")
         queue.add(req)
     }
 

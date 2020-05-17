@@ -6,20 +6,22 @@ import org.json.JSONObject
 
 fun getUsers(json: JSONObject): MutableList<User> {
     val users = mutableListOf<User>()
-    json.keys().forEach { users.add(
-        User(
-            it!!,
-            json.getString(it)
+    json.keys().forEach {
+        users.add(
+            User(
+                it!!,
+                json.getString(it)
+            )
         )
-    ) }
+    }
     return users
 }
 
 @Parcelize
-class User(val id: String, val type: String): Parcelable{
+class User(val id: String, val type: String, val token: String? = null) : Parcelable {
 
-    constructor(json: JSONObject):
-            this(json.getString("user_id"), json.getString("user_type"))
+    constructor(json: JSONObject) :
+            this(json.getString("user_id"), json.getString("user_type"), json.optString("token"))
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -37,7 +39,7 @@ class User(val id: String, val type: String): Parcelable{
     }
 
     override fun toString(): String {
-        return "User(id='$id', type='$type')"
+        return "User(id='$id', type='$type', token=$token)"
     }
 
 }
