@@ -2,6 +2,7 @@ package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.api.BASE_URL
 import org.json.JSONObject
+import kotlin.String
 
 data class Post(private val json: JSONObject){
     val id = json.getString("_id")

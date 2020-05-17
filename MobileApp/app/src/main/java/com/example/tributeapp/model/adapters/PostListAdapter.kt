@@ -50,7 +50,7 @@ class PostsViewHolder(
     private val ownerName: TextView = postsView.findViewById(R.id.owner_name)
 
     private val description: TextView = postsView.findViewById(R.id.description)
-    private val postImage: ImageView = postsView.findViewById(R.id.image)
+    private val postImage: ImageView = postsView.findViewById(R.id.org_image)
 
     private val likeCount: TextView = postsView.findViewById(R.id.like_count)
     private val like: ImageView = postsView.findViewById(R.id.like_image)

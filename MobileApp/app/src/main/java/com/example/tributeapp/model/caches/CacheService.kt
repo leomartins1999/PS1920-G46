@@ -21,7 +21,7 @@ class CacheService{
         volunteerCache.add(volunteer.id, volunteer)
     }
 
-    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit){
+    fun getVolunteer(key: kotlin.String, onSuccess: (Volunteer) -> Unit){
         volunteerCache.request(key, onSuccess)
     }
 
@@ -29,11 +29,11 @@ class CacheService{
         orgCache.add(org.id, org)
     }
 
-    fun getOrg(key: String, onSuccess: (Org) -> Unit) {
+    fun getOrg(key: kotlin.String, onSuccess: (Org) -> Unit) {
         orgCache.request(key, onSuccess)
     }
 
-    private fun onError(type: String, key: String){
+    private fun onError(type: kotlin.String, key: kotlin.String){
         Log.v(APP_TAG, "Error fetching $type - $key")
     }
 

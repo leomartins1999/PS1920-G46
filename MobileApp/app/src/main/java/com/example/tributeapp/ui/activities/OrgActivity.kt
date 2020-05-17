@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.activity_org.description
 import kotlinx.android.synthetic.main.activity_org.followButton
 import kotlinx.android.synthetic.main.activity_org.followersCount
 import kotlinx.android.synthetic.main.activity_org.followingCount
-import kotlinx.android.synthetic.main.activity_org.image
 import kotlinx.android.synthetic.main.activity_org.name
 import kotlinx.android.synthetic.main.activity_volunteer.*
 import org.json.JSONObject
@@ -30,10 +29,12 @@ class OrgActivity : AppCompatActivity() {
         println(org)
 
         followButton.setOnClickListener{Utils.makeToast(this, "folllow action")}
+
+
     }
 
     private fun updateImage(org: Org) {
-        Utils.loadImage(this, image, org.imageLink, R.drawable.ic_volunteer_gray)
+        //Utils.loadImage(this, org_image, org.imageLink, R.drawable.ic_volunteer_gray)
     }
 
     private fun updateFields(org: Org) {

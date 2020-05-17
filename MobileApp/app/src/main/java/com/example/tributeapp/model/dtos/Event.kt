@@ -3,9 +3,8 @@ package com.example.tributeapp.model.dtos
 import android.os.Parcel
 import android.os.Parcelable
 import com.example.tributeapp.api.BASE_URL
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
 import org.json.JSONObject
+import kotlin.String
 
 class Event(private val json: JSONObject): Parcelable{
 

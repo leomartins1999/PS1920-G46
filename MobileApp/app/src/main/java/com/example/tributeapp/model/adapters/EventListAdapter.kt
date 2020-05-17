@@ -54,7 +54,7 @@ class EventsViewHolder(private val layout: LinearLayout)
         name.text = event.name
         date.text = event.date
 
-        participants.text = "Interested: ${event.interested.size} | Participating: ${event.participants.size}"
+        participants.text = layout.context.getString(R.string.event_interested_and_participants, event.interested.size, event.participants.size)
 
         layout.setOnClickListener{
             val intent = Intent(layout.context, EventActivity::class.java)

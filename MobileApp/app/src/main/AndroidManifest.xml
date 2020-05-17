@@ -14,10 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.activities.OrgActivity" />
-        <activity android:name=".ui.activities.OrgsActivity" />
         <activity android:name=".ui.activities.VolunteerActivity" />
-        <activity android:name=".ui.activities.VolunteersActivity" />
-        <activity android:name=".ui.activities.EventsActivity" />
         <activity
             android:name=".ui.activities.EventActivity"
             android:label="@string/title_activity_event" />

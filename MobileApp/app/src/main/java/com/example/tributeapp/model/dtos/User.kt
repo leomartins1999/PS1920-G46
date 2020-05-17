@@ -3,6 +3,7 @@ package com.example.tributeapp.model.dtos
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONObject
+import kotlin.String
 
 fun getUsers(json: JSONObject): MutableList<User> {
     val users = mutableListOf<User>()

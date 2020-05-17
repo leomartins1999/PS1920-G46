@@ -48,7 +48,7 @@ class EventActivity : AppCompatActivity() {
         description.text = event.description
     }
 
-    fun updateInterestedAndParticipants(){
+    private fun updateInterestedAndParticipants(){
         val event = model.event
 
         interested.text = "${event.interested.size}"

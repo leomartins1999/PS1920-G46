@@ -34,7 +34,7 @@ class EntityListAdapter(private val model: EntityViewModel, private val onClick:
 class EntityViewHolder(private val entityLayout: LinearLayout, private val onClick: (String) -> Unit)
     : RecyclerView.ViewHolder(entityLayout){
 
-    private val image = entityLayout.findViewById<ImageView>(R.id.image)
+    private val image = entityLayout.findViewById<ImageView>(R.id.org_image)
     private val name = entityLayout.findViewById<TextView>(R.id.name)
     private val followers = entityLayout.findViewById<TextView>(R.id.followers_count)
     private val followerImage = entityLayout.findViewById<ImageView>(R.id.followers_image)

@@ -2,6 +2,7 @@ package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.App
 import org.json.JSONObject
+import kotlin.String
 
 data class Org(private val json: JSONObject): Entity(){
 

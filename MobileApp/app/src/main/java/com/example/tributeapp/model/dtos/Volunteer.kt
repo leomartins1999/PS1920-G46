@@ -2,7 +2,6 @@ package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.App
 import org.json.JSONObject
-import java.io.Serializable
 
 data class Volunteer(private val json: JSONObject): Entity(){
 
@@ -39,7 +38,7 @@ data class Volunteer(private val json: JSONObject): Entity(){
     }
 
     override fun hashCode(): Int {
-        return id.hashCode() ?: 0
+        return id.hashCode()
     }
 
     companion object{

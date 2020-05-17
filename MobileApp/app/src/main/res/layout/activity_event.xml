@@ -24,6 +24,7 @@
                 android:id="@+id/org_image"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/org_image"
                 tools:srcCompat="@tools:sample/avatars"
                 >
             </ImageView>
@@ -54,6 +55,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:contentDescription="@string/event_image"
             app:srcCompat="@drawable/ic_photo_default"
             >
         </ImageView>
@@ -82,6 +84,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/location_icon"
                     app:srcCompat="@drawable/ic_location"
                     >
                 </ImageView>
@@ -90,7 +93,7 @@
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Not here"
+                    android:text="@string/loading"
                     android:textSize="20sp"
                     >
                 </TextView>
@@ -103,6 +106,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/date_icon"
                     app:srcCompat="@drawable/ic_date"
                     >
                 </ImageView>
@@ -111,7 +115,7 @@
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4-20-2020"
+                    android:text="@string/loading"
                     android:textSize="20sp"
                     >
                 </TextView>
@@ -160,7 +164,7 @@
                     android:id="@+id/interested"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/loading"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -182,7 +186,7 @@
                     android:id="@+id/participating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/loading"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -200,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Event's description\n\n\n\n\n\n"
+            android:text="@string/loading"
             >
         </TextView>
 

@@ -9,10 +9,11 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/org_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
+        android:contentDescription="@string/org_image"
         app:srcCompat="@drawable/ic_volunteer_white"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -28,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="Organization"
+            android:text="@string/loading"
             android:textSize="20sp"
             android:textStyle="bold"
             />
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="@string/followButton"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="15sp"
             />
 
     </LinearLayout>
@@ -68,14 +69,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Followers"
+                    android:text="@string/loading"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/followersCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/loading"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -90,14 +91,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Following"
+                    android:text="@string/loading"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/followingCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/loading"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -110,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="tributesite"
+        android:text="@string/loading"
         android:textSize="20sp" />
 
     <TextView
@@ -119,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="facebook.com"
+        android:text="@string/loading"
         android:textSize="20sp" />
 
     <TextView
@@ -128,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="email@email.email"
+        android:text="@string/loading"
         android:textSize="20sp" />
 
     <TextView
@@ -138,7 +139,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="20dp"
-        android:text="1-800-PHONE"
+        android:text="@string/loading"
         android:textSize="20sp" />
 
     <TextView
@@ -147,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="description"
+        android:text="@string/loading"
         android:textSize="20sp" />
 
 

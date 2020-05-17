@@ -47,4 +47,10 @@
     <string name="not_interested_button">Remove interest</string>
     <string name="loading">Loading…</string>
     <string name="updated_interest">Updated interest</string>
+    <string name="org_image">Image of org</string>
+    <string name="event_image">Image of event</string>
+    <string name="location_icon">Location icon</string>
+    <string name="date_icon">Date icon</string>
+    <string name="volunteer_image">Image of volunteer</string>
+    <string name="event_interested_and_participants">Interested: %1$d | Participating: %2$d</string>
 </resources>

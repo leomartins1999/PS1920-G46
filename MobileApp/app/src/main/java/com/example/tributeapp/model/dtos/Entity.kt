@@ -1,5 +1,7 @@
 package com.example.tributeapp.model.dtos
 
+import kotlin.String
+
 abstract class Entity {
 
     abstract val id: String
