@@ -29,8 +29,8 @@ class APIService(ctx: Context) {
     fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteers(onSuccess, onError)
 
-    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
-        volunteers.getVolunteer(key, onSuccess, onError)
+    fun getVolunteer(id: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
+        volunteers.getVolunteer(id, onSuccess, onError)
 
     fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         volunteers.followVolunteer(volunteerID, onSuccess, onError)
@@ -39,7 +39,7 @@ class APIService(ctx: Context) {
         posts.getPosts(onSuccess, onError)
 
     fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
-        posts.likePost(App.session!!.user.id, postID, onSuccess, onError)
+        posts.likePost(postID, onSuccess, onError)
 
     fun createPost(post: Post, onSuccess: () -> Unit, onError: () -> Unit) =
         posts.create(post, onSuccess, onError)

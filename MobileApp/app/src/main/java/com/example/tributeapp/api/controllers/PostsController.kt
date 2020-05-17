@@ -14,19 +14,11 @@ class PostsController(private val executor: RequestExecutor) {
     fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
         executor.get(POSTS_URL, ListParser(onSuccess) { Post(it) }, onError)
 
-    fun likePost(userID: String, postID: String, onSuccess: () -> Unit, onError: () -> Unit){
-        executor.put(
-            likeURL(postID),
-            JSONObject(),
-            {
-            Log.v(APP_TAG, "$it")
-            onSuccess()
-            },
-            onError
-        )
+    fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) {
+        executor.put(likeURL(postID), onSuccess, onError)
     }
 
-    fun create(post: Post, onSuccess: () -> Unit, onError: () -> Unit){
+    fun create(post: Post, onSuccess: () -> Unit, onError: () -> Unit) {
         throw NotImplementedError()
     }
 

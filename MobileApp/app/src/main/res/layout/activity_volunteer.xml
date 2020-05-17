@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/loading"
+                    android:text="@string/followers"
                     android:textSize="20sp" />
 
                 <TextView
@@ -93,7 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/loading"
+                    android:text="@string/following"
                     android:textSize="20sp" />
 
                 <TextView

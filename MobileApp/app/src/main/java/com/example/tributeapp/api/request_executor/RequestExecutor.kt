@@ -16,9 +16,6 @@ class RequestExecutor(ctx: Context) {
 
     private val queue = Volley.newRequestQueue(ctx)
 
-    /**
-     * todo: add limit and skip
-     */
     private fun buildRequestURL(url: String): String {
         return "$BASE_URL/$url"
     }
@@ -44,19 +41,15 @@ class RequestExecutor(ctx: Context) {
         queue.add(req)
     }
 
-    fun put(url: String, body: JSONObject, onSuccess: (JSONObject) -> Unit, onError: () -> Unit) {
+    fun put(url: String, onSuccess: () -> Unit, onError: () -> Unit) {
         val reqURL = buildRequestURL(url)
 
         val req = APIRequest(
             Request.Method.PUT,
             reqURL,
-            body,
-            Response.Listener {
-                onSuccess(it)
-            },
-            Response.ErrorListener {
-                onError()
-            }
+            JSONObject(),
+            Response.Listener { onSuccess() },
+            Response.ErrorListener { onError() }
         )
 
         Log.v(APP_TAG, "Executing request to url: $reqURL")
