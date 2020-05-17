@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.tributeapp.App
 import com.example.tributeapp.api.APIService
 import com.example.tributeapp.model.dtos.Volunteer
+import com.example.tributeapp.model.dtos.updateUser
 
 class VolunteerViewModel(
     private val volunteerID: String,
@@ -33,10 +34,7 @@ class VolunteerViewModel(
         api.followVolunteer(
             volunteerID,
             {
-                when(val idx = volunteer.followers.indexOfFirst { it.id == App.session!!.user.id }){
-                    -1 -> volunteer.followers.add(App.session!!.user)
-                    else -> volunteer.followers.removeAt(idx)
-                }
+                volunteer.followers.updateUser(App.session!!.user)
                 onSuccess()
             },
             onError

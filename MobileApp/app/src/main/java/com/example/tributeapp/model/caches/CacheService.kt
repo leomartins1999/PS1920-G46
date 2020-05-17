@@ -4,36 +4,44 @@ import android.util.Log
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.App
 import com.example.tributeapp.api.APIService
+import com.example.tributeapp.model.dtos.Entity
 import com.example.tributeapp.model.dtos.Org
 import com.example.tributeapp.model.dtos.Volunteer
 
-class CacheService{
+class CacheService {
 
     private val api: APIService by lazy { App.api }
 
-    private val volunteerCache
-            = Cache<Volunteer>{ key, onSuccess -> api.getVolunteer(key, onSuccess){onError("volunteer", key)} }
+    private val volunteerCache =
+        Cache<Volunteer> { key, onSuccess -> api.getVolunteer(key, onSuccess) { onError("volunteer", key) } }
 
-    private val orgCache
-            = Cache<Org>{ key, onSuccess -> api.getOrg(key, onSuccess){onError("org", key)} }
+    private val orgCache =
+        Cache<Org> { key, onSuccess -> api.getOrg(key, onSuccess) { onError("org", key) } }
 
-    fun addVolunteer(volunteer: Volunteer){
+    fun addVolunteer(volunteer: Volunteer) {
         volunteerCache.add(volunteer.id, volunteer)
-    }
-
-    fun getVolunteer(key: kotlin.String, onSuccess: (Volunteer) -> Unit){
-        volunteerCache.request(key, onSuccess)
     }
 
     fun addOrg(org: Org) {
         orgCache.add(org.id, org)
     }
 
-    fun getOrg(key: kotlin.String, onSuccess: (Org) -> Unit) {
+    fun getEntity(id: String, type: String, onSuccess: (Entity) -> Unit) {
+        when (type) {
+            "volunteer" -> getVolunteer(id, onSuccess)
+            "org" -> getOrg(id, onSuccess)
+        }
+    }
+
+    fun getOrg(key: String, onSuccess: (Org) -> Unit) {
         orgCache.request(key, onSuccess)
     }
 
-    private fun onError(type: kotlin.String, key: kotlin.String){
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit) {
+        volunteerCache.request(key, onSuccess)
+    }
+
+    private fun onError(type: String, key: String) {
         Log.v(APP_TAG, "Error fetching $type - $key")
     }
 

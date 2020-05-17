@@ -6,7 +6,7 @@ abstract class Entity {
 
     abstract val id: String
     abstract val name: String
-    abstract val imageLink: String
+    abstract val imageLink: String?
     abstract val followers: List<User>
 
 }

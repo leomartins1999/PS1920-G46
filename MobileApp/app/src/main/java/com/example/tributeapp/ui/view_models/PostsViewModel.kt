@@ -24,15 +24,8 @@ class PostsViewModel(private val api: APIService) : ViewModel() {
         }, onError)
     }
 
-    fun likePost(userID: String, postID: String, onSuccess: () -> Unit, onError: () -> Unit) {
-        Log.v(APP_TAG, "Like post -> call - userID: $userID, postID: $postID")
-        api.likePost(postID,
-            {
-            Log.v(APP_TAG, "Like post -> success")
-            onSuccess()
-            },
-            onError
-        )
+    fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) {
+        api.likePost(postID, onSuccess, onError)
     }
 
     fun observe(owner: LifecycleOwner, observer: (List<Post>) -> Unit) {

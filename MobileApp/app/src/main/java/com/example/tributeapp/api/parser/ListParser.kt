@@ -1,6 +1,5 @@
 package com.example.tributeapp.api.parser
 
-import android.os.AsyncTask
 import org.json.JSONObject
 
 class ListParser<T>(

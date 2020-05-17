@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
+import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import com.example.tributeapp.model.dtos.Post
+import com.example.tributeapp.model.dtos.updateUser
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
@@ -50,7 +52,7 @@ class PostsViewHolder(
     private val ownerName: TextView = postsView.findViewById(R.id.owner_name)
 
     private val description: TextView = postsView.findViewById(R.id.description)
-    private val postImage: ImageView = postsView.findViewById(R.id.org_image)
+    private val postImage: ImageView = postsView.findViewById(R.id.image)
 
     private val likeCount: TextView = postsView.findViewById(R.id.like_count)
     private val like: ImageView = postsView.findViewById(R.id.like_image)
@@ -66,9 +68,9 @@ class PostsViewHolder(
                 val image: Drawable? = if (newState) blueLike else grayLike
 
                 likeHandler(post!!.id) {
+                    post!!.likes.updateUser(App.session!!.user)
                     like.setImageDrawable(image)
-                    likeCount.text =
-                        "${Integer.parseInt(likeCount.text.toString()) + if (newState == true) 1 else -1}"
+                    likeCount.text = post!!.likes.size.toString()
                 }
             }
         else like.setOnClickListener{Utils.onClickAuthenticatedMessage(it)}
@@ -77,24 +79,16 @@ class PostsViewHolder(
     fun bindTo(post: Post) {
         this.post = post
 
-        when (post.owner_type) {
-            "org" -> App.cacheService.getOrg(post.owner_id) {
-                Utils.loadImage(postsView.context, ownerThumb, it.imageLink, R.drawable.ic_volunteer_gray)
-                ownerName.text = it.name
-            }
-            "volunteer" -> App.cacheService.getVolunteer(post.owner_id) {
-                Utils.loadImage(postsView.context, ownerThumb, it.imageLink, R.drawable.ic_volunteer_gray)
-                ownerName.text = it.name
-            }
+        App.cacheService.getEntity(post.ownerID, post.ownerType){
+            ImageLoader.loadImage(postsView.context, ownerThumb, it.imageLink, false, R.drawable.ic_volunteer_gray)
+            ownerName.text = it.name
         }
 
         description.text = post.description
-        Utils.loadImage(postsView.context, postImage, post.imageLink)
+        ImageLoader.loadImage(postsView.context, postImage, post.imageLink, true)
 
         likeCount.text = "${post.getNumberOfLikes()}"
         like.setImageDrawable(if (App.session!!.hasSession && post.likes.contains(App.session!!.user)) blueLike else grayLike)
-
-        val prettyTime = PrettyTime(Locale.getDefault())
 
         time.text = prettyTime.format(Date(post.time))
     }

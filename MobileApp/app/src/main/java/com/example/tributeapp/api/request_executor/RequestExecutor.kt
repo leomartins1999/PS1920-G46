@@ -1,4 +1,4 @@
-package com.example.tributeapp.api
+package com.example.tributeapp.api.request_executor
 
 import android.content.Context
 import android.util.Log
@@ -7,9 +7,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.tributeapp.APP_TAG
+import com.example.tributeapp.api.BASE_URL
+import com.example.tributeapp.api.LOGIN_URL
 import com.example.tributeapp.api.parser.Parser
-import com.example.tributeapp.api.request_executor.APIRequest
-import com.example.tributeapp.api.request_executor.LoginRequest
 import org.json.JSONObject
 
 class RequestExecutor(ctx: Context) {

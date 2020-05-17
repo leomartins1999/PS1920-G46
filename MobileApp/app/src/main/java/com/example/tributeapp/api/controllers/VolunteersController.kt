@@ -1,6 +1,6 @@
 package com.example.tributeapp.api.controllers
 
-import com.example.tributeapp.api.RequestExecutor
+import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.api.VOLUNTEERS_URL
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
@@ -12,10 +12,10 @@ class VolunteersController(private val executor: RequestExecutor) {
     fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
         executor.get(VOLUNTEERS_URL, ListParser(onSuccess) { Volunteer(it) }, onError)
 
-    fun getVolunteer(key: kotlin.String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         executor.get(volunteerURL(key), SingletonParser(onSuccess) { Volunteer(it) }, onError)
 
-    fun followVolunteer(volunteerID: kotlin.String, onSuccess: () -> Unit, onError: () -> Unit): Any {
+    fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit): Any {
         throw NotImplementedError()
     }
 

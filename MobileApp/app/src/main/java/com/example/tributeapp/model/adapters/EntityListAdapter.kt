@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
-import com.example.tributeapp.ui.view_models.EntityViewModel
+import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Entity
+import com.example.tributeapp.ui.view_models.EntityViewModel
 
 class EntityListAdapter(private val model: EntityViewModel, private val onClick: (String) -> Unit)
     : RecyclerView.Adapter<EntityViewHolder>() {
@@ -34,13 +34,13 @@ class EntityListAdapter(private val model: EntityViewModel, private val onClick:
 class EntityViewHolder(private val entityLayout: LinearLayout, private val onClick: (String) -> Unit)
     : RecyclerView.ViewHolder(entityLayout){
 
-    private val image = entityLayout.findViewById<ImageView>(R.id.org_image)
+    private val image = entityLayout.findViewById<ImageView>(R.id.image)
     private val name = entityLayout.findViewById<TextView>(R.id.name)
     private val followers = entityLayout.findViewById<TextView>(R.id.followers_count)
     private val followerImage = entityLayout.findViewById<ImageView>(R.id.followers_image)
 
     fun bindTo(entity: Entity){
-        Utils.loadImage(entityLayout.context, image, entity.imageLink, R.drawable.ic_volunteer_gray)
+        ImageLoader.loadImage(entityLayout.context, image, entity.imageLink, false, R.drawable.ic_volunteer_gray)
 
         name.text = entity.name
 

@@ -1,7 +1,7 @@
 package com.example.tributeapp.api.controllers
 
 import com.example.tributeapp.api.ORGS_URL
-import com.example.tributeapp.api.RequestExecutor
+import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.api.orgURL
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser

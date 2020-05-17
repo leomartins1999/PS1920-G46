@@ -18,6 +18,13 @@ fun getUsers(json: JSONObject): MutableList<User> {
     return users
 }
 
+fun MutableList<User>.updateUser(user: User){
+    when(val idx = this.indexOfFirst { it.id == user.id }){
+        -1 -> this.add(user)
+        else -> this.removeAt(idx)
+    }
+}
+
 @Parcelize
 class User(val id: String, val type: String, val token: String? = null) : Parcelable {
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.example.tributeapp.ui.view_model_factories.LoginViewModelProviderFactory

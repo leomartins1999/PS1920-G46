@@ -1,23 +1,24 @@
 package com.example.tributeapp.model.dtos
 
-import com.example.tributeapp.api.BASE_URL
+import com.example.tributeapp.Utils
 import org.json.JSONObject
 import kotlin.String
 
 data class Post(private val json: JSONObject){
-    val id = json.getString("_id")
-    val owner_id = json.getString("owner_id")
-    val owner_type = json.getString("owner_type")
-    val description = json.getString("description")
-    val imageLink =
-        if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")
-        else BASE_URL + json.getString("imageLink")
-    val time = json.getLong("time")
+
+    val id: String = json.getString("_id")
+    val ownerID: String = json.getString("owner_id")
+    val ownerType: String = json.getString("owner_type")
+
+    val description: String = json.getString("description")
+    val imageLink: String? = Utils.parseImageLink(json.getString("imageLink"))
+    val time: Long = json.getLong("time")
+
     val likes =
         getUsers(json.getJSONObject("likes"))
 
     override fun toString(): String {
-        return "Post(json=$json, id='$id', owner_id='$owner_id', description='$description', imageLink='$imageLink', time=$time)"
+        return "Post(json=$json, id='$id', owner_id='$ownerID', description='$description', imageLink='$imageLink', time=$time)"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -38,6 +39,5 @@ data class Post(private val json: JSONObject){
     fun getNumberOfLikes(): Int {
         return likes.size
     }
-
 
 }

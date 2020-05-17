@@ -1,10 +1,9 @@
 package com.example.tributeapp.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tributeapp.App
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteerViewModel
@@ -40,7 +39,7 @@ class VolunteerActivity : AppCompatActivity() {
     }
 
     private fun setFields(volunteer: Volunteer) {
-        Utils.loadImage(this, org_image, volunteer.imageLink, R.drawable.ic_volunteer_gray)
+        ImageLoader.loadImage(this, image, volunteer.imageLink, false, R.drawable.ic_volunteer_gray)
         name.text = volunteer.name
         linkedin.text = volunteer.linkedInLink
         description.text = volunteer.description

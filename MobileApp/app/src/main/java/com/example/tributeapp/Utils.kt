@@ -2,38 +2,26 @@ package com.example.tributeapp
 
 import android.content.Context
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.example.tributeapp.api.BASE_URL
 
 class Utils {
 
-    companion object{
-
-        fun loadImage(
-            context: Context,
-            imageView: ImageView,
-            imageLink: String,
-            placeholderID: Int = R.drawable.ic_error_image
-        ){
-            Glide
-                .with(context)
-                .applyDefaultRequestOptions(
-                    RequestOptions()
-                        .placeholder(placeholderID)
-                        .error(placeholderID)
-                )
-                .load(imageLink)
-                .into(imageView)
-        }
+    companion object {
 
         fun makeToast(context: Context?, message: String) {
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
 
-        fun onClickAuthenticatedMessage(v: View){
+        fun onClickAuthenticatedMessage(v: View) {
             makeToast(v.context, v.context.getString(R.string.authentication_required))
+        }
+
+        fun parseImageLink(link: String?): String? {
+            if (link == null) return null
+
+            return if (!link.startsWith("/images")) link
+            else BASE_URL + link
         }
 
     }

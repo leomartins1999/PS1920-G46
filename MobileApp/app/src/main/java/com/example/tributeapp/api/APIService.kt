@@ -3,6 +3,7 @@ package com.example.tributeapp.api
 import android.content.Context
 import com.example.tributeapp.App
 import com.example.tributeapp.api.controllers.*
+import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.model.dtos.*
 
 
@@ -25,10 +26,10 @@ class APIService(ctx: Context) {
     fun followOrg(orgID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         orgs.followOrg(orgID, onSuccess, onError)
 
-    fun getVolunteers(onSuccess: (List<com.example.tributeapp.model.dtos.Volunteer>) -> Unit, onError: () -> Unit) =
+    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteers(onSuccess, onError)
 
-    fun getVolunteer(key: String, onSuccess: (com.example.tributeapp.model.dtos.Volunteer) -> Unit, onError: () -> Unit) =
+    fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteer(key, onSuccess, onError)
 
     fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
@@ -49,7 +50,7 @@ class APIService(ctx: Context) {
     fun interestedInEvent(eventID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         events.interested(eventID, onSuccess, onError)
 
-    fun register(email: String, password: String, volunteer: com.example.tributeapp.model.dtos.Volunteer, onSuccess: () -> Unit, onError: () -> Unit) =
+    fun register(email: String, password: String, volunteer: Volunteer, onSuccess: () -> Unit, onError: () -> Unit) =
         auth.register(email, password, volunteer, onSuccess, onError)
 
     fun login(email: String, password: String, onSuccess: (User) -> Unit, onError: () -> Unit) =

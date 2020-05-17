@@ -3,7 +3,7 @@ package com.example.tributeapp.api.controllers
 import android.util.Log
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.POSTS_URL
-import com.example.tributeapp.api.RequestExecutor
+import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.api.likeURL
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.model.dtos.Post

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.tributeapp.App
 import com.example.tributeapp.api.APIService
 import com.example.tributeapp.model.dtos.Event
+import com.example.tributeapp.model.dtos.updateUser
 
 class EventViewModel(val event: Event, private val api: APIService) : ViewModel() {
 
@@ -11,10 +12,7 @@ class EventViewModel(val event: Event, private val api: APIService) : ViewModel(
         api.interestedInEvent(
             event.id,
             {
-                when (val idx = event.interested.indexOfFirst { it.id == App.session!!.user.id }) {
-                    -1 -> event.interested.add(App.session!!.user)
-                    else -> event.interested.removeAt(idx)
-                }
+                event.interested.updateUser(App.session!!.user)
                 onSuccess()
             },
             onError

@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
+import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.ui.view_model_factories.EventViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.EventViewModel
 import kotlinx.android.synthetic.main.activity_event.*
@@ -32,8 +33,8 @@ class EventActivity : AppCompatActivity() {
     private fun setOrgFields() {
         val event = model.event
 
-        App.cacheService.getOrg(event.org_id) {
-            Utils.loadImage(this, org_image, it.imageLink)
+        App.cacheService.getOrg(event.orgID) {
+            ImageLoader.loadImage(this, image, it.imageLink, false, R.drawable.ic_volunteer_gray)
             org_name.text = it.name
         }
     }
@@ -42,7 +43,7 @@ class EventActivity : AppCompatActivity() {
         val event = model.event
 
         event_name.text = event.name
-        Utils.loadImage(this, event_image, event.imageLink)
+        ImageLoader.loadImage(this, event_image, event.imageLink, true)
         location.text = event.location
         date.text = event.date
         description.text = event.description

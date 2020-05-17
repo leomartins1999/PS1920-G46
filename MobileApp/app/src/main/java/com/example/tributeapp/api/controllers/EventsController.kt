@@ -1,7 +1,7 @@
 package com.example.tributeapp.api.controllers
 
 import com.example.tributeapp.api.EVENTS_URL
-import com.example.tributeapp.api.RequestExecutor
+import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.api.eventsInterested
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.model.dtos.Event
