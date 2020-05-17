@@ -3,8 +3,6 @@ package com.example.tributeapp.api
 import android.content.Context
 import com.example.tributeapp.App
 import com.example.tributeapp.api.controllers.*
-import com.example.tributeapp.api.parser.ListParser
-import com.example.tributeapp.api.parser.SingletonParser
 import com.example.tributeapp.model.dtos.*
 
 
@@ -21,14 +19,20 @@ class APIService(ctx: Context) {
     fun getOrgs(onSuccess: (List<Org>) -> Unit, onError: () -> Unit) =
         orgs.getOrgs(onSuccess, onError)
 
-    fun getOrg(key: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
-        orgs.getOrg(key, onSuccess, onError)
+    fun getOrg(id: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
+        orgs.getOrg(id, onSuccess, onError)
+
+    fun followOrg(sessionID: String, orgID: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        orgs.followOrg(sessionID, orgID, onSuccess, onError)
 
     fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteers(onSuccess, onError)
 
     fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteer(key, onSuccess, onError)
+
+    fun followVolunteer(sessionID: String, volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        orgs.followVolunteer(sessionID, volunteerID, onSuccess, onError)
 
     fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
         posts.getPosts(onSuccess, onError)

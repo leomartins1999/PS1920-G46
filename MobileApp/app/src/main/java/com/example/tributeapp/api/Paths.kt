@@ -1,6 +1,6 @@
 package com.example.tributeapp.api
 
-const val BASE_URL = "http://tribute-api.duckdns.org/api"
+const val BASE_URL = "http://89.115.68.247/api"
 
 const val LOGIN_URL = "login"
 
