@@ -2,6 +2,7 @@ package com.example.tributeapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.Utils
@@ -21,6 +22,8 @@ class VolunteerActivity : AppCompatActivity() {
            updateImage(it)
            println(it)
        }
+
+        followButton.setOnClickListener{Utils.makeToast(this, "folllow action")}
     }
 
     private fun updateImage(volunteer: Volunteer) {
