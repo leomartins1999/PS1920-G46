@@ -21,7 +21,7 @@
             >
 
             <ImageView
-                android:id="@+id/OrgImage"
+                android:id="@+id/org_image"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 tools:srcCompat="@tools:sample/avatars"
@@ -29,10 +29,10 @@
             </ImageView>
 
             <TextView
-                android:id="@+id/OrgName"
+                android:id="@+id/org_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Organization"
+                android:text="@string/loading"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -50,7 +50,7 @@
         >
 
         <ImageView
-            android:id="@+id/EventImage"
+            android:id="@+id/event_image"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -68,10 +68,10 @@
             >
 
             <TextView
-                android:id="@+id/eventName"
+                android:id="@+id/event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Event name"
+                android:text="@string/loading"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 />
@@ -118,6 +118,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/interested_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/interested_button"

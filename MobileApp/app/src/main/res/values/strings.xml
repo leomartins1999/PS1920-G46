@@ -44,4 +44,7 @@
     <string name="executed_login">Successfully logged in</string>
     <string name="followButton">Follow</string>
     <string name="authentication_required">Authentication required to execute action</string>
+    <string name="not_interested_button">Remove interest</string>
+    <string name="loading">Loading…</string>
+    <string name="updated_interest">Updated interest</string>
 </resources>
