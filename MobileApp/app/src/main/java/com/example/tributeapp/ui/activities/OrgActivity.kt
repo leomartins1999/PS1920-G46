@@ -6,6 +6,13 @@ import com.example.tributeapp.R
 import com.example.tributeapp.Utils
 import com.example.tributeapp.model.dtos.Org
 import kotlinx.android.synthetic.main.activity_org.*
+import kotlinx.android.synthetic.main.activity_org.description
+import kotlinx.android.synthetic.main.activity_org.followButton
+import kotlinx.android.synthetic.main.activity_org.followersCount
+import kotlinx.android.synthetic.main.activity_org.followingCount
+import kotlinx.android.synthetic.main.activity_org.image
+import kotlinx.android.synthetic.main.activity_org.name
+import kotlinx.android.synthetic.main.activity_volunteer.*
 import org.json.JSONObject
 
 const val ORG_KEY = "ORG"
@@ -21,6 +28,8 @@ class OrgActivity : AppCompatActivity() {
         updateFields(org)
         updateImage(org)
         println(org)
+
+        followButton.setOnClickListener{Utils.makeToast(this, "folllow action")}
     }
 
     private fun updateImage(org: Org) {

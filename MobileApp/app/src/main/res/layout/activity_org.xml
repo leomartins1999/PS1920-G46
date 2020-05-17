@@ -16,15 +16,32 @@
         app:srcCompat="@drawable/ic_volunteer_white"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text="Org"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        >
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="Organization"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/followButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/followButton"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
