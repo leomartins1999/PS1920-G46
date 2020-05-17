@@ -22,8 +22,8 @@ class APIService(ctx: Context) {
     fun getOrg(id: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
         orgs.getOrg(id, onSuccess, onError)
 
-    fun followOrg(sessionID: String, orgID: String, onSuccess: () -> Unit, onError: () -> Unit) =
-        orgs.followOrg(sessionID, orgID, onSuccess, onError)
+    fun followOrg(orgID: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        orgs.followOrg(orgID, onSuccess, onError)
 
     fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteers(onSuccess, onError)
@@ -31,8 +31,8 @@ class APIService(ctx: Context) {
     fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteer(key, onSuccess, onError)
 
-    fun followVolunteer(sessionID: String, volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
-        orgs.followVolunteer(sessionID, volunteerID, onSuccess, onError)
+    fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        volunteers.followVolunteer(volunteerID, onSuccess, onError)
 
     fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
         posts.getPosts(onSuccess, onError)
@@ -40,8 +40,17 @@ class APIService(ctx: Context) {
     fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         posts.likePost(App.session!!.user.id, postID, onSuccess, onError)
 
+    fun createPost(post: Post, onSuccess: () -> Unit, onError: () -> Unit) =
+        posts.create(post, onSuccess, onError)
+
     fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
         events.getEvents(onSuccess, onError)
+
+    fun interestedInEvent(eventID: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        events.interested(eventID, onSuccess, onError)
+
+    fun register(email: String, password: String, volunteer: Volunteer, onSuccess: () -> Unit, onError: () -> Unit) =
+        auth.register(email, password, volunteer, onSuccess, onError)
 
     fun login(email: String, password: String, onSuccess: (User) -> Unit, onError: () -> Unit) =
         auth.login(email, password, onSuccess, onError)

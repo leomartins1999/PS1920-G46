@@ -26,4 +26,8 @@ class PostsController(private val executor: RequestExecutor) {
         )
     }
 
+    fun create(post: Post, onSuccess: () -> Unit, onError: () -> Unit){
+        throw NotImplementedError()
+    }
+
 }

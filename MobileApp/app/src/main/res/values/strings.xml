@@ -42,4 +42,6 @@
     <string name="participants">Participants</string>
     <string name="executed_logout">Successfully logged out</string>
     <string name="executed_login">Successfully logged in</string>
+    <string name="followButton">Follow</string>
+    <string name="authentication_required">Authentication required to execute action</string>
 </resources>

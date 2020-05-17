@@ -10,4 +10,8 @@ class EventsController(private val executor: RequestExecutor) {
     fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
         executor.get(EVENTS_URL, ListParser(onSuccess) { Event(it) }, onError)
 
+    fun interested(eventID: String, onSuccess: () -> Unit, onError: () -> Unit){
+        throw NotImplementedError()
+    }
+
 }

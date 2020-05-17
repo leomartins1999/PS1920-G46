@@ -60,7 +60,7 @@ class PostsViewHolder(
     private var post: Post? = null
 
     init {
-        if (App.session!!.hasSession){
+        if (App.session!!.hasSession)
             like.setOnClickListener {
                 val newState: Boolean = like.drawable == grayLike
                 val image: Drawable? = if (newState) blueLike else grayLike
@@ -71,7 +71,7 @@ class PostsViewHolder(
                         "${Integer.parseInt(likeCount.text.toString()) + if (newState == true) 1 else -1}"
                 }
             }
-        }
+        else like.setOnClickListener{Utils.onClickAuthenticatedMessage(it)}
     }
 
     fun bindTo(post: Post) {
@@ -91,7 +91,6 @@ class PostsViewHolder(
         description.text = post.description
         Utils.loadImage(postsView.context, postImage, post.imageLink)
 
-        // todo: user's session
         likeCount.text = "${post.getNumberOfLikes()}"
         like.setImageDrawable(if (App.session!!.hasSession && post.likes.contains(App.session!!.user)) blueLike else grayLike)
 

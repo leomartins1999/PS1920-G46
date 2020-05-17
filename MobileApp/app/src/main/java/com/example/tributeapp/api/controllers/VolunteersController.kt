@@ -15,4 +15,8 @@ class VolunteersController(private val executor: RequestExecutor) {
     fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         executor.get(volunteerURL(key), SingletonParser(onSuccess) { Volunteer(it) }, onError)
 
+    fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit): Any {
+        throw NotImplementedError()
+    }
+
 }

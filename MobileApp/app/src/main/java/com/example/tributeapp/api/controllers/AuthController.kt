@@ -3,6 +3,7 @@ package com.example.tributeapp.api.controllers
 import com.example.tributeapp.api.LOGIN_URL
 import com.example.tributeapp.api.RequestExecutor
 import com.example.tributeapp.model.dtos.User
+import com.example.tributeapp.model.dtos.Volunteer
 import org.json.JSONObject
 
 class AuthController(private val executor: RequestExecutor) {
@@ -19,6 +20,10 @@ class AuthController(private val executor: RequestExecutor) {
             },
             onError
         )
+    }
+
+    fun register(email: String, password: String, volunteer: Volunteer, onSuccess: () -> Unit, onError: () -> Unit){
+        throw NotImplementedError()
     }
 
 }

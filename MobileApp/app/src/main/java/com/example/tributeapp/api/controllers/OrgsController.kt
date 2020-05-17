@@ -15,4 +15,8 @@ class OrgsController(private val executor: RequestExecutor) {
     fun getOrg(key: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
         executor.get(orgURL(key), SingletonParser(onSuccess) { Org(it) }, onError)
 
+    fun followOrg(orgID: String, onSuccess: () -> Unit, onError: () -> Unit){
+        throw NotImplementedError()
+    }
+
 }
