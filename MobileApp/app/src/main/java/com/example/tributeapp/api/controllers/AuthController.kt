@@ -21,4 +21,20 @@ class AuthController(private val executor: RequestExecutor) {
         )
     }
 
+    fun register(user: String, email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit) {
+        val body = JSONObject()
+        val data = JSONObject()
+        data.put("name", user)
+        body.put("email", user)
+        body.put("password", user)
+        body.put("usertype", "volunteer")
+        body.put("data", data)
+
+        executor.register(
+            body,
+            onSuccess,
+            onError
+        )
+    }
+
 }

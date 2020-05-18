@@ -4,6 +4,8 @@ const val BASE_URL = "http://tribute-api.duckdns.org/api"
 
 const val LOGIN_URL = "login"
 
+const  val REGISTER_URL = "register"
+
 const val VOLUNTEERS_URL = "volunteers"
 fun volunteerURL(key: String) = "volunteers/$key"
 

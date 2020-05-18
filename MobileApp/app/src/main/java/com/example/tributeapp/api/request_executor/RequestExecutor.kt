@@ -10,6 +10,7 @@ import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.api.parser.Parser
 import com.example.tributeapp.api.request_executor.APIRequest
 import com.example.tributeapp.api.request_executor.LoginRequest
+import com.example.tributeapp.api.request_executor.RegisterRequest
 import org.json.JSONObject
 
 class RequestExecutor(ctx: Context) {
@@ -80,6 +81,21 @@ class RequestExecutor(ctx: Context) {
 
         Log.v(APP_TAG, "Executing request to url: $reqURL")
         queue.add(req)
+    }
+
+    fun register(body: JSONObject, onSuccess: () -> Unit, onError: () -> Unit) {
+        val reqURL = buildRequestURL(REGISTER_URL)
+
+        val req = RegisterRequest(
+            reqURL,
+            body,
+            Response.Listener {
+                onSuccess()
+            },
+            Response.ErrorListener {
+                onError()
+            }
+        )
     }
 
 }

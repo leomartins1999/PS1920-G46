@@ -42,4 +42,7 @@
     <string name="participants">Participants</string>
     <string name="executed_logout">Successfully logged out</string>
     <string name="executed_login">Successfully logged in</string>
+    <string name="register">Register</string>
+    <string name="login_cnfrm_password_hint">confirm password</string>
+    <string name="login_username_hint">username</string>
 </resources>

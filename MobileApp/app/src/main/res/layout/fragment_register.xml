@@ -19,8 +19,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
-                android:text="@string/login"
+                android:text="@string/register"
                 />
+
+            <EditText
+                android:id="@+id/login_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_username_hint"
+                android:inputType="textEmailAddress"
+                android:importantForAutofill="no" />
+
 
             <EditText
                 android:id="@+id/login_email"
@@ -38,15 +47,24 @@
                 android:inputType="textPassword"
                 android:importantForAutofill="no" />
 
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_cnfrm_password_hint"
+                android:inputType="textPassword"
+                android:importantForAutofill="no" />
+
             <Button
                 android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login"/>
+                android:text="@string/register"/>
 
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
