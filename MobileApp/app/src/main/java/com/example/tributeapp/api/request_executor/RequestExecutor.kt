@@ -56,6 +56,21 @@ class RequestExecutor(ctx: Context) {
         queue.add(req)
     }
 
+    fun post(url: String, body: JSONObject, onSuccess: () -> Unit, onError: () -> Unit){
+        val reqURL = buildRequestURL(url)
+
+        val req = APIRequest(
+            Request.Method.POST,
+            reqURL,
+            body,
+            Response.Listener { onSuccess() },
+            Response.ErrorListener { onError() }
+        )
+
+        Log.v(APP_TAG, "Executing request to url: $reqURL")
+        queue.add(req)
+    }
+
     fun login(body: JSONObject, onSuccess: (JSONObject) -> Unit, onError: () -> Unit) {
         val reqURL = buildRequestURL(LOGIN_URL)
 

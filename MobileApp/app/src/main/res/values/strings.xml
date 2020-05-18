@@ -46,4 +46,7 @@
     <string name="following">Following</string>
     <string name="follow_button">Follow</string>
     <string name="unfollow_button">Unfollow</string>
+    <string name="post_sugestion">Thinking of…</string>
+    <string name="execute_post">Post</string>
+    <string name="post_body_empty_error">Error: post can\'t be empty</string>
 </resources>

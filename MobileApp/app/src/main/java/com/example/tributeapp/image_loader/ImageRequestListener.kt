@@ -20,7 +20,10 @@ class ImageRequestListener(
         target: Target<Drawable>?,
         isFirstResource: Boolean
     ): Boolean {
-        if (hideView) return false
+        if (hideView) {
+            imageView.visibility = View.GONE
+            return false
+        }
 
         imageView.visibility = View.VISIBLE
         imageView.setImageResource(placeholderImage)

@@ -28,6 +28,10 @@ class PostsViewModel(private val api: APIService) : ViewModel() {
         api.likePost(postID, onSuccess, onError)
     }
 
+    fun post(body: String, onSuccess: () -> Unit, onError: () -> Unit) {
+        api.createPost(body, onSuccess, onError)
+    }
+
     fun observe(owner: LifecycleOwner, observer: (List<Post>) -> Unit) {
         liveData.observe(owner, Observer {
             observer(it)

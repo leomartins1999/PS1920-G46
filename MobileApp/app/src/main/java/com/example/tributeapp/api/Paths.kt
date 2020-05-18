@@ -13,6 +13,7 @@ fun orgURL(id: String) = "orgs/$id"
 fun followOrgURL(id: String) = "auth/${orgURL(id)}/follow"
 
 const val POSTS_URL = "posts"
+const val EXECUTE_POST = "auth/$POSTS_URL"
 fun likeURL(id: String) = "auth/posts/$id/like"
 
 const val EVENTS_URL = "events"

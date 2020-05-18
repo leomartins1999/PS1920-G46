@@ -1,7 +1,6 @@
 package com.example.tributeapp.api
 
 import android.content.Context
-import com.example.tributeapp.App
 import com.example.tributeapp.api.controllers.*
 import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.model.dtos.*
@@ -41,8 +40,8 @@ class APIService(ctx: Context) {
     fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         posts.likePost(postID, onSuccess, onError)
 
-    fun createPost(post: Post, onSuccess: () -> Unit, onError: () -> Unit) =
-        posts.create(post, onSuccess, onError)
+    fun createPost(description: String, onSuccess: () -> Unit, onError: () -> Unit) =
+        posts.create(description, onSuccess, onError)
 
     fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
         events.getEvents(onSuccess, onError)

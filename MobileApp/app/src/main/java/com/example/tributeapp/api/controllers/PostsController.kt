@@ -2,6 +2,7 @@ package com.example.tributeapp.api.controllers
 
 import android.util.Log
 import com.example.tributeapp.APP_TAG
+import com.example.tributeapp.api.EXECUTE_POST
 import com.example.tributeapp.api.POSTS_URL
 import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.api.likeURL
@@ -18,8 +19,11 @@ class PostsController(private val executor: RequestExecutor) {
         executor.put(likeURL(postID), onSuccess, onError)
     }
 
-    fun create(post: Post, onSuccess: () -> Unit, onError: () -> Unit) {
-        throw NotImplementedError()
+    fun create(description: String, onSuccess: () -> Unit, onError: () -> Unit) {
+        val body = JSONObject()
+        body.put("description", description)
+
+        executor.post(EXECUTE_POST, body, onSuccess, onError)
     }
 
 }
