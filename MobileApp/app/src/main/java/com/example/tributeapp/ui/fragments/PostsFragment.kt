@@ -37,6 +37,8 @@ class PostsFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_posts, container, false)
 
+        if (App.session!!.hasSession) root.make_post_card.visibility = View.VISIBLE
+
         root.posts_recycler_view.adapter = adapter
         root.posts_recycler_view.layoutManager = LinearLayoutManager(this.context)
 
