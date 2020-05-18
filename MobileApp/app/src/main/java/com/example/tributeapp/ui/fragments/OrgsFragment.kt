@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.ui.activities.ORG_KEY
 import com.example.tributeapp.ui.view_model_factories.OrgsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.OrgsViewModel
@@ -45,9 +45,13 @@ class OrgsFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
 
-        model.updateOrgs { Utils.makeToast(context, "Error retrieving orgs!") }
-
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        model.updateOrgs { UIUtils.makeToast(context, "Error retrieving orgs!") }
     }
 
 }

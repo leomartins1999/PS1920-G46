@@ -2,26 +2,25 @@ package com.example.tributeapp.model.dtos
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.tributeapp.api.BASE_URL
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
+import com.example.tributeapp.model.ModelUtils
 import org.json.JSONObject
+import com.example.tributeapp.ui.UIUtils
+import kotlin.String
 
-class Event(private val json: JSONObject): Parcelable{
+data class Event(private val json: JSONObject): Parcelable{
 
-    val id = json.getString("_id")
-    val org_id = json.getString("org_id")
-    val name = json.getString("name")
-    val description = json.getString("description")
-    val date = json.getString("date")
-    val location = json.getString("location")
-    val imageLink =
-        if (!json.getString("imageLink").startsWith("/images")) json.getString("imageLink")
-        else BASE_URL + json.getString("imageLink")
-    val interested =
-        getUsers(json.getJSONObject("interested"))
-    val participants =
-        getUsers(json.getJSONObject("participants"))
+    val id: String = json.getString("_id")
+    val orgID: String = json.getString("org_id")
+
+    val name: String = json.getString("name")
+    val description: String = json.getString("description")
+
+    val date: String? = json.optString("date")
+    val location: String? = json.optString("location")
+    val imageLink: String? = ModelUtils.parseImageLink(json.optString("imageLink"))
+
+    val interested = getUsers(json.getJSONObject("interested"))
+    val participants = getUsers(json.getJSONObject("participants"))
 
     constructor(parcel: Parcel) : this(JSONObject(parcel.readString()!!))
 
@@ -34,7 +33,7 @@ class Event(private val json: JSONObject): Parcelable{
     }
 
     override fun toString(): String {
-        return "Event(id='$id', org_id='$org_id', name='$name', description='$description', date='$date', location='$location', imageLink='$imageLink', interested=$interested, participants=$participants)"
+        return "Event(id='$id', org_id='$orgID', name='$name', description='$description', date='$date', location='$location', imageLink='$imageLink', interested=$interested, participants=$participants)"
     }
 
     companion object CREATOR : Parcelable.Creator<Event> {

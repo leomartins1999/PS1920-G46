@@ -1,11 +1,14 @@
-package com.example.tributeapp
+package com.example.tributeapp.ui
 
+import com.example.tributeapp.App
+import com.example.tributeapp.R
+import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.User
 import com.example.tributeapp.model.dtos.Volunteer
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
-class SessionViewModel(private val navView: NavigationView) {
+class Session(private val navView: NavigationView) {
 
     var hasSession = false
 
@@ -30,7 +33,9 @@ class SessionViewModel(private val navView: NavigationView) {
     }
 
     private fun newSessionView(){
-        Utils.loadImage(navView.context, navView.user_picture, volunteer.imageLink, R.drawable.ic_volunteer_gray)
+        ImageLoader.loadImage(navView.context, navView.user_picture, volunteer.imageLink, false,
+            R.drawable.ic_volunteer_gray
+        )
         navView.user_name.text = volunteer.name
 
         navView.menu.clear()

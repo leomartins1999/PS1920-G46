@@ -4,38 +4,79 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
-import com.example.tributeapp.model.dtos.Event
+import com.example.tributeapp.ui.UIUtils
+import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.view_model_factories.EventViewModelProviderFactory
+import com.example.tributeapp.ui.view_models.EventViewModel
 import kotlinx.android.synthetic.main.activity_event.*
 
 const val EVENT_KEY = "EVENT"
 
 class EventActivity : AppCompatActivity() {
 
+    val model: EventViewModel by lazy {
+        EventViewModelProviderFactory(intent).create(EventViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
 
-        val event = intent.getParcelableExtra<Event>(EVENT_KEY)!!
+        setOrgFields()
+        setEventFields()
 
-        updateOrgFields(event)
-        updateEventFields(event)
+        updateInterestedAndParticipants()
+
+        listenButtons()
     }
 
-    private fun updateOrgFields(event: Event) {
-        App.cacheService.getOrg(event.org_id) {
-            Utils.loadImage(this, OrgImage, it.imageLink)
-            OrgName.text = it.name
+    private fun setOrgFields() {
+        val event = model.event
+
+        App.cacheService.getOrg(event.orgID) {
+            ImageLoader.loadImage(this, image, it.imageLink, false, R.drawable.ic_volunteer_gray)
+            org_name.text = it.name
         }
     }
 
-    private fun updateEventFields(event: Event) {
-        eventName.text = event.name
-        Utils.loadImage(this, EventImage, event.imageLink)
+    private fun setEventFields() {
+        val event = model.event
+
+        event_name.text = event.name
+        ImageLoader.loadImage(this, event_image, event.imageLink, true)
         location.text = event.location
         date.text = event.date
-        interested.text = "${event.interested.size}"
-        participating.text = "${event.interested.size}"
         description.text = event.description
     }
+
+    private fun updateInterestedAndParticipants(){
+        val event = model.event
+
+        interested.text = "${event.interested.size}"
+        participating.text = "${event.participants.size}"
+    }
+
+    private fun listenButtons(){
+        if (!App.session!!.hasSession)
+            interested_button.setOnClickListener{ UIUtils.onClickAuthenticatedMessage(it)}
+        else{
+            interested_button.setOnClickListener{
+                model.interested({
+                    updateButtonText()
+                    updateInterestedAndParticipants()
+                    UIUtils.makeToast(this, getString(R.string.updated_interest))
+                }, { UIUtils.makeToast(this, getString(R.string.error_performing_action))})
+            }
+
+            updateButtonText()
+        }
+    }
+
+    private fun updateButtonText(){
+        interested_button.text = getString(
+            if (model.event.interested.none { it.id == App.session!!.user.id }) R.string.interested_button
+            else R.string.not_interested_button
+        )
+    }
+
 }

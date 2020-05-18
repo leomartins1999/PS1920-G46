@@ -1,7 +1,6 @@
 package com.example.tributeapp.api.controllers
 
-import com.example.tributeapp.api.LOGIN_URL
-import com.example.tributeapp.api.RequestExecutor
+import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.model.dtos.User
 import org.json.JSONObject
 

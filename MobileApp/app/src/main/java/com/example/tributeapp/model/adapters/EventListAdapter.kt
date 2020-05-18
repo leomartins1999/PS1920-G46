@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.Utils
+import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.ui.activities.EVENT_KEY
 import com.example.tributeapp.ui.activities.EventActivity
 import com.example.tributeapp.ui.view_models.EventsViewModel
@@ -37,8 +37,8 @@ class EventsListAdapter(
 class EventsViewHolder(private val layout: LinearLayout)
     :RecyclerView.ViewHolder(layout){
 
-    private val owner_pic = layout.findViewById<ImageView>(R.id.owner_pic)
-    private val owner_name = layout.findViewById<TextView>(R.id.owner_name)
+    private val ownerPic = layout.findViewById<ImageView>(R.id.owner_pic)
+    private val ownerName = layout.findViewById<TextView>(R.id.owner_name)
 
     private val name = layout.findViewById<TextView>(R.id.name)
     private val date = layout.findViewById<TextView>(R.id.date)
@@ -46,15 +46,15 @@ class EventsViewHolder(private val layout: LinearLayout)
     private val participants = layout.findViewById<TextView>(R.id.participants_info)
 
     fun bindTo(event: Event){
-        App.cacheService.getOrg(event.org_id){
-            Utils.loadImage(layout.context, owner_pic, it.imageLink)
-            owner_name.text = it.name
+        App.cacheService.getOrg(event.orgID){
+            ImageLoader.loadImage(layout.context, ownerPic, it.imageLink, false, R.drawable.ic_volunteer_gray)
+            ownerName.text = it.name
         }
 
         name.text = event.name
         date.text = event.date
 
-        participants.text = "Interested: ${event.interested.size} | Participating: ${event.participants.size}"
+        participants.text = layout.context.getString(R.string.event_interested_and_participants, event.interested.size, event.participants.size)
 
         layout.setOnClickListener{
             val intent = Intent(layout.context, EventActivity::class.java)

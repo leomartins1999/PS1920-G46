@@ -3,6 +3,7 @@ package com.example.tributeapp.model.dtos
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONObject
+import kotlin.String
 
 fun getUsers(json: JSONObject): MutableList<User> {
     val users = mutableListOf<User>()
@@ -15,6 +16,13 @@ fun getUsers(json: JSONObject): MutableList<User> {
         )
     }
     return users
+}
+
+fun MutableList<User>.updateUser(user: User){
+    when(val idx = this.indexOfFirst { it.id == user.id }){
+        -1 -> this.add(user)
+        else -> this.removeAt(idx)
+    }
 }
 
 @Parcelize

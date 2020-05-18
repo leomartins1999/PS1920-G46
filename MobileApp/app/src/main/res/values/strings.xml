@@ -3,29 +3,15 @@
     <string name="posts">Posts</string>
     <string name="title_activity_event">EventActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="events">Events</string>
     <string name="volunteers">Volunteers</string>
     <string name="organizations">Orgs</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Login to access your account</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
 
-    <string name="home_second">Home Second</string>
     <string name="like">Like</string>
     <string name="post_image">Image of Post</string>
     <string name="error_performing_action">Error performing action</string>
@@ -45,4 +31,25 @@
     <string name="register">Register</string>
     <string name="login_cnfrm_password_hint">confirm password</string>
     <string name="login_username_hint">username</string>
+    <string name="followButton">Follow</string>
+    <string name="authentication_required">Authentication required to execute action</string>
+    <string name="not_interested_button">Remove interest</string>
+    <string name="loading">Loading…</string>
+    <string name="updated_interest">Updated interest</string>
+    <string name="org_image">Image of org</string>
+    <string name="event_image">Image of event</string>
+    <string name="location_icon">Location icon</string>
+    <string name="date_icon">Date icon</string>
+    <string name="volunteer_image">Image of volunteer</string>
+    <string name="event_interested_and_participants">Interested: %1$d | Participating: %2$d</string>
+    <string name="follow_volunteer_success">Successfully followed volunteer</string>
+    <string name="follow_volunteer_error">Error following volunteer</string>
+    <string name="operation_success">Success</string>
+    <string name="operation_error">Error</string>
+    <string name="following">Following</string>
+    <string name="follow_button">Follow</string>
+    <string name="unfollow_button">Unfollow</string>
+    <string name="post_sugestion">Thinking of…</string>
+    <string name="execute_post">Post</string>
+    <string name="post_body_empty_error">Error: post can\'t be empty</string>
 </resources>

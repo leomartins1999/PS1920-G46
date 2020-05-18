@@ -62,6 +62,7 @@
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
+                android:visibility="gone"
                 android:contentDescription="@string/post_image" />
 
             <LinearLayout
@@ -101,7 +102,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="15sp"
-                    android:text="lmao"
+                    android:text="@string/loading"
                     android:layout_margin="5dp"
                     />
 

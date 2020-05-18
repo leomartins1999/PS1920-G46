@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tributeapp.App
 import com.example.tributeapp.ui.view_models.PostsViewModel
 
-class PostsViewModelProviderFactory() : ViewModelProvider.Factory {
+class PostsViewModelProviderFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return PostsViewModel(App.api) as T
     }
