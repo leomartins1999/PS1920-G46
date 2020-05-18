@@ -30,8 +30,9 @@ class RegisterFragment : Fragment() {
             val name = root.login_username.text.toString()
             val email = root.login_email.text.toString()
             val password = root.login_password.text.toString()
+            val confirmation = root.confirm_password.text.toString()
 
-            if (registerIsValid(name, email, password))
+            if (registerIsValid(name, email, password, confirmation))
                 model.register(
                     name,
                     email,
@@ -47,13 +48,11 @@ class RegisterFragment : Fragment() {
         return root
     }
 
-    private fun registerIsValid(name: String, email: String, password: String): Boolean {
+    private fun registerIsValid(name: String, email: String, password: String, confirmation: String): Boolean {
         if (name.isEmpty()) makeToast(context, getString(R.string.name_must_not_be_empty_error))
         else if (!email.isEmailValid()) makeToast(context, getString(R.string.email_is_invalid))
-        else if (!password.isPasswordValid()) makeToast(
-            context,
-            getString(R.string.password_is_invalid)
-        )
+        else if (!password.isPasswordValid()) makeToast(context, getString(R.string.password_is_invalid))
+        else if (password != confirmation) makeToast(context, getString(R.string.password_arent_equal))
         else return true
 
         return false

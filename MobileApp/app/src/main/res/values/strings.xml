@@ -29,7 +29,7 @@
     <string name="executed_logout">Successfully logged out</string>
     <string name="executed_login">Successfully logged in</string>
     <string name="register">Register</string>
-    <string name="login_cnfrm_password_hint">confirm password</string>
+    <string name="login_confirm_password_hint">confirm password</string>
     <string name="login_username_hint">username</string>
     <string name="followButton">Follow</string>
     <string name="authentication_required">Authentication required to execute action</string>
@@ -48,7 +48,7 @@
     <string name="operation_error">Error</string>
     <string name="following">Following</string>
     <string name="follow_button">Follow</string>
-    <string name="unfollow_button">Unfollow</string>
+    <string name="unfollow_button">Un-follow</string>
     <string name="post_sugestion">Thinking of…</string>
     <string name="execute_post">Post</string>
     <string name="post_body_empty_error">Error: post can\'t be empty</string>
@@ -56,5 +56,6 @@
     <string name="my_profile">My profile</string>
     <string name="name_must_not_be_empty_error">Name must not be empty</string>
     <string name="email_is_invalid">Invalid email</string>
-    <string name="password_is_invalid">Password is invalid\nPassword must have:\n- At least 8 characters;\n- 1 letter, 1 number and 1 special character</string>
+    <string name="password_is_invalid">Password is invalid!\nPasswords must have:\n- At least 8 characters.</string>
+    <string name="password_arent_equal">Passwords confirmation failed</string>
 </resources>

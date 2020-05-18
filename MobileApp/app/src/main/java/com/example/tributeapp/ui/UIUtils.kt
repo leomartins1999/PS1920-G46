@@ -7,13 +7,10 @@ import android.widget.Toast
 import com.example.tributeapp.R
 import java.util.regex.Pattern
 
-const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
 const val MINIMUM_PASSWORD_LENGTH = 8
 
-val pattern: Pattern = Pattern.compile(PASSWORD_PATTERN)
-
 fun String.isPasswordValid(): Boolean{
-    return this.length >= MINIMUM_PASSWORD_LENGTH && pattern.matcher(this).matches()
+    return this.length >= MINIMUM_PASSWORD_LENGTH
 }
 
 fun String.isEmailValid(): Boolean{

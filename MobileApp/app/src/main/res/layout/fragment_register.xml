@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -22,40 +22,66 @@
                 android:text="@string/register"
                 />
 
-            <EditText
-                android:id="@+id/login_username"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_username_hint"
-                android:inputType="textEmailAddress"
-                android:importantForAutofill="no" />
+                android:layout_margin="2dp"
+                >
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_username_hint"
+                    android:inputType="textEmailAddress"
+                    />
 
-            <EditText
-                android:id="@+id/login_email"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_email_hint"
-                android:inputType="textEmailAddress"
-                android:importantForAutofill="no" />
+                android:layout_margin="2dp"
+                >
 
-            <EditText
-                android:id="@+id/login_password"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_email_hint"
+                    android:inputType="textEmailAddress"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_password_hint"
-                android:inputType="textPassword"
-                android:importantForAutofill="no" />
+                app:endIconMode="password_toggle"
+                android:layout_margin="2dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_password_hint"
+                    android:inputType="textWebPassword"
+                    android:importantForAutofill="no"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <EditText
+                android:layout_margin="2dp"
                 android:id="@+id/confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_cnfrm_password_hint"
+                android:hint="@string/login_confirm_password_hint"
                 android:inputType="textPassword"
                 android:importantForAutofill="no" />
 
             <Button
+                android:layout_margin="2dp"
                 android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
