@@ -11,7 +11,7 @@ import com.example.tributeapp.model.dtos.updateUser
 
 class VolunteerViewModel(
     private val volunteerID: String,
-    private val volunteerSupplier: (String, (Volunteer) -> Unit) -> Unit,
+    private val supplier: (String, (Volunteer) -> Unit) -> Unit,
     private val api: APIService
 ) : ViewModel(){
 
@@ -25,7 +25,7 @@ class VolunteerViewModel(
     }
 
     private fun getVolunteer(){
-        volunteerSupplier(volunteerID){
+        supplier(volunteerID){
             liveData.value = it
         }
     }

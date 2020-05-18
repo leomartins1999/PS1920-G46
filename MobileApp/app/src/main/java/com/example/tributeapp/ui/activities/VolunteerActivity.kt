@@ -9,7 +9,13 @@ import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteerViewModel
+import kotlinx.android.synthetic.main.activity_org.*
 import kotlinx.android.synthetic.main.activity_volunteer.*
+import kotlinx.android.synthetic.main.activity_volunteer.description
+import kotlinx.android.synthetic.main.activity_volunteer.followButton
+import kotlinx.android.synthetic.main.activity_volunteer.followersCount
+import kotlinx.android.synthetic.main.activity_volunteer.followingCount
+import kotlinx.android.synthetic.main.activity_volunteer.name
 
 const val VOLUNTEER_KEY = "VOLUNTEER"
 
@@ -32,17 +38,21 @@ class VolunteerActivity : AppCompatActivity() {
     }
 
     private fun listenButtons() {
-        if (App.session!!.hasSession)
+        if (App.session!!.hasSession){
             followButton.setOnClickListener {
                 model.followVolunteer(
                     {
                         UIUtils.makeToast(this, getString(R.string.operation_success))
                         updateFollowersAndFollowing(model.volunteer)
+                        updateButtonText()
                     },
                     {
                         UIUtils.makeToast(this, getString(R.string.operation_error))
                     })
             }
+
+            updateButtonText()
+        }
         else
             followButton.setOnClickListener { UIUtils.onClickAuthenticatedMessage(it) }
     }
@@ -50,6 +60,13 @@ class VolunteerActivity : AppCompatActivity() {
     private fun updateFollowersAndFollowing(volunteer: Volunteer) {
         followingCount.text = "${volunteer.following.size}"
         followersCount.text = "${volunteer.followers.size}"
+    }
+
+    private fun updateButtonText(){
+        followButton.text = getString(
+            if (model.volunteer.followers.none { it.id == App.session!!.user.id }) R.string.follow_button
+            else R.string.unfollow_button
+        )
     }
 
     private fun setFields(volunteer: Volunteer) {

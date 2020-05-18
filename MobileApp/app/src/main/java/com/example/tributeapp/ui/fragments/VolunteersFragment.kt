@@ -45,9 +45,13 @@ class VolunteersFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
-        model.updateVolunteers { UIUtils.makeToast(context, "Error loading volunteers!") }
-
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        model.updateVolunteers { UIUtils.makeToast(context, "Error loading volunteers!") }
     }
 
 }

@@ -44,4 +44,6 @@
     <string name="operation_success">Success</string>
     <string name="operation_error">Error</string>
     <string name="following">Following</string>
+    <string name="follow_button">Follow</string>
+    <string name="unfollow_button">Unfollow</string>
 </resources>

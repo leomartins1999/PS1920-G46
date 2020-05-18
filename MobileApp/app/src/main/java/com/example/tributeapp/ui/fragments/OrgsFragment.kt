@@ -45,9 +45,13 @@ class OrgsFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
 
-        model.updateOrgs { UIUtils.makeToast(context, "Error retrieving orgs!") }
-
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        model.updateOrgs { UIUtils.makeToast(context, "Error retrieving orgs!") }
     }
 
 }

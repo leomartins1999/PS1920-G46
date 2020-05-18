@@ -38,9 +38,13 @@ class PostsFragment : Fragment() {
 
         model.observe(this) { adapter.notifyDataSetChanged() }
 
-        model.updatePosts { UIUtils.makeToast(context, "Error loading posts") }
-
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        model.updatePosts { UIUtils.makeToast(context, "Error loading posts") }
     }
 
 }
