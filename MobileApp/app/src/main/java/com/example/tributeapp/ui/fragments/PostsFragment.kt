@@ -11,7 +11,6 @@ import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.model.adapters.PostListAdapter
-import com.example.tributeapp.model.dtos.Post
 import com.example.tributeapp.ui.view_model_factories.PostsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import kotlinx.android.synthetic.main.fragment_posts.*

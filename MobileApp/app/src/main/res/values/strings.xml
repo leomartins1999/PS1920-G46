@@ -52,4 +52,5 @@
     <string name="post_sugestion">Thinking of…</string>
     <string name="execute_post">Post</string>
     <string name="post_body_empty_error">Error: post can\'t be empty</string>
+    <string name="successfully_registered">Successfully registered! Access login to authenticate</string>
 </resources>

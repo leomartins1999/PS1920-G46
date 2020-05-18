@@ -29,5 +29,9 @@
         android:id="@+id/logout_fragment"
         android:name="com.example.tributeapp.ui.fragments.LogoutFragment"
         android:label="@string/logout" />
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.example.tributeapp.ui.fragments.RegisterFragment"
+        android:label="@string/register" />
 
 </navigation>
