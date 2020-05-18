@@ -54,4 +54,7 @@
     <string name="post_body_empty_error">Error: post can\'t be empty</string>
     <string name="successfully_registered">Successfully registered! Access login to authenticate</string>
     <string name="my_profile">My profile</string>
+    <string name="name_must_not_be_empty_error">Name must not be empty</string>
+    <string name="email_is_invalid">Invalid email</string>
+    <string name="password_is_invalid">Password is invalid\nPassword must have:\n- At least 8 characters;\n- 1 letter, 1 number and 1 special character</string>
 </resources>

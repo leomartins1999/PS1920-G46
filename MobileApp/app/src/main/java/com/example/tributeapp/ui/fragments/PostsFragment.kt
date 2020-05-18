@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.model.adapters.PostListAdapter
+import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.view_model_factories.PostsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import kotlinx.android.synthetic.main.fragment_posts.*
@@ -21,7 +21,7 @@ class PostsFragment : Fragment() {
     private val adapter by lazy {
         PostListAdapter(model) { postId, onSuccess ->
             model.likePost(postId, onSuccess) {
-                UIUtils.makeToast(context, "Error liking post")
+                makeToast(context, "Error liking post")
             }
         }
     }
@@ -57,26 +57,24 @@ class PostsFragment : Fragment() {
     }
 
     private fun enablePostButton() {
-        if (App.session!!.hasSession) {
-            requireView().post_button.setOnClickListener {
-                if (!post_text.text.trim().isBlank())
-                    model.post(
-                        post_text.text.toString(),
-                        {
-                            UIUtils.makeToast(context, getString(R.string.operation_success))
-                            Handler().postDelayed({ updatePosts() }, 1000)
-                        },
-                        {
-                            UIUtils.makeToast(context, getString(R.string.operation_error))
-                        }
-                    )
-                else UIUtils.makeToast(context, getString(R.string.post_body_empty_error))
-            }
-        } else requireView().post_button.setOnClickListener { UIUtils.onClickAuthenticatedMessage(it) }
+        requireView().post_button.setOnClickListener {
+            if (!post_text.text.trim().isBlank())
+                model.post(
+                    post_text.text.toString(),
+                    {
+                        makeToast(context, getString(R.string.operation_success))
+                        Handler().postDelayed({ updatePosts() }, 1000)
+                    },
+                    {
+                        makeToast(context, getString(R.string.operation_error))
+                    }
+                )
+            else makeToast(context, getString(R.string.post_body_empty_error))
+        }
     }
 
     private fun updatePosts() {
-        model.updatePosts { UIUtils.makeToast(context, "Error loading posts") }
+        model.updatePosts { makeToast(context, "Error loading posts") }
     }
 
 }

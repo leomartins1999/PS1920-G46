@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.example.tributeapp.model.ModelUtils
 import org.json.JSONObject
-import com.example.tributeapp.ui.UIUtils
 import kotlin.String
 
 data class Event(private val json: JSONObject): Parcelable{

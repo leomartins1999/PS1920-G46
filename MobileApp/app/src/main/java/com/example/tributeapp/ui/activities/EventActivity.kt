@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.makeToast
+import com.example.tributeapp.ui.onClickAuthenticatedMessage
 import com.example.tributeapp.ui.view_model_factories.EventViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.EventViewModel
 import kotlinx.android.synthetic.main.activity_event.*
@@ -58,14 +59,14 @@ class EventActivity : AppCompatActivity() {
 
     private fun listenButtons(){
         if (!App.session!!.hasSession)
-            interested_button.setOnClickListener{ UIUtils.onClickAuthenticatedMessage(it)}
+            interested_button.setOnClickListener{ onClickAuthenticatedMessage(it)}
         else{
             interested_button.setOnClickListener{
                 model.interested({
                     updateButtonText()
                     updateInterestedAndParticipants()
-                    UIUtils.makeToast(this, getString(R.string.updated_interest))
-                }, { UIUtils.makeToast(this, getString(R.string.error_performing_action))})
+                    makeToast(this, getString(R.string.updated_interest))
+                }, { makeToast(this, getString(R.string.error_performing_action))})
             }
 
             updateButtonText()

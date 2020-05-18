@@ -6,10 +6,10 @@ import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Org
-import com.example.tributeapp.ui.UIUtils
+import com.example.tributeapp.ui.makeToast
+import com.example.tributeapp.ui.onClickAuthenticatedMessage
 import com.example.tributeapp.ui.view_model_factories.OrgViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.OrgViewModel
-import kotlinx.android.synthetic.main.activity_event.*
 import kotlinx.android.synthetic.main.activity_org.*
 import kotlinx.android.synthetic.main.activity_org.description
 
@@ -59,17 +59,15 @@ class OrgActivity : AppCompatActivity() {
                     {
                         updateFollowers(model.org)
                         updateButtonText()
-                        UIUtils.makeToast(this, getString(R.string.operation_success))
+                        makeToast(this, getString(R.string.operation_success))
                     },
-                    {
-                        UIUtils.makeToast(this, getString(R.string.operation_error))
-                    }
+                    { makeToast(this, getString(R.string.operation_error)) }
                 )
             }
 
             updateButtonText()
         }
-        else followButton.setOnClickListener{ UIUtils.onClickAuthenticatedMessage(it) }
+        else followButton.setOnClickListener{ onClickAuthenticatedMessage(it) }
     }
 
     private fun updateButtonText(){

@@ -2,7 +2,6 @@ package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.App
 import com.example.tributeapp.model.ModelUtils
-import com.example.tributeapp.ui.UIUtils
 import org.json.JSONObject
 import kotlin.String
 

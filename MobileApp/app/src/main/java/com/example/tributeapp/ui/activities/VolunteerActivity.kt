@@ -6,7 +6,8 @@ import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Volunteer
-import com.example.tributeapp.ui.UIUtils
+import com.example.tributeapp.ui.makeToast
+import com.example.tributeapp.ui.onClickAuthenticatedMessage
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteerViewModel
 import kotlinx.android.synthetic.main.activity_org.*
@@ -42,19 +43,19 @@ class VolunteerActivity : AppCompatActivity() {
             followButton.setOnClickListener {
                 model.followVolunteer(
                     {
-                        UIUtils.makeToast(this, getString(R.string.operation_success))
+                        makeToast(this, getString(R.string.operation_success))
                         updateFollowersAndFollowing(model.volunteer)
                         updateButtonText()
                     },
                     {
-                        UIUtils.makeToast(this, getString(R.string.operation_error))
+                        makeToast(this, getString(R.string.operation_error))
                     })
             }
 
             updateButtonText()
         }
         else
-            followButton.setOnClickListener { UIUtils.onClickAuthenticatedMessage(it) }
+            followButton.setOnClickListener { onClickAuthenticatedMessage(it) }
     }
 
     private fun updateFollowersAndFollowing(volunteer: Volunteer) {

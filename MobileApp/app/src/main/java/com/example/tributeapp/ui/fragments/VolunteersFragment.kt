@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.R
-import com.example.tributeapp.ui.UIUtils
 import com.example.tributeapp.ui.activities.VOLUNTEER_KEY
 import com.example.tributeapp.ui.activities.VolunteerActivity
 import com.example.tributeapp.ui.view_model_factories.VolunteersViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteersViewModel
 import com.example.tributeapp.model.adapters.EntityListAdapter
+import com.example.tributeapp.ui.makeToast
 
 class VolunteersFragment: Fragment(){
 
@@ -51,7 +51,7 @@ class VolunteersFragment: Fragment(){
     override fun onStart() {
         super.onStart()
 
-        model.updateVolunteers { UIUtils.makeToast(context, "Error loading volunteers!") }
+        model.updateVolunteers { makeToast(context, "Error loading volunteers!") }
     }
 
 }
