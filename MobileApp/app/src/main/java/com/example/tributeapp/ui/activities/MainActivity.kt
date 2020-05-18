@@ -20,7 +20,8 @@ private val FRAGMENTS = setOf(
     R.id.events_fragment,
     R.id.login_fragment,
     R.id.register_fragment,
-    R.id.logout_fragment
+    R.id.logout_fragment,
+    R.id.profile_fragment
 )
 
 class MainActivity : AppCompatActivity() {

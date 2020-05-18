@@ -33,5 +33,9 @@
         android:id="@+id/register_fragment"
         android:name="com.example.tributeapp.ui.fragments.RegisterFragment"
         android:label="@string/register" />
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.example.tributeapp.ui.fragments.ProfileFragment"
+        android:label="@string/my_profile" />
 
 </navigation>

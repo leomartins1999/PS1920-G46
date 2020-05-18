@@ -32,6 +32,12 @@
     <item android:title="@string/user">
         <menu>
             <item
+                android:id="@+id/profile_fragment"
+                android:icon="@drawable/ic_login"
+                android:title="@string/my_profile"
+                android:visible="true"
+                app:showAsAction="ifRoom" />
+            <item
                 android:id="@+id/logout_fragment"
                 android:icon="@drawable/ic_logout"
                 android:title="@string/logout"
