@@ -2,11 +2,13 @@ package com.example.tributeapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.onClickAuthenticatedMessage
+import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.EventViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.EventViewModel
 import kotlinx.android.synthetic.main.activity_event.*
@@ -45,9 +47,14 @@ class EventActivity : AppCompatActivity() {
 
         event_name.text = event.name
         ImageLoader.loadImage(this, event_image, event.imageLink, true)
-        location.text = event.location
-        date.text = event.date
-        description.text = event.description
+
+        if(event.location.isNullOrEmpty() || event.location == "null") location_layout.visibility = View.GONE
+        else location.text = event.location
+
+        if(event.date.isNullOrEmpty() || event.date == "null") date_layout.visibility = View.GONE
+        else date.text = event.date
+
+        renderTextView(event.description, description)
     }
 
     private fun updateInterestedAndParticipants(){
