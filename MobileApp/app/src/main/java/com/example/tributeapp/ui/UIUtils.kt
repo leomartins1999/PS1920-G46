@@ -3,6 +3,7 @@ package com.example.tributeapp.ui
 import android.content.Context
 import android.util.Patterns
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.example.tributeapp.R
 import java.util.regex.Pattern
@@ -26,4 +27,9 @@ fun onClickAuthenticatedMessage(v: View) {
         v.context,
         v.context.getString(R.string.authentication_required)
     )
+}
+
+fun renderTextView(text: String?, textView: TextView){
+    if (text.isNullOrEmpty() || text == "null") textView.visibility = View.GONE
+    else textView.text = text
 }

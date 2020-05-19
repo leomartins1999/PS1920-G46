@@ -8,6 +8,7 @@ import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Org
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.onClickAuthenticatedMessage
+import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.OrgViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.OrgViewModel
 import kotlinx.android.synthetic.main.activity_org.*
@@ -36,11 +37,11 @@ class OrgActivity : AppCompatActivity() {
 
     private fun setFields(org: Org) {
         name.text = org.name
-        site.text = org.siteLink
-        facebook.text = org.facebookLink
-        mail.text = org.mail
-        phone.text = org.phone
-        description.text = org.description
+        renderTextView(org.siteLink, site)
+        renderTextView(org.facebookLink, facebook)
+        renderTextView(org.mail, mail)
+        renderTextView(org.phone, phone)
+        renderTextView(org.description, description)
     }
 
     private fun updateImage(org: Org) {

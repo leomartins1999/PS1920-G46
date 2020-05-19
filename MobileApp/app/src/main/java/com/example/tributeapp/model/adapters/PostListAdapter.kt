@@ -1,18 +1,25 @@
 package com.example.tributeapp.model.adapters
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.image_loader.ImageLoader
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import com.example.tributeapp.model.dtos.Post
+import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.model.dtos.updateUser
+import com.example.tributeapp.ui.activities.ORG_KEY
+import com.example.tributeapp.ui.activities.OrgActivity
+import com.example.tributeapp.ui.activities.VOLUNTEER_KEY
+import com.example.tributeapp.ui.activities.VolunteerActivity
 import com.example.tributeapp.ui.onClickAuthenticatedMessage
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
@@ -48,6 +55,7 @@ class PostsViewHolder(
     private val grayLike = postsView.context.getDrawable(R.drawable.ic_like_gray)!!
     private val blueLike = postsView.context.getDrawable(R.drawable.ic_like_blue)!!
 
+    private val ownerCard: CardView = postsView.findViewById(R.id.owner_card)
     private val ownerThumb: ImageView = postsView.findViewById(R.id.owner_pic)
     private val ownerName: TextView = postsView.findViewById(R.id.owner_name)
 
@@ -82,6 +90,12 @@ class PostsViewHolder(
         App.cacheService.getEntity(post.ownerID, post.ownerType){
             ImageLoader.loadImage(postsView.context, ownerThumb, it.imageLink, false, R.drawable.ic_volunteer_gray)
             ownerName.text = it.name
+        }
+
+        ownerCard.setOnClickListener{
+            val intent = Intent(postsView.context, if (post.ownerType == "org") OrgActivity::class.java else VolunteerActivity::class.java)
+            intent.putExtra(if (post.ownerType == "org") ORG_KEY else VOLUNTEER_KEY, post.ownerID)
+            postsView.context.startActivity(intent)
         }
 
         description.text = post.description
