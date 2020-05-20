@@ -4,14 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.onClickAuthenticatedMessage
 import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteerViewModel
-import kotlinx.android.synthetic.main.activity_org.*
 import kotlinx.android.synthetic.main.activity_volunteer.*
 import kotlinx.android.synthetic.main.activity_volunteer.description
 import kotlinx.android.synthetic.main.activity_volunteer.followButton

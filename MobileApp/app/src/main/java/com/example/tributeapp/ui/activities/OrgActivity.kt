@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Org
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.onClickAuthenticatedMessage

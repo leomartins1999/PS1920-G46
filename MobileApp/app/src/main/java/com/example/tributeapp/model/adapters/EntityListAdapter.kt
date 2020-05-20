@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Entity
 import com.example.tributeapp.ui.view_models.EntityViewModel
 

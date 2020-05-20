@@ -11,10 +11,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import com.example.tributeapp.model.dtos.Post
-import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.model.dtos.updateUser
 import com.example.tributeapp.ui.activities.ORG_KEY
 import com.example.tributeapp.ui.activities.OrgActivity

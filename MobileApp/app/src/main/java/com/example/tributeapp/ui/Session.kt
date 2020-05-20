@@ -2,7 +2,7 @@ package com.example.tributeapp.ui
 
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.image_loader.ImageLoader
+import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.User
 import com.example.tributeapp.model.dtos.Volunteer
 import com.google.android.material.navigation.NavigationView

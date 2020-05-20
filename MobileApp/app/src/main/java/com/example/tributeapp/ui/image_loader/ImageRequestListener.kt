@@ -1,4 +1,4 @@
-package com.example.tributeapp.image_loader
+package com.example.tributeapp.ui.image_loader
 
 import android.graphics.drawable.Drawable
 import android.view.View
