@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.App
 import com.example.tributeapp.R
-import com.example.tributeapp.model.adapters.PostListAdapter
+import com.example.tributeapp.ui.adapters.PostListAdapter
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.view_model_factories.PostsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.PostsViewModel

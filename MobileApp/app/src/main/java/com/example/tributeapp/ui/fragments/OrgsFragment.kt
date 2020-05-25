@@ -11,7 +11,7 @@ import com.example.tributeapp.R
 import com.example.tributeapp.ui.activities.ORG_KEY
 import com.example.tributeapp.ui.view_model_factories.OrgsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.OrgsViewModel
-import com.example.tributeapp.model.adapters.EntityListAdapter
+import com.example.tributeapp.ui.adapters.EntityListAdapter
 import com.example.tributeapp.ui.activities.OrgActivity
 import com.example.tributeapp.ui.makeToast
 import kotlinx.android.synthetic.main.fragment_orgs.view.*

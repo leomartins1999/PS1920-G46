@@ -13,7 +13,7 @@ import com.example.tributeapp.ui.activities.VOLUNTEER_KEY
 import com.example.tributeapp.ui.activities.VolunteerActivity
 import com.example.tributeapp.ui.view_model_factories.VolunteersViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteersViewModel
-import com.example.tributeapp.model.adapters.EntityListAdapter
+import com.example.tributeapp.ui.adapters.EntityListAdapter
 import com.example.tributeapp.ui.makeToast
 
 class VolunteersFragment: Fragment(){

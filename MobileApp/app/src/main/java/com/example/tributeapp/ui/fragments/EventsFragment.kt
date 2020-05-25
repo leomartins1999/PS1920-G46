@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.R
 import com.example.tributeapp.ui.view_model_factories.EventsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.EventsViewModel
-import com.example.tributeapp.model.adapters.EventsListAdapter
+import com.example.tributeapp.ui.adapters.EventsListAdapter
 import com.example.tributeapp.ui.makeToast
 import kotlinx.android.synthetic.main.fragment_events.view.*
 

@@ -1,4 +1,4 @@
-package com.example.tributeapp.model.adapters
+package com.example.tributeapp.ui.adapters
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
