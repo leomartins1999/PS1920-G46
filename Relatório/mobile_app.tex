@@ -98,5 +98,8 @@ Quando o pedido é concluído, é chamado o \textit{callback} definido pela estr
 
 \subsection{Modelo}
 
-(explicar utilização e implementação)
+O Modelo é responsável por transformar os dados provenientes do sub-módulo API para DTO's (\textit{Data Transfer Objects}) que iram ser usados pelo sub-módulo UI para efetuar a representação destes mesmos.
 
+\medskip
+
+Este sub-módulo contém também a definição de uma estrutura cuja realiza \textit{caching} dos dados da aplicação para diminuir o número de pedidos a realizar à API.
