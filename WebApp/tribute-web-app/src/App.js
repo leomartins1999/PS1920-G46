@@ -1,11 +1,11 @@
 import React from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
-import PostsPage from "./PostsPage/PostsPage";
-import VolunteersPage from "./VolunteersPage/VolunteersPage";
-import OrgsPage from "./OrgsPage/OrgsPage";
-import EventsPage from "./EventsPage/EventsPage";
-import HomePage from "./HomePage/HomePage";
-import NavBar from "./Components/NavBar";
+import PostsPage from "./posts_page/PostsPage";
+import VolunteersPage from "./volunteers_page/VolunteersPage";
+import OrgsPage from "./orgs_page/OrgsPage";
+import EventsPage from "./events_page/EventsPage";
+import HomePage from "./home_page/HomePage";
+import NavBar from "./components/NavBar";
 
 function RouteRenderer() {
     return (

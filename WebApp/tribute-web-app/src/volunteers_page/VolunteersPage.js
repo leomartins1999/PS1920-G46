@@ -1,5 +1,5 @@
 import React from "react";
-import EventsPage from "../EventsPage/EventsPage";
+import EventsPage from "../events_page/EventsPage";
 
 class VolunteersPage extends React.Component{
 
