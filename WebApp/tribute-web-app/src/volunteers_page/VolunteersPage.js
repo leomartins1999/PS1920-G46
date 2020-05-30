@@ -1,11 +1,11 @@
 import React from "react";
-import EventsPage from "../events_page/EventsPage";
+import VolunteersFragment from "./VolunteersFragment";
 
 class VolunteersPage extends React.Component{
 
     render() {
         return (
-            <h1>Volunteers page</h1>
+            <VolunteersFragment service={this.props.service}/>
         );
     }
 

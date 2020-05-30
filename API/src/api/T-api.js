@@ -262,7 +262,7 @@ module.exports = (router, service, test) => {
 
         service.getImage(image)
             .then(image => res.end(image))
-            .catch(err => handleError(res, 500, error.fileNotFound(image.type, image.id)));
+            .catch(err => res.redirect("https://developers.google.com/maps/documentation/maps-static/images/error-image-generic.png?hl=pl"));
     }
 
     // handler for unknown URL

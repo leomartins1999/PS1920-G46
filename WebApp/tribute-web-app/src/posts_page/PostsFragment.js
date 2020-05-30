@@ -35,12 +35,9 @@ class PostsFragment extends React.Component {
         posts = posts.map(renderPostCard)
 
         return (
-            <div>
-
-                <div className="jumbotron border-primary m-5">
-                    <div className="text-center h1">Posts</div>
-                    {posts}
-                </div>
+            <div className="jumbotron border-primary m-5">
+                <div className="text-center h1">Posts</div>
+                {posts}
             </div>
         )
     }
