@@ -19,10 +19,11 @@ function VolunteerCard({name, imageLink, nrFollowers, nrFollowing}) {
     )
 }
 
-function renderVolunteer({name, imageLink, followers, following}) {
+function renderEntity({_id, name, imageLink, followers, following}) {
     console.log(followers)
 
     return <VolunteerCard
+        key={_id}
         name={name}
         imageLink={imageLink}
         nrFollowers={Object.keys(followers).length}
@@ -30,4 +31,4 @@ function renderVolunteer({name, imageLink, followers, following}) {
     />
 }
 
-export default renderVolunteer
+export default renderEntity

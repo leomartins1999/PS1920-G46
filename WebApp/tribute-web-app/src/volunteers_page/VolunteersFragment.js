@@ -1,5 +1,5 @@
 import React from "react";
-import renderVolunteer from "./VolunteerCard";
+import renderEntity from "./VolunteerCard";
 
 class VolunteersFragment extends React.Component {
 
@@ -34,7 +34,7 @@ class VolunteersFragment extends React.Component {
     render() {
         const volunteers = this.state.volunteers
 
-        let volunteersRender = volunteers.map(renderVolunteer)
+        let volunteersRender = volunteers.map(renderEntity)
 
         return (
             <div className="jumbotron border-primary m-5">
