@@ -46,14 +46,14 @@ De maneira a garantir uma experiência personalizada para cada cliente deste mó
 
 \bigskip
 
-A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como "gostar" um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs iram ter uma vista personalizada, tal como exemplificado na figura 8.
+A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como ''gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs iram ter uma vista personalizada, tal como exemplificado na figura 8.
 
 \newpage
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.70]{unauthenticated_vs_authenticated}
-	\caption{Representação do ecrã ''Voluntários'' no estado não autenticado (figura da esquerda) \textit{versus} no estado autenticado como o utilizador "Utilizador exemplo" (figura da direita)}
+	\caption{Representação do ecrã ''Voluntários'' no estado não autenticado (figura da esquerda) \textit{versus} no estado autenticado como o utilizador ''Utilizador exemplo'' (figura da direita).}
 \end{figure}
 
 \subsection{Arquitetura}
@@ -64,9 +64,9 @@ A arquitetura da aplicação é constituída por 3 sub-módulos principais: UI (
 
 Enquanto que a UI é responsável por conter as implementações dos mais variados aspetos da interface de utilizador (como atividades, fragmentos, navegação e outros elementos), a API trata a comunicação entre a aplicação e a Web API do projeto. Por fim, o Modelo define a estrutura dos dados fornecidos pela API e utilizados na UI assim como a implementação de uma \textit{cache} de maneira a partilhar estes mesmos dados e reduzir o número de pedidos efetuados à Web API.
 
-\subsection{Sessão}
+\subsection{Implementação de Sessão}
 
-Tendo em conta que o conceito de sessão foi implementado na Web API através da tecnologia Passport.js (que funciona à base de \textit{cookies}), foi necessário redefinir algumas infra-estruturas da biblioteca Volley (utilizada para efetuar pedidos HTTP) de maneira a que, quando o utilizador estivesses autenticado na aplicação, os pedidos efetuados pela mesma tivessem a informação necessária para a Web API conseguir reconhecer o utilizador.
+Tendo em conta que o conceito de sessão foi implementado na Web API através da tecnologia Passport.js (que funciona à base de \textit{cookies}), foi necessário redefinir algumas infra-estruturas da biblioteca Volley (utilizada para efetuar pedidos HTTP) de maneira a que, quando o utilizador estiver autenticado na aplicação, os pedidos efetuados pela mesma contenham a informação necessária para a Web API conseguir reconhecer o utilizador.
 
 \medskip
 

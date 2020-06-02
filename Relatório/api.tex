@@ -38,12 +38,12 @@ Este módulo tem as seguintes responsabilidades:
 \end{itemize}
 
 \subsection{Repositórios e acesso a base de dados}
-Para cada índice na base de dados, existe uma variação de implementação de \textit{Repository}. Estas implementações fornecem métodos alterados para inserir/modificar/apagar entradas dos índices aos quais se referem. Estes repositórios, por sua vez, têm acesso a uma instância de \textit{BaseRepository} gerada especificamente para si (isto é, inicializada dando parâmetros personalizados consoante o índice). \par \medskip
+Para cada índice na base de dados, existe uma variação de implementação de \textit{Repository}. Estas implementações fornecem métodos específicos para inserir/modificar/apagar entradas dos índices aos quais se referem. Estes repositórios, por sua vez, têm acesso a uma instância de \textit{BaseRepository} gerada especificamente para si (isto é, inicializada dando parâmetros personalizados consoante o índice). \par \medskip
 
 \textit{BaseRepository} é uma infra-estrutura implementada de maneira a ser genérica para todos os índices e que fornece implementações das operações CRUD usuais como também a possibilidade de gerar os índices de pesquisa necessários para efetuar pesquisas por valor de campos nas tabelas. \par \medskip
 
 \subsection{Base de Dados}
-O motor de base de dados escolhido foi o MongoDB. Este segue o padrão \textit{noSQL},apresentando um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
+O motor de base de dados escolhido foi o MongoDB. Este segue o padrão \textit{noSQL}, apresentando um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
 
 \begin{itemize}
 	\item Flexibilidade. Tendo em conta que este tipo de plataformas costuma ter um crescimento exponencial, a adição de novas \textit{features} é constante. Num modelo SQL, por vezes é dispendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice).

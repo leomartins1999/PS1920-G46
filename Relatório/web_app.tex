@@ -1,6 +1,33 @@
+No capítulo seguinte serão apresentados detalhes relativos à conceptualização e desenvolvimento da aplicação \textit{web} do nosso projeto. Inicialmente, iremos introduzir este componente, discutindo também os requisitos do mesmo, e apresentando de seguida a arquitetura e cada um dos seus módulos.
+
 \section{\textit{Web App}}
-Face à proposta de projeto, ouve uma alteração relativamente à tecnologia usada para desenvolver este componente. Numa abordagem inicial, foi tomada como decisão o desenvolvimento deste componente usando a ferramente Angular.js. \par \medskip
 
-No entanto, após nova avaliação, foi tomada a decisão de se usar a tecnologia React. Esta alteração foi feita devido a algumas pesquisas efetuadas durante o desenvolvimento do relatório. \par \medskip
+A aplicação \textit{web} é responsável por estabelecer uma interface sobre a qual as organizações possam interagir com o projeto, disponibilizando às mesmas ferramentas que possibilitam a efetuação de operações como por exemplo a criação de \textit{posts} ou a realização de pesquisas sobre a plataforma.
 
-O desenvolvimento deste componente ainda não foi inicializado. No entanto, está previsto que à data da entrega da versão beta, os requisitos funcionais do mesmo estejam parcialmente desenvolvidos.
+\par \medskip
+
+Este componente foi desenvolvido usando a tecnologia React em conjunto com algumas bibliotecas adicionais, disponibilizadas sobre a plataforma NPM.
+
+\subsection{Tecnologia}
+
+Face à proposta de projeto, ouve uma alteração relativamente à tecnologia usada para desenvolver este componente. Numa abordagem inicial, foi tomada a decisão de desenvolver este módulo usando a ferramenta Angular.js. \par \medskip
+
+No entanto, após nova avaliação, optamos por utilizar a tecnologia React. Esta alteração foi feita devido a algumas pesquisas efetuadas durante o desenvolvimento do relatório intermédio. \par \medskip
+
+\subsection{Funcionalidades e requisitos}
+
+Tendo em conta que este módulo é utilizado diretamente por um cliente humano, é necessário desenvolver o mesmo de maneira a que este seja o mais intuitivo e agradável de utilizar possível. 
+
+\par \medskip
+
+Para além deste requisito não funcional, é também necessário que este módulo cumpra com as seguintes necessidades:
+
+\begin{itemize}
+	\item possibilitar a realização de operações simples de pesquisa (de voluntários, organizações, entre outros) sobre a API e apresentar os resultados destas. Estas pesquisas não necessitam de autenticação por parte do utilizador e estão expostas a todos os clientes da plataforma;
+	\item apresentação de uma página que indica a clientes da plataforma a aplicação sobre a qual os mesmos se podem registar e autenticar (remetendo voluntários para a aplicação móvel e organizações para a página de login deste módulo);
+	\item permitir a autenticação de organizações e fornecer operações às mesmas que possibilitam a interação entre estas e a plataforma (criação de eventos e \textit{posts}, seguimentos de outros utilizadores, etc.).
+\end{itemize}
+
+\bigskip \bigskip
+
+Este componente encontra-se em desenvolvimento na data da entrega da versão beta. Como tal, este capítulo apenas irá ser concluído no momento da entrega do projeto final.
