@@ -5,17 +5,24 @@ const passport = require("passport");
 const cors = require('cors')
 const fileupload = require('express-fileupload');
 
+// modules for https
+const fs = require('fs');
+const https = require('https');
+const privateKey  = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/privkey.pem", 'utf8');
+const certificate = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/cert.pem", 'utf8');
+const ca = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/chain.pem", 'utf-8');
+const credentials = {key: privateKey, cert: certificate, ca: ca};
+
 // passport serializer and deserializer
 passport.serializeUser(function (user, done) {
     done(null, user);
 });
-
 passport.deserializeUser(function (user, done){
     done(null, user)
 });
 
 // constants
-const PORT = 8000;
+const PORT = process.argv[2];
 const REQUEST_BASE = '/api';
 
 // router
@@ -35,9 +42,15 @@ const service = require('./service/T-service')(users, orgs, posts, events, auth,
 // api
 const api = require('./api/T-api')(router, service);
 
+// cors
+const corsOptions = {
+    origin: true,
+    credentials: true
+}
+
 // express initialization
 const app = express();
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json());
 app.use(session);
 app.use(fileupload({}));
@@ -45,5 +58,5 @@ app.use(passport.initialize({}));
 app.use(passport.session({}));
 app.use(REQUEST_BASE, router);
 
-// server initialization
-app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+const server = https.createServer(credentials, app);
+server.listen(PORT, () => console.log(`Server started at port ${PORT}`))
