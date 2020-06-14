@@ -40,7 +40,7 @@ function getRequestExecutor() {
 
         return fetch(`${BASE_PATH}${url}`, options)
             .then(resp => resp.json())
-            .then(json => json.body)
+            .then(json => json.status === "error"? Promise.reject(json.body) : Promise.resolve(json.body))
     }
 }
 
