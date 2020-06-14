@@ -52,7 +52,10 @@ function RouteRenderer() {
                 />
             }/>
             <Route path="/home" render={() =>
-                <HomePage/>
+                <HomePage
+                    posts_service = {postsService}
+                    user_id = {authService.getSession()}
+                />
             }/>
             <Route>
                 <Redirect to={"/home"}/>
