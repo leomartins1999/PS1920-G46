@@ -1,6 +1,6 @@
 \section{API}
 
-A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP o \textit{Service} é responsável por implementar a lógica do sistema, existem ainda os repositórios (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o índice de imagens (responsável por tratar todas as operações associadas às mesmas)$^{\cite{nodejs_the_right_way}}$.\par \medskip
+A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP, o \textit{Service} é responsável por implementar a lógica do sistema. Existem ainda os \textit{repositórios} (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o \textit{índice de imagens} (responsável por tratar todas as operações associadas às mesmas).~\cite{nodejs_the_right_way}\par \medskip
 
 \begin{figure}[h]
 	\centering
@@ -9,9 +9,9 @@ A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Se
 \end{figure}
 
 \subsection{API}
-Este módulo é responsável por definir os \textit{endpoints} e lidar com a recepção e envio dos pedidos/respostas HTTP. Cada \textit{endpoint} tem associada uma função que é executada e que efetua a chamada adequada ao serviço para realizar a operação solicitada pelo utilizador. \par \medskip
+Este módulo é responsável por definir os \textit{endpoints} e lidar com a receção e envio dos pedidos/respostas HTTP. Cada \textit{endpoint} tem associada uma função que efetua a chamada ao módulo de serviço correspondente à operação solicitada pelo utilizador. \par \medskip
 
-A figura 6 ilustra a tabela de operações disponibilizadas pela API. Refere-se também o método e o URL do pedido.	 \par \medskip
+A figura 6 ilustra o conjunto de operações disponibilizadas pela API incluindo o método e o URL do pedido.	 \par \medskip
 
 É de notar que todos os pedidos definidos têm o preâmbulo \textit{/api} e que os que começam por \textit{/auth} necessitam de autenticação prévia por parte do cliente da API. \par \medskip
 
@@ -28,17 +28,17 @@ Para além das funções já referidas, são também definidos (e utilizados) \t
 \newpage
 
 \subsection{Serviço}
-O módulo \textit{Service} cumpre a função de implementar a lógica da aplicação, isto é, garantir que as operações chamadas a partir da API se materializem em mudanças no modelo deste componente, seja a nível de base de dados ou tratamento de operações relativamente às imagens, entre outros. \par \medskip
+O módulo \textit{Service} cumpre a função de implementar a lógica da aplicação, isto é, garantir que as operações chamadas a partir da API se materializam em mudanças no modelo deste componente, seja a nível de base de dados ou tratamento de operações relativamente às imagens, entre outros. \par \medskip
 
 Este módulo tem as seguintes responsabilidades:
 \begin{itemize}
-	\item Verificar a validade dos parâmetros fornecidos pela API;
-	\item Executar as chamadas necessárias aos módulos adjacentes (\textit{repositories} e \textit{pictures}) de maneira a cumprir a operação solicitada (quer esta seja a inserção em base de dados ou a recolha de informações para verificar a lógica necessária);
-	\item Implementar a lógica da aplicação, isto é, quando necessário, efetuar as verificações necessárias e gerar os objetos a colocar/alterar na base de dados.
+	\item verificar a validade dos parâmetros fornecidos pela API;
+	\item executar as chamadas necessárias aos módulos adjacentes (\textit{repositories} e \textit{pictures}) de maneira a cumprir a operação solicitada (quer esta seja a inserção em base de dados ou a recolha de informações para verificar a lógica necessária);
+	\item implementar a lógica da aplicação, isto é, quando necessário, efetuar as verificações necessárias e gerar os objetos a colocar/alterar na base de dados.
 \end{itemize}
 
 \subsection{Repositórios e acesso a base de dados}
-Para cada índice na base de dados, existe uma variação de implementação de \textit{Repository}. Estas implementações fornecem métodos específicos para inserir/modificar/apagar entradas dos índices aos quais se referem. Estes repositórios, por sua vez, têm acesso a uma instância de \textit{BaseRepository} gerada especificamente para si (isto é, inicializada dando parâmetros personalizados consoante o índice). \par \medskip
+Para cada índice na base de dados, existe uma variação de implementação de \textit{Repository}. Estas implementações fornecem métodos específicos para inserir/modificar/apagar entradas dos índices (coleção de documentos, como por exemplo: voluntários ou organizações) aos quais se referem. Estes repositórios, por sua vez, têm acesso a uma instância de \textit{BaseRepository} gerada especificamente para si (isto é, inicializada com argumentos personalizados consoante o índice). \par \medskip
 
 \textit{BaseRepository} é uma infra-estrutura implementada de maneira a ser genérica para todos os índices e que fornece implementações das operações CRUD usuais como também a possibilidade de gerar os índices de pesquisa necessários para efetuar pesquisas por valor de campos nas tabelas. \par \medskip
 
@@ -46,19 +46,19 @@ Para cada índice na base de dados, existe uma variação de implementação de 
 O motor de base de dados escolhido foi o MongoDB. Este segue o padrão \textit{noSQL}, apresentando um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
 
 \begin{itemize}
-	\item Flexibilidade. Tendo em conta que este tipo de plataformas costuma ter um crescimento exponencial, a adição de novas \textit{features} é constante. Num modelo SQL, por vezes é dispendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice).
+	\item flexibilidade. De maneira a conseguir aplicar alterações à plataforma a partir do \textit{feedback} dado pelos seus utilizadores, é necessário que a implementação de novas funcionalidades seja um processo ágil. Num modelo SQL, por vezes é despendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice);
 	\item integração com Javascript. Os documentos inseridos nesta base de dados têm um formato JSON, algo que se integra facilmente com esta tecnologia.
 \end{itemize} 
 
 \subsection{Autenticação}
-A componente autenticação deste módulo foi desenvolvida através da ferramenta Passport.js. Esta é tipicamente utilizada em conjunto com Express e permite a fácil implementação do conceito sessão através do uso de \textit{cookies}. \par \medskip
+A componente autenticação deste módulo foi desenvolvida através da ferramenta Passport.js. Esta é tipicamente utilizada em conjunto com Express e permite a fácil implementação dum objeto \textit{sessão} através do uso de \textit{cookies}. \par \medskip
 
-Aquando do pedido de autenticação bem sucedido por parte de um cliente da API, são guardadas um conjunto de características identificadoras da sessão do mesmo para que se possa personalizar a sua experiência, e neste caso, permitir ao mesmo que possa fazer \textit{upload} de imagens, criar um \textit{post}, entre outros. \par \medskip
+Aquando do pedido de autenticação bem sucedido por parte de um cliente da API, são guardadas um conjunto de características identificadoras da sessão do mesmo para que se possa personalizar a sua experiência, e neste caso, permitir ao mesmo que possa fazer o carregamento de imagens, criar um \textit{post}, entre outros. \par \medskip
 
 \subsection{Imagens}
 De maneira a implementar na sua totalidade um conceito de rede social, nesta aplicação é permitido o carregamento de imagens para a plataforma. Estas são divididas por índices, consoante a sua classe (aquilo que elas referem) e guardadas. \par \medskip
 
-O \textit{upload} de imagens para esta plataforma é apenas possível para utilizadores autenticados, no entanto, o \textit{download} das mesmas é possível a qualquer cliente da API.
+O carregamento de imagens para esta plataforma é apenas possível para utilizadores autenticados, no entanto, o descarregamento das mesmas é possível a qualquer cliente da API.
 
 \subsection{Paginação e limitação de resultados}
 Todas as operações da API que tenham como resultado um conjunto de entidades (por exemplo, um conjunto de \textit{posts}), retornam por omissão um número fixo de resultados. Contudo, a nossa API suporta paginação e \textit{skipping} (isto é, saltar resultados) através dos parâmetros \textit{limit} e \textit{skip} da \textit{query string}.
