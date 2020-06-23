@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a282a90d-c1fb-46fa-9f7e-231b585fce4d",
+		"_postman_id": "b55d66be-7b38-4be2-ba3a-701b8ad7ab9d",
 		"name": "PS1920-G46",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"authDetails\": {\n\t\t\"email\": \"org\",\n\t\t\"password\": 123,\n\t\t\"user_type\": \"org\"\n\t},\n\t\"data\": {\n\t\t\"name\": \"org\"\n\t}\n}",
+							"raw": "{\n\t\"email\": \"12341123512323\",\n\t\"password\": \"password\",\n\t\"user_type\": \"org\",\n\t\"data\": {\n\t\t\"name\": \"My new org!\",\n\t\t\"description\": \"Healing others\",\n\t\t\"phone\": \"+351 987654321\",\n\t\t\"siteLink\": \"www.org.com\",\n\t\t\"facebookLink\": \"www.facebook.com/org\",\n\t\t\"linkedInLink\": \"www.linkedIn.com/org\"\n\t}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,12 +23,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/auth/register",
+							"raw": "{{base_url}}/register",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"auth",
 								"register"
 							]
 						}
@@ -42,7 +41,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"org\",\n\t\"password\": 123\n}",
+							"raw": "{\n\t\"email\": \"Organization 1\",\n\t\"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -50,13 +49,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/auth/authenticate",
+							"raw": "{{base_url}}/login",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"auth",
-								"authenticate"
+								"login"
 							]
 						}
 					},
@@ -69,7 +67,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"kekW\",\n\t\"date\": \"30-4-2020\"\n}",
+							"raw": "{\n\t\"name\": \"kekW2\",\n\t\"date\": \"30-4-2020\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -77,12 +75,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/auth/events",
+							"raw": "{{base_url}}/auth/orgs/events",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
+								"orgs",
 								"events"
 							]
 						}
@@ -95,19 +94,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/auth/events/:id",
+							"raw": "{{base_url}}/auth/orgs/events/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
+								"orgs",
 								"events",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "5e7d034758fa8334282f63d9"
+									"value": "5e9786ee4f75f853fcc37d04"
 								}
 							]
 						}
@@ -120,26 +120,61 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/auth/events/:id/participate?id=5e821e6be069d32b7c841754",
+							"raw": "{{base_url}}/auth/orgs/events/:event_id/participate?volunteer_id=5e973524c4d2aa06c42dd824",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
+								"orgs",
 								"events",
-								":id",
+								":event_id",
 								"participate"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "5e821e6be069d32b7c841754"
+									"key": "volunteer_id",
+									"value": "5e973524c4d2aa06c42dd824"
 								}
 							],
 							"variable": [
 								{
+									"key": "event_id",
+									"value": "5e97874d0bb40a39b0ba2077"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Org",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"followers\": \"no this pls\",\n\t\"mail\": \"fml@isel.pt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/orgs/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"orgs",
+								":id"
+							],
+							"variable": [
+								{
 									"key": "id",
-									"value": "5e86147661c82c4e50a8854c"
+									"value": "5e972ca23b8a6918d84c9183"
 								}
 							]
 						}
@@ -159,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"authDetails\": {\n\t\t\"email\": \"leo\",\n\t\t\"password\": 123,\n\t\t\"user_type\": \"user\"\n\t},\n\t\"data\": {\n\t\t\"name\": \"leo\",\n\t\t\"body\": \"description\",\n\t\t\"linkLinkedIn\": \"www.linkedin.com\"\n\t}\n}",
+							"raw": "{\n\t\"email\": \"1\",\n\t\"password\": \"1\",\n\t\"user_type\": \"volunteer\",\n\t\"data\": {\n\t\t\"name\": \"Teste\",\n\t\t\"description\": \"Desc.\"\n\t}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -167,12 +202,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/auth/register",
+							"raw": "{{base_url}}/register",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"auth",
 								"register"
 							]
 						}
@@ -180,13 +214,13 @@
 					"response": []
 				},
 				{
-					"name": "Authenticate user",
+					"name": "Authenticate volunteer",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"leo\",\n\t\"password\": 123\n}",
+							"raw": "{\n\t\"email\": \"volunteer4\",\n\t\"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -194,13 +228,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/auth/authenticate",
+							"raw": "{{base_url}}/login",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"auth",
-								"authenticate"
+								"login"
 							]
 						}
 					},
@@ -212,20 +245,55 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/auth/events/:id/interested",
+							"raw": "{{base_url}}/auth/orgs/events/:event_id/interested",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
+								"orgs",
 								"events",
-								":id",
+								":event_id",
 								"interested"
 							],
 							"variable": [
 								{
+									"key": "event_id",
+									"value": "5e97874d0bb40a39b0ba2077"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Volunteer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"following\": \"fuck\",\n\t\"description\": \"new description POG\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/volunteers/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"volunteers",
+								":id"
+							],
+							"variable": [
+								{
 									"key": "id",
-									"value": "5e86147661c82c4e50a8854c"
+									"value": "5e973524c4d2aa06c42dd824"
 								}
 							]
 						}
@@ -239,40 +307,30 @@
 			"name": "Unauthenticated operations",
 			"item": [
 				{
-					"name": "Get Users",
+					"name": "Get Volunteers",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/users",
+							"raw": "{{base_url}}/volunteers?name=&limit=0&skip=0",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User By Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/users/:id",
-							"host": [
-								"{{base_url}}"
+								"volunteers"
 							],
-							"path": [
-								"users",
-								":id"
-							],
-							"variable": [
+							"query": [
 								{
-									"key": "id",
-									"value": "5e7bb21fa1905a36e0363198"
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "skip",
+									"value": "0"
 								}
 							]
 						}
@@ -280,17 +338,55 @@
 					"response": []
 				},
 				{
-					"name": "Get All Orgs",
+					"name": "Get Volunteer By Id",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/orgs",
+							"raw": "{{base_url}}/volunteers/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"volunteers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e973524c4d2aa06c42dd824"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orgs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orgs?limit=&name=&skip",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"orgs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": null
+								}
 							]
 						}
 					},
@@ -302,18 +398,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/orgs/:id",
+							"raw": "{{base_url}}/orgs/:org_id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"orgs",
-								":id"
+								":org_id"
 							],
 							"variable": [
 								{
-									"key": "id",
-									"value": "5e766c57732e483f500fd55c"
+									"key": "org_id",
+									"value": "5e972ca23b8a6918d84c9183"
 								}
 							]
 						}
@@ -321,17 +417,31 @@
 					"response": []
 				},
 				{
-					"name": "Get All Posts",
+					"name": "Get Posts",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/posts",
+							"raw": "{{base_url}}/posts?owner_id=&limit=&skip=",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"posts"
+							],
+							"query": [
+								{
+									"key": "owner_id",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -343,18 +453,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/posts/:id",
+							"raw": "{{base_url}}/posts/:post_id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"posts",
-								":id"
+								":post_id"
 							],
 							"variable": [
 								{
-									"key": "id",
-									"value": "5e751f93328342226c53b424"
+									"key": "post_id",
+									"value": "5e974afaee800d247088c9c3"
 								}
 							]
 						}
@@ -362,42 +472,27 @@
 					"response": []
 				},
 				{
-					"name": "Get Posts By Owner",
+					"name": "Get Events",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/posts/owner/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"posts",
-								"owner",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "123 123 123 123 123"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Events",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/events",
+							"raw": "{{base_url}}/events?limit=&skip",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"events"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": null
+								}
 							]
 						}
 					},
@@ -409,18 +504,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/events/:id",
+							"raw": "{{base_url}}/events/:event_id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"events",
-								":id"
+								":event_id"
 							],
 							"variable": [
 								{
-									"key": "id",
-									"value": "5e766dff732e483f500fd561"
+									"key": "event_id",
+									"value": "5e972333d58d8e0f3036497c"
 								}
 							]
 						}
@@ -433,19 +528,29 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/events/org/:id",
+							"raw": "{{base_url}}/orgs/:org_id/events?limit&skip",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"events",
-								"org",
-								":id"
+								"orgs",
+								":org_id",
+								"events"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": null
+								},
+								{
+									"key": "skip",
+									"value": null
+								}
 							],
 							"variable": [
 								{
-									"key": "id",
-									"value": "identificador da organização"
+									"key": "org_id",
+									"value": "5e9722e1d58d8e0f3036497a"
 								}
 							]
 						}
@@ -465,7 +570,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"body\": \"abc\"\n}",
+							"raw": "{\n\t\"description\": \"A Rede de Emergência Alimentar é uma resposta limitada no tempo até estar ultrapassada a situação de emergência que o país vive. \\nVisa permitir levar alimento a quem dele carece e assim apoiar quem tem baixos recursos económicos e não tenha capacidade de suportar o custo de alimentação que habitualmente é entregue pelas respostas sociais.\\nPara doar https://www.facebook.com/donate/3021787227882438/3021787277882433/\\nObrigado Harvard Clube de Portugal!\",\n\t\"imageLink\": \"https://scontent.flis8-2.fna.fbcdn.net/v/t1.0-0/s640x640/95708709_3040538065968370_4228464872792260608_o.png?_nc_cat=106&_nc_sid=730e14&_nc_ohc=Bmu_XnPBfVMAX_hOjfl&_nc_ht=scontent.flis8-2.fna&oh=8c4f9e2a7ea50dbb3fa4fc821e556c92&oe=5ED9D9B1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -503,7 +608,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "5e7d008f1035e7475089e544"
+									"value": "5e97869a4f75f853fcc37d03"
 								}
 							]
 						}
@@ -516,20 +621,20 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/auth/posts/:id/like",
+							"raw": "{{base_url}}/auth/posts/:post_id/like",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
 								"posts",
-								":id",
+								":post_id",
 								"like"
 							],
 							"variable": [
 								{
-									"key": "id",
-									"value": "5e7e473b4f898c3b640ea14b"
+									"key": "post_id",
+									"value": "5e9782bd81ccf40b7424c681"
 								}
 							]
 						}
@@ -537,27 +642,51 @@
 					"response": []
 				},
 				{
-					"name": "Follow ",
+					"name": "Follow volunteer",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/auth/follow?id=5e82229a1800761368c00ab3&user_type=org",
+							"raw": "{{base_url}}/auth/volunteers/:volunteer_id/follow",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
+								"volunteers",
+								":volunteer_id",
 								"follow"
 							],
-							"query": [
+							"variable": [
 								{
-									"key": "id",
-									"value": "5e82229a1800761368c00ab3"
-								},
+									"key": "volunteer_id",
+									"value": "5e960b0725a53a0e787804ef"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow org",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/orgs/:org_id/follow",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"orgs",
+								":org_id",
+								"follow"
+							],
+							"variable": [
 								{
-									"key": "user_type",
-									"value": "org"
+									"key": "org_id",
+									"value": "5e960b1925a53a0e787804f0"
 								}
 							]
 						}
@@ -588,13 +717,87 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/auth/logout",
+							"raw": "{{base_url}}/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Get Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/images/:type/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"images",
+								":type",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "type",
+									"value": "volunteers"
+								},
+								{
+									"key": "id",
+									"value": "5e973524c4d2aa06c42dd824"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/A43591/Desktop/Leo/pic.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/images/:type/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auth",
-								"logout"
+								"images",
+								":type",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "type",
+									"value": "events"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -647,7 +850,7 @@
 	],
 	"variable": [
 		{
-			"id": "85871b2f-1c7c-46eb-8a71-3ff78ad72716",
+			"id": "260b0041-a359-4d00-b031-c2d5311ee5a6",
 			"key": "base_url",
 			"value": "localhost:8000/api",
 			"type": "string"
