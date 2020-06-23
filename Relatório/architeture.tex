@@ -1,7 +1,10 @@
 \section{Modelo de Arquitetura} 
-O modelo do nosso projeto, apresentado na figura 4, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
+Este capítulo começa por introduzir o \textit{stack} tecnológico sobre o qual o projeto foi desenvolvido. O mesmo contém também um secção atribuída a cada módulo do projeto e por fim refere as tecnologias usadas no mesmo.
+\par \medskip
 
-Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o standard MEAN \textit{stack}$^{\cite{mean_stack_explained}}$ (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
+O modelo de arquitetura do nosso projeto, apresentado na figura 4, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
+
+Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o standard MEAN \textit{stack}~\cite{mean_stack_explained} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
 \begin{itemize}
 	\item familiaridade dos autores com algumas destas tecnologias (como Express.js e Node.js);
 	\item \textit{standard} utilizado no desenvolvimento de múltiplas aplicações, o que leva a existência de uma grande quantidade de recursos, como documentação e exemplos;
@@ -18,9 +21,7 @@ Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo 
 Relativamente à API, esta estabelecerá \textit{endpoints} onde será possível executar pedidos HTTP de maneira a suportar autenticação e operações na infraestrutura (criação de perfil, “seguimento” de organização, inscrição em ação de voluntariado, etc.), constituindo o \textit{back-end} do projeto.
 \par \medskip
 
-\newpage 
-
-Relativamente ao \textit{front-end}, serão desenvolvidas duas aplicações cliente: 
+Relativamente ao \textit{front-end}, foram desenvolvidas duas aplicações cliente: 
 \begin{itemize}
 	\item um cliente \textit{mobile}, para a plataforma Android, usado pelos voluntários. Nesta interface será possível efetuar por parte do utilizador as operações de uso da plataforma usuais: criação de um perfil, visionamento de um \textit{feed} de \textit{posts} efetuados pelas organizações seguidas, entre outras;
 	\item um cliente \textit{browser}. Esta aplicação é direcionada às organizações e terá a finalidade de permitir às mesmas realizar \textit{posts}, criar e gerir ações de voluntariado, etc.;
@@ -36,10 +37,10 @@ Relativamente ao \textit{front-end}, serão desenvolvidas duas aplicações clie
 \subsection{REST API}
 A REST API, definida como primeira fase do projeto, constituirá o \textit{server-side} do mesmo. É pretendido que este módulo seja completamente independente dos outros, tendo como responsabilidade trabalhar como fonte de dados para os outros componentes (\textit{client-side}). \par \medskip 
 
-A tecnologia utilizada para desenvolver este componente será Node.js em conjunto com vários \textit{packages} do NPM (\textit{node package manager}), como o Express e o Passport. Esta escolha foi justificada por múltiplas razões:
+A tecnologia utilizada para desenvolver este componente foi Node.js em conjunto com vários \textit{packages} do NPM (\textit{node package manager}), como o Express e o Passport. Esta escolha é justificada por múltiplas razões:
 \begin{itemize}
 	\item domínio dos autores na linguagem Javascript e em vários módulos do NPM;
-	\item popularidade da ferramenta, algo que simplifica o processo de desenvolvimento do componente devido à grande quantidade de recursos sobre a mesma;
+	\item popularidade da ferramenta, algo que simplifica o processo de desenvolvimento do componente devido à existência de grande quantidade de recursos sobre a mesma;
 	\item existência de suporte neste meio de execução de ferramentas para auxiliar o acesso à base de dados escolhida.
 \end{itemize}
 \par \medskip
@@ -56,7 +57,7 @@ A aplicação \textit{mobile} será desenvolvida para a plataforma Android em Ko
 \end{itemize}
 
 \subsection{Aplicação \textit{Web}}
-A aplicação \textit{web} será desenvolvida em React$^{\cite{angular_vs_react}}$. Esta tecnologia foi escolhida devido a:
+A aplicação \textit{web} será desenvolvida em React~\cite{angular_vs_react}. Esta tecnologia foi escolhida devido a:
 
 \begin{itemize}
 	\item familiaridade dos autores com esta ferramenta;
@@ -73,9 +74,9 @@ As seguintes tecnologias irão ser utilizadas durante o desenvolvimento do proje
 	\item \textbf{Express}: \textit{web framework} para Node.js. Auxilia o processo de \textit{routing} e definição de \textit{endpoints}, encapsulando aspetos do HTTP, para tornar mais fácil o desenvolvimento de \textit{Web} APIs;
 	\item \textbf{Passport}: \textit{Middleware} de autenticação usado em conjunto com o Express para simplificar o processo de autenticação e gestão de sessões de utilizadores;
 	\item \textbf{MongoDB}: Base de dados noSQL baseada em documentos JSON. Tipicamente integrada com Javascript devido à natureza dos seus documentos;
-	\item \textbf{Android}: Sistema operativo \textit{open source} para dispositivos móveis desenvolvido pela Google. Atualmente, cerca de 75\% dos dispositivos móveis usam este SO;
-	\item \textbf{Kotlin}: Linguagem de programação desenvolvida pela JetBrains que compila para a JVM (Java \textit{Virtual Machine}). Atualmente, o Kotlin é a linguagem oficial do Android;
-	\item \textbf{Android Jetpack}: Conjunto de ferramentas e bibliotecas as quais auxiliam a implementação e desenvolvimento de software para o sistema operativo móvel Android;
+	\item \textbf{Android}: Sistema operativo (SO) \textit{open source} para dispositivos móveis desenvolvido pela Google. Atualmente, cerca de 75\% dos dispositivos móveis usam este SO;
+	\item \textbf{Kotlin}: Linguagem de programação desenvolvida pela JetBrains que compila para a JVM (\textit{Java Virtual Machine}). Atualmente, o Kotlin é a linguagem oficial do Android;
+	\item \textbf{Android Jetpack}: Conjunto de ferramentas e bibliotecas que auxiliam a implementação e desenvolvimento de software para o sistema operativo móvel Android;
 	\item \textbf{Volley}: Biblioteca \textit{open-source} desenvolvida para simplificar a realização de pedidos HTTP no ambiente Android;
 	\item \textbf{Glide}: \textit{Framework} utilizada para efetuar o carregamento de imagens em aplicações Android;
 	\item \textbf{React}: Biblioteca \textit{open-source} de Javascript usada para desenvolver aplicações \textit{web}.

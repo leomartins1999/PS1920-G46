@@ -8,12 +8,14 @@ import VolunteersPage from "./volunteers_page/VolunteersPage";
 import OrgsPage from "./orgs_page/OrgsPage";
 import EventsPage from "./events_page/EventsPage";
 import HomePage from "./home_page/HomePage";
+import LoginPage from "./login_page/LoginPage";
 
 import RequestExecutor from "./api/RequestExecutor"
 import VolunteersService from "./api/VolunteersService"
 import OrgsService from "./api/OrgsService"
 import PostsService from "./api/PostsService"
 import EventsService from "./api/EventsService"
+import AuthService from "./api/AuthService"
 
 const executor = RequestExecutor()
 
@@ -21,10 +23,14 @@ const volunteersService = VolunteersService(executor)
 const orgsService = OrgsService(executor)
 const postsService = PostsService(executor)
 const eventsService = EventsService(executor)
+const authService = AuthService(executor)
 
 function RouteRenderer() {
     return (
         <Switch>
+            <Route path="/login" render={() =>
+                <LoginPage service={authService}/>
+            }/>
             <Route path="/posts" render={() =>
                 <PostsPage
                     service={postsService}
@@ -46,7 +52,10 @@ function RouteRenderer() {
                 />
             }/>
             <Route path="/home" render={() =>
-                <HomePage/>
+                <HomePage
+                    posts_service = {postsService}
+                    user_id = {authService.getSession()}
+                />
             }/>
             <Route>
                 <Redirect to={"/home"}/>

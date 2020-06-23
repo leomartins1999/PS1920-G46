@@ -23,35 +23,30 @@
 % graphics configuration
 \graphicspath{{./images/}}
 
-\addto\captionsportuguese{% Replace "english" with the language you use
+\addto\captionsportuguese{
 	\renewcommand{\contentsname}%
 	{Índice}%
 }
 
 \begin{document}
+	
+\pagenumbering{roman}
 
-\pagestyle{empty}
+\thispagestyle{empty}
 	
 \input{cover}	
 
-\pagenumbering{roman}
+\newpage~\thispagestyle{empty}~\newpage
 
-\newpage
-
-\newpage 
+\setcounter{page}{1}
 
 \input{abstract_pt}
-\thispagestyle{plain}
+
 \newpage~\newpage
 
 \input{abstract_en}
-\thispagestyle{plain}
+
 \newpage~\newpage 
-
-\pagestyle{plain}
-
-\pagenumbering{arabic}
-\setcounter{page}{5}
 
 \input{index}
 \newpage
@@ -60,32 +55,31 @@
 \newpage
 
 \input{glossary}
-\newpage
 
-\input{intro}
+\newpage~\newpage~\pagenumbering{arabic}~\input{intro}
 
-\newpage
+\newpage~\newpage
 
 \input{state_of_art}
-\newpage
+\newpage~\newpage
 
 \input{architeture}
-\newpage~\newpage
+\newpage
 
 \input{api}
-\newpage~\newpage
+\newpage
 
 \input{mobile_app}
 \newpage~\newpage
 
 \input{web_app}
-\newpage~\newpage
+\newpage
 
 \input{planning}
 \newpage~\newpage
 
 \input{conclusion}
-\newpage~\newpage
+\newpage
 
 \input{bib_ref}
 

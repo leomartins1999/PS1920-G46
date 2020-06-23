@@ -1,11 +1,11 @@
 \babel@toc {portuguese}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces Modelo descentralizado de divulgação de voluntariado}}{8}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Conceito do projeto}}{9}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Tecnologias do \textit {standard} MERN (MongoDB, Express.js, React.js, Node.js)}}{13}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Modelo de arquitetura}}{14}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Diagrama de arquitetura da API}}{18}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Lista de \textit {endpoints}}}{19}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Grafo de navegação}}{24}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Representação do ecrã ''Voluntários'' no estado não autenticado (figura da esquerda) \textit {versus} no estado autenticado como o utilizador ''Utilizador exemplo'' (figura da direita).}}{25}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Arquitetura do sub-módulo API}}{26}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Diagrama de planeamento}}{32}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Modelo descentralizado de divulga\IeC {\c c}\IeC {\~a}o de voluntariado}}{1}% 
+\contentsline {figure}{\numberline {2}{\ignorespaces Conceito do projeto}}{2}% 
+\contentsline {figure}{\numberline {3}{\ignorespaces Tecnologias do \textit {standard} MERN (MongoDB, Express.js, React.js, Node.js)}}{9}% 
+\contentsline {figure}{\numberline {4}{\ignorespaces Modelo de arquitetura}}{10}% 
+\contentsline {figure}{\numberline {5}{\ignorespaces Diagrama de arquitetura da API}}{13}% 
+\contentsline {figure}{\numberline {6}{\ignorespaces Lista de \textit {endpoints}}}{14}% 
+\contentsline {figure}{\numberline {7}{\ignorespaces Grafo de navega\IeC {\c c}\IeC {\~a}o}}{18}% 
+\contentsline {figure}{\numberline {8}{\ignorespaces Representa\IeC {\c c}\IeC {\~a}o do ecr\IeC {\~a} ``Volunt\IeC {\'a}rios'' no estado n\IeC {\~a}o autenticado (esquerda) e no estado autenticado (direita) como o utilizador ``Utilizador exemplo''.}}{19}% 
+\contentsline {figure}{\numberline {9}{\ignorespaces Arquitetura do sub-m\IeC {\'o}dulo API}}{20}% 
+\contentsline {figure}{\numberline {10}{\ignorespaces Diagrama de planeamento}}{25}% 

@@ -1,4 +1,4 @@
-const BASE_PATH = "http://tribute-api.duckdns.org/api"
+const BASE_PATH = "https://tribute-api.duckdns.org/api"
 
 function getRequestExecutor() {
     return {
@@ -8,7 +8,7 @@ function getRequestExecutor() {
         delete: _delete
     }
 
-    function get(url) {
+    function get(url) { 
         return executeRequest('GET', url)
     }
 
@@ -27,13 +27,20 @@ function getRequestExecutor() {
     function executeRequest(method, url, body) {
         const options = {
             method: method,
+            headers:{
+                "Content-Type": "application/json"
+            },
+            mode: "cors",
+            credentials: "include"
         }
 
         if (body) options.body = JSON.stringify(body)
 
+        console.log(options)
+
         return fetch(`${BASE_PATH}${url}`, options)
             .then(resp => resp.json())
-            .then(json => json.body)
+            .then(json => json.status === "error"? Promise.reject(json.body) : Promise.resolve(json.body))
     }
 }
 

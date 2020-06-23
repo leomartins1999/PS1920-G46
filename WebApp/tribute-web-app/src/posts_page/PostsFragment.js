@@ -11,7 +11,7 @@ class PostsFragment extends React.Component {
     }
 
     fetchPosts() {
-        return this.props.service.getPosts()
+        return this.props.service.getPosts(this.props.owner_id)
             .then(posts => {
                 if (posts) this.setState({posts: posts})
             })

@@ -1,10 +1,12 @@
 import React from "react";
 
+import EventsFragment from "./EventsFragment";
+
 class EventsPage extends React.Component{
 
     render() {
         return(
-            <h1>Events page</h1>
+            <EventsFragment service={this.props.service}/>
         )
     }
 
