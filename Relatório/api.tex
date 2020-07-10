@@ -1,6 +1,6 @@
 \section{API}
 
-A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP, o \textit{Service} é responsável por implementar a lógica do sistema. Existem ainda os \textit{repositórios} (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o \textit{índice de imagens} (responsável por tratar todas as operações associadas às mesmas).~\cite{nodejs_the_right_way}\par \medskip
+A \textit{Web} API (Figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP, o \textit{Service} é responsável por implementar a lógica do sistema. Existem ainda os \textit{repositórios} (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o \textit{índice de imagens} (responsável por tratar todas as operações associadas às mesmas).~\cite{nodejs_the_right_way}\par \medskip
 
 \begin{figure}[h]
 	\centering
@@ -11,21 +11,9 @@ A \textit{Web} API (figura 5) é composta por dois módulos principais (API e Se
 \subsection{API}
 Este módulo é responsável por definir os \textit{endpoints} e lidar com a receção e envio dos pedidos/respostas HTTP. Cada \textit{endpoint} tem associada uma função que efetua a chamada ao módulo de serviço correspondente à operação solicitada pelo utilizador. \par \medskip
 
-A figura 6 ilustra o conjunto de operações disponibilizadas pela API incluindo o método e o URL do pedido.	 \par \medskip
+Encontra-se anexado a este relatório a lista de endpoints da API (anexo 1). Foram implementados os \textit{endpoints} que os autores consideraram necessários para garantir o funcionamento da plataforma. É de notar que todos os pedidos definidos têm o preâmbulo \textit{/api} e que os que começam por \textit{/auth} necessitam de autenticação prévia por parte do cliente da API. \par \medskip
 
-É de notar que todos os pedidos definidos têm o preâmbulo \textit{/api} e que os que começam por \textit{/auth} necessitam de autenticação prévia por parte do cliente da API. \par \medskip
-
-\newpage
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=.70]{endpoints_table}
-	\caption{Lista de \textit{endpoints}}
-\end{figure}
-
-Para além das funções já referidas, são também definidos (e utilizados) \textit{middlewares} nesta camada de maneira a garantir o cumprimento da necessidade de autenticação aquando de certas operações. A API é ainda responsável por transformar os parâmetros dados pelo cliente através do \textit{URL}, da \textit{query string} e do \textit{body} do \textit{request} (e do objecto sessão quando aplicável) para objetos conhecidos pelo \textit{serviço}. \medskip
-
-\newpage
+Para além das funções já referidas, são também definidos (e utilizados) \textit{middlewares} nesta camada de maneira a garantir o cumprimento da necessidade de autenticação aquando de certas operações. A API é ainda responsável por transformar os parâmetros dados pelo cliente através do \textit{URL}, da \textit{query string} e do corpo do pedido (e do objecto sessão quando aplicável) para objetos conhecidos pelo \textit{serviço}. \medskip
 
 \subsection{Serviço}
 O módulo \textit{Service} cumpre a função de implementar a lógica da aplicação, isto é, garantir que as operações chamadas a partir da API se materializam em mudanças no modelo deste componente, seja a nível de base de dados ou tratamento de operações relativamente às imagens, entre outros. \par \medskip
@@ -43,10 +31,10 @@ Para cada índice na base de dados, existe uma variação de implementação de 
 \textit{BaseRepository} é uma infra-estrutura implementada de maneira a ser genérica para todos os índices e que fornece implementações das operações CRUD usuais como também a possibilidade de gerar os índices de pesquisa necessários para efetuar pesquisas por valor de campos nas tabelas. \par \medskip
 
 \subsection{Base de Dados}
-O motor de base de dados escolhido foi o MongoDB. Este segue o padrão \textit{noSQL}, apresentando um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
+O motor de base de dados escolhido foi o MongoDB que é um motor \textit{noSQL}. Este apresenta um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
 
 \begin{itemize}
-	\item flexibilidade. De maneira a conseguir aplicar alterações à plataforma a partir do \textit{feedback} dado pelos seus utilizadores, é necessário que a implementação de novas funcionalidades seja um processo ágil. Num modelo SQL, por vezes é despendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice);
+	\item flexibilidade. Tendo em conta que as plataformas desta natureza têm tipicamente um crescimento rápido, é necessário que a implementação de novas funcionalidades seja um processo ágil. Num modelo \textit{SQL}, por vezes é despendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice);
 	\item integração com Javascript. Os documentos inseridos nesta base de dados têm um formato JSON, algo que se integra facilmente com esta tecnologia.
 \end{itemize} 
 

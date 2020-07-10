@@ -1,53 +1,51 @@
 \section{Formulação do problema}
-Neste capítulo referem-se os problemas típicos do uso de redes sociais e websites para divulgação de ações de voluntariado, sendo apresentandos dois casos de plataformas existentes. O capítulo é concluído com a definição dos requisitos funcionais do projeto. \par \bigskip
 
-Tal como já foi referido, a interação voluntário-organização é tipicamente feita através de dois tipos de plataformas: redes sociais e \textit{websites} das organizações. \par \bigskip
+Este capítulo começa por incidir sobre as dificuldades encontradas na divulgação e inscrição por parte de voluntários em ações de voluntariado. São levantados alguns requisitos para o projeto e apresentadas algumas soluções possíveis, sendo as suas vantagens e desvantagens ponderadas para chegar à solução final. Por fim, são elaborados alguns requisitos funcionais do projeto face à solução definida, bem como a justificação da definição da arquitetura do mesmo. \par \medskip
 
-As redes sociais, por não serem, por desenho, vocacionadas para este tipo de ações, apresentam alguns problemas de utilização, como filtragem de informação e integração de múltiplas plataformas de voluntariado na mesma rede social. \par \bigskip
+Tal como já foi referido, a interação voluntário-organização é tipicamente feita através de dois tipos de plataformas: redes sociais e \textit{websites} das organizações.  \medskip
 
-Por norma, cada organização tem o seu próprio \textit{website}, algo que complica o processo de navegação do voluntário, caso este esteja interessado em colaborar com múltiplas associações de voluntariado. \par \bigskip
-A seguir descrevem-se duas plataformas que possuem objetivos semelhantes aos do presente projeto. \par \bigskip
+As redes sociais, por não serem, por desenho, vocacionadas para este tipo de ações, apresentam alguns problemas de utilização, como filtragem de informação e integração de múltiplas plataformas de voluntariado na mesma rede social.  \medskip
+
+Por norma, cada organização tem o seu próprio \textit{website}, algo que complica o processo de navegação do voluntário, caso este esteja interessado em colaborar com múltiplas associações de voluntariado. 
+
+\subsection{Requisitos não funcionais}
+Tendo em conta os problemas apresentados, o nosso projeto tem como objetivo desenvolver uma plataforma onde é disponibilizada informação relativa a ações de voluntariado, desde eventos existentes a perfis de organizações. Esta deve também auxiliar o processo de candidatura/inscrição em ações deste tipo e promover a interação entre utilizadores. \bigskip
+
+A seguir descrevem-se duas plataformas que possuem objetivos semelhantes aos do presente projeto.
 
 \subsection{Estado da Arte}
 
-A Bolsa de Voluntariado~\cite{bolsa_voluntariado} é um projeto lançado em 2006 pela associação ENTRAJUDA com o objetivo de facilitar a procura de trabalho voluntário.  \par \medskip
-Este objetivo é concretizado através duma plataforma \textit{web} que serve de ponto de encontro entre a procura e oferta de oportunidades de voluntariado. A plataforma permite consultar ações que irão decorrer, oferecendo ainda a possibilidade aos utilizadores de as filtrarem consoante os seus interesses e visa também facilitar o processo de candidatura às mesmas. \par \bigskip
+A Bolsa de Voluntariado~\cite{bolsa_voluntariado} é um projeto lançado em 2006 pela associação ENTRAJUDA com o objetivo de facilitar a procura de trabalho voluntário. \medskip
 
-A plataforma \textit{Online Volunteering}~\cite{online_volunteering}, desenvolvida pela UN (\textit{United Nations}) e lançada em 2000, é uma plataforma que, através do voluntariado \textit{online}, pretende reunir voluntários de múltiplas origens de maneira a auxiliarem na resolução de desafios tecnológicos das mais variadas áreas.  \par \medskip
-Esta aplicação permite a filtragem das oportunidades consoante a área de interesse e também auxilia o processo de candidatura às mesmas. \bigskip
+Este objetivo é concretizado através duma plataforma \textit{web} que serve de ponto de encontro entre a procura e oferta de oportunidades de voluntariado. A plataforma permite consultar ações que irão decorrer, oferecendo ainda a possibilidade aos utilizadores de as filtrarem consoante os seus interesses e visa também facilitar o processo de candidatura às mesmas. \medskip
 
-\subsection{Análise}
-A principal problemática presente nestas plataformas é o facto de as mesmas realizarem uma divulgação passiva (apresentar ações solicitadas pelo utilizador) em vez de uma divulgação ativa (sugerir aos utilizadores ações de possível interesse). \par \bigskip
-Esta limitação pode ser combatida através do uso de mecanismos de interação similares aos das redes sociais, como ferramentas de “seguimento” de organizações ou tipos de ações. Essas ferramentas irão simplificar o processo de executar a divulgação ativa, e como tal, a personalização da experiência do uso da aplicação de utilizador para utilizador. \par \bigskip
+A plataforma \textit{Online Volunteering}~\cite{online_volunteering}, desenvolvida pela UN (\textit{United Nations}) e lançada em 2000, é uma plataforma que, através do voluntariado \textit{online}, pretende reunir voluntários de múltiplas origens de maneira a auxiliarem na resolução de desafios tecnológicos das mais variadas áreas. \medskip
 
-\subsection{Requisitos funcionais}
+Esta aplicação permite a filtragem das oportunidades consoante a área de interesse e também auxilia o processo de candidatura às mesmas. 
 
-O sistema a desenvolver é composto por uma \textit{web} API, uma aplicação \textit{mobile} e uma aplicação \textit{web}. A seguir elencam-se os requisitos funcionais destes componentes.
+\subsection{Conclusão}
 
-\subsection*{\textit{Web} API}
+Apesar destas plataformas disponibilizarem informação relativa a oportunidades de realizar trabalho voluntário e das mesmas auxiliarem a inscrição nestas ações, estas não promovem a interação entre utilizadores, que é fulcral para o crescimento de uma comunidade solidária, que leva ao aumento do número de participantes em ações de voluntariado. \medskip
 
+Uma solução aplicável poderia ser o desenvolvimento de uma ferramenta que aplicasse técnicas de \textit{web scraping}. Contudo, o desenvolvimento de uma ferramenta desta natureza depende da existência de fontes de informação externas e também não cumpre com a necessidade de haver interação entre utilizadores. \medskip
+
+Uma rede social com foco em ações de voluntariado cumpre todos os requisitos descritos. Contudo, é necessário haver a migração de utilizadores para esta plataforma, algo que não é possível garantir. \medskip
+
+Dadas as soluções apresentadas (e as suas vantagens/desvantagens), foi tomada a decisão de desenvolver uma rede social de voluntariado.
+
+\subsection{Requisitos Funcionais}
+Tendo em conta o desenvolvimento de uma rede social de voluntariado, foram elaborados alguns requisitos funcionais do projeto:
+
+\begin{itemize}
+	\item permitir a voluntários registarem-se, criarem um perfil e interagir com a plataforma (através da criação de \textit{posts} e sinalização de interesse em eventos);
+	\item possibilitar às organizações solicitarem o registo na plataforma e também permitir às mesmas realizarem \textit{posts} e criarem eventos;
+	\item mostrar às organizações os voluntários interessados nos seus eventos e disponibilizar um contacto dos mesmos (por exemplo, e-mail);
+	\item garantir aos utilizadores da plataforma o acesso a interações como o seguimento de utilizadores, gostarem \textit{posts}, entre outros;
+\end{itemize}
+
+Levando em consideração os requisitos funcionais enumerados, foi tomada a decisão de elaborar o projeto em três componentes: 
 \begin{enumerate}
-	\item Possibilidade de efetuar pesquisas relativamente ao dados existentes na plataforma (voluntários, organizações, eventos, \textit{posts});
-	\item possibilidade de criar/alterar/apagar entradas já existentes na plataforma;
-	\item autenticação de maneira a disponibilizar uma experiência personalizada para cada utilizador;
-	\item disponibilizar operações típicas de redes sociais (como seguimento de perfis);
-	\item auxiliar no processo de inscrição de voluntários em eventos.
-\end{enumerate}
-
-\subsection*{Aplicação \textit{mobile}}
-
-\begin{enumerate}
-	\item possibilidade de efetuar registo na plataforma;
-	\item existência de um modo para utilizadores não autenticados e autenticados, sendo que certas operações apenas poderão ser efetuados por estes últimos;
-	\item apresentação de resultados das pesquisas possíveis de efetuar na API e possibilidade de efetuar filtros nas mesmas;
-	\item funcionalidade de poder modificar o seu perfil, criar/alterar \textit{posts} e seguir outros utilizadores/organizações, entre outros;
-	\item realizar a dita divulgação ativa através da representação de notificações no dispositivo do voluntário.
-\end{enumerate}
-
-\subsection*{Aplicação \textit{Web}}
-
-\begin{enumerate}
-	\item apresentação dos resultados das pesquisas efetuadas sobre a API a todos os clientes da aplicação (autenticados e não autenticados);
-	\item ecrã de \textit{login} que remete organizações para a página sobre o qual as mesmas se podem autenticar e voluntários para o local onde estes podem aceder ao aplicativo móvel;
-	\item existência de ecrãs onde é possível organizações autenticadas interagirem com a plataforma através de operações como por exemplo a criação de \textit{posts} ou eventos.
+	\item uma Web API, responsável por implementar as funcionalidades necessárias para as aplicações cliente terem o comportamento pretendido. Este módulo foi desenvolvido face à necessidade de expôr os dados de forma comum a todas as aplicações cliente.
+	\item Uma aplicação cliente móvel (\textit{Android}) orientada aos voluntários, onde os mesmos podem interagir com a plataforma.	A decisão de desenvolver uma aplicação móvel para este sistema operativo foi tomada devido ao mesmo ser o mais comum no mercado móvel atualmente.
+	\item Uma aplicação \textit{web} desenvolvida para as organizações interagirem com a plataforma, sendo que esta opção foi tomada para que múltiplos utilizadores possam gerir mais facilmente o perfil de uma organização.
 \end{enumerate}

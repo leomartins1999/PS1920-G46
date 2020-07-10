@@ -4,7 +4,7 @@ Este capítulo descreve o desenvolvimento e implementação da aplicação móve
 
 \bigskip \bigskip
 
-O componente aplicação móvel funciona como interface para o tipo de utilizador mais comum (Voluntário) e foi desenvolvida para a plataforma Android.
+A aplicação móvel é uma interface de utilizador desenvolvida em \textit{Android} com o intuito de ser utilizada por voluntários.
 
 \par \bigskip \bigskip
 
@@ -18,7 +18,7 @@ Este módulo contém alguns requisitos chave que são necessários para garantir
 
 \bigskip
 
-Tal como já foi referido anteriormente, foi tomada a decisão de implementar esta aplicação no sistema operativo Android seguindo as orientações dadas pelo Android Jetpack e um conjunto de bibliotecas auxiliares (como o Volley e o Glide).
+Tal como já foi referido anteriormente, foi tomada a decisão de implementar esta aplicação no sistema operativo Android seguindo as orientações dadas pelo Android Jetpack e um conjunto de bibliotecas auxiliares.
 
 \bigskip \bigskip
 
@@ -26,7 +26,7 @@ Tal como já foi referido anteriormente, foi tomada a decisão de implementar es
 
 \bigskip
 
-A interface gráfica com o utilizador foi cuidadosamente desenhada e testada de modo a que a sua utilização fosse o mais intuitiva possível. O grafo de navegação é ilustrado na figura 7.
+A interface gráfica foi desenhada para ser simples de utilizar e o mais intuitiva possível. O grafo de navegação da mesma é ilustrado na Figura 7.
 
 \newpage
 
@@ -46,7 +46,7 @@ De maneira a garantir uma experiência personalizada para cada cliente deste mó
 
 \bigskip
 
-A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como ``gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs irão ter uma vista personalizada, tal como exemplificado na figura 8.
+A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como ``gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs irão ter uma vista personalizada, tal como exemplificado na Figura 8.
 
 \newpage
 
@@ -64,27 +64,19 @@ A arquitetura da aplicação é constituída por três sub-módulos principais: 
 
 Enquanto que a UI é responsável por conter as implementações dos mais variados aspetos da interface de utilizador (como atividades, fragmentos, navegação e outros elementos), a API trata a comunicação entre a aplicação e a Web API. Por fim, o Modelo define a estrutura dos dados fornecidos pela API e utilizados na UI assim como a implementação de uma \textit{cache} de maneira a partilhar estes dados e reduzir o número de pedidos efetuados à Web API.
 
-\subsection{Implementação de Sessão}
-
-Tendo em conta que o conceito de sessão foi implementado na Web API através da tecnologia Passport.js (que funciona à base de \textit{cookies}), foi necessário redefinir algumas infra-estruturas da biblioteca Volley (utilizada para efetuar pedidos HTTP) de maneira a que, quando o utilizador estiver autenticado na aplicação, os pedidos efetuados pela mesma contenham a informação necessária para a Web API conseguir reconhecer o utilizador.
-
-\medskip
-
-De maneira a que a representação dos vários ecrãs da aplicação seja dinâmica consoante a sessão do utilizador, é definido e utilizado um objeto Sessão, acessível por todas as classes do projeto, que contém informações relativamente ao voluntário autenticado.
-
 \subsection{\textit{User Interface}}
 
 Este sub-módulo engloba todos os componentes do projeto que são responsáveis por representar os dados da aplicação. Este é constituído por:
 
 \begin{itemize}
-	\item implementações de ecrãs, quer sejam atividades ou fragmentos. É de notar que para cada um destes existe um objeto ViewModel associado, responsável por manter o estado dos elementos do ecrã e também por interagir com a API quando necessário; 
-	\item adaptadores. Estes são utilizados pelos ecrãs quando existe a necessidade de apresentar uma lista de elementos (como voluntários ou \textit{posts}) tomando proveito do componente RecyclerView;
+	\item implementações de ecrãs, quer sejam atividades ou fragmentos. É de notar que para cada um destes existe associado um objeto ViewModel que é responsável por manter o estado dos elementos do ecrã e também por interagir com a API quando necessário; 
+	\item adaptadores, infraestruturas responsáveis por auxiliar o processo de transformação de dados brutos numa representação dos mesmos. Estes adaptadores são utilizados em conjunto com o componente RecyclerView - utilizado para apresentar uma lista de elementos (como voluntários ou \textit{posts}) ao utilizador;
 	\item Outros componentes utilitários, como por exemplo uma estrutura que auxilia o carregamento de imagens para a representação das mesmas.
 \end{itemize} 
 
 \subsection{API}
 
-O sub-módulo API (figura 9) serve como \textit{proxy} entre a aplicação e a Web API. Este dispõe de um serviço que disponibiliza todas as rotas acessíveis pelos voluntários e sobre o mesmo é possível solicitar a realização de pedidos à API (como a obtenção de voluntários ou o seguimento, por parte do utilizador autenticado, de uma organização). O mesmo é assíncrono e funciona à base de \textit{callbacks}.
+O sub-módulo API (Figura 9) serve como \textit{proxy} entre a aplicação e a Web API. Este dispõe de um serviço que disponibiliza todas as rotas acessíveis pelos voluntários e sobre o mesmo é possível solicitar a realização de pedidos à API (como a obtenção de voluntários ou o seguimento, por parte do utilizador autenticado, de uma organização). O mesmo é assíncrono e funciona à base de \textit{callbacks}.
 
 \begin{figure}[h]
 	\centering
@@ -92,9 +84,20 @@ O sub-módulo API (figura 9) serve como \textit{proxy} entre a aplicação e a W
 	\caption{Arquitetura do sub-módulo API}
 \end{figure}
 
-O realizador de pedidos trata da implementação dos métodos HTTP suportados pela Web API (GET, POST, PUT, DELETE) de forma genérica, de maneira a que o mesmo possa ser utilizado pelos controladores.
+O realizador de pedidos trata da implementação dos métodos HTTP suportados pela Web API (GET, POST, PUT, DELETE) de forma genérica, de maneira a que o mesmo possa ser utilizado pelos controladores. Os pedidos HTTP são efetuados usando a biblioteca \textit{Volley}.
+
+\medskip
 
 Quando o pedido é concluído, é chamado o \textit{callback} definido pela estrutura que chamou o serviço, que consome a resposta do mesmo, quer esta contenha dados ou apenas sinalize sucesso. A estrutura que efetua a chamada ao serviço é também responsável por definir o \textit{callback} a executar em caso de ocorrer um erro durante o pedido.
+
+
+\subsubsection{Implementação de Sessão}
+
+Tendo em conta que o conceito de sessão foi implementado na Web API através da tecnologia Passport.js (que funciona à base de \textit{cookies}), foi necessário redefinir algumas infra-estruturas da biblioteca Volley de maneira a que, quando o utilizador estiver autenticado na aplicação, os pedidos efetuados pela mesma contenham a informação necessária para a Web API conseguir reconhecer o utilizador.
+
+\medskip
+
+De maneira a que a representação dos vários ecrãs da aplicação seja dinâmica consoante a sessão do utilizador, é definido e utilizado um objeto Sessão, acessível por todas as classes do projeto, que contém informações relativamente ao voluntário autenticado.
 
 \subsection{Modelo}
 

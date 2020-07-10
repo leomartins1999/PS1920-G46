@@ -2,20 +2,20 @@
 Este capítulo começa por introduzir o \textit{stack} tecnológico sobre o qual o projeto foi desenvolvido. O mesmo contém também um secção atribuída a cada módulo do projeto e por fim refere as tecnologias usadas no mesmo.
 \par \medskip
 
-O modelo de arquitetura do nosso projeto, apresentado na figura 4, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
+O modelo de arquitetura do nosso projeto, apresentado na Figura 4, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
 
-Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o standard MEAN \textit{stack}~\cite{mean_stack_explained} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
+Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o \textit{stack} MEAN \textit{stack}~\cite{mean_stack_explained} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na Figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
 \begin{itemize}
 	\item familiaridade dos autores com algumas destas tecnologias (como Express.js e Node.js);
-	\item \textit{standard} utilizado no desenvolvimento de múltiplas aplicações, o que leva a existência de uma grande quantidade de recursos, como documentação e exemplos;
+	\item \textit{stack} utilizado no desenvolvimento de múltiplas aplicações, o que leva a existência de uma grande quantidade de recursos, como documentação e exemplos;
 	\item todas estas tecnologias têm em comum características que as tornam apelativas de usar conjuntamente, como por exemplo o facto da utilização de JSON ser transversal entre todas;
-	\item todas as ferramentas associadas a este modelo de desenvolvimento são \textit{open-source}.
+	\item todas as ferramentas associadas a esta pilha tecnológica são \textit{open-source}.
 \end{itemize}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.35]{mern2}
-	\caption{Tecnologias do \textit{standard} MERN (MongoDB, Express.js, React.js, Node.js)}
+	\caption{Tecnologias do \textit{stack} MERN (MongoDB, Express.js, React.js, Node.js)}
 \end{figure}
 
 Relativamente à API, esta estabelecerá \textit{endpoints} onde será possível executar pedidos HTTP de maneira a suportar autenticação e operações na infraestrutura (criação de perfil, “seguimento” de organização, inscrição em ação de voluntariado, etc.), constituindo o \textit{back-end} do projeto.
@@ -53,7 +53,7 @@ A aplicação \textit{mobile} será desenvolvida para a plataforma Android em Ko
 \begin{itemize}
 	\item familiaridade dos autores com esta linguagem de programação e ferramentas (Android Jetpack);
 	\item a nível de quota de mercado dos sistemas operativos de dispositivos móveis, o Android é o mais prevalente;
-	\item atualmente, o Kotlin é a linguagem oficial para desenvolvimento de aplicações móveis para Android.
+	\item o Kotlin é uma das linguagens oficiais para desenvolvimento de aplicações móveis para Android.
 \end{itemize}
 
 \subsection{Aplicação \textit{Web}}
@@ -61,7 +61,7 @@ A aplicação \textit{web} será desenvolvida em React~\cite{angular_vs_react}. 
 
 \begin{itemize}
 	\item familiaridade dos autores com esta ferramenta;
-	\item quota de mercado (relativamente às \textit{frameworks} de Javascript utilizadas para o desenvolvimento de aplicações \textit{web}) significativa, sendo atualmente a tecnologia mais usada;
+	\item quota de mercado (relativamente às \textit{frameworks} de Javascript utilizadas para o desenvolvimento de aplicações \textit{web}) significativa, sendo atualmente a tecnologia mais usada~\cite{angular_vs_react};
 	\item fácil integração com as outras ferramentas do projeto.
 \end{itemize}
 
