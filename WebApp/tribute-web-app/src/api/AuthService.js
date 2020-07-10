@@ -3,8 +3,9 @@ const SESSION_KEY = "SESSION_ID"
 function getAuthService(executor){
     return{
         login: login,
+        register: register,
+        logout: logout,
         getSession: getSession,
-        logout: logout
     }
 
     function login(email, password){
@@ -21,6 +22,20 @@ function getAuthService(executor){
                 sessionStorage.setItem(SESSION_KEY, body.user_details.user_id)
                 return Promise.resolve(true)
             })
+            .catch(err => console.log(err))
+    }
+
+    function register(email, password, name) {
+        const body = {
+            "email": email,
+            "password": password,
+            "user_type": "org",
+            "data": {
+                "name": name,
+            }
+        }
+
+        return executor.post("/register", body)
             .catch(err => console.log(err))
     }
 

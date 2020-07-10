@@ -1,5 +1,5 @@
 import React from "react";
-import renderEventCard from "../events_page/EventCard";
+import renderEventCard from "./EventCard";
 
 class EventsFragment extends React.Component {
 
