@@ -1,3 +1,5 @@
+const QueryOptions = require('../QueryOptions');
+
 /**
  * Representation of an image
  */
@@ -13,6 +15,8 @@ class Image{
         this.id = req.params.image_id;
 
         if (content) this.content = req.files.file.data;
+
+        this.query_options = new QueryOptions();
     }
 
     /**
