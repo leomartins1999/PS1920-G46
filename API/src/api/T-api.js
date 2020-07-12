@@ -262,7 +262,7 @@ module.exports = (router, service, test) => {
 
         service.getImage(image)
             .then(image => res.end(image))
-            .catch(err => handleError(res, 404, {message: "Image not found"}));
+            .catch(_ => handleError(res, 404, {message: "Image not found"}));
     }
 
     // handler for unknown URL
