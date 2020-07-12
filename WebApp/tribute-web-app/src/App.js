@@ -76,7 +76,7 @@ function RouteRenderer() {
                 <NavBar/>
                 <Switch>
                     <Route path="/home" render={() =>
-                        <HomePage service={orgsService}/>
+                        <HomePage service={orgsService} id={authService.getSession()}/>
                     }/>
                     <Route path="/logout" render={() => {
                         authService.logout();

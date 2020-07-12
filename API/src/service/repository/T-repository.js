@@ -107,7 +107,7 @@ module.exports = (db_name, collection, filter, searchables) => {
         generateId(query);
 
         return accessCollection()
-            .then(col => col.updateOne(query, update))
+            .then(col => col.updateOne(query, update, {upsert: true}))
             .then(res => {
                 if (res.matchedCount === 0) return Promise.reject(error.databaseError(collection, 'update'));
                 return Promise.resolve({status: 'updated'})

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import ClickableIcon from "../../components/ClickableIcon";
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
 
@@ -15,9 +15,9 @@ const MOCK_ORG = {
     "imageLink": "https://4.bp.blogspot.com/_aExLWgnhBBY/Sd9D4Gpe4VI/AAAAAAAADy8/QDQC3sWeGbc/s400/bancoalimentar2.jpg"
 }
 
-function OrganizationCard({service}) {
+function OrganizationCard({service, id}) {
 
-    const [org, setOrg] = useState(MOCK_ORG)
+    const [org, setOrg] = useState({})
 
     const [editing, setEditing] = useState(false);
 
@@ -27,30 +27,41 @@ function OrganizationCard({service}) {
     const [site, setSite] = useState(org.siteLink)
     const [facebook, setFacebook] = useState(org.facebookLink)
 
+    useEffect(getOrg, [])
+
     function getOrg() {
-        console.log("getting org...")
+        service.getOrg(id).then(res => {
+            console.log(res)
+            setOrg(res)
+        })
+    }
+
+    function updateOrg(){
+        service.updateOrg(id, {description, phone, mail, siteLink: site, facebookLink: facebook}).then(res => getOrg())
     }
 
     function update() {
-        console.log("updating...")
+        setEditing(false)
+        setOrg({})
+        updateOrg()
     }
 
     function renderNonEditingMode() {
         return (
             <div>
-                <div className="m-3 card">
+                <div className="card m-3">
                     <div className="card-header h2">{org.name}</div>
                     <img
-                        className="card-img m-3 align-self-center"
+                        className="card-img m-3 align-self-center text-center"
                         src={org.imageLink}
-                        alt="Org's icon"
+                        alt="(no image)"
                         style={{"width": "12rem"}}
                     />
                     <div className="card-body text-center">
-                        <p className="text-justify">{org.description}</p>
+                        <p className="text-justify m-3">{org.description}</p>
                         <div className="d-inline-flex">
                             <DeviceMobileIcon size={24}/>
-                            <p>{org.phone}</p>
+                            <p>{org.phone? org.phone : "(no phone number)"}</p>
                         </div>
                         <div/>
                         <div className="d-inline-flex">
@@ -77,7 +88,7 @@ function OrganizationCard({service}) {
     function renderEditingMode() {
         return (
             <div>
-                <div className="m-3 card">
+                <div className="card m-3">
                     <div className="card-header h2">{org.name}</div>
                     <div className="card-body text-center">
                         <textarea
@@ -85,10 +96,10 @@ function OrganizationCard({service}) {
                             value={description}
                             placeholder="Description..."
                             onChange={(e) => setDescription(e.target.value)}/>
-                        <div className="d-inline-flex mb-3">
+                        <div className="d-inline-flex mb-3 align-items-center">
                             <DeviceMobileIcon size={24}/>
                             <input
-                                className="form-control"
+                                className="form-control ml-2"
                                 value={phone}
                                 placeholder="Phone number"
                                 onChange={(e) => setPhone(e.target.value)}
@@ -101,44 +112,52 @@ function OrganizationCard({service}) {
                             {Object.keys(org.following).length} Following
                         </div>
                     </div>
-                    <div className="card-footer d-inline-flex justify-content-around form-group row">
-                        <div className="col-xs-2 d-inline-flex">
+                    <div className="card-footer d-flex justify-content-around m-0 form-group row">
+                        <div className="col-xs-2 d-inline-flex align-items-center">
                             Email
                             <input
-                                className="form-control"
+                                className="form-control ml-2"
                                 value={mail}
                                 placeholder="Mail"
                                 onChange={(e) => setMail(e.target.value)}
                             />
                         </div>
-                        <div className="col-xs-2 d-inline-flex">
+                        <div className="col-xs-2 d-inline-flex align-items-center">
                             Site
                             <input
-                                className="form-control"
+                                className="form-control ml-2"
                                 value={site}
                                 placeholder="Site"
                                 onChange={(e) => setSite(e.target.value)}
                             />
                         </div>
-                        <div className="col-xs-2 d-inline-flex">
+                        <div className="col-xs-2 d-inline-flex align-items-center">
                             Facebook
                             <input
-                                className="form-control"
+                                className="form-control ml-2"
                                 value={facebook}
                                 placeholder="Facebook link"
-                                onChange={(e) => setSite(e.target.value)}
+                                onChange={(e) => setFacebook(e.target.value)}
                             />
                         </div>
                     </div>
                 </div>
                 <div className="d-flex justify-content-center">
                     <button type="button" className="btn btn-primary mr-3" onClick={update}>Submit changes</button>
-                    <button type="button" className="btn btn-danger" onClick={() => setEditing(false)}>Stop editing
+                    <button type="button" className="btn btn-danger" onClick={() => setEditing(false)}>Cancel
                     </button>
                 </div>
             </div>
         )
     }
+
+    if (!org.name) return (
+        <div className="d-flex justify-content-center m-5">
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        </div>
+    )
 
     return editing ?
         renderEditingMode() : renderNonEditingMode();
