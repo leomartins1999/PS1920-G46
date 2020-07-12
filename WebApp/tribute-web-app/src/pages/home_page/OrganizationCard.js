@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import ClickableIcon from "../../components/ClickableIcon";
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
+import {API_BASE_PATH} from "../../api/RequestExecutor";
 
 const MOCK_ORG = {
     "_id": "5ef0f340ea92970de919db5e",
@@ -27,17 +28,27 @@ function OrganizationCard({service, id}) {
     const [site, setSite] = useState(org.siteLink)
     const [facebook, setFacebook] = useState(org.facebookLink)
 
+    const [image, setImage] = useState(null)
+
     useEffect(getOrg, [])
 
     function getOrg() {
         service.getOrg(id).then(res => {
-            console.log(res)
+            setDescription(res.description)
+            setPhone(res.phone)
+            setMail(res.mail)
+            setSite(res.siteLink)
+            setFacebook(res.facebookLink)
+
             setOrg(res)
         })
     }
 
-    function updateOrg(){
-        service.updateOrg(id, {description, phone, mail, siteLink: site, facebookLink: facebook}).then(res => getOrg())
+    function updateOrg() {
+        service.updateOrg(id, {description, phone, mail, siteLink: site, facebookLink: facebook})
+            .then(_ => getOrg())
+
+        if (image) service.updateOrgImage(id, image).then(_ => {getOrg()})
     }
 
     function update() {
@@ -53,15 +64,15 @@ function OrganizationCard({service, id}) {
                     <div className="card-header h2">{org.name}</div>
                     <img
                         className="card-img m-3 align-self-center text-center"
-                        src={org.imageLink}
+                        src={`${API_BASE_PATH}${org.imageLink}?${performance.now()}`}
                         alt="(no image)"
                         style={{"width": "12rem"}}
                     />
                     <div className="card-body text-center">
-                        <p className="text-justify m-3">{org.description}</p>
+                        <p className="text-justify m-3 border">{org.description}</p>
                         <div className="d-inline-flex">
                             <DeviceMobileIcon size={24}/>
-                            <p>{org.phone? org.phone : "(no phone number)"}</p>
+                            <p>{org.phone ? org.phone : "(no phone number)"}</p>
                         </div>
                         <div/>
                         <div className="d-inline-flex">
@@ -70,11 +81,19 @@ function OrganizationCard({service, id}) {
                             {Object.keys(org.following).length} Following
                         </div>
                     </div>
-                    <div className="card-footer d-inline-flex justify-content-around">
-                        {org.mail ?
-                            <ClickableIcon component={<MailIcon size={24}/>} link={`mailto:${org.mail}`}/> : null}
-                        <ClickableIcon link={`//${org.siteLink}`} component={<GlobeIcon size={24}/>}/>
-                        <ClickableIcon link={`//${org.facebookLink}`} component={"Facebook"}/>
+                    <div className="card-footer d-inline-flex justify-content-center">
+                        <div className="row container-fluid">
+                            <div className="col-4 text-center">
+                                {org.mail ? <ClickableIcon component={<MailIcon size={24}/>}
+                                                           link={`mailto:${org.mail}`}/> : null}
+                            </div>
+                            <div className="col-4 text-center">
+                                <ClickableIcon link={`//${org.siteLink}`} component={<GlobeIcon size={24}/>}/>
+                            </div>
+                            <div className="col-4 text-center">
+                                <ClickableIcon link={`//${org.facebookLink}`} component={"Facebook"}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="d-flex justify-content-center">
@@ -91,6 +110,13 @@ function OrganizationCard({service, id}) {
                 <div className="card m-3">
                     <div className="card-header h2">{org.name}</div>
                     <div className="card-body text-center">
+                        <p>New image</p>
+                        <input
+                            type="file"
+                            className="form-control-file mr-2 text-center mb-3"
+                            onChange={(e) => setImage(e.target.files[0])}
+                            placeholder="Select image"
+                        />
                         <textarea
                             className="form-control mb-3"
                             value={description}

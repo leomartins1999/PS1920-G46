@@ -1,23 +1,27 @@
-function getOrgsService(executor){
+function getOrgsService(executor) {
 
-    return{
+    return {
         getOrgs: getOrgs,
+        getOrg: getOrg,
         updateOrg: updateOrg,
-        getOrg: getOrg
+        updateOrgImage: updateOrgImage
     }
 
     function getOrgs() {
         return executor.get('/orgs')
     }
 
-    function updateOrg(id, params){
-        return executor.put(`/auth/orgs/${id}`, params)
-    }
-
-    function getOrg(id){
+    function getOrg(id) {
         return executor.get(`/orgs/${id}`)
     }
 
+    function updateOrg(id, params) {
+        return executor.put(`/auth/orgs/${id}`, params)
+    }
+
+    function updateOrgImage(id, file) {
+        return executor.uploadImage(`/auth/images/orgs/${id}`, file)
+    }
 }
 
 export default getOrgsService

@@ -32,7 +32,7 @@ module.exports = () => {
 
         for(let i = 0; i < filter.length; i++){
             let name = filter[i];
-            if (obj[name]) res[name] = obj[name]
+            if (obj.hasOwnProperty(name)) res[name] = obj[name]
         }
 
         return res
