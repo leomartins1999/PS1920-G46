@@ -1,12 +1,14 @@
 import React from "react";
 import renderEventCard from "./EventCard";
+import Loading from "../../components/Loading";
 
 class EventsFragment extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            events: []
+            events: [],
+            filterEvents: false
         }
     }
 
@@ -15,6 +17,10 @@ class EventsFragment extends React.Component {
             .then(events => {
                 if (events) this.setState({events: events})
             })
+    }
+
+    filterEvents = (e) => {
+        this.setState({filterEvents: e.target.checked, events: []})
     }
 
     componentDidMount() {
@@ -32,13 +38,15 @@ class EventsFragment extends React.Component {
     render() {
         let events = this.state.events
 
-        events = events.map(renderEventCard)
+        events = events.length === 0 ? <Loading/> : events.map(renderEventCard)
 
         return (
-            <div>
-
-                <div className="jumbotron border-primary m-5">
-                    <div className="text-center h1">Events</div>
+            <div className="card m-3">
+                <div className="card-header text-center">
+                    Check your events
+                    <input type="checkbox" className="ml-3" onChange={this.filterEvents}/>
+                </div>
+                <div className="card-body">
                     {events}
                 </div>
             </div>

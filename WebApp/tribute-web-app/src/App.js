@@ -81,6 +81,9 @@ function RouteRenderer() {
                     <Route path="/posts" render={() =>
                         <PostsPage service={postsService} id={authService.getSession()}/>
                     }/>
+                    <Route path="/events" render={() =>
+                        <EventsPage service={eventsService} id={authService.getSession()}/>
+                    }/>
                     <Route path="/logout" render={() => {
                         authService.logout();
                         setAuth(null);
@@ -111,8 +114,8 @@ function RouteRenderer() {
     }
 }
 
-function App(){
-    return(
+function App() {
+    return (
         <div className="App">
             <RouteRenderer/>
         </div>

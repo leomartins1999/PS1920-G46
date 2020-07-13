@@ -19,8 +19,8 @@ function getOrgsService(executor) {
         return executor.put(`/auth/orgs/${id}`, params)
     }
 
-    function updateOrgImage(id, file) {
-        return executor.uploadImage(`/auth/images/orgs/${id}`, file)
+    function updateOrgImage(id, image) {
+        return executor.uploadImage(`/auth/images/orgs/${id}`, image)
     }
 }
 

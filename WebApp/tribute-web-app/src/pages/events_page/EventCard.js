@@ -1,9 +1,19 @@
 import React from "react";
 
-function EventCard({name, date, location, description, imageLink, interested, participants}){
+function EventCard({org_id, name, date, location, description, imageLink, interested, participants}){
 
     return(
-        <div className="card text-center m-5">
+        <div className="card mb-4">
+            <div className="card-header h2">{org_id}</div>
+            <div className="card-body text-center">
+                {name}
+            </div>
+        </div>
+    )
+}
+
+/*
+<div className="card text-center m-5">
             <div>
                 <div className="card-header">
                     <div className="row">
@@ -22,7 +32,7 @@ function EventCard({name, date, location, description, imageLink, interested, pa
                 <img
                     className="m-3"
                     src={imageLink}
-                    alt="Failed to load image."
+                    alt=""
                     style={{maxWidth: "18rem", alignSelf: "center"}}
                 />
                 <div className="card-body">
@@ -40,13 +50,13 @@ function EventCard({name, date, location, description, imageLink, interested, pa
                 </div>
             </div>
         </div>
-    )
-}
+ */
 
 function renderEventCard(event){
     console.log(event);
     return(
         <EventCard
+            org_id={event.org_id}
             name={event.name}
             date={event.date}
             location={event.location}

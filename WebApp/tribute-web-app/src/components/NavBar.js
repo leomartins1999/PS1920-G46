@@ -9,6 +9,7 @@ function NavBar() {
             <Nav className="mr-auto">
                 <Nav.Link href="/home">Home</Nav.Link>
                 <Nav.Link href="/posts">Posts</Nav.Link>
+                <Nav.Link href="/events">Events</Nav.Link>
             </Nav>
             <Button variant={"light"} href={"/logout"}>Logout</Button>
         </Navbar>

@@ -1,8 +1,17 @@
 function getPostsService(executor){
 
     return{
+        createPost: createPost,
         getPosts: getPosts,
-        createPost: createPost
+        updatePostImage: updatePostImage
+    }
+
+    function createPost(text) {
+        const body = {
+            description: text
+        }
+
+        return executor.post("/auth/posts", body)
     }
 
     function getPosts(owner_id) {
@@ -12,12 +21,8 @@ function getPostsService(executor){
         return executor.get(url)
     }
 
-    function createPost(text) {
-        const body = {
-            description: text
-        }
-
-        return executor.post("/auth/posts", body)
+    function updatePostImage(id, image){
+        return executor.uploadImage(`/auth/images/posts/${id}`, image)
     }
 
 }

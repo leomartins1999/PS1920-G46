@@ -32,8 +32,6 @@ function PostCard({owner_id, description, imageLink, likes, time}){
 }
 
 function renderPostCard(post){
-    console.log(post)
-
     return(
         <PostCard
             owner_id={post.owner_id}
