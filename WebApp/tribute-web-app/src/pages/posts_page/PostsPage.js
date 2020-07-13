@@ -1,14 +1,16 @@
 import React from "react";
 
 import PostsFragment from "./PostsFragment";
+import PostForm from "./PostForm";
 
-class PostsPage extends React.Component{
+function PostsPage({service, id}) {
 
-    render() {
-        return(
-            <PostsFragment service={this.props.service}/>
-        )
-    }
+    return (
+        <div>
+            <PostForm service={service}/>
+            <PostsFragment service={service} owner_id={id}/>
+        </div>
+    )
 
 }
 

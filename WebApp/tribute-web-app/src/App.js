@@ -78,6 +78,9 @@ function RouteRenderer() {
                     <Route path="/home" render={() =>
                         <HomePage service={orgsService} id={authService.getSession()}/>
                     }/>
+                    <Route path="/posts" render={() =>
+                        <PostsPage service={postsService} id={authService.getSession()}/>
+                    }/>
                     <Route path="/logout" render={() => {
                         authService.logout();
                         setAuth(null);

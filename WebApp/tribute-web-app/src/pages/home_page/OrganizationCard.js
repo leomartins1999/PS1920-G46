@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import ClickableIcon from "../../components/ClickableIcon";
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
+import Loading from "../../components/Loading";
 
 const MOCK_ORG = {
     "_id": "5ef0f340ea92970de919db5e",
@@ -177,13 +178,7 @@ function OrganizationCard({service, id}) {
         )
     }
 
-    if (!org.name) return (
-        <div className="d-flex justify-content-center m-5">
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        </div>
-    )
+    if (!org.name) return <Loading/>
 
     return editing ?
         renderEditingMode() : renderNonEditingMode();

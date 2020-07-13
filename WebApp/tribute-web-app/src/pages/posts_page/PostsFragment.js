@@ -1,20 +1,27 @@
 import React from "react";
 import renderPostCard from "./PostCard";
+import Loading from "../../components/Loading";
 
 class PostsFragment extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            filterPosts: false,
             posts: []
         }
     }
 
     fetchPosts() {
-        return this.props.service.getPosts(this.props.owner_id)
-            .then(posts => {
+        return this.props.service.getPosts(
+            this.state.filterPosts? this.props.owner_id : null
+        ).then(posts => {
                 if (posts) this.setState({posts: posts})
             })
+    }
+
+    filterPosts = (e) => {
+        this.setState({filterPosts: e.target.checked, posts: []})
     }
 
     componentDidMount() {
@@ -24,7 +31,7 @@ class PostsFragment extends React.Component {
             })
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(){
         if (this.timerID)
             clearInterval(this.timerID)
     }
@@ -32,12 +39,17 @@ class PostsFragment extends React.Component {
     render() {
         let posts = this.state.posts
 
-        posts = posts.map(renderPostCard)
+        posts = (posts.length === 0)? <Loading/> : posts.map(renderPostCard)
 
         return (
-            <div className="jumbotron border-primary m-5">
-                <div className="text-center h1">Posts</div>
-                {posts}
+            <div className="card m-3">
+                <div className="card-header text-center">
+                    Check your posts
+                    <input type="checkbox" className="ml-3" onChange={this.filterPosts}/>
+                </div>
+                <div className="card-body">
+                    {posts}
+                </div>
             </div>
         )
     }
