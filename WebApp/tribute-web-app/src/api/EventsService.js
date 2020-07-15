@@ -3,6 +3,7 @@ function getEventsService(executor){
     return{
         createEvent: createEvent,
         getEvents: getEvents,
+        getEvent: getEvent,
         updateEventImage: updateEventImage
     }
 
@@ -10,10 +11,14 @@ function getEventsService(executor){
         return executor.post(`/auth/orgs/events`, event)
     }
 
-    function getEvents(id) {
+    function getEvents(org_id) {
         return executor.get(
-            id ? `/orgs/${id}/events` : "/events"
+            org_id ? `/orgs/${org_id}/events` : "/events"
         )
+    }
+
+    function getEvent(event_id) {
+        return executor.get(`/events/${event_id}`)
     }
 
     function updateEventImage(id, image) {

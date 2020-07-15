@@ -1,12 +1,13 @@
 import React from "react";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 
-function EventCard({org_id, name, date, location, imageLink}) {
+function EventCard({id, org_id, name, date, location, imageLink}) {
     return (
         <div className="card mb-4">
             <div className="card-header h2">{org_id}</div>
             <div className="card-body text-center">
-                <h3>{name}</h3>
+                <a href={`/events/${id}`} className="h3 text-center">{name}</a>
+                <div/>
                 <img
                     className="card-img m-3 align-self-center text-center"
                     src={`${API_BASE_PATH}${imageLink}`}
@@ -32,6 +33,7 @@ function renderEventCard(event) {
     return (
         <EventCard
             key={event._id}
+            id={event._id}
             org_id={event.org_id}
             name={event.name}
             date={event.date}

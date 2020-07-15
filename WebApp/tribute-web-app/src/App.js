@@ -18,6 +18,7 @@ import EventsService from "./api/EventsService"
 import AuthService from "./api/AuthService"
 import RegisterPage from "./pages/register_page/RegisterPage";
 import {Button} from "react-bootstrap";
+import EventPage from "./pages/event_page/EventPage";
 
 const executor = RequestExecutor()
 
@@ -75,20 +76,25 @@ function RouteRenderer() {
             <div className="container">
                 <NavBar/>
                 <Switch>
-                    <Route path="/home" render={() =>
-                        <HomePage service={orgsService} id={authService.getSession()}/>
+                    <Route exact path="/home" render={() =>
+                        <HomePage service={orgsService} id={auth}/>
                     }/>
-                    <Route path="/posts" render={() =>
-                        <PostsPage service={postsService} id={authService.getSession()}/>
+                    <Route exact path="/posts" render={() =>
+                        <PostsPage service={postsService} id={auth}/>
                     }/>
-                    <Route path="/events" render={() =>
-                        <EventsPage service={eventsService} id={authService.getSession()}/>
+                    <Route exact path="/events" render={() =>
+                        <EventsPage service={eventsService} id={auth}/>
                     }/>
-                    <Route path="/logout" render={() => {
+                    <Route path="/events/:event_id" render={({match}) =>
+                        <EventPage
+                            service={eventsService}
+                            session_id={auth}
+                            event_id={match.params.event_id}/>
+                    }/>
+                    <Route exact path="/logout" render={() => {
                         authService.logout();
                         setAuth(null);
-                    }}
-                    />
+                    }}/>
                     <Route>
                         <Redirect to="/home"/>
                     </Route>
