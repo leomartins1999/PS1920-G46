@@ -13,7 +13,9 @@ class EventsFragment extends React.Component {
     }
 
     fetchEvents() {
-        return this.props.service.getEvents()
+        return this.props.service.getEvents(
+            this.state.filterEvents? this.props.id : null
+        )
             .then(events => {
                 if (events) this.setState({events: events})
             })

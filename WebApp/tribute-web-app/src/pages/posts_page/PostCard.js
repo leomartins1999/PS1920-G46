@@ -34,6 +34,7 @@ function PostCard({owner_id, description, imageLink, likes, time}){
 function renderPostCard(post){
     return(
         <PostCard
+            key={post._id}
             owner_id={post.owner_id}
             description={post.description}
             imageLink={post.imageLink}

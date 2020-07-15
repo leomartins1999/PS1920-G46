@@ -17,7 +17,7 @@ const MOCK_ORG = {
     "imageLink": "https://4.bp.blogspot.com/_aExLWgnhBBY/Sd9D4Gpe4VI/AAAAAAAADy8/QDQC3sWeGbc/s400/bancoalimentar2.jpg"
 }
 
-function OrganizationCard({service, id}) {
+function OrganizationDisplay({service, id}) {
 
     const [org, setOrg] = useState({})
 
@@ -185,4 +185,4 @@ function OrganizationCard({service, id}) {
 
 }
 
-export default OrganizationCard
+export default OrganizationDisplay

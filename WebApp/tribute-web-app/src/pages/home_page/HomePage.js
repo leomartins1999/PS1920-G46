@@ -1,10 +1,10 @@
 import React from "react";
-import OrganizationCard from "./OrganizationCard";
+import OrganizationDisplay from "./OrganizationDisplay";
 
 function HomePage({service, id}){
     return(
         <div>
-            <OrganizationCard service={service} id={id}/>
+            <OrganizationDisplay service={service} id={id}/>
         </div>
     )
 }

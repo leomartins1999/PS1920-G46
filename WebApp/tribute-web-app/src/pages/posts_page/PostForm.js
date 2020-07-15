@@ -21,7 +21,7 @@ function PostForm({service}) {
                     placeholder={"Write something..."}
                     className="form-control mb-2"
                     value={text} onChange={(e) => setText(e.target.value)}
-                    rows="3"/>
+                    rows="2"/>
                 <p className="text-center">Post image</p>
                 <input
                     type="file"

@@ -1,69 +1,42 @@
 import React from "react";
+import {API_BASE_PATH} from "../../api/RequestExecutor";
 
-function EventCard({org_id, name, date, location, description, imageLink, interested, participants}){
-
-    return(
+function EventCard({org_id, name, date, location, imageLink}) {
+    return (
         <div className="card mb-4">
             <div className="card-header h2">{org_id}</div>
             <div className="card-body text-center">
-                {name}
+                <h3>{name}</h3>
+                <img
+                    className="card-img m-3 align-self-center text-center"
+                    src={`${API_BASE_PATH}${imageLink}`}
+                    alt={""}
+                    style={{"width": "12rem"}}
+                />
+            </div>
+            <div className="card-footer d-inline-flex justify-content-center">
+                <div className="row container-fluid">
+                    <div className="col-6 text-left">
+                        {date}
+                    </div>
+                    <div className="col-6 text-right">
+                        {location}
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
 
-/*
-<div className="card text-center m-5">
-            <div>
-                <div className="card-header">
-                    <div className="row">
-                        <div className="col-md-4">
-                            {name}
-                        </div>
-                        <div className="col-md-4"/>
-                        <div className="col-md-2">
-                            {location}
-                        </div>
-                        <div className="col-md-2">
-                            {date}
-                        </div>
-                    </div>
-                </div>
-                <img
-                    className="m-3"
-                    src={imageLink}
-                    alt=""
-                    style={{maxWidth: "18rem", alignSelf: "center"}}
-                />
-                <div className="card-body">
-                    <p className="card-text">{description}</p>
-                </div>
-                <div className="card-footer">
-                    <div className="row justify-content-around">
-                        <div className="col-4">
-                            {Object.keys(participants).length} participant(s)
-                        </div>
-                        <div className="col-4">
-                            {Object.keys(interested).length} interested
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
- */
-
-function renderEventCard(event){
-    console.log(event);
-    return(
+function renderEventCard(event) {
+    return (
         <EventCard
+            key={event._id}
             org_id={event.org_id}
             name={event.name}
             date={event.date}
             location={event.location}
-            description={event.description}
             imageLink={event.imageLink}
-            interested={event.interested}
-            participants={event.participants}
         />
     )
 }
