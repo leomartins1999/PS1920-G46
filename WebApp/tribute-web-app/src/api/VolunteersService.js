@@ -2,7 +2,8 @@ function getVolunteersService(executor){
 
     return{
         getVolunteers: getVolunteers,
-        getVolunteer: getVolunteer
+        getVolunteer: getVolunteer,
+        followVolunteer: followVolunteer
     }
 
     function getVolunteers() {
@@ -11,6 +12,10 @@ function getVolunteersService(executor){
 
     function getVolunteer(id){
         return executor.get(`/volunteers/${id}`)
+    }
+
+    function followVolunteer(id) {
+        return executor.put(`/auth/volunteers/${id}/follow`)
     }
 
 }
