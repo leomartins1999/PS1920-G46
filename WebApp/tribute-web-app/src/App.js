@@ -19,6 +19,7 @@ import AuthService from "./api/AuthService"
 import RegisterPage from "./pages/register_page/RegisterPage";
 import {Button} from "react-bootstrap";
 import EventPage from "./pages/event_page/EventPage";
+import VolunteerPage from "./pages/volunteer_page/VolunteerPage";
 
 const executor = RequestExecutor()
 
@@ -81,6 +82,11 @@ function RouteRenderer() {
                     }/>
                     <Route exact path="/posts" render={() =>
                         <PostsPage service={postsService} id={auth}/>
+                    }/>
+                    <Route path="/volunteers/:volunteer_id" render={({match}) =>
+                        <VolunteerPage
+                            service={eventsService}
+                            volunteer_id={match.params.volunteer_id}/>
                     }/>
                     <Route exact path="/events" render={() =>
                         <EventsPage service={eventsService} id={auth}/>
