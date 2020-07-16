@@ -39,7 +39,8 @@ class PostsFragment extends React.Component {
     render() {
         let posts = this.state.posts
 
-        posts = (posts.length === 0)? <Loading/> : posts.map(renderPostCard)
+        posts = (posts.length === 0)? <Loading/> :
+            posts.map(p => renderPostCard(p, this.props.volunteers_service, this.props.orgs_service))
 
         return (
             <div className="card m-3">

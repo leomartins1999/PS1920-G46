@@ -1,10 +1,10 @@
 import Loading from "./Loading";
 import React, {useEffect, useState} from "react";
 
-function ElementHeader({id, fetcher, ref}) {
+function ElementHeader({id, fetcher, link}) {
     const [element, setElement] = useState({})
 
-    function getElement(){
+    function getElement() {
         fetcher(id).then(setElement)
     }
 
@@ -14,13 +14,17 @@ function ElementHeader({id, fetcher, ref}) {
 
     return (
         <div>
-            <a href={`${ref}/${id}`}>{element.name}</a>
+            <a href={`${link}/${id}`}>{element.name}</a>
         </div>
     )
 }
 
-function renderElementHeader({owner_id, owner_type}, volunteersService, orgsService) {
+export function renderOrgHeader(owner_id, orgsService) {
+    return <ElementHeader id={owner_id} fetcher={orgsService.getOrg} link={"/orgs"}/>
+}
+
+export function renderElementHeader(owner_id, owner_type, volunteersService, orgsService) {
     if (owner_type === "volunteer")
-        return <ElementHeader id={owner_id} fetcher={volunteersService.getVolunteer} ref={"/volunteers"}/>
-    else return <ElementHeader id={owner_id} fetcher={orgsService.getOrg} ref={"/orgs"}/>
+        return <ElementHeader id={owner_id} fetcher={volunteersService.getVolunteer} link={"/volunteers"}/>
+    else renderOrgHeader(owner_id, orgsService)
 }

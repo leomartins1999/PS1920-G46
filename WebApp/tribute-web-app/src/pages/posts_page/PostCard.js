@@ -2,11 +2,16 @@ import React from "react";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 import moment from "moment";
 import {ThumbsupIcon} from "@primer/octicons-react";
+import {renderElementHeader} from "../../components/EntryHeader";
 
-function PostCard({owner_id, description, imageLink, likes, time}){
+function PostCard({owner_id, owner_type, description, imageLink, likes, time, volunteerService, orgsService}){
     return(
         <div className="card mb-4">
-            <div className="card-header h2">{owner_id}</div>
+            <div className="card-header">
+                {
+                    renderElementHeader(owner_id, owner_type, volunteerService, orgsService)
+                }
+            </div>
             <div className="card-body text-center">
                 <p className="text-justify m-3">{description}</p>
                 <img
@@ -31,15 +36,18 @@ function PostCard({owner_id, description, imageLink, likes, time}){
     )
 }
 
-function renderPostCard(post){
+function renderPostCard(post, volunteersService, orgsService){
     return(
         <PostCard
             key={post._id}
             owner_id={post.owner_id}
+            owner_type={post.owner_type}
             description={post.description}
             imageLink={post.imageLink}
             likes={Object.keys(post.likes).length}
             time={post.time}
+            volunteerService={volunteersService}
+            orgsService={orgsService}
         />
     )
 }

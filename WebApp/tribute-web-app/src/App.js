@@ -81,11 +81,17 @@ function RouteRenderer() {
                         <HomePage service={orgsService} id={auth}/>
                     }/>
                     <Route exact path="/posts" render={() =>
-                        <PostsPage service={postsService} id={auth}/>
+                        <PostsPage
+                            posts_service={postsService}
+                            volunteers_service={volunteersService}
+                            orgs_service={orgsService}
+                            id={auth}
+                        />
                     }/>
                     <Route path="/volunteers/:volunteer_id" render={({match}) =>
                         <VolunteerPage
                             service={volunteersService}
+                            id={auth}
                             volunteer_id={match.params.volunteer_id}/>
                     }/>
                     <Route exact path="/events" render={() =>
