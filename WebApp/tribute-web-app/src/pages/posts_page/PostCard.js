@@ -7,11 +7,7 @@ import {renderElementHeader} from "../../components/EntryHeader";
 function PostCard({owner_id, owner_type, description, imageLink, likes, time, volunteerService, orgsService}){
     return(
         <div className="card mb-4">
-            <div className="card-header">
-                {
-                    renderElementHeader(owner_id, owner_type, volunteerService, orgsService)
-                }
-            </div>
+            <div className="card-header">{renderElementHeader(owner_id, owner_type, volunteerService, orgsService)}</div>
             <div className="card-body text-center">
                 <p className="text-justify m-3">{description}</p>
                 <img

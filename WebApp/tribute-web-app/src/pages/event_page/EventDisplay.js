@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Loading from "../../components/Loading";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
-import renderInterestedTuple from "../events_page/InterestedTuple";
+import renderInterestedTuple from "./InterestedTuple";
 
 function EventDisplay({service, event_id, session_id}) {
 

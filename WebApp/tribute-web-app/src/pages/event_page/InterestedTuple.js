@@ -14,7 +14,7 @@ function InterestedTuple({id, name, mail}) {
 }
 
 function renderInterestedTuple(id) {
-    return <InterestedTuple id={id} name="todo" mail="todo"/>
+    return <InterestedTuple key={id} id={id} name="todo" mail="todo"/>
 }
 
 export default renderInterestedTuple

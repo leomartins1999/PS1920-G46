@@ -26,5 +26,5 @@ export function renderOrgHeader(owner_id, orgsService) {
 export function renderElementHeader(owner_id, owner_type, volunteersService, orgsService) {
     if (owner_type === "volunteer")
         return <ElementHeader id={owner_id} fetcher={volunteersService.getVolunteer} link={"/volunteers"}/>
-    else renderOrgHeader(owner_id, orgsService)
+    return renderOrgHeader(owner_id, orgsService)
 }

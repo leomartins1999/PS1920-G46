@@ -40,7 +40,8 @@ class EventsFragment extends React.Component {
     render() {
         let events = this.state.events
 
-        events = events.length === 0 ? <Loading/> : events.map(renderEventCard)
+        events = events.length === 0 ? <Loading/> :
+            events.map(e => renderEventCard(e, this.props.orgs_service))
 
         return (
             <div className="card m-3">

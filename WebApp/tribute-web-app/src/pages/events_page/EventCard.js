@@ -1,10 +1,11 @@
 import React from "react";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
+import {renderOrgHeader} from "../../components/EntryHeader";
 
-function EventCard({id, org_id, name, date, location, imageLink}) {
+function EventCard({id, org_id, name, date, location, imageLink, orgsService}) {
     return (
         <div className="card mb-4">
-            <div className="card-header h2">{org_id}</div>
+            <div className="card-header">{renderOrgHeader(org_id, orgsService)}</div>
             <div className="card-body text-center">
                 <a href={`/events/${id}`} className="h3 text-center">{name}</a>
                 <div/>
@@ -29,7 +30,7 @@ function EventCard({id, org_id, name, date, location, imageLink}) {
     )
 }
 
-function renderEventCard(event) {
+function renderEventCard(event, orgsService) {
     return (
         <EventCard
             key={event._id}
@@ -39,6 +40,7 @@ function renderEventCard(event) {
             date={event.date}
             location={event.location}
             imageLink={event.imageLink}
+            orgsService={orgsService}
         />
     )
 }
