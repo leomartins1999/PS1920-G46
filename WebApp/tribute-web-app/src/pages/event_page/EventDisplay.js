@@ -2,10 +2,12 @@ import React, {useEffect, useState} from "react";
 import Loading from "../../components/Loading";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
+import renderInterestedTuple from "../events_page/InterestedTuple";
 
 function EventDisplay({service, event_id, session_id}) {
 
     const [event, setEvent] = useState({})
+    const [editing, setEditing] = useState(false);
 
     function getEvent() {
         service.getEvent(event_id)
@@ -18,8 +20,28 @@ function EventDisplay({service, event_id, session_id}) {
 
     if (!event.name) return <Loading/>
 
+    return event.org_id === session_id ? ownerRender() : notOwnerRender();
+
+    function renderEditing() {
+        return notOwnerRender()
+    }
+
     function ownerRender() {
-        return notOwnerRender();
+        const interested = Object
+            .keys(event.interested)
+            .map(renderInterestedTuple)
+
+        return (
+            <div>
+                {editing ? renderEditing() : notOwnerRender()}
+                <div className="card m-3">
+                    <div className="card-header h2">Interested Volunteers</div>
+                    <div className="card-body">
+                        {interested}
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     function notOwnerRender() {
@@ -36,12 +58,12 @@ function EventDisplay({service, event_id, session_id}) {
                     />
                     <div/>
                     <div className="d-inline-flex justify-content-center">
-                        <LocationIcon size={24} />
+                        <LocationIcon size={24}/>
                         <p className="ml-2">{event.location}</p>
                     </div>
                     <div/>
                     <div className="d-inline-flex justify-content-center">
-                        <CalendarIcon size={24} />
+                        <CalendarIcon size={24}/>
                         <p className="ml-2">{event.date}</p>
                     </div>
                 </div>
@@ -52,8 +74,6 @@ function EventDisplay({service, event_id, session_id}) {
             </div>
         )
     }
-
-    return event.org_id === session_id ? ownerRender() : notOwnerRender();
 }
 
 export default EventDisplay
