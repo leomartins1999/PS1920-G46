@@ -7,7 +7,7 @@ import PostsPage from "./pages/posts_page/PostsPage";
 import VolunteersPage from "./pages/volunteers_page/VolunteersPage";
 import OrgsPage from "./pages/orgs_page/OrgsPage";
 import EventsPage from "./pages/events_page/EventsPage";
-import HomePage from "./pages/home_page/HomePage";
+import OrganizationPage from "./pages/home_page/OrganizationPage";
 import LoginPage from "./pages/login_page/LoginPage";
 
 import RequestExecutor from "./api/RequestExecutor"
@@ -77,8 +77,12 @@ function RouteRenderer() {
             <div className="container">
                 <NavBar/>
                 <Switch>
-                    <Route exact path="/home" render={() =>
-                        <HomePage service={orgsService} id={auth}/>
+                    <Route path="/orgs/:org_id" render={({match}) =>
+                        <OrganizationPage
+                            service={orgsService}
+                            id={auth}
+                            org_id={match.params.org_id}
+                        />
                     }/>
                     <Route exact path="/posts" render={() =>
                         <PostsPage
@@ -111,7 +115,7 @@ function RouteRenderer() {
                         setAuth(null);
                     }}/>
                     <Route>
-                        <Redirect to="/home"/>
+                        <Redirect to={`/orgs/${auth}`}/>
                     </Route>
                 </Switch>
             </div>

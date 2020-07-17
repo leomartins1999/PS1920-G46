@@ -4,7 +4,8 @@ function getOrgsService(executor) {
         getOrgs: getOrgs,
         getOrg: getOrg,
         updateOrg: updateOrg,
-        updateOrgImage: updateOrgImage
+        updateOrgImage: updateOrgImage,
+        followOrg: followOrg
     }
 
     function getOrgs() {
@@ -21,6 +22,10 @@ function getOrgsService(executor) {
 
     function updateOrgImage(id, image) {
         return executor.uploadImage(`/auth/images/orgs/${id}`, image)
+    }
+
+    function followOrg(id){
+        return executor.put(`/auth/orgs/${id}/follow`)
     }
 }
 

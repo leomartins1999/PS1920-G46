@@ -1,23 +1,10 @@
 import React, {useEffect, useState} from "react"
-import ClickableIcon from "../../components/ClickableIcon";
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
-import {API_BASE_PATH} from "../../api/RequestExecutor";
 import Loading from "../../components/Loading";
+import OrganizationRender from "./OrganizationRender";
+import FollowButton from "../event_page/FollowButton";
 
-const MOCK_ORG = {
-    "_id": "5ef0f340ea92970de919db5e",
-    "name": "Organization 1",
-    "description": "Os Bancos Alimentares são Instituições Particulares de Solidariedade Social que lutam contra o desperdício de produtos alimentares, encaminhando-os para distribuição gratuita às pessoas carenciadas.",
-    "phone": "+351 987654321",
-    "mail": "leonardo0001@live.com.pt",
-    "siteLink": "www.org.com",
-    "facebookLink": "www.facebook.com/org",
-    "followers": {},
-    "following": {},
-    "imageLink": "https://4.bp.blogspot.com/_aExLWgnhBBY/Sd9D4Gpe4VI/AAAAAAAADy8/QDQC3sWeGbc/s400/bancoalimentar2.jpg"
-}
-
-function OrganizationDisplay({service, id}) {
+function OrganizationDisplay({service, org_id, id}) {
 
     const [org, setOrg] = useState({})
 
@@ -34,7 +21,7 @@ function OrganizationDisplay({service, id}) {
     useEffect(getOrg, [])
 
     function getOrg() {
-        service.getOrg(id).then(res => {
+        service.getOrg(org_id).then(res => {
             setDescription(res.description)
             setPhone(res.phone)
             setMail(res.mail)
@@ -46,66 +33,54 @@ function OrganizationDisplay({service, id}) {
     }
 
     function updateOrg() {
-        service.updateOrg(id, {description, phone, mail, siteLink: site, facebookLink: facebook})
-            .then(_ => getOrg())
+        service.updateOrg(org_id, {description, phone, mail, siteLink: site, facebookLink: facebook})
+            .then(getOrg)
 
-        if (image) service.updateOrgImage(id, image).then(_ => {getOrg()})
+        if (image) service.updateOrgImage(org_id, image).then(getOrg)
+    }
+
+    function followOrg() {
+        service.followOrg(org_id)
+            .then(getOrg)
     }
 
     function update() {
         setEditing(false)
         setOrg({})
+
         updateOrg()
     }
 
-    function renderNonEditingMode() {
+    function follow() {
+        setOrg({})
+
+        followOrg()
+    }
+
+    if (!org.name) return <Loading/>
+
+    return editing ? renderEditing() : render();
+
+    function render() {
+        const options = org_id === id ?
+            <button
+                type="button"
+                className="btn btn-primary mr-3"
+                onClick={() => setEditing(true)}
+            >Edit</button> :
+            <FollowButton isFollowing={org.followers[id]} onClick={follow}/>
+
         return (
             <div>
-                <div className="card m-3">
-                    <div className="card-header h2">{org.name}</div>
-                    <img
-                        className="card-img m-3 align-self-center text-center"
-                        src={`${API_BASE_PATH}${org.imageLink}?${performance.now()}`}
-                        alt="(no image)"
-                        style={{"width": "12rem"}}
-                    />
-                    <div className="card-body text-center">
-                        <p className="text-justify m-3 border">{org.description}</p>
-                        <div className="d-inline-flex">
-                            <DeviceMobileIcon size={24}/>
-                            <p>{org.phone ? org.phone : "(no phone number)"}</p>
-                        </div>
-                        <div/>
-                        <div className="d-inline-flex">
-                            {Object.keys(org.followers).length} Followers
-                            <PersonIcon size={24}/>
-                            {Object.keys(org.following).length} Following
-                        </div>
-                    </div>
-                    <div className="card-footer d-inline-flex justify-content-center">
-                        <div className="row container-fluid">
-                            <div className="col-4 text-center">
-                                {org.mail ? <ClickableIcon component={<MailIcon size={24}/>}
-                                                           link={`mailto:${org.mail}`}/> : null}
-                            </div>
-                            <div className="col-4 text-center">
-                                <ClickableIcon link={`//${org.siteLink}`} component={<GlobeIcon size={24}/>}/>
-                            </div>
-                            <div className="col-4 text-center">
-                                <ClickableIcon link={`//${org.facebookLink}`} component={"Facebook"}/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <OrganizationRender org={org}/>
                 <div className="d-flex justify-content-center">
-                    <button type="button" className="btn btn-primary" onClick={() => setEditing(true)}>Edit profile
-                    </button>
+                    {options}
                 </div>
             </div>
         )
     }
 
-    function renderEditingMode() {
+    function renderEditing() {
         return (
             <div>
                 <div className="card m-3">
@@ -177,11 +152,6 @@ function OrganizationDisplay({service, id}) {
             </div>
         )
     }
-
-    if (!org.name) return <Loading/>
-
-    return editing ?
-        renderEditingMode() : renderNonEditingMode();
 
 }
 
