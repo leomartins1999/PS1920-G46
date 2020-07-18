@@ -1,6 +1,7 @@
 import React from "react";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {renderOrgHeader} from "../../components/EntryHeader";
+import Image from "../../components/Image";
 
 function EventCard({id, org_id, name, date, location, imageLink, orgsService}) {
     return (
@@ -9,12 +10,7 @@ function EventCard({id, org_id, name, date, location, imageLink, orgsService}) {
             <div className="card-body text-center">
                 <a href={`/events/${id}`} className="h3 text-center">{name}</a>
                 <div/>
-                <img
-                    className="card-img m-3 align-self-center text-center"
-                    src={`${API_BASE_PATH}${imageLink}`}
-                    alt={""}
-                    style={{"width": "12rem"}}
-                />
+                <Image link={imageLink} cache={true}/>
             </div>
             <div className="card-footer d-inline-flex justify-content-center">
                 <div className="row container-fluid">

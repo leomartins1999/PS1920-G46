@@ -3,6 +3,7 @@ import Loading from "../../components/Loading";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
 import renderInterestedTuple from "./InterestedTuple";
+import Image from "../../components/Image";
 
 function EventDisplay({service, event_id, session_id}) {
 
@@ -50,12 +51,7 @@ function EventDisplay({service, event_id, session_id}) {
                 <div className="card-header h2">{event.name}</div>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{event.description}</p>
-                    <img
-                        className="card-img m-3 align-self-center text-center"
-                        src={`${API_BASE_PATH}${event.imageLink}`}
-                        alt=""
-                        style={{"width": "12rem"}}
-                    />
+                    <Image link={event.imageLink} cache={true}/>
                     <div/>
                     <div className="d-inline-flex justify-content-center">
                         <LocationIcon size={24}/>

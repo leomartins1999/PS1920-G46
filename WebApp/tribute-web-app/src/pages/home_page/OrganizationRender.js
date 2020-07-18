@@ -1,19 +1,14 @@
-import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
 import ClickableIcon from "../../components/ClickableIcon";
 import React from "react";
+import Image from "../../components/Image";
 
 function OrganizationRender({org}) {
     return (
         <div className="card m-3">
             <div className="card-header h2">{org.name}</div>
-            <img
-                className="card-img m-3 align-self-center text-center"
-                src={`${API_BASE_PATH}${org.imageLink}?${performance.now()}`}
-                alt="(no image)"
-                style={{"width": "12rem"}}
-            />
             <div className="card-body text-center">
+                <Image link={org.imageLink} cache={false}/>
                 <p className="text-justify m-3 border">{org.description}</p>
                 <div className="d-inline-flex">
                     <DeviceMobileIcon size={24}/>

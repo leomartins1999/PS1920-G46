@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
 import Loading from "../../components/Loading";
 import OrganizationRender from "./OrganizationRender";
-import FollowButton from "../event_page/FollowButton";
+import FollowButton from "../../components/FollowButton";
 
 function OrganizationDisplay({service, org_id, id}) {
 

@@ -3,7 +3,8 @@ import ClickableComponent from "../../components/ClickableIcon";
 import {PersonIcon} from "@primer/octicons-react";
 import {API_BASE_PATH} from "../../api/RequestExecutor";
 import Loading from "../../components/Loading";
-import FollowButton from "../event_page/FollowButton";
+import FollowButton from "../../components/FollowButton";
+import Image from "../../components/Image";
 
 function VolunteerDisplay({service, id, volunteer_id}) {
 
@@ -32,12 +33,7 @@ function VolunteerDisplay({service, id, volunteer_id}) {
         <div>
             <div className="card m-3">
                 <div className="card-header h2">{volunteer.name}</div>
-                <img
-                    className="card-img m-3 align-self-center text-center"
-                    src={`${API_BASE_PATH}${volunteer.imageLink}`}
-                    alt=""
-                    style={{"width": "12rem"}}
-                />
+                <Image link={volunteer.imageLink} cache={true}/>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{volunteer.description}</p>
                     <div className="d-inline-flex mb-3">

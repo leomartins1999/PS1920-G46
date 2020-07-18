@@ -3,6 +3,7 @@ import {API_BASE_PATH} from "../../api/RequestExecutor";
 import moment from "moment";
 import {ThumbsupIcon} from "@primer/octicons-react";
 import {renderElementHeader} from "../../components/EntryHeader";
+import Image from "../../components/Image";
 
 function PostCard({owner_id, owner_type, description, imageLink, likes, time, volunteerService, orgsService}){
     return(
@@ -10,12 +11,7 @@ function PostCard({owner_id, owner_type, description, imageLink, likes, time, vo
             <div className="card-header">{renderElementHeader(owner_id, owner_type, volunteerService, orgsService)}</div>
             <div className="card-body text-center">
                 <p className="text-justify m-3">{description}</p>
-                <img
-                    className="card-img m-3 align-self-center text-center"
-                    src={`${API_BASE_PATH}${imageLink}`}
-                    alt={""}
-                    style={{"width": "12rem"}}
-                />
+                <Image link={imageLink} cache={true}/>
             </div>
             <div className="card-footer d-inline-flex justify-content-center">
                 <div className="row container-fluid">

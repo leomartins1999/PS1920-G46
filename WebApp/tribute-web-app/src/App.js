@@ -77,13 +77,6 @@ function RouteRenderer() {
             <div className="container">
                 <NavBar/>
                 <Switch>
-                    <Route path="/orgs/:org_id" render={({match}) =>
-                        <OrganizationPage
-                            service={orgsService}
-                            id={auth}
-                            org_id={match.params.org_id}
-                        />
-                    }/>
                     <Route exact path="/posts" render={() =>
                         <PostsPage
                             posts_service={postsService}
@@ -92,11 +85,24 @@ function RouteRenderer() {
                             id={auth}
                         />
                     }/>
+                    <Route exact path="/volunteers">
+                        <VolunteersPage service={volunteersService}/>
+                    </Route>
                     <Route path="/volunteers/:volunteer_id" render={({match}) =>
                         <VolunteerPage
                             service={volunteersService}
                             id={auth}
                             volunteer_id={match.params.volunteer_id}/>
+                    }/>
+                    <Route exact path="/orgs">
+                        <OrgsPage service={orgsService}/>
+                    </Route>
+                    <Route path="/orgs/:org_id" render={({match}) =>
+                        <OrganizationPage
+                            service={orgsService}
+                            id={auth}
+                            org_id={match.params.org_id}
+                        />
                     }/>
                     <Route exact path="/events" render={() =>
                         <EventsPage
@@ -114,6 +120,9 @@ function RouteRenderer() {
                         authService.logout();
                         setAuth(null);
                     }}/>
+                    <Route exact path="/home">
+                        <Redirect to={`/orgs/${auth}`}/>
+                    </Route>
                     <Route>
                         <Redirect to={`/orgs/${auth}`}/>
                     </Route>
