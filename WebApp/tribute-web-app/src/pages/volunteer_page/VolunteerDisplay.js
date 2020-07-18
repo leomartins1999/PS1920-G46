@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ClickableComponent from "../../components/ClickableIcon";
 import {PersonIcon} from "@primer/octicons-react";
-import {API_BASE_PATH} from "../../api/RequestExecutor";
 import Loading from "../../components/Loading";
 import FollowButton from "../../components/FollowButton";
 import Image from "../../components/Image";
