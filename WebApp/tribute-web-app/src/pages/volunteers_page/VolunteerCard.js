@@ -15,8 +15,6 @@ function VolunteerCard({id, name, imageLink, nrFollowers, nrFollowing}) {
 }
 
 function renderEntity({_id, name, imageLink, followers, following}) {
-    console.log(followers)
-
     return <VolunteerCard
         key={_id}
         id={_id}

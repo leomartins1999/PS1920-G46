@@ -6,8 +6,11 @@ function getVolunteersService(executor){
         followVolunteer: followVolunteer
     }
 
-    function getVolunteers() {
-        return executor.get('/volunteers')
+    function getVolunteers(name) {
+        let link = "/volunteers"
+        if(name) link = link.concat(`?name=${name}`)
+
+        return executor.get(link)
     }
 
     function getVolunteer(id){
