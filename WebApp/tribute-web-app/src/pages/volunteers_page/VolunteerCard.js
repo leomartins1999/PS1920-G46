@@ -1,21 +1,13 @@
 import React from "react";
 import Image from "../../components/Image";
 
-function VolunteerCard({name, imageLink, nrFollowers, nrFollowing}) {
-    /*
-    <img
-                className="card-img-top m-3 rounded-circle"
-                src={`http://tribute-api.duckdns.org/api${imageLink}`}
-                alt="Card image cap"
-                style={{maxWidth: "200px", maxHeight: "200px", width: "auto", height: "auto", alignSelf: "center"}}
-            />
-     */
+function VolunteerCard({id, name, imageLink, nrFollowers, nrFollowing}) {
 
     return (
-        <div className="card m-3 text-center" style={{margin: "m-3"}}>
-            <Image link={imageLink} cache={true}/>
-            <div className="card-body">
-                <p className="card-title">{name}</p>
+        <div className="card m-3 text-center" style={{width: "15rem"}}>
+            <Image link={imageLink} cache={true} fb="volunteer.svg"/>
+            <a className="card-header" href={`/volunteers/${id}`}>{name}</a>
+            <div className="card-footer">
                 <p className="card-text">Followers {nrFollowers} | Following {nrFollowing}</p>
             </div>
         </div>
@@ -27,6 +19,7 @@ function renderEntity({_id, name, imageLink, followers, following}) {
 
     return <VolunteerCard
         key={_id}
+        id={_id}
         name={name}
         imageLink={imageLink}
         nrFollowers={Object.keys(followers).length}
