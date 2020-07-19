@@ -7,7 +7,7 @@ import PostsPage from "./pages/posts_page/PostsPage";
 import VolunteersPage from "./pages/volunteers_page/VolunteersPage";
 import OrgsPage from "./pages/orgs_page/OrgsPage";
 import EventsPage from "./pages/events_page/EventsPage";
-import OrganizationPage from "./pages/home_page/OrganizationPage";
+import OrganizationPage from "./pages/org_page/OrganizationPage";
 import LoginPage from "./pages/login_page/LoginPage";
 
 import RequestExecutor from "./api/RequestExecutor"
