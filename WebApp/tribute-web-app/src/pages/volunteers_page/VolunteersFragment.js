@@ -1,5 +1,5 @@
 import React from "react";
-import renderEntity from "./VolunteerCard";
+import renderVolunteer from "./VolunteerCard";
 import {SearchIcon} from "@primer/octicons-react";
 import ClickableIcon from "../../components/ClickableIcon";
 import Loading from "../../components/Loading";
@@ -52,7 +52,7 @@ class VolunteersFragment extends React.Component {
     render() {
         const volunteers = this.state.volunteers
 
-        let volunteersRender = volunteers.length ? volunteers.map(renderEntity) : <Loading/>
+        let volunteersRender = volunteers.length ? volunteers.map(renderVolunteer) : <Loading/>
 
         return (
             <div className="card border-primary m-5">

@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "../../components/Image";
 
-function VolunteerCard({id, name, imageLink, nrFollowers, nrFollowing}) {
+function OrgCard({id, name, imageLink, nrFollowers, nrFollowing}) {
 
     return (
         <div className="card m-3 text-center" style={{width: "15rem"}}>
-            <div className="card-body d-flex justify-content-center"><Image link={imageLink} cache={true} fb="volunteer.svg"/></div>
-            <a className="card-footer" href={`/volunteers/${id}`}>{name}</a>
+            <div className="card-body d-flex justify-content-center"><Image link={imageLink} cache={true} fb="org.svg"/></div>
+            <a className="card-footer" href={`/orgs/${id}`}>{name}</a>
             <div className="card-footer">
                 <p className="card-text">Followers {nrFollowers} | Following {nrFollowing}</p>
             </div>
@@ -14,8 +14,8 @@ function VolunteerCard({id, name, imageLink, nrFollowers, nrFollowing}) {
     )
 }
 
-function renderVolunteer({_id, name, imageLink, followers, following}) {
-    return <VolunteerCard
+function renderOrg({_id, name, imageLink, followers, following}) {
+    return <OrgCard
         key={_id}
         id={_id}
         name={name}
@@ -25,4 +25,4 @@ function renderVolunteer({_id, name, imageLink, followers, following}) {
     />
 }
 
-export default renderVolunteer
+export default renderOrg

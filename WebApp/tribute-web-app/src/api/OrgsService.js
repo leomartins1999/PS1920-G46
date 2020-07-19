@@ -8,8 +8,11 @@ function getOrgsService(executor) {
         followOrg: followOrg
     }
 
-    function getOrgs() {
-        return executor.get('/orgs')
+    function getOrgs(name) {
+        let link = "/orgs"
+        if(name) link = link.concat(`?name=${name}`)
+
+        return executor.get(link)
     }
 
     function getOrg(id) {
