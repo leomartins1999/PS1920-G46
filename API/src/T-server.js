@@ -8,14 +8,14 @@ const fileupload = require('express-fileupload');
 // modules for https
 const fs = require('fs');
 
-//const http = require('http');
-const https = require('https');
+const http = require('http');
+//const https = require('https');
 
 // https initialization
-const privateKey  = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/privkey.pem", 'utf8');
-const certificate = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/cert.pem", 'utf8');
-const ca = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/chain.pem", 'utf-8');
-const credentials = {key: privateKey, cert: certificate, ca: ca};
+// const privateKey  = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/privkey.pem", 'utf8');
+// const certificate = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/cert.pem", 'utf8');
+// const ca = fs.readFileSync("/etc/letsencrypt/live/tribute-api.duckdns.org/chain.pem", 'utf-8');
+// const credentials = {key: privateKey, cert: certificate, ca: ca};
 
 // passport serializer and deserializer
 passport.serializeUser(function (user, done) {
@@ -62,6 +62,6 @@ app.use(passport.initialize({}));
 app.use(passport.session({}));
 app.use(REQUEST_BASE, router);
 
-//const server = http.createServer(app);
-const server = https.createServer(credentials, app);
+const server = http.createServer(app);
+//const server = https.createServer(credentials, app);
 server.listen(PORT, () => console.log(`Server started at port ${PORT}`))
