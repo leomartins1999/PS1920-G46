@@ -34,6 +34,8 @@ module.exports = () => {
      * rejects with error otherwise
      */
     function getAll(query_options) {
+        query_options.sortBy("date", false)
+
         return repo.select(query_options);
     }
 

@@ -32,7 +32,7 @@ function VolunteerDisplay({service, id, volunteer_id}) {
         <div>
             <div className="card m-3">
                 <div className="card-header h2">{volunteer.name}</div>
-                <Image link={volunteer.imageLink} cache={true}/>
+                <Image link={volunteer.imageLink} cache={true} fb="volunteer.svg"/>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{volunteer.description}</p>
                     <div className="d-inline-flex mb-3">

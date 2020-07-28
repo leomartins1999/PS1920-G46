@@ -5,7 +5,9 @@ function VolunteerCard({id, name, imageLink, nrFollowers, nrFollowing}) {
 
     return (
         <div className="card m-3 text-center" style={{width: "15rem"}}>
-            <div className="card-body d-flex justify-content-center"><Image link={imageLink} cache={true} fb="volunteer.svg"/></div>
+            <div className="card-body d-flex justify-content-center">
+                <Image link={imageLink} cache={true} fb="volunteer.svg"/>
+            </div>
             <a className="card-footer" href={`/volunteers/${id}`}>{name}</a>
             <div className="card-footer">
                 <p className="card-text">Followers {nrFollowers} | Following {nrFollowing}</p>

@@ -264,11 +264,9 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
 
         return events.create(_event)
             .then(res => {
-                if (!_event.imageLink){
-                    _event.setId(res.id);
-                    return events.update(res.id, {imageLink: _event.imageLink})
-                }
-                return Promise.resolve({id: _event.id});
+                _event.setId(res.id);
+                console.log(_event)
+                return events.update(res.id, {imageLink: _event.imageLink})
             })
             .then(_ => Promise.resolve({id: _event.id}));
     }
@@ -306,6 +304,8 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
                 // Remove properties that shouldn't be altered
                 delete updateParams.data.interested;
                 delete updateParams.data.participants;
+
+                console.log(updateParams.data)
 
                 return events.update(updateParams.params.event_id, updateParams.data);
             });
