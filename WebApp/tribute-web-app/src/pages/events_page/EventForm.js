@@ -20,6 +20,8 @@ function EventForm({service}) {
                 .then(res => {
                     console.log(res)
 
+                    if (image) service.updateEventImage(res.id, image)
+
                     if (res) {
                         setName("")
                         setDescription("");
@@ -27,8 +29,6 @@ function EventForm({service}) {
                         setLocation("")
                         setImage(null)
                     }
-
-                    if (image) service.updateEventImage(res.id, image)
                 })
         }
     }

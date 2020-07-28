@@ -4,6 +4,7 @@ function getEventsService(executor){
         createEvent: createEvent,
         getEvents: getEvents,
         getEvent: getEvent,
+        updateEvent: updateEvent,
         updateEventImage: updateEventImage
     }
 
@@ -19,6 +20,10 @@ function getEventsService(executor){
 
     function getEvent(event_id) {
         return executor.get(`/events/${event_id}`)
+    }
+
+    function updateEvent(event_id, body) {
+        return executor.put(`/auth/events/${event_id}`, body)
     }
 
     function updateEventImage(id, image) {
