@@ -18,7 +18,7 @@ class _Event{
         this.description = req.body.description;
         this.date = req.body.date;
         this.location = req.body.location;
-        this.imageLink = req.body.imageLink;
+        //this.imageLink = req.body.imageLink;
 
         this.interested = {};
         this.participants = {};

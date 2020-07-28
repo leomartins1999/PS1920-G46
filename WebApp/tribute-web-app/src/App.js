@@ -30,43 +30,6 @@ const eventsService = EventsService(executor)
 const authService = AuthService(executor)
 
 function RouteRenderer() {
-    // return (
-    //     <Switch>
-    //         <Route path="/login" render={() =>
-    //             <LoginPage service={authService}/>
-    //         }/>
-    //         <Route path="/posts" render={() =>
-    //             <PostsPage
-    //                 service={postsService}
-    //             />
-    //         }/>
-    //         <Route path="/volunteers" render={() =>
-    //             <VolunteersPage
-    //                 service={volunteersService}
-    //             />
-    //         }/>
-    //         <Route path="/orgs" render={() =>
-    //             <OrgsPage
-    //                 service={orgsService}
-    //             />
-    //         }/>
-    //         <Route path="/events" render={() =>
-    //             <EventsPage
-    //                 service={eventsService}
-    //             />
-    //         }/>
-    //         <Route path="/home" render={() =>
-    //             <HomePage
-    //                 posts_service = {postsService}
-    //                 user_id = {authService.getSession()}
-    //             />
-    //         }/>
-    //         <Route>
-    //             <Redirect to={"/home"}/>
-    //         </Route>
-    //     </Switch>
-    // )
-
     const [auth, setAuth] = useState(authService.getSession)
 
     return auth
