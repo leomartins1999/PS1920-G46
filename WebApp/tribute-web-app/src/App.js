@@ -76,6 +76,7 @@ function RouteRenderer() {
                     <Route path="/events/:event_id" render={({match}) =>
                         <EventPage
                             service={eventsService}
+                            volunteerService={volunteersService}
                             session_id={auth}
                             event_id={match.params.event_id}/>
                     }/>

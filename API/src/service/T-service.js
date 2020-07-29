@@ -12,6 +12,7 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         getVolunteers: getVolunteers,
         getVolunteerById: getVolunteerById,
         updateVolunteer: updateVolunteer,
+        getMail: getMail,
 
         createPost: createPost,
         getPosts: getPosts,
@@ -118,6 +119,13 @@ module.exports = (volunteers, orgs, posts, events, auth, pictures) => {
         delete updateParams.data.following;
 
         return volunteers.update(updateParams.params.user_id, updateParams.data);
+    }
+
+    async function getMail(serviceParams) {
+        return {
+            mail: (await auth.getById(serviceParams.query_options, serviceParams.volunteer_id))
+                .email
+        }
     }
 
     /**

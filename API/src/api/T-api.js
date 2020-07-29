@@ -36,6 +36,9 @@ module.exports = (router, service, test) => {
     // follow volunteer
     router.put('/auth/volunteers/:volunteer_id/follow', followVolunteer);
 
+    // get mail for volunteer
+    router.get('/auth/volunteers/:volunteer_id/mail', orgMw, getMailForVolunteer)
+
     // get orgs
     router.get('/orgs', getOrgs);
 
@@ -126,6 +129,10 @@ module.exports = (router, service, test) => {
     // handler for follow volunteer
     function followVolunteer(req, res){
         handleRequest(res, 200, 400, service.follow, new FollowParams(req, true));
+    }
+
+    function getMailForVolunteer(req, res){
+        handleRequest(res, 200, 400, service.getMail, new ServiceParams(req))
     }
 
     // handler for get orgs

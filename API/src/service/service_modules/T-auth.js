@@ -13,6 +13,7 @@ module.exports = () => {
     return {
         register: register,
         get: get,
+        getById: getById,
         remove: remove
     };
 
@@ -49,6 +50,10 @@ module.exports = () => {
 
         return repo.select(query_options)
             .then(res => res[0]);
+    }
+
+    function getById(query_options, id){
+        return repo.selectById(query_options, id)
     }
 
     /**

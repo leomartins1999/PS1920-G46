@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import Loading from "../../components/Loading";
-import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
-import renderInterestedTuple from "./InterestedTuple";
+import renderInterested from "./Interested";
 import Image from "../../components/Image";
 
-function EventDisplay({service, event_id, session_id}) {
+function EventDisplay({service, volunteerService, event_id, session_id}) {
 
     const [event, setEvent] = useState({})
     const [editing, setEditing] = useState(false);
@@ -102,7 +101,7 @@ function EventDisplay({service, event_id, session_id}) {
     function ownerRender() {
         const interested = Object
             .keys(event.interested)
-            .map(renderInterestedTuple)
+            .map((id) => renderInterested(id, volunteerService))
 
         return editing ?
             renderEditing() :
