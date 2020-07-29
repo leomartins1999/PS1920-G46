@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {MailIcon, PersonIcon} from "@primer/octicons-react";
 import Loading from "../../components/Loading";
+import ClickableIcon from "../../components/ClickableIcon";
 
 function InterestedInEvent({id, service}) {
     const [volunteer, setVolunteer] = useState({})
@@ -11,7 +12,7 @@ function InterestedInEvent({id, service}) {
     }
 
     function getMail(){
-
+        service.getMail(id).then(resp => setMail(resp.mail))
     }
 
     useEffect(getVolunteer, [])
@@ -21,8 +22,7 @@ function InterestedInEvent({id, service}) {
         <div className="row justify-content-center mb-3">
             <a className="h5" href={`/volunteers/${id}`}>{volunteer.name}</a>
             <PersonIcon className="ml-2 mr-2" size={24}/>
-            <MailIcon className="ml-2 mr-2" size={24}/>
-            <a className="h5" href={`mailto:${mail}`}>mail</a>
+            <ClickableIcon link={`mailto:${mail}`} component={<MailIcon className="ml-2 mr-2" size={24}/>}/>
         </div> : <Loading/>
 }
 
