@@ -5,7 +5,7 @@ import {ThumbsupIcon} from "@primer/octicons-react";
 import {renderElementHeader} from "../../components/EntryHeader";
 import Image from "../../components/Image";
 
-function PostCard({owner_id, owner_type, description, imageLink, likes, time, volunteerService, orgsService}){
+function PostCard({post_id, owner_id, owner_type, description, imageLink, likes, time, volunteerService, orgsService, likesPost, onLike}){
     return(
         <div className="card mb-4">
             <div className="card-header">{renderElementHeader(owner_id, owner_type, volunteerService, orgsService)}</div>
@@ -20,7 +20,11 @@ function PostCard({owner_id, owner_type, description, imageLink, likes, time, vo
                     </div>
                     <div className="col-6 text-right">
                         {likes}
-                        <ThumbsupIcon size={24} className="ml-2"/>
+                        <button
+                            className={`btn btn-link ${likesPost? "text-primary" : "text-dark"}`}
+                            onClick={() => onLike(post_id)}>
+                            <ThumbsupIcon size={24}/>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -28,10 +32,11 @@ function PostCard({owner_id, owner_type, description, imageLink, likes, time, vo
     )
 }
 
-function renderPostCard(post, volunteersService, orgsService){
+function renderPostCard(post, volunteersService, orgsService, session_id, likeFunc){
     return(
         <PostCard
             key={post._id}
+            post_id={post._id}
             owner_id={post.owner_id}
             owner_type={post.owner_type}
             description={post.description}
@@ -40,6 +45,8 @@ function renderPostCard(post, volunteersService, orgsService){
             time={post.time}
             volunteerService={volunteersService}
             orgsService={orgsService}
+            likesPost={Object.keys(post.likes).some(k=> k === session_id)}
+            onLike={likeFunc}
         />
     )
 }

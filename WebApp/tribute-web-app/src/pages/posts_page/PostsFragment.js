@@ -12,7 +12,7 @@ class PostsFragment extends React.Component {
         }
     }
 
-    fetchPosts() {
+    fetchPosts = () => {
         return this.props.service.getPosts(
             this.state.filterPosts? this.props.owner_id : null
         ).then(posts => {
@@ -22,6 +22,10 @@ class PostsFragment extends React.Component {
 
     filterPosts = (e) => {
         this.setState({filterPosts: e.target.checked, posts: []})
+    }
+
+    likePost = (post_id) => {
+        return this.props.service.likePost(post_id).then(this.fetchPosts)
     }
 
     componentDidMount() {
@@ -40,7 +44,7 @@ class PostsFragment extends React.Component {
         let posts = this.state.posts
 
         posts = (posts.length === 0)? <Loading/> :
-            posts.map(p => renderPostCard(p, this.props.volunteers_service, this.props.orgs_service))
+            posts.map(p => renderPostCard(p, this.props.volunteers_service, this.props.orgs_service, this.props.owner_id, this.likePost))
 
         return (
             <div className="card m-3">
