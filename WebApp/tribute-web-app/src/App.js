@@ -9,6 +9,7 @@ import OrgsPage from "./pages/orgs_page/OrgsPage";
 import EventsPage from "./pages/events_page/EventsPage";
 import OrganizationPage from "./pages/org_page/OrganizationPage";
 import LoginPage from "./pages/login_page/LoginPage";
+import MobileAppPage from "./pages/mobile_app_page/MobileAppPage";
 
 import RequestExecutor from "./api/RequestExecutor"
 import VolunteersService from "./api/VolunteersService"
@@ -103,6 +104,9 @@ function RouteRenderer() {
                 }/>
                 <Route path="/register" render={() =>
                     <RegisterPage service={authService} onLogin={() => setAuth(authService.getSession)}/>
+                }/>
+                <Route path="/tribute-app" render={() =>
+                    <MobileAppPage/>
                 }/>
                 <Route>
                     <Redirect to="/login"/>
