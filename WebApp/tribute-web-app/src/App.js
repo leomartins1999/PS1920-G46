@@ -17,9 +17,9 @@ import PostsService from "./api/PostsService"
 import EventsService from "./api/EventsService"
 import AuthService from "./api/AuthService"
 import RegisterPage from "./pages/register_page/RegisterPage";
-import {Button} from "react-bootstrap";
 import EventPage from "./pages/event_page/EventPage";
 import VolunteerPage from "./pages/volunteer_page/VolunteerPage";
+import {Notifications} from "react-push-notification";
 
 const executor = RequestExecutor()
 
@@ -115,6 +115,7 @@ function RouteRenderer() {
 function App() {
     return (
         <div className="App">
+            <Notifications position="top-right"/>
             <RouteRenderer/>
         </div>
     )
