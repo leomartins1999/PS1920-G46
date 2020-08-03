@@ -1,5 +1,4 @@
 import React from "react";
-import {API_BASE_PATH} from "../../api/RequestExecutor";
 import {renderOrgHeader} from "../../components/EntryHeader";
 import Image from "../../components/Image";
 

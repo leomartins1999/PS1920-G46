@@ -1,5 +1,4 @@
 import React from "react";
-import {API_BASE_PATH} from "../../api/RequestExecutor";
 import moment from "moment";
 import {ThumbsupIcon} from "@primer/octicons-react";
 import {renderElementHeader} from "../../components/EntryHeader";

@@ -23,10 +23,7 @@ class PostsFragment extends React.Component {
     likePost = (post_id) => {
         return this.props.service
             .likePost(post_id)
-            .then(_ => {
-                notify("Updated post!")
-                return this.fetchPosts
-            })
+            .then(this.fetchPosts)
             .catch(err => notify(err, false))
     }
 

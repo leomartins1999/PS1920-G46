@@ -53,10 +53,6 @@ function OrganizationDisplay({service, org_id, id}) {
 
     function followOrg() {
         service.followOrg(org_id)
-            .then(_ => {
-                notify(`Followed ${org.name}`)
-                return Promise.resolve()
-            })
             .then(getOrg)
             .catch(err => notify(err, false))
     }

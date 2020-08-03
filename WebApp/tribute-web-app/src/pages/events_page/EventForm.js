@@ -14,7 +14,7 @@ function EventForm({service}) {
             let formattedDate
             if (date){
                 const splitDate = date.split("-")
-                formattedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
+                formattedDate = `${splitDate[0]}-${splitDate[1]}-${splitDate[2]}`;
             }
 
             service.createEvent({name, description, date: formattedDate, location})

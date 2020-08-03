@@ -8,7 +8,7 @@ function MobileAppPage(){
                 <h5 className="text-secondary text-left">For volunteers</h5>
                 <div className="row no-gutters mt-5">
                     <div className="col-4">
-                        <img src="android.png" className="card-img"/>
+                        <img src="android.png" className="card-img" alt=" "/>
                     </div>
                     <div className="col-6 container">
                         <div className="card-body text-left">
