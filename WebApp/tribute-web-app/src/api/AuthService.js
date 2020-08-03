@@ -1,14 +1,14 @@
 const SESSION_KEY = "SESSION_ID"
 
-function getAuthService(executor){
-    return{
+function getAuthService(executor) {
+    return {
         login: login,
         register: register,
         logout: logout,
         getSession: getSession,
     }
 
-    function login(email, password){
+    function login(email, password) {
         const body = {
             email: email,
             password: password
@@ -17,12 +17,12 @@ function getAuthService(executor){
         return executor
             .post("/login", body)
             .then(body => {
-                if(body.user_details.user_type !== "org") return Promise.reject("Invalid user type")
+                if (body.user_details.user_type !== "org")
+                    return Promise.reject("Invalid user type. Use the mobile app to authenticate as a volunteer.")
 
                 sessionStorage.setItem(SESSION_KEY, body.user_details.user_id)
-                return Promise.resolve(true)
+                return Promise.resolve()
             })
-            .catch(err => console.log(err))
     }
 
     function register(email, password, name) {
@@ -36,19 +36,15 @@ function getAuthService(executor){
         }
 
         return executor.post("/register", body)
-            .catch(err => console.log(err))
     }
 
-    function logout(){
+    function logout() {
         return executor
             .get("/logout")
-            .then(resp => {
-                if (resp) sessionStorage.removeItem(SESSION_KEY)
-            })
-            .catch(err => console.log(err))
+            .then(() => sessionStorage.removeItem(SESSION_KEY))
     }
 
-    function getSession(){
+    function getSession() {
         return sessionStorage.getItem(SESSION_KEY)
     }
 }

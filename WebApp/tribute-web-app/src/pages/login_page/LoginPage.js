@@ -6,31 +6,22 @@ function LoginPage({service, onLogin}) {
     const [password, setPassword] = useState("");
 
     function login() {
-        service.login(email, password).then((res) => {
-            if (res) {
-                notify("Login successful!", true)
+        return service
+            .login(email, password)
+            .then((_) => {
+                notify("Login successful", true)
                 onLogin()
-            } else {
-                console.log(res)
-                notify("Fuck.", false)
-
-                setEmail("")
-                setPassword("")
-            }
-        })
+            })
+            .catch((err) => notify(err, false))
     }
 
     function submit() {
-        if (!validate()) {
-            console.log("Invalid username or password")
-            return;
+        // verifying input fields
+        if (email.trim().length && password.trim().length) {
+            login()
+        } else {
+            notify("You need to supply an email and a password.", false)
         }
-
-        login();
-    }
-
-    function validate() {
-        return email && email.trim() !== "" && password
     }
 
     return (

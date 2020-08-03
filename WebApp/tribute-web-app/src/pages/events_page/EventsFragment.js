@@ -1,6 +1,7 @@
 import React from "react";
 import renderEventCard from "./EventCard";
 import Loading from "../../components/Loading";
+import {notify} from "../../components/Notifications";
 
 class EventsFragment extends React.Component {
 
@@ -13,12 +14,10 @@ class EventsFragment extends React.Component {
     }
 
     fetchEvents() {
-        return this.props.service.getEvents(
-            this.state.filterEvents? this.props.id : null
-        )
-            .then(events => {
-                if (events) this.setState({events: events})
-            })
+        return this.props.service
+            .getEvents(this.state.filterEvents? this.props.id : null)
+            .then(events => this.setState({events: events}))
+            .catch(err => notify(err, false))
     }
 
     filterEvents = (e) => {

@@ -4,6 +4,7 @@ import {PersonIcon} from "@primer/octicons-react";
 import Loading from "../../components/Loading";
 import FollowButton from "../../components/FollowButton";
 import Image from "../../components/Image";
+import {notify} from "../../components/Notifications";
 
 function VolunteerDisplay({service, id, volunteer_id}) {
 
@@ -14,11 +15,13 @@ function VolunteerDisplay({service, id, volunteer_id}) {
     function getVolunteer() {
         service.getVolunteer(volunteer_id)
             .then(setVolunteer)
+            .catch(err => notify(err, false))
     }
 
     function followVolunteer() {
         service.followVolunteer(volunteer_id)
             .then(getVolunteer)
+            .catch(err => notify(err, false))
     }
 
     function follow() {

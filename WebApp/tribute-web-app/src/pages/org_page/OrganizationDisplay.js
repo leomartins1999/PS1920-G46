@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react"
-import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
+import {DeviceMobileIcon, PersonIcon} from "@primer/octicons-react";
 import Loading from "../../components/Loading";
 import OrganizationRender from "./OrganizationRender";
 import FollowButton from "../../components/FollowButton";
+import {notify} from "../../components/Notifications";
 
 function OrganizationDisplay({service, org_id, id}) {
 
@@ -21,27 +22,43 @@ function OrganizationDisplay({service, org_id, id}) {
     useEffect(getOrg, [])
 
     function getOrg() {
-        service.getOrg(org_id).then(res => {
-            setDescription(res.description)
-            setPhone(res.phone)
-            setMail(res.mail)
-            setSite(res.siteLink)
-            setFacebook(res.facebookLink)
-
-            setOrg(res)
-        })
+        service
+            .getOrg(org_id)
+            .then(res => {
+                setDescription(res.description)
+                setPhone(res.phone)
+                setMail(res.mail)
+                setSite(res.siteLink)
+                setFacebook(res.facebookLink)
+                setOrg(res)
+            })
+            .catch(err => notify(err, false))
     }
 
     function updateOrg() {
-        service.updateOrg(org_id, {description, phone, mail, siteLink: site, facebookLink: facebook})
+        service
+            .updateOrg(org_id, {description, phone, mail, siteLink: site, facebookLink: facebook})
+            .then(_ => {
+                notify("Successfully updated org!")
+                return Promise.resolve()
+            })
             .then(getOrg)
+            .catch(err => notify(err, false))
 
-        if (image) service.updateOrgImage(org_id, image).then(getOrg)
+        if (image) service
+            .updateOrgImage(org_id, image)
+            .then(getOrg)
+            .catch(err => notify(err, false))
     }
 
     function followOrg() {
         service.followOrg(org_id)
+            .then(_ => {
+                notify(`Followed ${org.name}`)
+                return Promise.resolve()
+            })
             .then(getOrg)
+            .catch(err => notify(err, false))
     }
 
     function update() {

@@ -1,8 +1,7 @@
 import addNotification from "react-push-notification";
 
-export function notify(text, success) {
+export function notify(text, success = true) {
     addNotification({
-        title: success ? "Success!" : "Error!",
         message: text,
         theme: success ? "light" : "red"
     });

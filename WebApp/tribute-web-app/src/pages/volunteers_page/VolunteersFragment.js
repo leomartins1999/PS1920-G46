@@ -1,8 +1,8 @@
 import React from "react";
 import renderVolunteer from "./VolunteerCard";
 import {SearchIcon} from "@primer/octicons-react";
-import ClickableIcon from "../../components/ClickableIcon";
 import Loading from "../../components/Loading";
+import {notify} from "../../components/Notifications";
 
 class VolunteersFragment extends React.Component {
 
@@ -16,10 +16,10 @@ class VolunteersFragment extends React.Component {
     }
 
     fetchVolunteers() {
-        return this.props.service.getVolunteers(this.state.search)
-            .then((volunteers) => {
-                if (volunteers) this.setState({volunteers: volunteers})
-            })
+        return this.props.service
+            .getVolunteers(this.state.search)
+            .then((volunteers) => this.setState({volunteers: volunteers}))
+            .catch(err => notify(err, false))
     }
 
     componentDidMount() {
@@ -46,7 +46,8 @@ class VolunteersFragment extends React.Component {
         this.setState({
             volunteers: this.state.search ? [] : this.state.volunteers,
             search: "",
-            newSearch: ""})
+            newSearch: ""
+        })
     }
 
     render() {

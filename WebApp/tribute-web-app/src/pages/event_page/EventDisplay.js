@@ -3,6 +3,7 @@ import Loading from "../../components/Loading";
 import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
 import renderInterested from "./Interested";
 import Image from "../../components/Image";
+import {notify} from "../../components/Notifications";
 
 function EventDisplay({service, volunteerService, event_id, session_id}) {
 
@@ -18,21 +19,28 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
     function getEvent() {
         service.getEvent(event_id)
             .then(res => {
-                if (res) {
-                    setEvent(res)
+                setEvent(res)
 
-                    setDescription(res.description)
-                    setLocation(res.location)
-                    setDate(res.date)
-                }
+                setDescription(res.description)
+                setLocation(res.location)
+                setDate(res.date)
             })
+            .catch(err => notify(err, false))
     }
 
     function updateEvent() {
         service.updateEvent(event_id, {org_id: session_id, description: description, date: date, location: location})
+            .then(_ => {
+                notify("Updated event!")
+                return Promise.resolve()
+            })
             .then(getEvent)
+            .catch(err => notify(err, false))
 
-        if (image) service.updateEventImage(event_id, image).then(getEvent)
+        if (image) service
+            .updateEventImage(event_id, image)
+            .then(getEvent)
+            .catch(err => notify(err, false))
     }
 
     function update() {
@@ -135,12 +143,12 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                     <div/>
                     <div className="d-inline-flex justify-content-center">
                         <LocationIcon size={24}/>
-                        <p className="ml-2">{event.location}</p>
+                        <p className="ml-2">{event.location ? event.location : "(no location provided)"}</p>
                     </div>
                     <div/>
                     <div className="d-inline-flex justify-content-center">
                         <CalendarIcon size={24}/>
-                        <p className="ml-2">{event.date}</p>
+                        <p className="ml-2">{event.date ? event.date : "(no date provided)"}</p>
                     </div>
                 </div>
                 <div className="card-footer d-inline-flex justify-content-center">

@@ -55,8 +55,15 @@ function getRequestExecutor() {
         if (body) options.body = JSON.stringify(body)
 
         return fetch(`${API_BASE_PATH}${url}`, options)
+            .catch(_ => Promise.reject("Error accessing platform."))
             .then(resp => resp.json())
-            .then(json => json.status === "error"? Promise.reject(json.body) : Promise.resolve(json.body))
+            .then(json => {
+                console.log("success")
+                console.log(json)
+
+                return json.status === "success"?
+                    Promise.resolve(json.body) : Promise.reject(json.body.message)
+            })
     }
 }
 

@@ -21,6 +21,7 @@ import RegisterPage from "./pages/register_page/RegisterPage";
 import EventPage from "./pages/event_page/EventPage";
 import VolunteerPage from "./pages/volunteer_page/VolunteerPage";
 import {Notifications} from "react-push-notification";
+import {notify} from "./components/Notifications";
 
 const executor = RequestExecutor()
 
@@ -82,6 +83,7 @@ function RouteRenderer() {
                             event_id={match.params.event_id}/>
                     }/>
                     <Route exact path="/logout" render={() => {
+                        notify("Successfully logged out!", false)
                         authService.logout();
                         setAuth(null);
                     }}/>

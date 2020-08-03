@@ -2,6 +2,7 @@ import React from "react";
 import renderOrg from "./OrgCard";
 import Loading from "../../components/Loading";
 import {SearchIcon} from "@primer/octicons-react";
+import {notify} from "../../components/Notifications";
 
 class OrgsFragment extends React.Component{
 
@@ -16,9 +17,8 @@ class OrgsFragment extends React.Component{
 
     fetchOrgs() {
         return this.props.service.getOrgs(this.state.search)
-            .then((orgs) => {
-                if (orgs) this.setState({orgs: orgs})
-            })
+            .then((orgs) => this.setState({orgs: orgs}))
+            .catch((err) => notify(err, false))
     }
 
     componentDidMount() {
@@ -45,7 +45,8 @@ class OrgsFragment extends React.Component{
         this.setState({
             orgs: this.state.search ? [] : this.state.orgs,
             search: "",
-            newSearch: ""})
+            newSearch: ""
+        })
     }
 
     render() {

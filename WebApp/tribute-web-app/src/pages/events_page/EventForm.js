@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {notify} from "../../components/Notifications";
 
 function EventForm({service}) {
 
@@ -18,18 +19,17 @@ function EventForm({service}) {
 
             service.createEvent({name, description, date: formattedDate, location})
                 .then(res => {
-                    console.log(res)
+                    setName("")
+                    setDescription("");
+                    setDate("")
+                    setLocation("")
+                    setImage(null)
 
-                    if (image) service.updateEventImage(res.id, image)
+                    notify("Successfully created event!")
 
-                    if (res) {
-                        setName("")
-                        setDescription("");
-                        setDate("")
-                        setLocation("")
-                        setImage(null)
-                    }
+                    return image ? service.updateEventImage(res.id, image) : Promise.resolve()
                 })
+                .catch(err => notify(err, false))
         }
     }
 

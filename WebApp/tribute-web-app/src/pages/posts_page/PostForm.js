@@ -1,16 +1,19 @@
 import React, {useState} from "react";
+import {notify} from "../../components/Notifications";
 
 function PostForm({service}) {
     const [text, setText] = useState("")
     const [image, setImage] = useState(null)
 
     function createPost() {
-        if (text) service.createPost(text).then(res => {
-            if (res) {
+        if (text) service
+            .createPost(text)
+            .then(res => {
                 setText("")
+                notify("Successfully created post!")
                 if (image) service.updatePostImage(res.id, image)
-            }
-        })
+            })
+            .catch(err => notify(err, false))
     }
 
     return (
