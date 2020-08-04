@@ -8,6 +8,7 @@ import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Org
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.onClickAuthenticatedMessage
+import com.example.tributeapp.ui.renderClickableIcon
 import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.OrgViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.OrgViewModel
@@ -37,10 +38,12 @@ class OrgActivity : AppCompatActivity() {
 
     private fun setFields(org: Org) {
         name.text = org.name
-        renderTextView(org.siteLink, site)
-        renderTextView(org.facebookLink, facebook)
-        renderTextView(org.mail, mail)
-        renderTextView(org.phone, phone)
+
+        renderClickableIcon("http://", org.siteLink, website_icon, this)
+        renderClickableIcon("tel:", org.phone, phone_icon, this)
+        renderClickableIcon("mailto:", org.mail, mail_icon, this)
+        renderClickableIcon("http://", org.facebookLink, fb_icon, this)
+
         renderTextView(org.description, description)
     }
 
@@ -54,7 +57,7 @@ class OrgActivity : AppCompatActivity() {
     }
 
     private fun listenButtons() {
-        if (App.session!!.hasSession){
+        if (App.session!!.hasSession) {
             followButton.setOnClickListener {
                 model.followOrg(
                     {
@@ -67,11 +70,10 @@ class OrgActivity : AppCompatActivity() {
             }
 
             updateButtonText()
-        }
-        else followButton.setOnClickListener{ onClickAuthenticatedMessage(it) }
+        } else followButton.setOnClickListener { onClickAuthenticatedMessage(it) }
     }
 
-    private fun updateButtonText(){
+    private fun updateButtonText() {
         followButton.text = getString(
             if (model.org.followers.none { it.id == App.session!!.user.id }) R.string.follow_button
             else R.string.unfollow_button
