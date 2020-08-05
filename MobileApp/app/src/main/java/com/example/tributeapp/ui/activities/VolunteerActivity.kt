@@ -1,13 +1,13 @@
 package com.example.tributeapp.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.ui.makeToast
-import com.example.tributeapp.ui.onClickAuthenticatedMessage
 import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteerViewModel
@@ -34,28 +34,35 @@ class VolunteerActivity : AppCompatActivity() {
         model.observe(this) {
             setFields(it)
             updateFollowersAndFollowing(it)
-            listenButtons()
+            listenButtons(it)
         }
     }
 
-    private fun listenButtons() {
-        if (App.session!!.hasSession){
-            followButton.setOnClickListener {
-                model.followVolunteer(
-                    {
-                        makeToast(this, getString(R.string.operation_success))
-                        updateFollowersAndFollowing(model.volunteer)
-                        updateButtonText()
-                    },
-                    {
-                        makeToast(this, getString(R.string.operation_error))
-                    })
-            }
+    private fun listenButtons(volunteer: Volunteer) {
+        if (App.session!!.hasSession) {
+            if (App.session!!.volunteer == volunteer) {
+                /**
+                 * on click, open edit dialog ...
+                 */
+                editButton.setOnClickListener { makeToast(this, "fuck") }
 
-            updateButtonText()
+                editButton.visibility = View.VISIBLE
+            } else {
+                followButton.setOnClickListener {
+                    model.followVolunteer(
+                        {
+                            makeToast(this, getString(R.string.operation_success))
+                            updateFollowersAndFollowing(model.volunteer)
+                            updateButtonText()
+                        },
+                        {
+                            makeToast(this, getString(R.string.operation_error))
+                        })
+                }
+
+                followButton.visibility = View.VISIBLE
+            }
         }
-        else
-            followButton.setOnClickListener { onClickAuthenticatedMessage(it) }
     }
 
     private fun updateFollowersAndFollowing(volunteer: Volunteer) {
@@ -63,7 +70,7 @@ class VolunteerActivity : AppCompatActivity() {
         followersCount.text = "${volunteer.followers.size}"
     }
 
-    private fun updateButtonText(){
+    private fun updateButtonText() {
         followButton.text = getString(
             if (model.volunteer.followers.none { it.id == App.session!!.user.id }) R.string.follow_button
             else R.string.unfollow_button

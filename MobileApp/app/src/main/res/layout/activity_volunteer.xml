@@ -41,10 +41,12 @@
                 android:textStyle="bold"
                 android:textAlignment="center"
                 />
+
             <Button
                 android:id="@+id/followButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="@string/followButton"
                 android:textStyle="bold"
                 android:textSize="15sp"
@@ -130,6 +132,18 @@
             android:textAlignment="center"
             android:text="@string/loading"
             android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="@string/editButton"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            />
 
     </LinearLayout>
 
