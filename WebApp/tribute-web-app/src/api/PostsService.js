@@ -9,7 +9,7 @@ function getPostsService(executor){
 
     function createPost(text) {
         const body = {
-            description: text
+            body: text
         }
 
         return executor.post("/auth/posts", body)

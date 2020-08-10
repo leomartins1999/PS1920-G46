@@ -20,7 +20,7 @@ function getAuthService(executor) {
                 if (body.user_details.user_type !== "org")
                     return Promise.reject("Invalid user type. Use the mobile app to authenticate as a volunteer.")
 
-                sessionStorage.setItem(SESSION_KEY, body.user_details.user_id)
+                sessionStorage.setItem(SESSION_KEY, body.user_details.id)
                 return Promise.resolve()
             })
     }
@@ -40,7 +40,7 @@ function getAuthService(executor) {
 
     function logout() {
         return executor
-            .get("/logout")
+            .get("/auth/logout")
             .then(() => sessionStorage.removeItem(SESSION_KEY))
     }
 

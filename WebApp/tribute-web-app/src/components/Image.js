@@ -1,15 +1,16 @@
 import {API_BASE_PATH} from "../api/RequestExecutor";
-import React from "react";
+import React, {useState} from "react";
 import {useImage} from "react-image";
 
-function Image({link, cache, fb}) {
-    link = `${API_BASE_PATH}${link}`
-    if (!cache) link.concat(`?${performance.now()}`)
+function Image({type, id, cache = '', fb}) {
+    const link = `${API_BASE_PATH}/images/${type}/${id}?${cache}`
 
     const {src} = useImage({
         srcList: [link, fb],
         useSuspense: false
     })
+
+    console.log(fb)
 
     return (
         <img

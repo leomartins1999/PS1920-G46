@@ -6,7 +6,6 @@ import FollowButton from "../../components/FollowButton";
 import {notify} from "../../components/Notifications";
 
 function OrganizationDisplay({service, org_id, id}) {
-
     const [org, setOrg] = useState({})
 
     const [editing, setEditing] = useState(false);
