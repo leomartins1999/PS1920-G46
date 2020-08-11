@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {notify} from "../../components/Notifications";
+import ImageForm from "../../components/ImageForm";
 
 function PostForm({service}) {
     const [text, setText] = useState("")
@@ -25,19 +26,7 @@ function PostForm({service}) {
                     className="form-control mb-2"
                     value={text} onChange={(e) => setText(e.target.value)}
                     rows="2"/>
-                <p className="text-center">Post image</p>
-                <input
-                    type="file"
-                    className="form-control-file mr-2 text-center mb-3"
-                    onChange={(e) => setImage(e.target.files[0])}
-                    placeholder="Select image"
-                />
-                <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => setImage(null)}
-                >Clear image
-                </button>
+                <ImageForm image={image} setImage={setImage}/>
             </div>
             <div className="card-footer text-right">
                 <button onClick={createPost} className="btn btn-primary"> Create Post</button>

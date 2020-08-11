@@ -10,7 +10,7 @@ function getAuthService(executor) {
 
     function login(email, password) {
         const body = {
-            email: email,
+            mail: email,
             password: password
         }
 
@@ -27,7 +27,7 @@ function getAuthService(executor) {
 
     function register(email, password, name) {
         const body = {
-            "email": email,
+            "mail": email,
             "password": password,
             "user_type": "org",
             "data": {

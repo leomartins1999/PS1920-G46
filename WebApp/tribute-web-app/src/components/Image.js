@@ -1,5 +1,5 @@
 import {API_BASE_PATH} from "../api/RequestExecutor";
-import React, {useState} from "react";
+import React from "react";
 import {useImage} from "react-image";
 
 function Image({type, id, cache = '', fb}) {
@@ -9,8 +9,6 @@ function Image({type, id, cache = '', fb}) {
         srcList: [link, fb],
         useSuspense: false
     })
-
-    console.log(fb)
 
     return (
         <img
