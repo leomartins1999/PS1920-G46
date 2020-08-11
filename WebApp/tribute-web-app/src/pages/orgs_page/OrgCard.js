@@ -6,7 +6,7 @@ function OrgCard({id, name, nrFollowers, nrFollowing}) {
     return (
         <div className="card m-3 text-center" style={{width: "15rem"}}>
             <div className="card-body d-flex justify-content-center">
-                <Image type={'orgs'} id={id} fb="org.svg"/>
+                <Image type={'orgs'} id={id} fb="images/org.svg"/>
             </div>
             <a className="card-footer" href={`/orgs/${id}`}>{name}</a>
             <div className="card-footer">

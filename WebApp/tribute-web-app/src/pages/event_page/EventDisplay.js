@@ -56,7 +56,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
     function renderEditing() {
         return (
             <div>
-                <div className="card m-3">
+                <div className="card border-primary m-3">
                     <div className="card-header h2">{event.name}</div>
                     <div className="card-body text-center">
                         <ImageForm image={image} setImage={setImage}/>
@@ -114,7 +114,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                             onClick={() => setEditing(true)}
                         >Edit</button>
                     </div>
-                    <div className="card m-3">
+                    <div className="card border-primary m-3">
                         <div className="card-header h2">Interested Volunteers</div>
                         <div className="card-body">
                             {interested}
@@ -126,7 +126,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
 
     function notOwnerRender() {
         return (
-            <div className="card m-3">
+            <div className="card border-primary m-3">
                 <div className="card-header h2">{event.name}</div>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{event.description}</p>

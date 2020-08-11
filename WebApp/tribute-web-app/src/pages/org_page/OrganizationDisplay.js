@@ -92,7 +92,7 @@ function OrganizationDisplay({service, org_id, id}) {
     function renderEditing() {
         return (
             <div>
-                <div className="card m-3">
+                <div className="card border-primary m-3">
                     <div className="card-header h2">{org.name}</div>
                     <div className="card-body text-center">
                         <ImageForm image={image} setImage={setImage}/>

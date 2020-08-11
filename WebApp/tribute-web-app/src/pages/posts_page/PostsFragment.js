@@ -47,7 +47,7 @@ class PostsFragment extends React.Component {
             posts.map(p => renderPostCard(p, this.props.volunteers_service, this.props.orgs_service, this.props.owner_id, this.likePost))
 
         return (
-            <div className="card m-3">
+            <div className="card border-primary m-3">
                 <div className="card-header text-center">
                     Check your posts
                     <input type="checkbox" className="ml-3" onChange={this.filterPosts}/>

@@ -35,7 +35,7 @@ function EventForm({service}) {
     }
 
     return (
-        <div className="card m-3">
+        <div className="card border-primary m-3">
             <div className="card-header h2">Create Event</div>
             <div className="card-body text-center">
                 <input

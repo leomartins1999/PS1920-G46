@@ -18,7 +18,7 @@ function PostForm({service}) {
     }
 
     return (
-        <div className="card m-3">
+        <div className="card border-primary m-3">
             <div className="card-header h2">Create Post</div>
             <div className="card-body text-center align-items-center">
                 <textarea
