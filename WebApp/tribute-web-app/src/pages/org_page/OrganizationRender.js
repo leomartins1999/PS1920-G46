@@ -3,12 +3,12 @@ import ClickableIcon from "../../components/ClickableIcon";
 import React from "react";
 import Image from "../../components/Image";
 
-function OrganizationRender({org}) {
+function OrganizationRender({org, stamp}) {
     return (
-        <div className="card m-3">
+        <div className="card border-primary m-3">
             <div className="card-header h2">{org.name}</div>
             <div className="card-body text-center">
-                <Image link={org.imageLink} cache={false} fb="org.svg"/>
+                <Image type={'orgs'} id={org._id} cache={stamp} fb="images/org.svg"/>
                 <p className="text-justify m-3 border">{org.description}</p>
                 <div className="d-inline-flex">
                     <DeviceMobileIcon size={24}/>
@@ -16,9 +16,9 @@ function OrganizationRender({org}) {
                 </div>
                 <div/>
                 <div className="d-inline-flex">
-                    {Object.keys(org.followers).length} Followers
+                    {org.nrFollowers} Followers
                     <PersonIcon size={24}/>
-                    {Object.keys(org.following).length} Following
+                    {org.nrFollowing} Following
                 </div>
             </div>
             <div className="card-footer d-inline-flex justify-content-center">

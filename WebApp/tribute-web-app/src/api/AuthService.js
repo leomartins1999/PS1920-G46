@@ -10,7 +10,7 @@ function getAuthService(executor) {
 
     function login(email, password) {
         const body = {
-            email: email,
+            mail: email,
             password: password
         }
 
@@ -20,14 +20,14 @@ function getAuthService(executor) {
                 if (body.user_details.user_type !== "org")
                     return Promise.reject("Invalid user type. Use the mobile app to authenticate as a volunteer.")
 
-                sessionStorage.setItem(SESSION_KEY, body.user_details.user_id)
+                sessionStorage.setItem(SESSION_KEY, body.user_details.id)
                 return Promise.resolve()
             })
     }
 
     function register(email, password, name) {
         const body = {
-            "email": email,
+            "mail": email,
             "password": password,
             "user_type": "org",
             "data": {
@@ -40,7 +40,7 @@ function getAuthService(executor) {
 
     function logout() {
         return executor
-            .get("/logout")
+            .get("/auth/logout")
             .then(() => sessionStorage.removeItem(SESSION_KEY))
     }
 

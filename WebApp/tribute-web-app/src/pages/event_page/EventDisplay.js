@@ -4,10 +4,13 @@ import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
 import renderInterested from "./Interested";
 import Image from "../../components/Image";
 import {notify} from "../../components/Notifications";
+import ImageForm from "../../components/ImageForm";
 
 function EventDisplay({service, volunteerService, event_id, session_id}) {
 
     const [event, setEvent] = useState({})
+    const [stamp, setStamp] = useState(Date.now())
+
     const [editing, setEditing] = useState(false);
 
     const [description, setDescription] = useState(event.description);
@@ -29,18 +32,12 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
     }
 
     function updateEvent() {
-        service.updateEvent(event_id, {org_id: session_id, description: description, date: date, location: location})
-            .then(_ => {
-                notify("Updated event!")
-                return Promise.resolve()
-            })
-            .then(getEvent)
+        return service
+            .updateEvent(event_id, {org_id: session_id, description: description, date: date, location: location})
+            .then(_ => image ? service.updateEventImage(event_id, image) : Promise.resolve())
+            .then(_ => setStamp(Date.now()))
             .catch(err => notify(err, false))
-
-        if (image) service
-            .updateEventImage(event_id, image)
             .then(getEvent)
-            .catch(err => notify(err, false))
     }
 
     function update() {
@@ -54,21 +51,15 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
 
     if (!event.name) return <Loading/>
 
-    return event.org_id === session_id ? ownerRender() : notOwnerRender();
+    return event.owner_id === session_id ? ownerRender() : notOwnerRender();
 
     function renderEditing() {
         return (
             <div>
-                <div className="card m-3">
+                <div className="card border-primary m-3">
                     <div className="card-header h2">{event.name}</div>
                     <div className="card-body text-center">
-                        <p>New image</p>
-                        <input
-                            type="file"
-                            className="form-control-file mr-2 text-center mb-3"
-                            onChange={(e) => setImage(e.target.files[0])}
-                            placeholder="Select image"
-                        />
+                        <ImageForm image={image} setImage={setImage}/>
                         <textarea
                             className="form-control mb-3"
                             value={description}
@@ -93,7 +84,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                         </div>
                         <div/>
                         <div className="d-inline-flex">
-                            {Object.keys(event.interested).length} Interested
+                            {event.nrInterested} Interested
                             <PersonIcon size={24}/>
                         </div>
                     </div>
@@ -123,7 +114,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                             onClick={() => setEditing(true)}
                         >Edit</button>
                     </div>
-                    <div className="card m-3">
+                    <div className="card border-primary m-3">
                         <div className="card-header h2">Interested Volunteers</div>
                         <div className="card-body">
                             {interested}
@@ -135,11 +126,11 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
 
     function notOwnerRender() {
         return (
-            <div className="card m-3">
+            <div className="card border-primary m-3">
                 <div className="card-header h2">{event.name}</div>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{event.description}</p>
-                    <Image link={event.imageLink} cache={true}/>
+                    <Image type={'events'} id={event._id} cache={stamp}/>
                     <div/>
                     <div className="d-inline-flex justify-content-center">
                         <LocationIcon size={24}/>
@@ -152,7 +143,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                     </div>
                 </div>
                 <div className="card-footer d-inline-flex justify-content-center">
-                    {Object.keys(event.interested).length} Interested
+                    {event.nrInterested} Interested
                     <PersonIcon className="ml-2" size={24}/>
                 </div>
             </div>

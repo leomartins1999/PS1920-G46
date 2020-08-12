@@ -25,7 +25,7 @@ function LoginPage({service, onLogin}) {
     }
 
     return (
-        <div className="text-center card container p-5">
+        <div className="text-center border-primary card container p-5">
             <h1 className="text-primary text-left">Tribute</h1>
             <h5 className="text-secondary text-left">For orgs</h5>
             <div className="h3 mb-3 font-weight-normal">Login</div>

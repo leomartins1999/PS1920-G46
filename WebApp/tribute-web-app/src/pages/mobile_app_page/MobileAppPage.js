@@ -3,7 +3,7 @@ import React from "react";
 function MobileAppPage(){
     return (
         <>
-            <div className="text-center card container p-5">
+            <div className="text-center border-primary card container p-5">
                 <h1 className="text-primary text-left">Tribute Android App</h1>
                 <h5 className="text-secondary text-left">For volunteers</h5>
                 <div className="row no-gutters mt-5">

@@ -33,15 +33,15 @@ function VolunteerDisplay({service, id, volunteer_id}) {
 
     return (
         <div>
-            <div className="card m-3">
+            <div className="card border-primary m-3">
                 <div className="card-header h2">{volunteer.name}</div>
-                <Image link={volunteer.imageLink} cache={true} fb="volunteer.svg"/>
+                <Image type={'volunteers'} id={volunteer._id} fb="images/volunteer.svg"/>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{volunteer.description}</p>
                     <div className="d-inline-flex mb-3">
-                        {Object.keys(volunteer.followers).length} Followers
+                        {volunteer.nrFollowers} Followers
                         <PersonIcon size={24}/>
-                        {Object.keys(volunteer.following).length} Following
+                        {volunteer.nrFollowing} Following
                     </div>
                 </div>
                 <div className="card-footer d-inline-flex justify-content-center">

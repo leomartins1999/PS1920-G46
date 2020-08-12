@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {notify} from "../../components/Notifications";
+import ImageForm from "../../components/ImageForm";
 
 function EventForm({service}) {
 
@@ -12,7 +13,7 @@ function EventForm({service}) {
     function createEvent() {
         if (name && description) {
             let formattedDate
-            if (date){
+            if (date) {
                 const splitDate = date.split("-")
                 formattedDate = `${splitDate[0]}-${splitDate[1]}-${splitDate[2]}`;
             }
@@ -34,7 +35,7 @@ function EventForm({service}) {
     }
 
     return (
-        <div className="card m-3">
+        <div className="card border-primary m-3">
             <div className="card-header h2">Create Event</div>
             <div className="card-body text-center">
                 <input
@@ -61,18 +62,7 @@ function EventForm({service}) {
                     value={location} onChange={(e) => setLocation(e.target.value)}
                     type="text"
                 />
-                <input
-                    type="file"
-                    className="form-control-file mr-2 text-center mb-3"
-                    onChange={(e) => setImage(e.target.files[0])}
-                    placeholder="Select image"
-                />
-                <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => setImage(null)}
-                >Clear image
-                </button>
+                <ImageForm image={image} setImage={setImage}/>
             </div>
             <div className="card-footer text-right">
                 <button onClick={createEvent} className="btn btn-primary"> Create Event</button>

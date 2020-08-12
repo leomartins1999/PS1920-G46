@@ -1,0 +1,867 @@
+{
+	"info": {
+		"_postman_id": "706b50af-1e91-44f8-8db9-3143b11ec011",
+		"name": "tribute_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth controller",
+			"item": [
+				{
+					"name": "Register Org",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"mail\": \"o1\",\r\n\t\"password\": \"1\",\r\n\t\"user_type\": \"org\",\r\n\t\"data\": {\r\n\t\t\"name\": \"New org\",\r\n        \"description\": \"description\",\r\n        \"phone\": \"123456789\",\r\n        \"siteLink\": \"www.org.pt\",\r\n        \"facebookLink\": \"www.facebook.com\",\r\n        \"linkedinLink\": \"www.linkedin.com\"\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/register",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Volunteer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"mail\": \"v1\",\r\n\t\"password\": \"1\",\r\n\t\"user_type\": \"volunteer\",\r\n\t\"data\": {\r\n\t\t\"name\": \"New 1\",\r\n\t\t\"description\": \"description 1\",\r\n\t\t\"linkedinlink\": \"www.linkedin.com\"\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/register",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Org",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"mail\": \"o1\",\r\n\t\"password\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Volunteer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"mail\": \"v1\",\r\n\t\"password\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/logout",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "volunteers controller",
+			"item": [
+				{
+					"name": "Get Volunteers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/volunteers?name=&limit=&skip=",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"volunteers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Volunteer By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/volunteers/:id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"volunteers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5f2d893272d0185bf0b94b7a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get mail for volunteer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/volunteers/:id/mail",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"volunteers",
+								":id",
+								"mail"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5f2d893272d0185bf0b94b7a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow volunteer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/volunteers/:volunteer_id/follow",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"volunteers",
+								":volunteer_id",
+								"follow"
+							],
+							"variable": [
+								{
+									"key": "volunteer_id",
+									"value": "5f2d893272d0185bf0b94b7a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Volunteer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"new description\",\n\t\"linkedinLink\": \"www.linkedin.com/abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/volunteers/:id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"volunteers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5f2d64442004be5f80ec1bd3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "orgs controller",
+			"item": [
+				{
+					"name": "Get Orgs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/orgs?limit=&name=&skip",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"orgs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Org by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/orgs/:org_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"orgs",
+								":org_id"
+							],
+							"variable": [
+								{
+									"key": "org_id",
+									"value": "5f2d643c2004be5f80ec1bd3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow org",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/orgs/:org_id/follow",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"orgs",
+								":org_id",
+								"follow"
+							],
+							"variable": [
+								{
+									"key": "org_id",
+									"value": "`Entity with id ${id} not found.`"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update org",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"new org description\",\n\t\"phone\": \"912213415\",\n    \"mail\": \"email@org.com\",\n    \"siteLink\": \"www.site.com\",\n    \"facebookLink\": \"www.facebook.com/abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/orgs/:id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"orgs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5f2d64382004be5f80ec1bd0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "posts controller",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"body\": \"My first Post!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/posts",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/posts?owner_id=&limit=&skip=",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "owner_id",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/posts/:post_id/like",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"posts",
+								":post_id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "5f2d740af348683678ea15f6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "event controller",
+			"item": [
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Event 1\",\n\t\"description\":\"My new event\",\n\t\"date\": \"2020-02-05\",\n\t\"location\": \"Rua Conselheiro Emídio Navarro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/events",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/events?limit=&skip",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "skip",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/events/:event_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"events",
+								":event_id"
+							],
+							"variable": [
+								{
+									"key": "event_id",
+									"value": "5f2068471c4eb941206b0675"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Interested in event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/events/:event_id/interested",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"events",
+								":event_id",
+								"interested"
+							],
+							"variable": [
+								{
+									"key": "event_id",
+									"value": "5f2d7e135a405e499820bd31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\":\"fml i want to die\",\n\t\"date\": \"2022-02-05\",\n\t\"location\": \"Rua Conselheiro Emídio Navarro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/events/:event_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"events",
+								":event_id"
+							],
+							"variable": [
+								{
+									"key": "event_id",
+									"value": "5f2d9c7addd25436a4edd453"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "images controller",
+			"item": [
+				{
+					"name": "Get image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/images/:type/:id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"images",
+								":type",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "type",
+									"value": "volunteers"
+								},
+								{
+									"key": "id",
+									"value": "5f2d64442004be5f80ec1bd3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update volunteer image",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/A43591/Desktop/Leo/Diamond 1st time.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/auth/images/volunteers/:volunteer_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"images",
+								"volunteers",
+								":volunteer_id"
+							],
+							"variable": [
+								{
+									"key": "volunteer_id",
+									"value": "5f2d64442004be5f80ec1bd3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update org image",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/A43591/Desktop/Leo/Diamond 1st time.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/auth/images/orgs/:org_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"images",
+								"orgs",
+								":org_id"
+							],
+							"variable": [
+								{
+									"key": "org_id",
+									"value": "5f2d64382004be5f80ec1bd0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update post image",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/A43591/Desktop/Leo/Diamond 1st time.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/auth/images/posts/:post_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"images",
+								"posts",
+								":post_id"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "5f2e32ccf394681d949575a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update event image",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/A43591/Desktop/Leo/Diamond 1st time.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/auth/images/events/:event_id",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"images",
+								"events",
+								":event_id"
+							],
+							"variable": [
+								{
+									"key": "event_id",
+									"value": "5f2e32ddf394681d949575a1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "InvalidUri",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/wtf",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wtf"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "493c7ea8-7a96-43ce-a648-a10498fe3105",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "76da07df-20a6-4273-ae5b-2d12b5647381",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "09e27603-f40a-456b-a84f-704bea082161",
+			"key": "base",
+			"value": "localhost:8000/api"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

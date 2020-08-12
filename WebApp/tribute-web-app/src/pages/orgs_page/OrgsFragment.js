@@ -4,7 +4,7 @@ import Loading from "../../components/Loading";
 import {SearchIcon} from "@primer/octicons-react";
 import {notify} from "../../components/Notifications";
 
-class OrgsFragment extends React.Component{
+class OrgsFragment extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ class OrgsFragment extends React.Component{
         }
     }
 
-    fetchOrgs() {
+    fetchOrgs = () => {
         return this.props.service.getOrgs(this.state.search)
             .then((orgs) => this.setState({orgs: orgs}))
             .catch((err) => notify(err, false))
@@ -24,7 +24,7 @@ class OrgsFragment extends React.Component{
     componentDidMount() {
         this.fetchOrgs()
             .then(() => {
-                this.timerID = setInterval(() => this.fetchOrgs(), 2000)
+                this.timerID = setInterval(this.fetchOrgs, 2000)
             })
     }
 
@@ -59,8 +59,13 @@ class OrgsFragment extends React.Component{
                 <div className="card-header text-center h1">Orgs</div>
                 <div className="card-body text-center">
                     <div className="d-inline-flex align-items-center">
-                        <input className="form-control" placeholder="Search..." value={this.state.newSearch} onChange={this.onChangeNewSearch}/>
-                        <button className="btn btn-link" onClick={this.submitSearch}><SearchIcon size={24}/> </button>
+                        <input
+                            className="form-control"
+                            placeholder="Search..."
+                            value={this.state.newSearch}
+                            onChange={this.onChangeNewSearch}
+                        />
+                        <button className="btn btn-link" onClick={this.submitSearch}><SearchIcon size={24}/></button>
                         <button className="btn btn-light" onClick={this.clearSearch}>Clear</button>
                     </div>
                     <div className="row justify-content-md-center">{orgsRender}</div>

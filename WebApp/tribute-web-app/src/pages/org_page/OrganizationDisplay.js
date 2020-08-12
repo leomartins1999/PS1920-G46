@@ -4,10 +4,11 @@ import Loading from "../../components/Loading";
 import OrganizationRender from "./OrganizationRender";
 import FollowButton from "../../components/FollowButton";
 import {notify} from "../../components/Notifications";
+import ImageForm from "../../components/ImageForm";
 
 function OrganizationDisplay({service, org_id, id}) {
-
     const [org, setOrg] = useState({})
+    const [stamp, setStamp] = useState(Date.now())
 
     const [editing, setEditing] = useState(false);
 
@@ -22,7 +23,7 @@ function OrganizationDisplay({service, org_id, id}) {
     useEffect(getOrg, [])
 
     function getOrg() {
-        service
+        return service
             .getOrg(org_id)
             .then(res => {
                 setDescription(res.description)
@@ -36,25 +37,20 @@ function OrganizationDisplay({service, org_id, id}) {
     }
 
     function updateOrg() {
-        service
+        return service
             .updateOrg(org_id, {description, phone, mail, siteLink: site, facebookLink: facebook})
-            .then(_ => {
-                notify("Successfully updated org!")
-                return Promise.resolve()
-            })
-            .then(getOrg)
+            .then(_ => image ? service.updateOrgImage(org_id, image) : Promise.resolve())
+            .then(_ => notify('Updated org!'))
+            .then(_ => setStamp(Date.now()))
             .catch(err => notify(err, false))
-
-        if (image) service
-            .updateOrgImage(org_id, image)
             .then(getOrg)
-            .catch(err => notify(err, false))
     }
 
     function followOrg() {
-        service.followOrg(org_id)
+        return service
+            .followOrg(org_id)
             .then(getOrg)
-            .catch(err => notify(err, false))
+            .catch(err => notify(err.message, false))
     }
 
     function update() {
@@ -85,7 +81,7 @@ function OrganizationDisplay({service, org_id, id}) {
 
         return (
             <div>
-                <OrganizationRender org={org}/>
+                <OrganizationRender org={org} stamp={stamp}/>
                 <div className="d-flex justify-content-center">
                     {options}
                 </div>
@@ -96,16 +92,10 @@ function OrganizationDisplay({service, org_id, id}) {
     function renderEditing() {
         return (
             <div>
-                <div className="card m-3">
+                <div className="card border-primary m-3">
                     <div className="card-header h2">{org.name}</div>
                     <div className="card-body text-center">
-                        <p>New image</p>
-                        <input
-                            type="file"
-                            className="form-control-file mr-2 text-center mb-3"
-                            onChange={(e) => setImage(e.target.files[0])}
-                            placeholder="Select image"
-                        />
+                        <ImageForm image={image} setImage={setImage}/>
                         <textarea
                             className="form-control mb-3"
                             value={description}
@@ -114,7 +104,7 @@ function OrganizationDisplay({service, org_id, id}) {
                         <div className="d-inline-flex mb-3 align-items-center">
                             <DeviceMobileIcon size={24}/>
                             <input
-                                className="form-control ml-2"
+                                className="form-control ml-2 text-center"
                                 value={phone}
                                 placeholder="Phone number"
                                 onChange={(e) => setPhone(e.target.value)}
@@ -122,16 +112,16 @@ function OrganizationDisplay({service, org_id, id}) {
                         </div>
                         <div/>
                         <div className="d-inline-flex">
-                            {Object.keys(org.followers).length} Followers
+                            {org.nrFollowers} Followers
                             <PersonIcon size={24}/>
-                            {Object.keys(org.following).length} Following
+                            {org.nrFollowing} Following
                         </div>
                     </div>
                     <div className="card-footer d-flex justify-content-around m-0 form-group row">
                         <div className="col-xs-2 d-inline-flex align-items-center">
                             Email
                             <input
-                                className="form-control ml-2"
+                                className="form-control ml-2 text-center"
                                 value={mail}
                                 placeholder="Mail"
                                 onChange={(e) => setMail(e.target.value)}
@@ -140,7 +130,7 @@ function OrganizationDisplay({service, org_id, id}) {
                         <div className="col-xs-2 d-inline-flex align-items-center">
                             Site
                             <input
-                                className="form-control ml-2"
+                                className="form-control ml-2 text-center"
                                 value={site}
                                 placeholder="Site"
                                 onChange={(e) => setSite(e.target.value)}
@@ -149,7 +139,7 @@ function OrganizationDisplay({service, org_id, id}) {
                         <div className="col-xs-2 d-inline-flex align-items-center">
                             Facebook
                             <input
-                                className="form-control ml-2"
+                                className="form-control ml-2 text-center"
                                 value={facebook}
                                 placeholder="Facebook link"
                                 onChange={(e) => setFacebook(e.target.value)}
@@ -159,8 +149,11 @@ function OrganizationDisplay({service, org_id, id}) {
                 </div>
                 <div className="d-flex justify-content-center">
                     <button type="button" className="btn btn-primary mr-3" onClick={update}>Submit changes</button>
-                    <button type="button" className="btn btn-danger" onClick={() => setEditing(false)}>Cancel
-                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={() => setEditing(false)}
+                    >Cancel</button>
                 </div>
             </div>
         )

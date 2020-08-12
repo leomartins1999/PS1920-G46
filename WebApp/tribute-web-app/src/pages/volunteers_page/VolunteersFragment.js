@@ -15,7 +15,7 @@ class VolunteersFragment extends React.Component {
         }
     }
 
-    fetchVolunteers() {
+    fetchVolunteers = () => {
         return this.props.service
             .getVolunteers(this.state.search)
             .then((volunteers) => this.setState({volunteers: volunteers}))
@@ -25,7 +25,7 @@ class VolunteersFragment extends React.Component {
     componentDidMount() {
         this.fetchVolunteers()
             .then(() => {
-                this.timerID = setInterval(() => this.fetchVolunteers(), 2000)
+                this.timerID = setInterval(this.fetchVolunteers, 2000)
             })
     }
 

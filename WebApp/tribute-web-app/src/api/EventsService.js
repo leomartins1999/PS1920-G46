@@ -9,12 +9,12 @@ function getEventsService(executor){
     }
 
     function createEvent(event){
-        return executor.post(`/auth/orgs/events`, event)
+        return executor.post(`/auth/events`, event)
     }
 
     function getEvents(org_id) {
         return executor.get(
-            org_id ? `/orgs/${org_id}/events` : "/events"
+            org_id ? `/events?owner_id=${org_id}` : '/events'
         )
     }
 

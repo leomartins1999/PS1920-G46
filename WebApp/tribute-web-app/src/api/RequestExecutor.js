@@ -1,4 +1,4 @@
-export const API_BASE_PATH = "https://tribute-api.duckdns.org/api"
+export const API_BASE_PATH = "http://localhost:8000/api"
 
 function getRequestExecutor() {
     return {
@@ -9,7 +9,7 @@ function getRequestExecutor() {
         uploadImage: uploadImage
     }
 
-    function get(url) { 
+    function get(url) {
         return executeRequest('GET', url)
     }
 
@@ -25,13 +25,13 @@ function getRequestExecutor() {
         return executeRequest('DELETE', url)
     }
 
-    function uploadImage(url, file){
+    function uploadImage(url, file) {
         const formData = new FormData()
 
         formData.append('file', file)
 
         const options = {
-            method: 'POST',
+            method: 'PUT',
             mode: "cors",
             credentials: "include",
             body: formData
@@ -39,13 +39,13 @@ function getRequestExecutor() {
 
         return fetch(`${API_BASE_PATH}${url}`, options)
             .then(resp => resp.json())
-            .then(json => json.status === "error"? Promise.reject(json.body) : Promise.resolve(json.body))
+            .then(json => json.status === "error" ? Promise.reject(json.body) : Promise.resolve(json.body))
     }
 
     function executeRequest(method, url, body) {
         const options = {
             method: method,
-            headers:{
+            headers: {
                 "Content-Type": "application/json"
             },
             mode: "cors",
@@ -57,13 +57,10 @@ function getRequestExecutor() {
         return fetch(`${API_BASE_PATH}${url}`, options)
             .catch(_ => Promise.reject("Error accessing platform."))
             .then(resp => resp.json())
-            .then(json => {
-                console.log("success")
-                console.log(json)
-
-                return json.status === "success"?
-                    Promise.resolve(json.body) : Promise.reject(json.body.message)
-            })
+            .then(json => json.status === "success" ?
+                Promise.resolve(json.body) :
+                Promise.reject(json.body.message)
+            )
     }
 }
 
