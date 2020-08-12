@@ -38,7 +38,7 @@ class EventsFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
-        model.updateEvents { makeToast(context, "Error retrieving events!") }
+        model.updateEvents { makeToast(requireContext(), "Error retrieving events!") }
 
         return root
     }

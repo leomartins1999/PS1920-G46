@@ -7,6 +7,7 @@ import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Volunteer
+import com.example.tributeapp.ui.fragments.EditVolunteerFragment
 import com.example.tributeapp.ui.makeToast
 import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
@@ -38,13 +39,21 @@ class VolunteerActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        model.updateVolunteer()
+    }
+
     private fun listenButtons(volunteer: Volunteer) {
         if (App.session!!.hasSession) {
             if (App.session!!.volunteer == volunteer) {
                 /**
                  * on click, open edit dialog ...
                  */
-                editButton.setOnClickListener { makeToast(this, "fuck") }
+                editButton.setOnClickListener {
+                    val editFragment = EditVolunteerFragment(volunteer.description, volunteer.linkedInLink) {model.updateVolunteer()}
+                    editFragment.show(supportFragmentManager, "editVolunteer")
+                }
 
                 editButton.visibility = View.VISIBLE
             } else {

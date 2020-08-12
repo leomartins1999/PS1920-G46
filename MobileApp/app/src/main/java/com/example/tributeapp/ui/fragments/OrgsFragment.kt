@@ -51,7 +51,7 @@ class OrgsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        model.updateOrgs { makeToast(context, "Error retrieving orgs!") }
+        model.updateOrgs { makeToast(requireContext(), "Error retrieving orgs!") }
     }
 
 }

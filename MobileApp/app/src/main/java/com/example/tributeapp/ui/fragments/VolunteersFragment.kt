@@ -51,7 +51,7 @@ class VolunteersFragment: Fragment(){
     override fun onStart() {
         super.onStart()
 
-        model.updateVolunteers { makeToast(context, "Error loading volunteers!") }
+        model.updateVolunteers { makeToast(requireContext(), "Error loading volunteers!") }
     }
 
 }

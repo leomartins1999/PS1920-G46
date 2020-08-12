@@ -12,8 +12,13 @@ data class Volunteer(private val json: JSONObject): Entity(){
         if (!json.optString("imageLink").startsWith("/images")) json.optString("imageLink")
         else com.example.tributeapp.api.BASE_URL + json.optString("imageLink")
 
-    val description: String? = json.optString("description")
-    val linkedInLink: String? = json.optString("linkedInLink")
+    val description: String =
+        if (json.optString("description", "") == "null") ""
+        else json.optString("description", "")
+    val linkedInLink: String =
+        if (json.optString("linkedInLink", "") == "null") ""
+        else json.optString("linkedInLink", "")
+
 
     val following =
         getUsers(json.getJSONObject("following"))

@@ -11,7 +11,7 @@ class LogoutFragment: Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.endSession()
-        makeToast(context, resources.getString(R.string.executed_logout))
+        makeToast(requireContext(), resources.getString(R.string.executed_logout))
         this.requireActivity().onBackPressed()
     }
 

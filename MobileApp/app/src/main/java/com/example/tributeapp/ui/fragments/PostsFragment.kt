@@ -21,7 +21,7 @@ class PostsFragment : Fragment() {
     private val adapter by lazy {
         PostListAdapter(model) { postId, onSuccess ->
             model.likePost(postId, onSuccess) {
-                makeToast(context, "Error liking post")
+                makeToast(requireContext(), "Error liking post")
             }
         }
     }
@@ -62,19 +62,19 @@ class PostsFragment : Fragment() {
                 model.post(
                     post_text.text.toString(),
                     {
-                        makeToast(context, getString(R.string.operation_success))
+                        makeToast(requireContext(), getString(R.string.operation_success))
                         Handler().postDelayed({ updatePosts() }, 1000)
                     },
                     {
-                        makeToast(context, getString(R.string.operation_error))
+                        makeToast(requireContext(), getString(R.string.operation_error))
                     }
                 )
-            else makeToast(context, getString(R.string.post_body_empty_error))
+            else makeToast(requireContext(), getString(R.string.post_body_empty_error))
         }
     }
 
     private fun updatePosts() {
-        model.updatePosts { makeToast(context, "Error loading posts") }
+        model.updatePosts { makeToast(requireContext(), "Error loading posts") }
     }
 
 }

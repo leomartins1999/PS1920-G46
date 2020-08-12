@@ -38,10 +38,10 @@ class RegisterFragment : Fragment() {
                     email,
                     password,
                     {
-                        makeToast(context, resources.getString(R.string.successfully_registered))
+                        makeToast(requireContext(), resources.getString(R.string.successfully_registered))
                         this.requireActivity().onBackPressed()
                     },
-                    { makeToast(context, "Error") }
+                    { makeToast(requireContext(), "Error") }
                 )
         }
 
@@ -49,10 +49,10 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerIsValid(name: String, email: String, password: String, confirmation: String): Boolean {
-        if (name.isEmpty()) makeToast(context, getString(R.string.name_must_not_be_empty_error))
-        else if (!email.isEmailValid()) makeToast(context, getString(R.string.email_is_invalid))
-        else if (!password.isPasswordValid()) makeToast(context, getString(R.string.password_is_invalid))
-        else if (password != confirmation) makeToast(context, getString(R.string.password_arent_equal))
+        if (name.isEmpty()) makeToast(requireContext(), getString(R.string.name_must_not_be_empty_error))
+        else if (!email.isEmailValid()) makeToast(requireContext(), getString(R.string.email_is_invalid))
+        else if (!password.isPasswordValid()) makeToast(requireContext(), getString(R.string.password_is_invalid))
+        else if (password != confirmation) makeToast(requireContext(), getString(R.string.password_arent_equal))
         else return true
 
         return false

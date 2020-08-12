@@ -59,4 +59,7 @@
     <string name="password_is_invalid">Password is invalid!\nPasswords must have:\n- At least 8 characters.</string>
     <string name="password_arent_equal">Passwords confirmation failed</string>
     <string name="editButton">Edit</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_edit_volunteer">Edit your profile</string>
 </resources>

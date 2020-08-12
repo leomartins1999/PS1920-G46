@@ -5,8 +5,10 @@ import com.example.tributeapp.api.VOLUNTEERS_URL
 import com.example.tributeapp.api.followVolunteerURL
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
+import com.example.tributeapp.api.updateVolunteerURL
 import com.example.tributeapp.api.volunteerURL
 import com.example.tributeapp.model.dtos.Volunteer
+import org.json.JSONObject
 
 class VolunteersController(private val executor: RequestExecutor) {
 
@@ -18,5 +20,13 @@ class VolunteersController(private val executor: RequestExecutor) {
 
     fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         executor.put(followVolunteerURL(volunteerID), onSuccess, onError)
+
+    fun updateVolunteer(volunteerID: String, description: String?, linkedinLink: String?, onSuccess: () -> Unit, onError: () -> Unit) {
+        val body = JSONObject()
+        if (!description.isNullOrEmpty()) body.put("description", description)
+        if (!linkedinLink.isNullOrEmpty()) body.put("linkedInLink", linkedinLink)
+
+        executor.put(updateVolunteerURL(volunteerID), onSuccess, onError, body)
+    }
 
 }

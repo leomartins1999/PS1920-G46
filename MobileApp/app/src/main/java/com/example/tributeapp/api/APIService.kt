@@ -54,4 +54,8 @@ class APIService(ctx: Context) {
 
     fun register(user: String, email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit) =
         auth.register(user, email, password, onSuccess, onError)
+
+    fun updateVolunteer(volunteerID: String, description: String?, linkedinLink: String?, onSuccess: () -> Unit, onError: () -> Unit) {
+        volunteers.updateVolunteer(volunteerID, description, linkedinLink, onSuccess, onError)
+    }
 }

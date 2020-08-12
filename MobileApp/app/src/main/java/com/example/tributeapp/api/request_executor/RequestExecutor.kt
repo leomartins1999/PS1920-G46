@@ -41,13 +41,13 @@ class RequestExecutor(ctx: Context) {
         queue.add(req)
     }
 
-    fun put(url: String, onSuccess: () -> Unit, onError: () -> Unit) {
+    fun put(url: String, onSuccess: () -> Unit, onError: () -> Unit, body: JSONObject = JSONObject()) {
         val reqURL = buildRequestURL(url)
 
         val req = APIRequest(
             Request.Method.PUT,
             reqURL,
-            JSONObject(),
+            body,
             Response.Listener { onSuccess() },
             Response.ErrorListener { onError() }
         )

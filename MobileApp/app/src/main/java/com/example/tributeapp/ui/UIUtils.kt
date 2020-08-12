@@ -22,7 +22,7 @@ fun String.isEmailValid(): Boolean {
     return this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
 
-fun makeToast(context: Context?, message: String) {
+fun makeToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
@@ -46,5 +46,8 @@ fun renderClickableIcon(protocol: String, path: String?, view: View, context: Co
 
 fun renderTextView(text: String?, textView: TextView) {
     if (text.isNullOrEmpty() || text == "null") textView.visibility = View.GONE
-    else textView.text = text
+    else {
+        textView.text = text
+        textView.visibility = View.VISIBLE
+    }
 }

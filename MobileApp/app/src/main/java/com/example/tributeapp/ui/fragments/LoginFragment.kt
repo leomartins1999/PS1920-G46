@@ -32,10 +32,10 @@ class LoginFragment: Fragment(){
                 email,
                 password,
                 {
-                    makeToast(context, resources.getString(R.string.executed_login))
+                    makeToast(requireContext(), resources.getString(R.string.executed_login))
                     this.requireActivity().onBackPressed()
                 },
-                { makeToast(context, "Error")}
+                { makeToast(requireContext(), "Error")}
             )
         }
 
