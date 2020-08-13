@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
 
         // associate navigation view w/ session to update it
         App.session = Session(navView)
+
+        // if has session, login
+        if (App.checkForSession()) App.newSession()
     }
 
     override fun onSupportNavigateUp(): Boolean {
