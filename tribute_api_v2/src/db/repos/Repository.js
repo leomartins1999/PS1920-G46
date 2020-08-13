@@ -100,15 +100,18 @@ var Repository = /** @class */ (function () {
             .then(function (col) { return col.insertOne(object); })
             .then(function (res) { return res.result.ok ?
             Promise.resolve(new Structures_1.Id(res.insertedId)) :
-            Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); });
+            Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); })
+            .catch(function (_) { return Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); });
     };
     /**
      * select documents from the collection using the given query
      */
     Repository.prototype.select = function (query) {
+        var _this = this;
         if (query === void 0) { query = new MongoQuery_1.default(); }
         return this.accessCollection()
-            .then(function (col) { return col.find(query.query, query.options).toArray(); });
+            .then(function (col) { return col.find(query.query, query.options).toArray(); })
+            .catch(function (_) { return Promise.reject(new Structures_1.Error("Error executing select on " + _this.collection_name + ".")); });
     };
     /**
      * selects a specific document by its id
@@ -140,7 +143,8 @@ var Repository = /** @class */ (function () {
             .then(function (col) { return col.updateMany(query.query, { $set: _this.applyFilter(update) }, { upsert: true }); })
             .then(function (res) { return res.matchedCount > 0 || res.upsertedCount > 0 ?
             Promise.resolve(new Structures_1.Status('success', true)) :
-            Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + " for " + query)); });
+            Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + ".")); })
+            .catch(function (_) { return Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + ".")); });
     };
     /**
      * removes selected documents of the collection
@@ -151,7 +155,8 @@ var Repository = /** @class */ (function () {
             .then(function (col) { return col.deleteMany(query.query); })
             .then(function (res) { return res.result.ok ?
             Promise.resolve(new Structures_1.Status('success', true)) :
-            Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + " for " + query)); });
+            Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + ".")); })
+            .catch(function (_) { return Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + ".")); });
     };
     return Repository;
 }());

@@ -79,6 +79,7 @@ class Repository<T> {
             .then(res => res.result.ok ?
                 Promise.resolve(new Id(res.insertedId)) :
                 Promise.reject(new Error(`Insert failed on ${this.collection_name}`)))
+            .catch(_ => Promise.reject(new Error(`Insert failed on ${this.collection_name}`)))
     }
 
     /**
@@ -87,6 +88,7 @@ class Repository<T> {
     select(query: MongoQuery = new MongoQuery()): Promise<T[]> {
         return this.accessCollection()
             .then(col => col.find(query.query, query.options).toArray())
+            .catch(_ => Promise.reject(new Error(`Error executing select on ${this.collection_name}.`)))
     }
 
     /**
@@ -110,8 +112,9 @@ class Repository<T> {
             .then(col => col.updateMany(query.query, {$set: this.applyFilter(update)}, {upsert: true}))
             .then(res => res.matchedCount > 0 || res.upsertedCount > 0 ?
                 Promise.resolve(new Status('success', true)) :
-                Promise.reject(new Error(`Update failed on ${this.collection_name} for ${query}`))
+                Promise.reject(new Error(`Update failed on ${this.collection_name}.`))
             )
+            .catch(_ => Promise.reject(new Error(`Update failed on ${this.collection_name}.`)))
     }
 
     /**
@@ -122,8 +125,9 @@ class Repository<T> {
             .then(col => col.deleteMany(query.query))
             .then(res => res.result.ok ?
                 Promise.resolve(new Status('success', true)) :
-                Promise.reject(new Error(`Delete failed on ${this.collection_name} for ${query}`))
+                Promise.reject(new Error(`Delete failed on ${this.collection_name}.`))
             )
+            .catch(_ => Promise.reject(new Error(`Delete failed on ${this.collection_name}.`)))
     }
 }
 
