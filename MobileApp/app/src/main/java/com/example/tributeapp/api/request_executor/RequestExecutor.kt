@@ -90,4 +90,24 @@ class RequestExecutor(ctx: Context) {
         queue.add(req)
     }
 
+    fun uploadImage(url: String, imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
+        val reqURL = buildRequestURL(url)
+
+        val req = UploadImageRequest(
+            imageContent,
+            reqURL,
+            Response.Listener {
+                Log.v(APP_TAG, it)
+            },
+            Response.ErrorListener {
+                it.printStackTrace()
+            }
+        )
+
+        Log.v(APP_TAG, String(imageContent))
+
+        Log.v(APP_TAG, "Executing request to url: $reqURL")
+        queue.add(req)
+    }
+
 }

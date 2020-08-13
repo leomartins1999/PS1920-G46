@@ -1,12 +1,9 @@
 package com.example.tributeapp.api.controllers
 
+import com.example.tributeapp.api.*
 import com.example.tributeapp.api.request_executor.RequestExecutor
-import com.example.tributeapp.api.VOLUNTEERS_URL
-import com.example.tributeapp.api.followVolunteerURL
 import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
-import com.example.tributeapp.api.updateVolunteerURL
-import com.example.tributeapp.api.volunteerURL
 import com.example.tributeapp.model.dtos.Volunteer
 import org.json.JSONObject
 
@@ -27,6 +24,10 @@ class VolunteersController(private val executor: RequestExecutor) {
         if (!linkedinLink.isNullOrEmpty()) body.put("linkedInLink", linkedinLink)
 
         executor.put(updateVolunteerURL(volunteerID), onSuccess, onError, body)
+    }
+
+    fun updateImage(volunteerID: String, imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
+        executor.uploadImage(volunteerImage(volunteerID), imageContent, onSuccess, onError)
     }
 
 }

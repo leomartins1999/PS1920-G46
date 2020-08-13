@@ -87,7 +87,7 @@ class VolunteerActivity : AppCompatActivity() {
     }
 
     private fun setFields(volunteer: Volunteer) {
-        ImageLoader.loadImage(this, image, volunteer.imageLink, false, R.drawable.ic_volunteer_gray)
+        ImageLoader.loadImage(this, image, volunteer.imageLink, false, R.drawable.ic_volunteer_gray, App.session!!.user.id == volunteer.id)
         name.text = volunteer.name
         renderTextView(volunteer.linkedInLink, linkedin)
         renderTextView(volunteer.description, description)

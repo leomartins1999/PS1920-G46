@@ -58,4 +58,8 @@ class APIService(ctx: Context) {
     fun updateVolunteer(volunteerID: String, description: String?, linkedinLink: String?, onSuccess: () -> Unit, onError: () -> Unit) {
         volunteers.updateVolunteer(volunteerID, description, linkedinLink, onSuccess, onError)
     }
+
+    fun updateVolunteerImg(volunteerID: String, imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
+        volunteers.updateImage(volunteerID, imageContent, onSuccess, onError)
+    }
 }

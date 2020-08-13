@@ -10,4 +10,8 @@ class EditVolunteerViewModel(private val api: APIService) : ViewModel(){
         api.updateVolunteer(App.session!!.volunteer.id, description, linkedinLink, onSuccess, onError)
     }
 
+    fun updateVolunteerImg(imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
+        api.updateVolunteerImg(App.session!!.volunteer.id, imageContent, onSuccess, onError)
+    }
+
 }

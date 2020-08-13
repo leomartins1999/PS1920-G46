@@ -10,6 +10,7 @@ const val VOLUNTEERS_URL = "volunteers"
 fun volunteerURL(id: String) = "volunteers/$id"
 fun updateVolunteerURL(id: String) = "auth/${volunteerURL(id)}"
 fun followVolunteerURL(id: String) = "auth/${volunteerURL(id)}/follow"
+fun volunteerImage(id: String) = "auth/images/volunteers/$id"
 
 const val ORGS_URL = "orgs"
 fun orgURL(id: String) = "orgs/$id"
