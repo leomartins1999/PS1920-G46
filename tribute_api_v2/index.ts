@@ -58,6 +58,7 @@ const corsOptions = {
 // api constants
 const PORT = process.argv[2]
 const REQUEST_BASE = '/api'
+const MAX_FILE_SIZE = '50mb'
 
 // router
 const router = express.Router()
@@ -77,7 +78,7 @@ router.use('/', (req, res) => handleError(res, 404, new Error(`Unknown uri ${req
 // express plugins
 const app = express()
 app.use(cors(corsOptions))
-app.use(express.json());
+app.use(express.json({'limit': MAX_FILE_SIZE}));
 app.use(session);
 app.use(morgan('combined'))
 app.use(fileupload({}));

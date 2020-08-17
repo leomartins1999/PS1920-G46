@@ -40,7 +40,7 @@ function getAuthService(executor) {
 
     function logout() {
         return executor
-            .get("/auth/logout")
+            .get("/logout")
             .then(() => sessionStorage.removeItem(SESSION_KEY))
     }
 

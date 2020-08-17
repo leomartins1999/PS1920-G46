@@ -52,7 +52,7 @@ var AuthController = /** @class */ (function () {
     AuthController.prototype.setupRoutes = function (router) {
         router.post('/register', this.register);
         router.post('/login', this.login);
-        router.get('/auth/logout', this.logout);
+        router.get('/logout', this.logout);
     };
     return AuthController;
 }());

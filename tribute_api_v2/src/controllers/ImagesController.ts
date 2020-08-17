@@ -66,7 +66,7 @@ class ImagesController {
      */
     updateOrgImage = (req, res) => {
         handleRequest(
-            () => this.service.updateOrgImage(req.user.id, req.params.org_id, req.files.file.data),
+            () => this.service.updateOrgImage(req.user.id, req.params.org_id, req.body.data),
             res,
             201,
         )

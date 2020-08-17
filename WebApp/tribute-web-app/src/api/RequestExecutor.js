@@ -9,6 +9,22 @@ function getRequestExecutor() {
         uploadImage: uploadImage
     }
 
+    function readFile(file){
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+
+            reader.onload = e => {
+                resolve(e.target.result)
+            }
+
+            reader.onerror = e => {
+                reject(e)
+            }
+
+            reader.readAsDataURL(file)
+        })
+    }
+
     function get(url) {
         return executeRequest('GET', url)
     }
@@ -25,17 +41,22 @@ function getRequestExecutor() {
         return executeRequest('DELETE', url)
     }
 
-    function uploadImage(url, file) {
-        const formData = new FormData()
-
-        formData.append('file', file)
+    async function uploadImage(url, file) {
+        const body = {
+            data: await readFile(file)
+        }
 
         const options = {
             method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
             mode: "cors",
             credentials: "include",
-            body: formData
+            body: JSON.stringify(body)
         }
+
+        console.log(body)
 
         return fetch(`${API_BASE_PATH}${url}`, options)
             .then(resp => resp.json())

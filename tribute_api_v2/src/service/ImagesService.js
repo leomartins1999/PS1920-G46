@@ -64,13 +64,14 @@ var ImagesService = /** @class */ (function (_super) {
      */
     ImagesService.setImage = function (type, id, body) {
         return __awaiter(this, void 0, void 0, function () {
-            var updateResult;
+            var image, updateResult;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (body == null)
                             return [2 /*return*/, Promise.reject('No image supplied.')];
-                        return [4 /*yield*/, BaseService_1.default.imageRepository.setImage(type, id, body)];
+                        image = new Buffer(body.slice(body.indexOf(','), body.length), 'base64');
+                        return [4 /*yield*/, BaseService_1.default.imageRepository.setImage(type, id, image)];
                     case 1:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?

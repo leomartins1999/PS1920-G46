@@ -19,7 +19,8 @@ function handleRequest(serviceFunction, res, successStatusCode, errorStatusCode)
             .catch(function (err) { return handleError(res, errorStatusCode, err); });
     }
     catch (e) {
-        handleError(res, 500, e);
+        console.log(e);
+        handleError(res, 500, e.message);
     }
 }
 exports.handleRequest = handleRequest;

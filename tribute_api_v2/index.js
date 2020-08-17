@@ -53,6 +53,7 @@ var corsOptions = {
 // api constants
 var PORT = process.argv[2];
 var REQUEST_BASE = '/api';
+var MAX_FILE_SIZE = '50mb';
 // router
 var router = express.Router();
 // setting up services and controllers
@@ -68,7 +69,7 @@ router.use('/', function (req, res) { return RequestHandler_1.handleError(res, 4
 // express plugins
 var app = express();
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({ 'limit': MAX_FILE_SIZE }));
 app.use(session);
 app.use(morgan('combined'));
 app.use(fileupload({}));

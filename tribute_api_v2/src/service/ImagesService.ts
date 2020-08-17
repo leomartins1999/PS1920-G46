@@ -12,7 +12,13 @@ class ImagesService extends BaseService {
     private static async setImage(type: ImageType, id: string, body) {
         if (body == null) return Promise.reject('No image supplied.')
 
-        const updateResult = await BaseService.imageRepository.setImage(type, id, body)
+        const image = new Buffer(
+            body.slice(body.indexOf(','), body.length),
+            'base64'
+        )
+
+        const updateResult = await
+            BaseService.imageRepository.setImage(type, id, image)
 
         return updateResult.success ?
             new Status('Image updated', true) :

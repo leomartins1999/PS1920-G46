@@ -31,7 +31,7 @@ var ImagesController = /** @class */ (function () {
          * update org image route handler
          */
         this.updateOrgImage = function (req, res) {
-            RequestHandler_1.handleRequest(function () { return _this.service.updateOrgImage(req.user.id, req.params.org_id, req.files.file.data); }, res, 201);
+            RequestHandler_1.handleRequest(function () { return _this.service.updateOrgImage(req.user.id, req.params.org_id, req.body.data); }, res, 201);
         };
         /**
          * update post image route handler

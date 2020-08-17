@@ -20,7 +20,8 @@ export function handleRequest(
             .then(result => handleSuccess(res, successStatusCode, result))
             .catch(err => handleError(res, errorStatusCode, err))
     } catch (e) {
-        handleError(res, 500, e)
+        console.log(e)
+        handleError(res, 500, e.message)
     }
 }
 
