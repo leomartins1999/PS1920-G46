@@ -21,7 +21,7 @@ class PostsController(private val executor: RequestExecutor) {
 
     fun create(description: String, onSuccess: () -> Unit, onError: () -> Unit) {
         val body = JSONObject()
-        body.put("description", description)
+        body.put("body", description)
 
         executor.post(EXECUTE_POST, body, onSuccess, onError)
     }

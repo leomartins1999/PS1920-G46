@@ -1,5 +1,6 @@
 package com.example.tributeapp.model.dtos
 
+import com.example.tributeapp.api.getImageLink
 import com.example.tributeapp.model.ModelUtils
 import org.json.JSONObject
 import kotlin.String
@@ -10,15 +11,17 @@ data class Post(private val json: JSONObject){
     val ownerID: String = json.getString("owner_id")
     val ownerType: String = json.getString("owner_type")
 
-    val description: String = json.getString("description")
-    val imageLink: String? = ModelUtils.parseImageLink(json.getString("imageLink"))
+    val description: String = json.getString("body")
     val time: Long = json.getLong("time")
+
+    val imageLink: String
+        get() = getImageLink("posts", id)
 
     val likes =
         getUsers(json.getJSONObject("likes"))
 
     override fun toString(): String {
-        return "Post(json=$json, id='$id', owner_id='$ownerID', description='$description', imageLink='$imageLink', time=$time)"
+        return "Post(json=$json, id='$id', owner_id='$ownerID', description='$description', time=$time)"
     }
 
     override fun equals(other: Any?): Boolean {

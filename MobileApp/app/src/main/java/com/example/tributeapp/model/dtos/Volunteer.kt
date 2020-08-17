@@ -1,6 +1,7 @@
 package com.example.tributeapp.model.dtos
 
 import com.example.tributeapp.App
+import com.example.tributeapp.api.getImageLink
 import org.json.JSONObject
 
 data class Volunteer(private val json: JSONObject): Entity(){
@@ -8,9 +9,8 @@ data class Volunteer(private val json: JSONObject): Entity(){
     override val id: String = json.getString("_id")
     override val name: String = json.getString("name")
     override val followers = getUsers(json.getJSONObject("followers"))
-    override val imageLink: String =
-        if (!json.optString("imageLink").startsWith("/images")) json.optString("imageLink")
-        else com.example.tributeapp.api.BASE_URL + json.optString("imageLink")
+    override val imageLink: String
+        get() = getImageLink("volunteers", id)
 
     val description: String =
         if (json.optString("description", "") == "null") ""

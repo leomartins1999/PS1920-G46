@@ -36,7 +36,7 @@ class EventActivity : AppCompatActivity() {
     private fun setOrgFields() {
         val event = model.event
 
-        App.cacheService.getOrg(event.orgID) {
+        App.cacheService.getOrg(event.owner_id) {
             ImageLoader.loadImage(this, image, it.imageLink, false, R.drawable.ic_volunteer_gray)
             org_name.text = it.name
         }
@@ -61,7 +61,6 @@ class EventActivity : AppCompatActivity() {
         val event = model.event
 
         interested.text = "${event.interested.size}"
-        participating.text = "${event.participants.size}"
     }
 
     private fun listenButtons(){
