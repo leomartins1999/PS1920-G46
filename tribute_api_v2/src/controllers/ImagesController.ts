@@ -55,7 +55,7 @@ class ImagesController {
      */
     updateVolunteerImage = (req, res) => {
         handleRequest(
-            () => this.service.updateVolunteerImage(req.user.id, req.params.volunteer_id, req.files.file.data),
+            () => this.service.updateVolunteerImage(req.user.id, req.params.volunteer_id, req.body.data),
             res,
             201,
         )
@@ -77,7 +77,7 @@ class ImagesController {
      */
     updatePostImage = (req, res) => {
         handleRequest(
-            () => this.service.updatePostImage(req.user.id, req.params.post_id, req.files.file.data),
+            () => this.service.updatePostImage(req.user.id, req.params.post_id, req.body.data),
             res,
             201,
         )
@@ -88,7 +88,7 @@ class ImagesController {
      */
     updateEventImage = (req, res) => {
         handleRequest(
-            () => this.service.updateEventImage(req.user.id, req.params.event_id, req.files.file.data),
+            () => this.service.updateEventImage(req.user.id, req.params.event_id, req.body.data),
             res,
             201,
         )

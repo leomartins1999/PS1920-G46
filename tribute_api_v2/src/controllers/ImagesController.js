@@ -25,7 +25,7 @@ var ImagesController = /** @class */ (function () {
          * update volunteer image route handler
          */
         this.updateVolunteerImage = function (req, res) {
-            RequestHandler_1.handleRequest(function () { return _this.service.updateVolunteerImage(req.user.id, req.params.volunteer_id, req.files.file.data); }, res, 201);
+            RequestHandler_1.handleRequest(function () { return _this.service.updateVolunteerImage(req.user.id, req.params.volunteer_id, req.body.data); }, res, 201);
         };
         /**
          * update org image route handler
@@ -37,13 +37,13 @@ var ImagesController = /** @class */ (function () {
          * update post image route handler
          */
         this.updatePostImage = function (req, res) {
-            RequestHandler_1.handleRequest(function () { return _this.service.updatePostImage(req.user.id, req.params.post_id, req.files.file.data); }, res, 201);
+            RequestHandler_1.handleRequest(function () { return _this.service.updatePostImage(req.user.id, req.params.post_id, req.body.data); }, res, 201);
         };
         /**
          * update event image route handler
          */
         this.updateEventImage = function (req, res) {
-            RequestHandler_1.handleRequest(function () { return _this.service.updateEventImage(req.user.id, req.params.event_id, req.files.file.data); }, res, 201);
+            RequestHandler_1.handleRequest(function () { return _this.service.updateEventImage(req.user.id, req.params.event_id, req.body.data); }, res, 201);
         };
         this.service = service;
         this.setupRoutes(router);
