@@ -33,7 +33,7 @@ class EditVolunteerFragment(
         EditVolunteerViewModelProviderFactory().create(EditVolunteerViewModel::class.java)
     }
     lateinit var dialogView: AlertDialog
-    lateinit var image: Bitmap
+    var image: Bitmap? = null;
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,9 +83,9 @@ class EditVolunteerFragment(
 
     private fun getImageContent(): ByteArray {
         val stream = ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        image!!.compress(Bitmap.CompressFormat.PNG, 100, stream);
         val content = stream.toByteArray();
-        image.recycle()
+        image!!.recycle()
         return content
     }
 
@@ -95,7 +95,13 @@ class EditVolunteerFragment(
             dialog.linkedinLink.text.toString(),
             {
                 makeToast(dialog.context, "Updated profile")
-                updateVolunteerImg(dialog)
+                if (image != null) {
+                    updateVolunteerImg(dialog)
+                } else {
+                    onUpdate()
+                    dialog.dismiss()
+                }
+
             },
             { makeToast(dialog.context, "Failed to update profile") }
         )

@@ -29,7 +29,7 @@ fun MutableList<User>.updateUser(user: User){
 class User(val id: String, val type: String, val token: String? = null) : Parcelable {
 
     constructor(json: JSONObject) :
-            this(json.getString("user_id"), json.getString("user_type"), json.optString("token"))
+            this(json.getString("id"), json.getString("user_type"), json.optString("token"))
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

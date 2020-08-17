@@ -9,7 +9,7 @@ class AuthController(private val executor: RequestExecutor) {
 
     fun login(email: String, password: String, onSuccess: (User) -> Unit, onError: () -> Unit) {
         val body = JSONObject()
-        body.put("email", email)
+        body.put("mail", email)
         body.put("password", password)
 
         executor.login(body, { onSuccess(User(it)) }, onError)
@@ -23,7 +23,7 @@ class AuthController(private val executor: RequestExecutor) {
         onError: () -> Unit
     ) {
         val body = JSONObject()
-        body.put("email", email)
+        body.put("mail", email)
         body.put("password", password)
         body.put("user_type", "volunteer")
 

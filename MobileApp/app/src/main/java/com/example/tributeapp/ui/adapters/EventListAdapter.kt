@@ -46,7 +46,7 @@ class EventsViewHolder(private val layout: LinearLayout)
     private val participants = layout.findViewById<TextView>(R.id.participants_info)
 
     fun bindTo(event: Event){
-        App.cacheService.getOrg(event.orgID){
+        App.cacheService.getOrg(event.owner_id){
             ImageLoader.loadImage(layout.context, ownerPic, it.imageLink, false, R.drawable.ic_volunteer_gray)
             ownerName.text = it.name
         }
@@ -54,7 +54,7 @@ class EventsViewHolder(private val layout: LinearLayout)
         name.text = event.name
         date.text = event.date
 
-        participants.text = layout.context.getString(R.string.event_interested_and_participants, event.interested.size, event.participants.size)
+        participants.text = layout.context.getString(R.string.event_interested_and_participants, event.nrInterested, 0)
 
         layout.setOnClickListener{
             val intent = Intent(layout.context, EventActivity::class.java)
