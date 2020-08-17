@@ -18,8 +18,8 @@ class PostsService extends BaseService{
     /**
      * adds a post
      */
-    addPost(owner_id: string, description: string) {
-        return BaseService.postRepo.insertPost(new Post(owner_id, description))
+    addPost(owner_id: string, user_type: string, description: string) {
+        return BaseService.postRepo.insertPost(new Post(owner_id, user_type, description))
     }
 
     /**

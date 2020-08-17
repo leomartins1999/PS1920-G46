@@ -17,7 +17,7 @@ var PostsController = /** @class */ (function () {
          * add post route handler
          */
         this.addPost = function (req, res) {
-            RequestHandler_1.handleRequest(function () { return _this.service.addPost(req.user.id, req.body.body); }, res, 201);
+            RequestHandler_1.handleRequest(function () { return _this.service.addPost(req.user.id, req.user.user_type, req.body.body); }, res, 201);
         };
         /**
          * like post route handler

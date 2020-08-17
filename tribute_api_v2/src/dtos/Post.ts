@@ -5,6 +5,7 @@ class Post {
      * id of owner of post
      */
     readonly owner_id: string
+    readonly owner_type: string
     readonly body: string
     readonly time = Date.now()
     /**
@@ -13,8 +14,9 @@ class Post {
     readonly likes = {}
     nrLikes = 0
 
-    constructor(owner_id: string, body: string) {
+    constructor(owner_id: string, user_type: string, body: string) {
         this.owner_id = owner_id;
+        this.owner_type = user_type
         this.body = body;
     }
 }
