@@ -13,7 +13,7 @@ class ImagesService extends BaseService {
         if (body == null) return Promise.reject('No image supplied.')
 
         let image;
-        if (body.contains('data:*/*;base64,')) {
+        if (body.startsWith('data:*/*')) {
             image = new Buffer(
                 body.slice(body.indexOf(','), body.length),
                 'base64'
