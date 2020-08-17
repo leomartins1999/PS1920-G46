@@ -70,7 +70,7 @@ var ImagesService = /** @class */ (function (_super) {
                     case 0:
                         if (body == null)
                             return [2 /*return*/, Promise.reject('No image supplied.')];
-                        if (body.startsWith('data:*/*')) {
+                        if (body.startsWith('data')) {
                             image = new Buffer(body.slice(body.indexOf(','), body.length), 'base64');
                         }
                         else {
