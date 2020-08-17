@@ -41,7 +41,7 @@ class PostsController {
      */
     addPost = (req, res) => {
         handleRequest(
-            () => this.service.addPost(req.user.id, req.body.body),
+            () => this.service.addPost(req.user.id, req.user.user_type, req.body.body),
             res,
             201
         )

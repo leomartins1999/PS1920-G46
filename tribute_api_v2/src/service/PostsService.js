@@ -72,8 +72,8 @@ var PostsService = /** @class */ (function (_super) {
     /**
      * adds a post
      */
-    PostsService.prototype.addPost = function (owner_id, description) {
-        return BaseService_1.default.postRepo.insertPost(new Post_1.default(owner_id, description));
+    PostsService.prototype.addPost = function (owner_id, user_type, description) {
+        return BaseService_1.default.postRepo.insertPost(new Post_1.default(owner_id, user_type, description));
     };
     /**
      * likes post
