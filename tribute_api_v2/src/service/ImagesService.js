@@ -70,7 +70,12 @@ var ImagesService = /** @class */ (function (_super) {
                     case 0:
                         if (body == null)
                             return [2 /*return*/, Promise.reject('No image supplied.')];
-                        image = new Buffer(body.slice(body.indexOf(','), body.length), 'base64');
+                        if (body.startsWith('data')) {
+                            image = new Buffer(body.slice(body.indexOf(','), body.length), 'base64');
+                        }
+                        else {
+                            image = new Buffer(body, "base64");
+                        }
                         return [4 /*yield*/, BaseService_1.default.imageRepository.setImage(type, id, image)];
                     case 1:
                         updateResult = _a.sent();

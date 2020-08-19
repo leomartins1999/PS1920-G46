@@ -1,10 +1,12 @@
-// npm modules
+import {dbUrl} from "./src/db/repos/Repository";
+
 const express = require('express');
-const session = require("express-session")({secret: 'keyboard cat', resave: true, saveUninitialized: true});
+const session = require("express-session");
 const passport = require("passport");
 const cors = require('cors')
 const fileupload = require('express-fileupload');
 const morgan = require('morgan')
+const MongoStore = require('connect-mongo')(session)
 
 import AuthController from "./src/controllers/AuthController";
 
@@ -55,6 +57,14 @@ const corsOptions = {
     credentials: true
 }
 
+// session options
+const sessionOptions = {
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({url: dbUrl})
+}
+
 // api constants
 const PORT = process.argv[2]
 const REQUEST_BASE = '/api'
@@ -79,7 +89,7 @@ router.use('/', (req, res) => handleError(res, 404, new Error(`Unknown uri ${req
 const app = express()
 app.use(cors(corsOptions))
 app.use(express.json({'limit': MAX_FILE_SIZE}));
-app.use(session);
+app.use(session(sessionOptions));
 app.use(morgan('combined'))
 app.use(fileupload({}));
 app.use(passport.initialize({}));

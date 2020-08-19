@@ -12,10 +12,15 @@ class ImagesService extends BaseService {
     private static async setImage(type: ImageType, id: string, body) {
         if (body == null) return Promise.reject('No image supplied.')
 
-        const image = new Buffer(
-            body.slice(body.indexOf(','), body.length),
-            'base64'
-        )
+        let image;
+        if (body.startsWith('data')) {
+            image = new Buffer(
+                body.slice(body.indexOf(','), body.length),
+                'base64'
+            )
+        } else {
+            image = new Buffer(body, "base64")
+        }
 
         const updateResult = await
             BaseService.imageRepository.setImage(type, id, image)
