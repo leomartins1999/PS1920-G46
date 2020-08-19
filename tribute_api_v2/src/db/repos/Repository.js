@@ -42,9 +42,9 @@ var Structures_1 = require("../../Structures");
 /**
  * mongodb database connection string
  */
-var URL = 'mongodb://localhost:27017/';
+exports.dbUrl = 'mongodb://localhost:27017/';
 // instantiation of mongo client
-var client = mongodb_1.MongoClient;
+var mongoClient = mongodb_1.MongoClient;
 /**
  * Class responsible for handling all operation within a specific
  * database collection
@@ -67,7 +67,7 @@ var Repository = /** @class */ (function () {
      */
     Repository.prototype.accessCollection = function () {
         var _this = this;
-        return client.connect(URL)
+        return mongoClient.connect(exports.dbUrl)
             .then(function (db) { return db.db(_this.db_name); })
             .then(function (dbo) { return dbo.collection(_this.collection_name); });
     };

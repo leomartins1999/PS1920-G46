@@ -5,10 +5,10 @@ import {Error, Id, Status} from "../../Structures";
 /**
  * mongodb database connection string
  */
-const URL = 'mongodb://localhost:27017/'
+export const dbUrl = 'mongodb://localhost:27017/'
 
 // instantiation of mongo client
-const client = MongoClient
+const mongoClient = MongoClient
 
 /**
  * Class responsible for handling all operation within a specific
@@ -45,7 +45,7 @@ class Repository<T> {
      * attempts to establish connection to database, returns collection
      */
     private accessCollection() {
-        return client.connect(URL)
+        return mongoClient.connect(dbUrl)
             .then(db => db.db(this.db_name))
             .then(dbo => dbo.collection(this.collection_name))
     }

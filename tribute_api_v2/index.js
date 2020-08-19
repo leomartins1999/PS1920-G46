@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// npm modules
+var Repository_1 = require("./src/db/repos/Repository");
 var express = require('express');
-var session = require("express-session")({ secret: 'keyboard cat', resave: true, saveUninitialized: true });
+var session = require("express-session");
 var passport = require("passport");
 var cors = require('cors');
 var fileupload = require('express-fileupload');
 var morgan = require('morgan');
+var MongoStore = require('connect-mongo')(session);
 var AuthController_1 = require("./src/controllers/AuthController");
 var fs = require("fs");
 var https = require("https");
@@ -50,6 +51,13 @@ var corsOptions = {
     origin: true,
     credentials: true
 };
+// session options
+var sessionOptions = {
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({ url: Repository_1.dbUrl })
+};
 // api constants
 var PORT = process.argv[2];
 var REQUEST_BASE = '/api';
@@ -70,7 +78,7 @@ router.use('/', function (req, res) { return RequestHandler_1.handleError(res, 4
 var app = express();
 app.use(cors(corsOptions));
 app.use(express.json({ 'limit': MAX_FILE_SIZE }));
-app.use(session);
+app.use(session(sessionOptions));
 app.use(morgan('combined'));
 app.use(fileupload({}));
 app.use(passport.initialize({}));
