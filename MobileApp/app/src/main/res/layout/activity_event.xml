@@ -60,9 +60,11 @@
 
             <ImageView
                 android:id="@+id/event_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
                 android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
                 android:contentDescription="@string/event_image"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_date"/>
@@ -71,8 +73,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="50dp"
                 android:layout_weight="1"
+                android:layout_marginStart="10dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -122,12 +124,6 @@
                         android:textSize="15sp"/>
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/interested_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/interested_button"/>
-
             </LinearLayout>
 
         </LinearLayout>
@@ -135,21 +131,21 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
-                android:weightSum="1">
+                android:weightSum="4">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -167,6 +163,18 @@
                         android:textSize="20sp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/interested_button"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/interested_button"/>
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
