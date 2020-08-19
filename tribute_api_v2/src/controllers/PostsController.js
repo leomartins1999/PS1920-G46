@@ -14,6 +14,12 @@ var PostsController = /** @class */ (function () {
             RequestHandler_1.handleRequest(function () { return _this.service.getPosts(req.query.limit, req.query.skip, req.query.owner_id); }, res);
         };
         /**
+         * gets posts of users that is following
+         */
+        this.getPostsForUser = function (req, res) {
+            RequestHandler_1.handleRequest(function () { return _this.service.getPostsForUser(req.user.id, req.user.user_type, req.query.limit, req.query.skip); }, res);
+        };
+        /**
          * add post route handler
          */
         this.addPost = function (req, res) {
@@ -33,6 +39,7 @@ var PostsController = /** @class */ (function () {
      */
     PostsController.prototype.setupRoutes = function (router) {
         router.get('/posts', this.getPosts);
+        router.get('/auth/posts', this.getPostsForUser);
         router.post('/auth/posts', this.addPost);
         router.put('/auth/posts/:post_id/like', this.likePost);
     };

@@ -35,7 +35,7 @@ class MongoQuery {
      * used to query a specific document in the database (by its '_id' field)
      */
     searchById(id: string) {
-        if(!ObjectId.isValid(id)) throw new Error(`Invalid id supplied - ${id}`)
+        if (!ObjectId.isValid(id)) throw new Error(`Invalid id supplied - ${id}`)
         this.query._id = new ObjectId(id)
         return this
     }
@@ -61,6 +61,15 @@ class MongoQuery {
      */
     searchWithTextIndex(value: string) {
         if (value != null && value.trim() != '') this.query.$query = {$text: {$search: value}}
+        return this
+    }
+
+    /**
+     * filters documents that do not have one of the supplied values in
+     * the given field
+     */
+    filterInArray(fieldName: string, values: Array<string>) {
+        this.query[fieldName] = {$in: values}
         return this
     }
 }

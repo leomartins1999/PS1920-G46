@@ -24,6 +24,17 @@ var PostRepository = /** @class */ (function () {
         return this.repository.insert(post);
     };
     /**
+     * retrieves posts which owners are contained in the given array
+     */
+    PostRepository.prototype.getPostsForOwners = function (limit, skip, ids) {
+        if (ids.length === 0)
+            return Promise.resolve([]);
+        var query = new MongoQuery_1.default(limit, skip)
+            .filterInArray('owner_id', ids)
+            .sortBy('time', false);
+        return this.repository.select(query);
+    };
+    /**
      * retrieves posts from the collection
      */
     PostRepository.prototype.getPosts = function (limit, skip, owner_id) {

@@ -14,6 +14,9 @@ var EventsController = /** @class */ (function () {
         this.getEvents = function (req, res) {
             RequestHandler_1.handleRequest(function () { return _this.service.getEvents(req.query.limit, req.query.skip, req.query.owner_id); }, res);
         };
+        this.getEventsForUser = function (req, res) {
+            RequestHandler_1.handleRequest(function () { return _this.service.getEventsForUser(req.user.id, req.user.user_type, req.query.limit, req.query.skip); }, res);
+        };
         /**
          * get event by id route handler
          */
@@ -46,6 +49,7 @@ var EventsController = /** @class */ (function () {
      */
     EventsController.prototype.setupRoutes = function (router) {
         router.get('/events', this.getEvents);
+        router.get('/auth/events', this.getEventsForUser);
         router.get('/events/:event_id', this.getEventById);
         router.post('/auth/events', MiddlewareController_1.default.orgCheck, this.addEvent);
         router.put('/auth/events/:event_id/interested', MiddlewareController_1.default.volunteerCheck, this.interestedInEvent);

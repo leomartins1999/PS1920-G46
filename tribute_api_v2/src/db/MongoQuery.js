@@ -52,6 +52,14 @@ var MongoQuery = /** @class */ (function () {
             this.query.$query = { $text: { $search: value } };
         return this;
     };
+    /**
+     * filters documents that do not have one of the supplied values in
+     * the given field
+     */
+    MongoQuery.prototype.filterInArray = function (fieldName, values) {
+        this.query[fieldName] = { $in: values };
+        return this;
+    };
     return MongoQuery;
 }());
 exports.default = MongoQuery;

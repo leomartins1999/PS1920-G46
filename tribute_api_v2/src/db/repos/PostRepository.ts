@@ -34,6 +34,19 @@ class PostRepository {
     }
 
     /**
+     * retrieves posts which owners are contained in the given array
+     */
+    getPostsForOwners(limit: string, skip: string, ids: Array<string>){
+        if (ids.length === 0) return Promise.resolve([])
+
+        const query = new MongoQuery(limit, skip)
+            .filterInArray('owner_id', ids)
+            .sortBy('time', false)
+
+        return this.repository.select(query)
+    }
+
+    /**
      * retrieves posts from the collection
      */
     getPosts(limit: string, skip: string, owner_id: string) {

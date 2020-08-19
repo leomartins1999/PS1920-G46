@@ -60,6 +60,11 @@ class EventsService extends BaseService{
             new Error('Interested operation has failed.')
     }
 
+    async getEventsForUser(id: string, user_type: string, limit = DEFAULT_LIMIT, skip = DEFAULT_SKIP) {
+        const ids = await this.getIdsOfFollowing(id, user_type)
+
+        return BaseService.eventRepository.getEventsForOwners(ids, limit, skip)
+    }
 }
 
 export default EventsService
