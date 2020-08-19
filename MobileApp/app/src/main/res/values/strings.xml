@@ -41,7 +41,7 @@
     <string name="location_icon">Location icon</string>
     <string name="date_icon">Date icon</string>
     <string name="volunteer_image">Image of volunteer</string>
-    <string name="event_interested_and_participants">Interested: %1$d | Participating: %2$d</string>
+    <string name="event_interested">Interested: %1$d</string>
     <string name="follow_volunteer_success">Successfully followed volunteer</string>
     <string name="follow_volunteer_error">Error following volunteer</string>
     <string name="operation_success">Success</string>

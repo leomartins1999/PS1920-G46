@@ -1,6 +1,7 @@
 package com.example.tributeapp.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tributeapp.App
 import com.example.tributeapp.R
@@ -70,7 +71,8 @@ class OrgActivity : AppCompatActivity() {
             }
 
             updateButtonText()
-        } else followButton.setOnClickListener { onClickAuthenticatedMessage(it) }
+            followButton.visibility = View.VISIBLE
+        }
     }
 
     private fun updateButtonText() {

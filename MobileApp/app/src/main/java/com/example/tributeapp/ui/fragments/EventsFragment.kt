@@ -38,9 +38,12 @@ class EventsFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
-        model.updateEvents { makeToast(requireContext(), "Error retrieving events!") }
-
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        model.updateEvents { makeToast(requireContext(), "Error retrieving events!") }
     }
 
 }

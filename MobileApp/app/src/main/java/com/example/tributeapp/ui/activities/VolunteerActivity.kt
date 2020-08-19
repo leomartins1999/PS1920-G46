@@ -9,6 +9,7 @@ import com.example.tributeapp.ui.image_loader.ImageLoader
 import com.example.tributeapp.model.dtos.Volunteer
 import com.example.tributeapp.ui.fragments.EditVolunteerFragment
 import com.example.tributeapp.ui.makeToast
+import com.example.tributeapp.ui.renderClickableIcon
 import com.example.tributeapp.ui.renderTextView
 import com.example.tributeapp.ui.view_model_factories.VolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.VolunteerViewModel
@@ -68,7 +69,7 @@ class VolunteerActivity : AppCompatActivity() {
                             makeToast(this, getString(R.string.operation_error))
                         })
                 }
-
+                updateButtonText()
                 followButton.visibility = View.VISIBLE
             }
         }
@@ -87,9 +88,9 @@ class VolunteerActivity : AppCompatActivity() {
     }
 
     private fun setFields(volunteer: Volunteer) {
-        ImageLoader.loadImage(this, image, volunteer.imageLink, false, R.drawable.ic_volunteer_gray, App.session!!.user.id == volunteer.id)
+        ImageLoader.loadImage(this, image, volunteer.imageLink, false, R.drawable.ic_volunteer_gray, App.session!!.hasSession && App.session!!.user.id == volunteer.id)
         name.text = volunteer.name
-        renderTextView(volunteer.linkedInLink, linkedin)
+        //renderClickableIcon("http://", volunteer.linkedInLink, li_icon, this)
         renderTextView(volunteer.description, description)
     }
 }

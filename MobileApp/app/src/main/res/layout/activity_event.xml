@@ -135,16 +135,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
-                android:weightSum="2">
+                android:weightSum="1">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -161,27 +161,6 @@
 
                     <TextView
                         android:id="@+id/interested"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/loading"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/participants"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/participating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/loading"

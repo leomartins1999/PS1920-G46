@@ -44,6 +44,7 @@
                     android:id="@+id/followButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:text="@string/followButton"
                     android:textStyle="bold"
                     android:textSize="15sp"

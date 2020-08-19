@@ -61,7 +61,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="50dp">
+            android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,14 +115,15 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/linkedin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/loading"
-            android:textAlignment="center"
-            android:textSize="15sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/li_icon"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:text="Linkedin"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textColor="#3239FF"/>-->
 
         <TextView
             android:id="@+id/description"

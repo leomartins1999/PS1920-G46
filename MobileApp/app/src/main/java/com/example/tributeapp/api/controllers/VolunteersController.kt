@@ -6,6 +6,9 @@ import com.example.tributeapp.api.parser.ListParser
 import com.example.tributeapp.api.parser.SingletonParser
 import com.example.tributeapp.model.dtos.Volunteer
 import org.json.JSONObject
+import android.util.Base64
+import android.util.Log
+import com.example.tributeapp.APP_TAG
 
 class VolunteersController(private val executor: RequestExecutor) {
 
@@ -27,7 +30,9 @@ class VolunteersController(private val executor: RequestExecutor) {
     }
 
     fun updateImage(volunteerID: String, imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
-        executor.uploadImage(volunteerImage(volunteerID), imageContent, onSuccess, onError)
+        val body = JSONObject()
+        body.put("data", Base64.encodeToString(imageContent,Base64.DEFAULT))
+        executor.put(volunteerImage(volunteerID), onSuccess, onError, body)
     }
 
 }
