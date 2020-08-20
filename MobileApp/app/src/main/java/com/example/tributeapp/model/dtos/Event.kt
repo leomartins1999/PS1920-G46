@@ -2,8 +2,12 @@ package com.example.tributeapp.model.dtos
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.format.DateFormat
+import com.example.tributeapp.App
 import com.example.tributeapp.api.getImageLink
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.String
 
 data class Event(private val json: JSONObject): Parcelable{
@@ -14,7 +18,7 @@ data class Event(private val json: JSONObject): Parcelable{
     val name: String = json.getString("name")
     val description: String = json.getString("description")
 
-    val date: String? = json.optString("date")
+    val date = Date(json.getLong("date"))
     val location: String? = json.optString("location")
     val imageLink: String
         get() = getImageLink("events", id)
@@ -33,6 +37,8 @@ data class Event(private val json: JSONObject): Parcelable{
         return 0
     }
 
+    fun getDateString() = App.dateFormat.format(date)
+
     override fun toString(): String {
         return "Event(id='$id', org_id='$owner_id', name='$name', description='$description', date='$date', location='$location', imageLink='$imageLink', nrInterested=$nrInterested,)"
     }
@@ -46,6 +52,4 @@ data class Event(private val json: JSONObject): Parcelable{
             return arrayOfNulls(size)
         }
     }
-
-
 }

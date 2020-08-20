@@ -2,6 +2,7 @@ package com.example.tributeapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.View
 import com.example.tributeapp.App
 import com.example.tributeapp.R
@@ -51,8 +52,8 @@ class EventActivity : AppCompatActivity() {
         if(event.location.isNullOrEmpty() || event.location == "null") location_layout.visibility = View.GONE
         else location.text = event.location
 
-        if(event.date.isNullOrEmpty() || event.date == "null") date_layout.visibility = View.GONE
-        else date.text = event.date
+        if(event.date.time == 0L) date_layout.visibility = View.GONE
+        else date.text = event.getDateString()
 
         renderTextView(event.description, description)
     }
