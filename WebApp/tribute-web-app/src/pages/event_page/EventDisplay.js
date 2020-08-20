@@ -16,8 +16,11 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
     const [description, setDescription] = useState(event.description);
     const [location, setLocation] = useState(event.location);
     const [date, setDate] = useState(event.date);
+    const [time, setTime] = useState(event.time)
 
     const [image, setImage] = useState(null);
+
+    useEffect(() => {getEvent()}, [])
 
     function getEvent() {
         service.getEvent(event_id)
@@ -26,14 +29,13 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
 
                 setDescription(res.description)
                 setLocation(res.location)
-                setDate(res.date)
             })
             .catch(err => notify(err, false))
     }
 
     function updateEvent() {
         return service
-            .updateEvent(event_id, {org_id: session_id, description: description, date: date, location: location})
+            .updateEvent(event_id, {description, date, time, location})
             .then(_ => image ? service.updateEventImage(event_id, image) : Promise.resolve())
             .then(_ => setStamp(Date.now()))
             .catch(err => notify(err, false))
@@ -47,8 +49,6 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
         updateEvent()
     }
 
-    useEffect(getEvent, [])
-
     if (!event.name) return <Loading/>
 
     return event.owner_id === session_id ? ownerRender() : notOwnerRender();
@@ -59,27 +59,32 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                 <div className="card border-primary m-3">
                     <div className="card-header h2">{event.name}</div>
                     <div className="card-body text-center">
-                        <ImageForm image={image} setImage={setImage}/>
                         <textarea
                             className="form-control mb-3"
                             value={description}
                             placeholder="Description..."
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                        <div className="d-inline-flex mb-3 align-items-center">
+                        <ImageForm image={image} setImage={setImage}/>
+                        <div className="d-flex mb-3 align-items-center">
+                            <input
+                                type="date"
+                                className="form-control mr-2 text-center"
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                            <input
+                                type='time'
+                                className='form-control text-center'
+                                onChange={(e) => setTime(e.target.value)}
+                            />
+                        </div>
+                        <div className='d-inline-flex align-items-center mb-2'>
                             <LocationIcon size={24}/>
                             <input
                                 className="form-control ml-2"
                                 value={location}
                                 placeholder="Location"
                                 onChange={(e) => setLocation(e.target.value)}
-                            />
-                            <input
-                                type="date"
-                                className="form-control ml-2"
-                                value={date}
-                                placeholder="Location"
-                                onChange={(e) => setDate(e.target.value)}
                             />
                         </div>
                         <div/>
@@ -139,7 +144,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                     <div/>
                     <div className="d-inline-flex justify-content-center">
                         <CalendarIcon size={24}/>
-                        <p className="ml-2">{event.date ? event.date : "(no date provided)"}</p>
+                        <p className="ml-2">{event.date ? new Date(event.date).toLocaleString() : "(no date provided)"}</p>
                     </div>
                 </div>
                 <div className="card-footer d-inline-flex justify-content-center">

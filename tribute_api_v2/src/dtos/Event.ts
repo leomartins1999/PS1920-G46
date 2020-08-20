@@ -18,12 +18,12 @@ class Event {
     readonly interested = {}
     nrInterested = 0
 
-    constructor(owner_id: string, name: string, description: string, date: string, location: string) {
+    constructor(owner_id: string, name: string, description: string, date: string, time: string, location: string) {
         this.owner_id = owner_id;
         this.name = name;
         this.description = description;
         this.location = location;
-        this.date = new Date(date)
+        this.date = new Date(`${date}T${time}:00`)
     }
 }
 

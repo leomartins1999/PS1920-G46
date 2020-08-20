@@ -78,8 +78,8 @@ var EventsService = /** @class */ (function (_super) {
     /**
      * creates an event
      */
-    EventsService.prototype.addEvent = function (owner_id, name, description, date, location) {
-        return BaseService_1.default.eventRepository.insertEvent(new Event_1.default(owner_id, name, description, date, location));
+    EventsService.prototype.addEvent = function (owner_id, name, description, date, time, location) {
+        return BaseService_1.default.eventRepository.insertEvent(new Event_1.default(owner_id, name, description, date, time, location));
     };
     /**
      * updates an event
@@ -94,6 +94,13 @@ var EventsService = /** @class */ (function (_super) {
                         event = _a.sent();
                         if (event.owner_id != user_id)
                             return [2 /*return*/, Promise.reject(new Structures_1.Error("Unauthorized operation."))];
+                        if (updates.date && updates.time) {
+                            updates.date = updates.date + "T" + updates.time + ":00";
+                        }
+                        else {
+                            delete updates.date;
+                        }
+                        delete updates.time;
                         return [4 /*yield*/, BaseService_1.default.eventRepository.updateEvent(event_id, updates)];
                     case 2:
                         updateResult = _a.sent();

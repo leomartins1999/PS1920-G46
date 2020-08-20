@@ -27,7 +27,7 @@ var EventsController = /** @class */ (function () {
          * add event route handler
          */
         this.addEvent = function (req, res) {
-            RequestHandler_1.handleRequest(function () { return _this.service.addEvent(req.user.id, req.body.name, req.body.description, req.body.date, req.body.location); }, res, 201);
+            RequestHandler_1.handleRequest(function () { return _this.service.addEvent(req.user.id, req.body.name, req.body.description, req.body.date, req.body.time, req.body.location); }, res, 201);
         };
         /**
          * interested in event route handler

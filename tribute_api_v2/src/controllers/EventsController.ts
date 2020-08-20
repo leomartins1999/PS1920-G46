@@ -65,7 +65,7 @@ class EventsController {
     addEvent = (req, res) => {
         handleRequest(
             () => this.service.addEvent(
-                req.user.id, req.body.name, req.body.description, req.body.date, req.body.location
+                req.user.id, req.body.name, req.body.description, req.body.date, req.body.time, req.body.location
             ),
             res,
             201
