@@ -10,7 +10,7 @@ class Event {
     readonly owner_id: string
     readonly name: string
     readonly description: string
-    readonly date: Date
+    readonly date: number
     readonly location: string
     /**
      * dictionary<id, user_type> of users interested in events
@@ -23,7 +23,7 @@ class Event {
         this.name = name;
         this.description = description;
         this.location = location;
-        this.date = new Date(`${date}T${time}:00`)
+        this.date = new Date(`${date}T${time}:00`).getTime()
     }
 }
 

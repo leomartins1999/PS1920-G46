@@ -3,6 +3,7 @@
   this file exports functions used to handle requests
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.handleError = exports.handleSuccess = exports.handleRequest = void 0;
 /**
  * handle request function
  * @param serviceFunction function which returns promise of operation result

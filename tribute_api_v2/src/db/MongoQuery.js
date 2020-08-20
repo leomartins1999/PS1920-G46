@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_SKIP = exports.DEFAULT_LIMIT = void 0;
 var mongodb_1 = require("mongodb");
 var Structures_1 = require("../Structures");
 /**

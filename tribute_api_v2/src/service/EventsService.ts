@@ -37,7 +37,7 @@ class EventsService extends BaseService {
         if (event.owner_id != user_id) return Promise.reject(new Error(`Unauthorized operation.`))
 
         if (updates.date && updates.time) {
-            updates.date = `${updates.date}T${updates.time}:00`
+            updates.date = new Date(`${updates.date}T${updates.time}:00`).getTime()
         } else {
             delete updates.date
         }
