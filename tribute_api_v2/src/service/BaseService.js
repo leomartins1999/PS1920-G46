@@ -64,6 +64,29 @@ var BaseService = /** @class */ (function () {
         };
     };
     /**
+     * retrieves ids of users being followed by given user
+     */
+    BaseService.prototype.getIdsOfFollowing = function (id, user_type) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, ids, _i, _a, following_id;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, this.userOperations(user_type)
+                            .get(id)];
+                    case 1:
+                        user = _b.sent();
+                        ids = [];
+                        for (_i = 0, _a = Object.keys(user.following); _i < _a.length; _i++) {
+                            following_id = _a[_i];
+                            console.log(following_id);
+                            ids.push(following_id);
+                        }
+                        return [2 /*return*/, ids];
+                }
+            });
+        });
+    };
+    /**
      * user A(follower) follows user B(followed)
      * @param follower_id
      * @param follower_user_type

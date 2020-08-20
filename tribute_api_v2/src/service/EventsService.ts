@@ -6,7 +6,7 @@ import {Error, Status, UserType} from "../Structures";
 /**
  * service functions related to events
  */
-class EventsService extends BaseService{
+class EventsService extends BaseService {
 
     /**
      * retrieves events
@@ -25,8 +25,8 @@ class EventsService extends BaseService{
     /**
      * creates an event
      */
-    addEvent(owner_id: string, name: string, description: string, date: string, location: string) {
-        return BaseService.eventRepository.insertEvent(new Event(owner_id, name, description, date, location))
+    addEvent(owner_id: string, name: string, description: string, date: string, time: string, location: string) {
+        return BaseService.eventRepository.insertEvent(new Event(owner_id, name, description, date, time, location))
     }
 
     /**
@@ -35,6 +35,13 @@ class EventsService extends BaseService{
     async updateEvent(user_id: string, event_id: string, updates) {
         const event = await BaseService.eventRepository.getEventById(event_id)
         if (event.owner_id != user_id) return Promise.reject(new Error(`Unauthorized operation.`))
+
+        if (updates.date && updates.time) {
+            updates.date = new Date(`${updates.date}T${updates.time}:00`).getTime()
+        } else {
+            delete updates.date
+        }
+        delete updates.time
 
         const updateResult = await BaseService.eventRepository.updateEvent(event_id, updates)
 
@@ -60,6 +67,11 @@ class EventsService extends BaseService{
             new Error('Interested operation has failed.')
     }
 
+    async getEventsForUser(id: string, user_type: string, limit = DEFAULT_LIMIT, skip = DEFAULT_SKIP) {
+        const ids = await this.getIdsOfFollowing(id, user_type)
+
+        return BaseService.eventRepository.getEventsForOwners(ids, limit, skip)
+    }
 }
 
 export default EventsService

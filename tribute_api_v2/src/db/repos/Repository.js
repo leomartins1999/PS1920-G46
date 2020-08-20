@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.dbUrl = void 0;
 var mongodb_1 = require("mongodb");
 var MongoQuery_1 = require("../MongoQuery");
 var Structures_1 = require("../../Structures");

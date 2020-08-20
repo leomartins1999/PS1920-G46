@@ -20,7 +20,9 @@ function OrganizationDisplay({service, org_id, id}) {
 
     const [image, setImage] = useState(null)
 
-    useEffect(getOrg, [])
+    useEffect(() => {
+        getOrg()
+    }, [])
 
     function getOrg() {
         return service
@@ -153,7 +155,8 @@ function OrganizationDisplay({service, org_id, id}) {
                         type="button"
                         className="btn btn-danger"
                         onClick={() => setEditing(false)}
-                    >Cancel</button>
+                    >Cancel
+                    </button>
                 </div>
             </div>
         )

@@ -16,6 +16,15 @@ class PostsService extends BaseService{
     }
 
     /**
+     * retrieves posts for authenticated user
+     */
+    async getPostsForUser(id: string, user_type: string, limit: string = DEFAULT_LIMIT, skip = DEFAULT_SKIP) {
+        const ids = await this.getIdsOfFollowing(id, user_type)
+
+        return PostsService.postRepo.getPostsForOwners(limit, skip, ids)
+    }
+
+    /**
      * adds a post
      */
     addPost(owner_id: string, user_type: string, description: string) {
@@ -38,7 +47,6 @@ class PostsService extends BaseService{
             new Status('Like was changed.', true) :
             Promise.reject(new Error('Like operation has failed.'))
     }
-
 }
 
 export default PostsService

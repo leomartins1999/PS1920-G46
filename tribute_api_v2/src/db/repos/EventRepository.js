@@ -33,6 +33,17 @@ var EventRepository = /** @class */ (function () {
         return this.repository.select(query);
     };
     /**
+     * retrieves events of owners supplied in array
+     */
+    EventRepository.prototype.getEventsForOwners = function (ids, limit, skip) {
+        if (ids.length === 0)
+            return Promise.resolve([]);
+        var query = new MongoQuery_1.default(limit, skip)
+            .filterInArray('owner_id', ids)
+            .sortBy('date', false);
+        return this.repository.select(query);
+    };
+    /**
      * gets a specific event
      */
     EventRepository.prototype.getEventById = function (id) {

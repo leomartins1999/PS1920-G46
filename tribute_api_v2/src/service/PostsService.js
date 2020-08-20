@@ -70,6 +70,24 @@ var PostsService = /** @class */ (function (_super) {
         return BaseService_1.default.postRepo.getPosts(limit, skip, owner_id);
     };
     /**
+     * retrieves posts for authenticated user
+     */
+    PostsService.prototype.getPostsForUser = function (id, user_type, limit, skip) {
+        if (limit === void 0) { limit = MongoQuery_1.DEFAULT_LIMIT; }
+        if (skip === void 0) { skip = MongoQuery_1.DEFAULT_SKIP; }
+        return __awaiter(this, void 0, void 0, function () {
+            var ids;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getIdsOfFollowing(id, user_type)];
+                    case 1:
+                        ids = _a.sent();
+                        return [2 /*return*/, PostsService.postRepo.getPostsForOwners(limit, skip, ids)];
+                }
+            });
+        });
+    };
+    /**
      * adds a post
      */
     PostsService.prototype.addPost = function (owner_id, user_type, description) {

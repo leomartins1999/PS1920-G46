@@ -6,32 +6,28 @@ function EventForm({service}) {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [date, setDate] = useState("")
+    const [date, setDate] = useState(null)
+    const [time, setTime] = useState(null)
     const [location, setLocation] = useState("")
     const [image, setImage] = useState(null)
 
     function createEvent() {
-        if (name && description) {
-            let formattedDate
-            if (date) {
-                const splitDate = date.split("-")
-                formattedDate = `${splitDate[0]}-${splitDate[1]}-${splitDate[2]}`;
-            }
-
-            service.createEvent({name, description, date: formattedDate, location})
-                .then(res => {
-                    setName("")
-                    setDescription("");
-                    setDate("")
-                    setLocation("")
-                    setImage(null)
-
-                    notify("Successfully created event!")
-
-                    return image ? service.updateEventImage(res.id, image) : Promise.resolve()
-                })
-                .catch(err => notify(err, false))
+        if(!name || !description){
+            notify('Events need to have a description and a name.', false)
+            return;
         }
+
+        service.createEvent({name, description, date, time, location})
+            .then(res => {
+                notify('Successfully created event!')
+                setName('')
+                setDescription('')
+                setLocation('')
+                setImage(null)
+
+                return image ? service.updateEventImage(res.id, image) : Promise.resolve()
+            })
+            .catch(err => notify(err, false))
     }
 
     return (
@@ -50,12 +46,18 @@ function EventForm({service}) {
                     value={description} onChange={(e) => setDescription(e.target.value)}
                     rows="3"
                 />
-                <input
-                    type="date"
-                    className="form-control mb-2"
-                    placeholder="optional"
-                    onChange={(e) => setDate(e.target.value)}
-                />
+                <div className='d-flex mb-2'>
+                    <input
+                        type="date"
+                        className="form-control mr-1 text-center"
+                        onChange={(e) => setDate(e.target.value)}
+                    />
+                    <input
+                        type='time'
+                        className='form-control text-center'
+                        onChange={(e) => setTime(e.target.value)}
+                    />
+                </div>
                 <input
                     placeholder={"Location"}
                     className="form-control mb-4"

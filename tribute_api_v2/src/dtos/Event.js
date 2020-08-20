@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * representation of event
  */
 var Event = /** @class */ (function () {
-    function Event(owner_id, name, description, date, location) {
+    function Event(owner_id, name, description, date, time, location) {
         /**
          * dictionary<id, user_type> of users interested in events
          */
@@ -14,7 +14,7 @@ var Event = /** @class */ (function () {
         this.name = name;
         this.description = description;
         this.location = location;
-        this.date = new Date(date);
+        this.date = new Date(date + "T" + time + ":00").getTime();
     }
     return Event;
 }());

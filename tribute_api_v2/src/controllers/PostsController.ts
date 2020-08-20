@@ -22,6 +22,7 @@ class PostsController {
      */
     private setupRoutes(router) {
         router.get('/posts', this.getPosts)
+        router.get('/auth/posts', this.getPostsForUser)
         router.post('/auth/posts', this.addPost)
         router.put('/auth/posts/:post_id/like', this.likePost)
     }
@@ -32,6 +33,16 @@ class PostsController {
     getPosts = (req, res) => {
         handleRequest(
             () => this.service.getPosts(req.query.limit, req.query.skip, req.query.owner_id),
+            res
+        )
+    }
+
+    /**
+     * gets posts of users that is following
+     */
+    getPostsForUser = (req, res) => {
+        handleRequest(
+            () => this.service.getPostsForUser(req.user.id, req.user.user_type, req.query.limit, req.query.skip),
             res
         )
     }

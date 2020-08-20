@@ -35,6 +35,22 @@ abstract class BaseService {
     }
 
     /**
+     * retrieves ids of users being followed by given user
+     */
+    async getIdsOfFollowing(id, user_type) {
+        const user = await this.userOperations(user_type)
+            .get(id)
+
+        const ids = []
+        for (let following_id of Object.keys(user.following)) {
+            console.log(following_id)
+            ids.push(following_id)
+        }
+
+        return ids
+    }
+
+    /**
      * user A(follower) follows user B(followed)
      * @param follower_id
      * @param follower_user_type

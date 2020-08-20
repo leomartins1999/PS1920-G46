@@ -78,8 +78,8 @@ var EventsService = /** @class */ (function (_super) {
     /**
      * creates an event
      */
-    EventsService.prototype.addEvent = function (owner_id, name, description, date, location) {
-        return BaseService_1.default.eventRepository.insertEvent(new Event_1.default(owner_id, name, description, date, location));
+    EventsService.prototype.addEvent = function (owner_id, name, description, date, time, location) {
+        return BaseService_1.default.eventRepository.insertEvent(new Event_1.default(owner_id, name, description, date, time, location));
     };
     /**
      * updates an event
@@ -94,6 +94,13 @@ var EventsService = /** @class */ (function (_super) {
                         event = _a.sent();
                         if (event.owner_id != user_id)
                             return [2 /*return*/, Promise.reject(new Structures_1.Error("Unauthorized operation."))];
+                        if (updates.date && updates.time) {
+                            updates.date = new Date(updates.date + "T" + updates.time + ":00").getTime();
+                        }
+                        else {
+                            delete updates.date;
+                        }
+                        delete updates.time;
                         return [4 /*yield*/, BaseService_1.default.eventRepository.updateEvent(event_id, updates)];
                     case 2:
                         updateResult = _a.sent();
@@ -126,6 +133,21 @@ var EventsService = /** @class */ (function (_super) {
                         return [2 /*return*/, updateResult.success ?
                                 new Structures_1.Status('Interested was changed.', true) :
                                 new Structures_1.Error('Interested operation has failed.')];
+                }
+            });
+        });
+    };
+    EventsService.prototype.getEventsForUser = function (id, user_type, limit, skip) {
+        if (limit === void 0) { limit = MongoQuery_1.DEFAULT_LIMIT; }
+        if (skip === void 0) { skip = MongoQuery_1.DEFAULT_SKIP; }
+        return __awaiter(this, void 0, void 0, function () {
+            var ids;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getIdsOfFollowing(id, user_type)];
+                    case 1:
+                        ids = _a.sent();
+                        return [2 /*return*/, BaseService_1.default.eventRepository.getEventsForOwners(ids, limit, skip)];
                 }
             });
         });

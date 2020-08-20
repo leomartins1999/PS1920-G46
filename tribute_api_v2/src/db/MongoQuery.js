@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_SKIP = exports.DEFAULT_LIMIT = void 0;
 var mongodb_1 = require("mongodb");
 var Structures_1 = require("../Structures");
 /**
@@ -50,6 +51,14 @@ var MongoQuery = /** @class */ (function () {
     MongoQuery.prototype.searchWithTextIndex = function (value) {
         if (value != null && value.trim() != '')
             this.query.$query = { $text: { $search: value } };
+        return this;
+    };
+    /**
+     * filters documents that do not have one of the supplied values in
+     * the given field
+     */
+    MongoQuery.prototype.filterInArray = function (fieldName, values) {
+        this.query[fieldName] = { $in: values };
         return this;
     };
     return MongoQuery;

@@ -45,6 +45,19 @@ class EventRepository{
     }
 
     /**
+     * retrieves events of owners supplied in array
+     */
+    getEventsForOwners(ids: Array<string>, limit: string, skip: string) {
+        if (ids.length === 0) return Promise.resolve([])
+
+        const query = new MongoQuery(limit, skip)
+            .filterInArray('owner_id', ids)
+            .sortBy('date', false)
+
+        return this.repository.select(query)
+    }
+
+    /**
      * gets a specific event
      */
     getEventById(id: string){
@@ -60,7 +73,6 @@ class EventRepository{
 
         return this.repository.update(query, updates)
     }
-
 }
 
 export default EventRepository

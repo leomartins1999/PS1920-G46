@@ -1,4 +1,5 @@
 export const API_BASE_PATH = "http://localhost:8000/api"
+//export const API_BASE_PATH = "https://tribute-app.duckdns.org/api"
 
 function getRequestExecutor() {
     return {
@@ -55,8 +56,6 @@ function getRequestExecutor() {
             credentials: "include",
             body: JSON.stringify(body)
         }
-
-        console.log(body)
 
         return fetch(`${API_BASE_PATH}${url}`, options)
             .then(resp => resp.json())
