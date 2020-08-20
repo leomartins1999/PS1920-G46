@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.example.tributeapp.ui.view_model_factories.VolunteersViewModelProvide
 import com.example.tributeapp.ui.view_models.VolunteersViewModel
 import com.example.tributeapp.ui.adapters.EntityListAdapter
 import com.example.tributeapp.ui.makeToast
+import kotlinx.android.synthetic.main.fragment_orgs.view.*
 
 class VolunteersFragment: Fragment(){
 
@@ -45,11 +47,17 @@ class VolunteersFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
+        root.search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?) = true
+
+            override fun onQueryTextSubmit(query: String?) = model.searchVolunteer(query)
+        })
+
         return root
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
 
         model.updateVolunteers { makeToast(requireContext(), "Error loading volunteers!") }
     }

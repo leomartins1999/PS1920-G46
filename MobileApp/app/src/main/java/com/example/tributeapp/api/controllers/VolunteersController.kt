@@ -12,8 +12,8 @@ import com.example.tributeapp.APP_TAG
 
 class VolunteersController(private val executor: RequestExecutor) {
 
-    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
-        executor.get(VOLUNTEERS_URL, ListParser(onSuccess) { Volunteer(it) }, onError)
+    fun getVolunteers(searchQuery: String, onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
+        executor.get(volunteersURL(searchQuery), ListParser(onSuccess) { Volunteer(it) }, onError)
 
     fun getVolunteer(key: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         executor.get(volunteerURL(key), SingletonParser(onSuccess) { Volunteer(it) }, onError)

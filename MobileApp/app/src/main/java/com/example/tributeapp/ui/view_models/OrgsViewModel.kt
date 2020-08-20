@@ -17,7 +17,7 @@ class OrgsViewModel(private val api: APIService): EntityViewModel(){
 
     fun updateOrgs(onError: () -> Unit){
         Log.v(APP_TAG, "Updating orgs")
-        api.getOrgs({
+        api.getOrgs(searchQuery, {
             Log.v(APP_TAG, "Success")
             liveData.value = it
         }, onError)
@@ -27,6 +27,14 @@ class OrgsViewModel(private val api: APIService): EntityViewModel(){
         liveData.observe(owner, Observer {
             observer(it)
         })
+    }
+
+    fun searchOrg(query: String?): Boolean {
+        searchQuery = query ?: ""
+        updateOrgs {
+            Log.v(APP_TAG, "Failed to search for orgs: $query")
+        }
+        return true
     }
 
 }
