@@ -3,12 +3,12 @@ package com.example.tributeapp
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
+import android.text.format.DateFormat.getDateFormat
 import com.example.tributeapp.api.APIService
 import com.example.tributeapp.model.caches.CacheService
 import com.example.tributeapp.model.dtos.User
 import com.example.tributeapp.ui.Session
-import com.example.tributeapp.ui.makeToast
+import java.text.DateFormat
 
 const val APP_TAG = "TRIBUTE_APP"
 
@@ -23,6 +23,7 @@ class App : Application() {
         lateinit var api: APIService
         lateinit var cacheService: CacheService
         lateinit var sharedPreferences: SharedPreferences
+        lateinit var dateFormat: DateFormat
         var session: Session? = null
 
         private fun getUser(): User {
@@ -65,6 +66,7 @@ class App : Application() {
         api = APIService(applicationContext)
         cacheService = CacheService()
         sharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE)
+        dateFormat = DateFormat.getDateTimeInstance()
     }
 
 }

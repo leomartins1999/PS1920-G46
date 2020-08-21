@@ -7,14 +7,14 @@ const val LOGIN_URL = "login"
 
 const  val REGISTER_URL = "register"
 
-const val VOLUNTEERS_URL = "volunteers"
+fun volunteersURL(query: String) = "volunteers?name=$query"
 fun volunteerURL(id: String) = "volunteers/$id"
 fun updateVolunteerURL(id: String) = "auth/${volunteerURL(id)}"
 fun followVolunteerURL(id: String) = "auth/${volunteerURL(id)}/follow"
 fun volunteerImage(id: String) = "auth/images/volunteers/$id"
 fun getImageLink(type: String, id: String) = "$BASE_URL/images/$type/$id"
 
-const val ORGS_URL = "orgs"
+fun orgsURL(query: String) = "orgs?name=$query"
 fun orgURL(id: String) = "orgs/$id"
 fun followOrgURL(id: String) = "auth/${orgURL(id)}/follow"
 

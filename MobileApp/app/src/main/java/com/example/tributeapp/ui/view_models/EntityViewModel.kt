@@ -6,5 +6,6 @@ import com.example.tributeapp.model.dtos.Entity
 abstract class EntityViewModel: ViewModel(){
 
     abstract val model: List<Entity>
+    var searchQuery: String = ""
 
 }

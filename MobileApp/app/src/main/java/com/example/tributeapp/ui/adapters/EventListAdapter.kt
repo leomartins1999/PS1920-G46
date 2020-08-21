@@ -52,7 +52,7 @@ class EventsViewHolder(private val layout: LinearLayout)
         }
 
         name.text = event.name
-        date.text = event.date
+        date.text = event.getDateString()
 
         participants.text = layout.context.getString(R.string.event_interested, event.nrInterested)
 

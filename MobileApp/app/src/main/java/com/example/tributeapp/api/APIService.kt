@@ -16,8 +16,8 @@ class APIService(ctx: Context) {
     private val events = EventsController(executor)
     private val auth = AuthController(executor)
 
-    fun getOrgs(onSuccess: (List<Org>) -> Unit, onError: () -> Unit) =
-        orgs.getOrgs(onSuccess, onError)
+    fun getOrgs(searchQuery: String, onSuccess: (List<Org>) -> Unit, onError: () -> Unit) =
+        orgs.getOrgs(searchQuery, onSuccess, onError)
 
     fun getOrg(id: String, onSuccess: (Org) -> Unit, onError: () -> Unit) =
         orgs.getOrg(id, onSuccess, onError)
@@ -25,8 +25,8 @@ class APIService(ctx: Context) {
     fun followOrg(orgID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         orgs.followOrg(orgID, onSuccess, onError)
 
-    fun getVolunteers(onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
-        volunteers.getVolunteers(onSuccess, onError)
+    fun getVolunteers(searchQuery: String, onSuccess: (List<Volunteer>) -> Unit, onError: () -> Unit) =
+        volunteers.getVolunteers(searchQuery, onSuccess, onError)
 
     fun getVolunteer(id: String, onSuccess: (Volunteer) -> Unit, onError: () -> Unit) =
         volunteers.getVolunteer(id, onSuccess, onError)
