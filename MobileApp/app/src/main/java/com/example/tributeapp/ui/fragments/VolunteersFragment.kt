@@ -47,13 +47,25 @@ class VolunteersFragment: Fragment(){
             adapter.notifyDataSetChanged()
         }
 
+        setListeners(root)
+
+        return root
+    }
+
+    private fun setListeners(root: View) {
         root.search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?) = true
 
             override fun onQueryTextSubmit(query: String?) = model.searchVolunteer(query)
         })
 
-        return root
+        root.search_card.setOnClickListener {
+            root.search_bar.isIconified = false
+        }
+
+        root.clear_search.setOnClickListener {
+            model.searchVolunteer("")
+        }
     }
 
     override fun onResume() {
