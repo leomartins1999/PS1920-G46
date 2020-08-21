@@ -64,4 +64,6 @@
     <string name="dialog_edit_volunteer">Edit your profile</string>
     <string name="your_posts">Posts for you</string>
     <string name="all_posts">All posts</string>
+    <string name="all_events">All events</string>
+    <string name="your_events">Events for you</string>
 </resources>

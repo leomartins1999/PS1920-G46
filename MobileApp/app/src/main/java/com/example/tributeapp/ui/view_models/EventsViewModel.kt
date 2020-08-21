@@ -12,13 +12,14 @@ import com.example.tributeapp.model.dtos.Event
 class EventsViewModel(private val api: APIService): ViewModel(){
 
     private val liveData: MutableLiveData<List<Event>> = MutableLiveData(listOf())
+    private var filter = false
 
     val events: List<Event>
         get() = liveData.value!!
 
     fun updateEvents(onError: () -> Unit){
         Log.v(APP_TAG,"Update events - call")
-        api.getEvents({
+        api.getEvents(filter, {
             Log.v(APP_TAG,"Update events - success")
             liveData.value = it
         },{
@@ -30,6 +31,10 @@ class EventsViewModel(private val api: APIService): ViewModel(){
         liveData.observe(owner, Observer {
             observer(it)
         })
+    }
+
+    fun updateFilter(filter: Boolean) {
+        this.filter = filter
     }
 
 }

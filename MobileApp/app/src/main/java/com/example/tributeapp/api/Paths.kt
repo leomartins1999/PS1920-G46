@@ -25,5 +25,7 @@ fun posts_url(filter: Boolean): String {
 const val EXECUTE_POST = "auth/posts"
 fun likeURL(id: String) = "auth/posts/$id/like"
 
-const val EVENTS_URL = "events"
+fun eventsUrl(filter: Boolean): String{
+    return if (filter) "auth/events" else "events"
+}
 fun eventsInterestedURL(id: String) = "auth/events/$id/interested"
