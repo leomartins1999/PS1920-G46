@@ -34,8 +34,8 @@ class APIService(ctx: Context) {
     fun followVolunteer(volunteerID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         volunteers.followVolunteer(volunteerID, onSuccess, onError)
 
-    fun getPosts(onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
-        posts.getPosts(onSuccess, onError)
+    fun getPosts(filter: Boolean, onSuccess: (List<Post>) -> Unit, onError: () -> Unit) =
+        posts.getPosts(filter, onSuccess, onError)
 
     fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         posts.likePost(postID, onSuccess, onError)

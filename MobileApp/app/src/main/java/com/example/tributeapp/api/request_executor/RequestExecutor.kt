@@ -27,9 +27,20 @@ class RequestExecutor(ctx: Context) {
     ) {
         val reqUrl = buildRequestURL(url)
 
-        val req = StringRequest(
+//        val req = StringRequest(
+//            Request.Method.GET,
+//            reqUrl,
+//            Response.Listener { parser.execute(it) },
+//            Response.ErrorListener {
+//                Log.v(APP_TAG, "Error: $it")
+//                onError()
+//            }
+//        )
+
+        val req = APIRequest(
             Request.Method.GET,
             reqUrl,
+            JSONObject(),
             Response.Listener { parser.execute(it) },
             Response.ErrorListener {
                 Log.v(APP_TAG, "Error: $it")

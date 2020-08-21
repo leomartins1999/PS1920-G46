@@ -15,7 +15,7 @@ open class APIRequest(
     body: JSONObject,
     onSuccess: Response.Listener<JSONObject>,
     onError: Response.ErrorListener
-) : JsonObjectRequest(method, url, body, onSuccess, onError){
+) : JsonObjectRequest(method, url, body, onSuccess, onError) {
 
     override fun parseNetworkResponse(response: NetworkResponse?): Response<JSONObject> {
         try {
@@ -31,7 +31,12 @@ open class APIRequest(
                     )
                 )
 
-            val body = resp.result.getJSONObject("body")
+            // retrieving body
+            val body =
+                if (resp.result.optJSONArray("body") != null)
+                    JSONObject().put("results", resp.result.getJSONArray("body"))
+                else resp.result.getJSONObject("body")
+
             if (resp.result.getString("status") == "error")
                 return Response.error(
                     APIException(
@@ -42,7 +47,7 @@ open class APIRequest(
 
             // returning body
             return Response.success(body, resp.cacheEntry)
-        } catch(err: Error){
+        } catch (err: Error) {
             return Response.error(
                 APIException(
                     "Parsing response error",

@@ -44,6 +44,31 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+                
+                <RadioGroup
+                    android:id="@+id/select_posts_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/all_posts_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/all_posts"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/your_posts_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/your_posts"
+                        android:visibility="gone"
+                        />
+
+                </RadioGroup>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/posts_recycler_view"

@@ -12,13 +12,14 @@ import com.example.tributeapp.model.dtos.Post
 class PostsViewModel(private val api: APIService) : ViewModel() {
 
     private var liveData: MutableLiveData<List<Post>> = MutableLiveData(emptyList())
+    private var filtered = false
 
     val posts: List<Post>
         get() = liveData.value!!
 
     fun updatePosts(onError: () -> Unit) {
         Log.v(APP_TAG, "Update posts -> call")
-        api.getPosts({
+        api.getPosts(filtered, {
             Log.v(APP_TAG, "Update posts -> success $it")
             liveData.value = it
         }, onError)
@@ -36,6 +37,10 @@ class PostsViewModel(private val api: APIService) : ViewModel() {
         liveData.observe(owner, Observer {
             observer(it)
         })
+    }
+
+    fun updateFilter(filter: Boolean) {
+        filtered = filter
     }
 
 }

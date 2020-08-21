@@ -62,4 +62,6 @@
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
     <string name="dialog_edit_volunteer">Edit your profile</string>
+    <string name="your_posts">Posts for you</string>
+    <string name="all_posts">All posts</string>
 </resources>
