@@ -1,5 +1,5 @@
-export const API_BASE_PATH = "http://localhost:8000/api"
-//export const API_BASE_PATH = "https://tribute-app.duckdns.org/api"
+//export const API_BASE_PATH = "http://localhost:8000/api"
+export const API_BASE_PATH = "https://tribute-app.duckdns.org/api"
 
 function getRequestExecutor() {
     return {
