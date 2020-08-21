@@ -43,8 +43,8 @@ class APIService(ctx: Context) {
     fun createPost(description: String, onSuccess: () -> Unit, onError: () -> Unit) =
         posts.create(description, onSuccess, onError)
 
-    fun getEvents(onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
-        events.getEvents(onSuccess, onError)
+    fun getEvents(filter:Boolean, onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
+        events.getEvents(filter, onSuccess, onError)
 
     fun interestedInEvent(eventID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         events.interested(eventID, onSuccess, onError)

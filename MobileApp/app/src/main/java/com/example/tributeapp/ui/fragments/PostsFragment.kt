@@ -87,7 +87,6 @@ class PostsFragment : Fragment() {
 
         layout.select_posts_group.setOnCheckedChangeListener { _, checkedId ->
             model.updateFilter(checkedId == layout.your_posts_radio.id)
-            makeToast(requireContext(), "${checkedId == layout.your_posts_radio.id}")
             updatePosts()
         }
     }
