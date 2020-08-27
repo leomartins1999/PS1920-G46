@@ -1,5 +1,6 @@
 package com.example.tributeapp.api.controllers
 
+import com.example.tributeapp.api.LOGIN_URL
 import com.example.tributeapp.api.REGISTER_URL
 import com.example.tributeapp.api.request_executor.RequestExecutor
 import com.example.tributeapp.model.dtos.User
@@ -12,7 +13,7 @@ class AuthController(private val executor: RequestExecutor) {
         body.put("mail", email)
         body.put("password", password)
 
-        executor.login(body, { onSuccess(User(it)) }, onError)
+        executor.post(LOGIN_URL, body, { onSuccess(User(it.getJSONObject("user_details"))) }, onError)
     }
 
     fun register(
@@ -32,7 +33,7 @@ class AuthController(private val executor: RequestExecutor) {
 
         body.put("data", data)
 
-        executor.post(REGISTER_URL, body, onSuccess, onError)
+        executor.post(REGISTER_URL, body, { onSuccess() }, onError)
     }
 
 }

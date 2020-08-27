@@ -40,7 +40,7 @@ class APIService(ctx: Context) {
     fun likePost(postID: String, onSuccess: () -> Unit, onError: () -> Unit) =
         posts.likePost(postID, onSuccess, onError)
 
-    fun createPost(description: String, onSuccess: () -> Unit, onError: () -> Unit) =
+    fun createPost(description: String, onSuccess: (String) -> Unit, onError: () -> Unit) =
         posts.create(description, onSuccess, onError)
 
     fun getEvents(filter:Boolean, onSuccess: (List<Event>) -> Unit, onError: () -> Unit) =
@@ -62,4 +62,7 @@ class APIService(ctx: Context) {
     fun updateVolunteerImg(volunteerID: String, imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
         volunteers.updateImage(volunteerID, imageContent, onSuccess, onError)
     }
+
+    fun updatePostImage(postId: String, imageContent: ByteArray, onSuccess: () -> Unit) =
+        posts.updatePostImage(postId, imageContent, onSuccess)
 }

@@ -2,6 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
@@ -33,12 +34,40 @@
                         android:hint="@string/post_sugestion"
                         android:inputType="textMultiLine" />
 
-                    <Button
-                        android:id="@+id/post_button"
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_margin="@dimen/fab_margin"
+                        android:id="@+id/post_image"
+                        android:visibility="gone"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:baselineAlignBottom="false"
+                        android:contentDescription="@string/volunteer_image"
+                        tools:srcCompat="@tools:sample/avatars"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end|bottom"
-                        android:text="@string/execute_post" />
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/select_image_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select Image" />
+
+                        <Button
+                            android:id="@+id/post_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/execute_post" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

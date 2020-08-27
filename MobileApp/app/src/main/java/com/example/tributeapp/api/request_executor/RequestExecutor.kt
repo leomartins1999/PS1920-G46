@@ -57,55 +57,19 @@ class RequestExecutor(ctx: Context) {
         queue.add(req)
     }
 
-    fun post(url: String, body: JSONObject, onSuccess: () -> Unit, onError: () -> Unit){
+    fun post(url: String, body: JSONObject, onSuccess: (JSONObject) -> Unit, onError: () -> Unit){
         val reqURL = buildRequestURL(url)
 
         val req = APIRequest(
             Request.Method.POST,
             reqURL,
             body,
-            Response.Listener { onSuccess() },
-            Response.ErrorListener { onError() }
-        )
-
-        Log.v(APP_TAG, "Executing request to url: $reqURL")
-        queue.add(req)
-    }
-
-    fun login(body: JSONObject, onSuccess: (JSONObject) -> Unit, onError: () -> Unit) {
-        val reqURL = buildRequestURL(LOGIN_URL)
-
-        val req = LoginRequest(
-            reqURL,
-            body,
-            Response.Listener {
-                onSuccess(it!!)
-            },
+            Response.Listener { onSuccess(it!!) },
             Response.ErrorListener {
-                Log.v(APP_TAG, "$it")
+                Log.v(APP_TAG, it.toString())
                 onError()
             }
         )
-
-        Log.v(APP_TAG, "Executing request to url: $reqURL")
-        queue.add(req)
-    }
-
-    fun uploadImage(url: String, imageContent: ByteArray, onSuccess: () -> Unit, onError: () -> Unit) {
-        val reqURL = buildRequestURL(url)
-
-        val req = UploadImageRequest(
-            imageContent,
-            reqURL,
-            Response.Listener {
-                Log.v(APP_TAG, it)
-            },
-            Response.ErrorListener {
-                it.printStackTrace()
-            }
-        )
-
-        Log.v(APP_TAG, String(imageContent))
 
         Log.v(APP_TAG, "Executing request to url: $reqURL")
         queue.add(req)

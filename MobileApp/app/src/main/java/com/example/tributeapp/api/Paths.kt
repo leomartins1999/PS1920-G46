@@ -18,14 +18,17 @@ fun orgsURL(query: String) = "orgs?name=$query"
 fun orgURL(id: String) = "orgs/$id"
 fun followOrgURL(id: String) = "auth/${orgURL(id)}/follow"
 
-fun posts_url(filter: Boolean): String {
+fun postsUrl(filter: Boolean): String {
     return if (filter) "auth/posts" else "posts"
 }
+
+fun postImage(id: String) = "auth/images/posts/$id"
 
 const val EXECUTE_POST = "auth/posts"
 fun likeURL(id: String) = "auth/posts/$id/like"
 
-fun eventsUrl(filter: Boolean): String{
+fun eventsUrl(filter: Boolean): String {
     return if (filter) "auth/events" else "events"
 }
+
 fun eventsInterestedURL(id: String) = "auth/events/$id/interested"

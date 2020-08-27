@@ -29,7 +29,7 @@ class PostsViewModel(private val api: APIService) : ViewModel() {
         api.likePost(postID, onSuccess, onError)
     }
 
-    fun post(body: String, onSuccess: () -> Unit, onError: () -> Unit) {
+    fun post(body: String, onSuccess: (String) -> Unit, onError: () -> Unit) {
         api.createPost(body, onSuccess, onError)
     }
 
@@ -42,5 +42,8 @@ class PostsViewModel(private val api: APIService) : ViewModel() {
     fun updateFilter(filter: Boolean) {
         filtered = filter
     }
+
+    fun updatePostImage(postId: String, imageContent: ByteArray, onSuccess: () -> Unit) =
+        api.updatePostImage(postId, imageContent, onSuccess)
 
 }

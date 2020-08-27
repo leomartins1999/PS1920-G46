@@ -1,17 +1,23 @@
 package com.example.tributeapp.ui.fragments
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.App
 import com.example.tributeapp.R
 import com.example.tributeapp.ui.adapters.PostListAdapter
+import com.example.tributeapp.ui.getImageContent
 import com.example.tributeapp.ui.makeToast
+import com.example.tributeapp.ui.selectImage
 import com.example.tributeapp.ui.view_model_factories.PostsViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.PostsViewModel
 import kotlinx.android.synthetic.main.fragment_posts.*
@@ -30,6 +36,8 @@ class PostsFragment : Fragment() {
     private val model by lazy {
         PostsViewModelProviderFactory().create(PostsViewModel::class.java)
     }
+
+    private var image: Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,21 +67,37 @@ class PostsFragment : Fragment() {
     }
 
     private fun enablePostButton() {
+        select_image_button.setOnClickListener { selectImage() }
+
         requireView().post_button.setOnClickListener {
-            if (!post_text.text.trim().isBlank())
-                model.post(
-                    post_text.text.toString(),
-                    {
-                        post_text.setText("")
-                        makeToast(requireContext(), getString(R.string.operation_success))
-                        Handler().postDelayed({ updatePosts() }, 1000)
-                    },
-                    {
-                        makeToast(requireContext(), getString(R.string.operation_error))
-                    }
-                )
+            if (!post_text.text.trim().isBlank()) createPost()
             else makeToast(requireContext(), getString(R.string.post_body_empty_error))
         }
+    }
+
+    private fun createPost() {
+        model.post(
+            post_text.text.toString(),
+            { updatePostImage(it) },
+            {
+                makeToast(requireContext(), getString(R.string.operation_error))
+            }
+        )
+    }
+
+    private fun updatePostImage(post_id: String) {
+        val onSuccess: () -> Unit = {
+            post_text.setText("")
+            makeToast(requireContext(), getString(R.string.operation_success))
+            Handler().postDelayed({ updatePosts() }, 1000)
+        }
+
+        if (image == null) onSuccess()
+        else model.updatePostImage(
+            post_id,
+            image!!.getImageContent(),
+            onSuccess
+        )
     }
 
     private fun updatePosts() {
@@ -90,6 +114,18 @@ class PostsFragment : Fragment() {
         layout.select_posts_group.setOnCheckedChangeListener { _, checkedId ->
             model.updateFilter(checkedId == layout.your_posts_radio.id)
             updatePosts()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.v(APP_TAG, "request code: $requestCode, result code: $resultCode")
+        Log.v(APP_TAG, "data:  $data")
+
+        if (requestCode == PICK_IMAGE && data != null) {
+            image = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, data.data)
+            post_image.setImageBitmap(image)
+            post_image.visibility = View.VISIBLE
         }
     }
 

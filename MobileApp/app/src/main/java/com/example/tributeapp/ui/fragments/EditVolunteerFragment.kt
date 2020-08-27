@@ -15,7 +15,9 @@ import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.example.tributeapp.APP_TAG
 import com.example.tributeapp.R
+import com.example.tributeapp.ui.getImageContent
 import com.example.tributeapp.ui.makeToast
+import com.example.tributeapp.ui.selectImage
 import com.example.tributeapp.ui.view_model_factories.EditVolunteerViewModelProviderFactory
 import com.example.tributeapp.ui.view_models.EditVolunteerViewModel
 import kotlinx.android.synthetic.main.dialog_edit_volunteer.*
@@ -32,7 +34,7 @@ class EditVolunteerFragment(
         EditVolunteerViewModelProviderFactory().create(EditVolunteerViewModel::class.java)
     }
     private lateinit var dialogView: AlertDialog
-    var image: Bitmap? = null;
+    var image: Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +62,7 @@ class EditVolunteerFragment(
                 itDialog
                     .getButton(AlertDialog.BUTTON_POSITIVE)
                     .setOnClickListener { updateVolunteer(dialog) }
-                itDialog.imageButton.setOnClickListener { selectImg() }
+                itDialog.imageButton.setOnClickListener { selectImage() }
                 dialogView = itDialog
             }
 
@@ -77,14 +79,6 @@ class EditVolunteerFragment(
             image = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, data.data)
             dialogView.image.setImageBitmap(image)
         }
-    }
-
-    private fun getImageContent(): ByteArray {
-        val stream = ByteArrayOutputStream();
-        image!!.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        val content = stream.toByteArray();
-        image!!.recycle()
-        return content
     }
 
     private fun updateVolunteer(dialog: AlertDialog) {
@@ -107,23 +101,13 @@ class EditVolunteerFragment(
 
     private fun updateVolunteerImg(dialog: AlertDialog) {
         model.updateVolunteerImg(
-            getImageContent(),
+            image!!.getImageContent(),
             {
                 makeToast(dialog.context, "Updated volunteer image")
                 onUpdate()
                 dialog.dismiss()
             },
             { makeToast(dialog.context, "Failed to update volunteer image") }
-        )
-    }
-
-    private fun selectImg() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(
-            Intent.createChooser(intent, "Select Picture"),
-            PICK_IMAGE
         )
     }
 }
