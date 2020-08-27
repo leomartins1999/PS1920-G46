@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tributeapp.App
@@ -63,6 +64,7 @@ class PostsFragment : Fragment() {
                 model.post(
                     post_text.text.toString(),
                     {
+                        post_text.setText("")
                         makeToast(requireContext(), getString(R.string.operation_success))
                         Handler().postDelayed({ updatePosts() }, 1000)
                     },

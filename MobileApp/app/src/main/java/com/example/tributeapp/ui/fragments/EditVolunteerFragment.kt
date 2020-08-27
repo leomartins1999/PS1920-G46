@@ -25,14 +25,13 @@ const val PICK_IMAGE = 1
 
 class EditVolunteerFragment(
     private val volDescription: String,
-    private val volLinkedin: String,
     private val onUpdate: () -> Unit
 ) : DialogFragment() {
 
     private val model by lazy {
         EditVolunteerViewModelProviderFactory().create(EditVolunteerViewModel::class.java)
     }
-    lateinit var dialogView: AlertDialog
+    private lateinit var dialogView: AlertDialog
     var image: Bitmap? = null;
 
     override fun onCreateView(
@@ -58,7 +57,6 @@ class EditVolunteerFragment(
             dialog.setOnShowListener {
                 val itDialog = it as AlertDialog
                 itDialog.description.setText(volDescription)
-                itDialog.linkedinLink.setText(volLinkedin)
                 itDialog
                     .getButton(AlertDialog.BUTTON_POSITIVE)
                     .setOnClickListener { updateVolunteer(dialog) }
@@ -92,7 +90,7 @@ class EditVolunteerFragment(
     private fun updateVolunteer(dialog: AlertDialog) {
         model.updateVolunteer(
             dialog.description.text.toString(),
-            dialog.linkedinLink.text.toString(),
+            "",
             {
                 makeToast(dialog.context, "Updated profile")
                 if (image != null) {

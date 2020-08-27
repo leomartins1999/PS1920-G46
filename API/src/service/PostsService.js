@@ -82,6 +82,7 @@ var PostsService = /** @class */ (function (_super) {
                     case 0: return [4 /*yield*/, this.getIdsOfFollowing(id, user_type)];
                     case 1:
                         ids = _a.sent();
+                        ids.push(id);
                         return [2 /*return*/, PostsService.postRepo.getPostsForOwners(limit, skip, ids)];
                 }
             });

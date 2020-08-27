@@ -21,6 +21,8 @@ class PostsService extends BaseService{
     async getPostsForUser(id: string, user_type: string, limit: string = DEFAULT_LIMIT, skip = DEFAULT_SKIP) {
         const ids = await this.getIdsOfFollowing(id, user_type)
 
+        ids.push(id)
+
         return PostsService.postRepo.getPostsForOwners(limit, skip, ids)
     }
 

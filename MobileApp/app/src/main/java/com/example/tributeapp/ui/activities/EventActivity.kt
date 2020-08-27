@@ -1,5 +1,6 @@
 package com.example.tributeapp.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -37,9 +38,12 @@ class EventActivity : AppCompatActivity() {
     private fun setOrgFields() {
         val event = model.event
 
-        App.cacheService.getOrg(event.owner_id) {
-            ImageLoader.loadImage(this, image, it.imageLink, false, R.drawable.ic_volunteer_gray)
-            org_name.text = it.name
+        App.cacheService.getOrg(event.owner_id) { org ->
+            ImageLoader.loadImage(this, image, org.imageLink, false, R.drawable.ic_volunteer_gray)
+            org_name.text = org.name
+            org_header.setOnClickListener {
+                startActivity(Intent(this, OrgActivity::class.java).putExtra(ORG_KEY, org.id))
+            }
         }
     }
 
@@ -49,38 +53,39 @@ class EventActivity : AppCompatActivity() {
         event_name.text = event.name
         ImageLoader.loadImage(this, event_image, event.imageLink, true)
 
-        if(event.location.isNullOrEmpty() || event.location == "null") location_layout.visibility = View.GONE
+        if (event.location.isNullOrEmpty() || event.location == "null") location_layout.visibility =
+            View.GONE
         else location.text = event.location
 
-        if(event.date.time == 0L) date_layout.visibility = View.GONE
+        if (event.date.time == 0L) date_layout.visibility = View.GONE
         else date.text = event.getDateString()
 
         renderTextView(event.description, description)
     }
 
-    private fun updateInterestedAndParticipants(){
+    private fun updateInterestedAndParticipants() {
         val event = model.event
 
         interested.text = "${event.interested.size}"
     }
 
-    private fun listenButtons(){
+    private fun listenButtons() {
         if (!App.session!!.hasSession)
-            interested_button.setOnClickListener{ onClickAuthenticatedMessage(it)}
-        else{
-            interested_button.setOnClickListener{
+            interested_button.setOnClickListener { onClickAuthenticatedMessage(it) }
+        else {
+            interested_button.setOnClickListener {
                 model.interested({
                     updateButtonText()
                     updateInterestedAndParticipants()
                     makeToast(this, getString(R.string.updated_interest))
-                }, { makeToast(this, getString(R.string.error_performing_action))})
+                }, { makeToast(this, getString(R.string.error_performing_action)) })
             }
 
             updateButtonText()
         }
     }
 
-    private fun updateButtonText(){
+    private fun updateButtonText() {
         interested_button.text = getString(
             if (model.event.interested.none { it.id == App.session!!.user.id }) R.string.interested_button
             else R.string.not_interested_button

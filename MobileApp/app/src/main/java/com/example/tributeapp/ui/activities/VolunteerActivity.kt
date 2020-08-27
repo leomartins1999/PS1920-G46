@@ -52,7 +52,7 @@ class VolunteerActivity : AppCompatActivity() {
                  * on click, open edit dialog ...
                  */
                 editButton.setOnClickListener {
-                    val editFragment = EditVolunteerFragment(volunteer.description, volunteer.linkedInLink) {model.updateVolunteer()}
+                    val editFragment = EditVolunteerFragment(volunteer.description) {model.updateVolunteer()}
                     editFragment.show(supportFragmentManager, "editVolunteer")
                 }
 
