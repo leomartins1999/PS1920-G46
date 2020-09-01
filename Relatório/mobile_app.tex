@@ -64,7 +64,7 @@ A arquitetura da aplicação é constituída por três sub-módulos principais: 
 
 Enquanto que a UI é responsável por conter as implementações dos mais variados aspetos da interface de utilizador (como atividades, fragmentos, navegação e outros elementos), a API trata a comunicação entre a aplicação e a Web API. Por fim, o Modelo define a estrutura dos dados fornecidos pela API e utilizados na UI assim como a implementação de uma \textit{cache} de maneira a partilhar estes dados e reduzir o número de pedidos efetuados à Web API.
 
-\subsection{\textit{User Interface}}
+\subsubsection{\textit{User Interface}}
 
 Este sub-módulo engloba todos os componentes do projeto que são responsáveis por representar os dados da aplicação. Este é constituído por:
 
@@ -74,7 +74,7 @@ Este sub-módulo engloba todos os componentes do projeto que são responsáveis 
 	\item Outros componentes utilitários, como por exemplo uma estrutura que auxilia o carregamento de imagens para a representação das mesmas.
 \end{itemize} 
 
-\subsection{API}
+\subsubsection{API}
 
 O sub-módulo API (Figura 9) serve como \textit{proxy} entre a aplicação e a Web API. Este dispõe de um serviço que disponibiliza todas as rotas acessíveis pelos voluntários e sobre o mesmo é possível solicitar a realização de pedidos à API (como a obtenção de voluntários ou o seguimento, por parte do utilizador autenticado, de uma organização). O mesmo é assíncrono e funciona à base de \textit{callbacks}.
 
@@ -99,7 +99,7 @@ Tendo em conta que o conceito de sessão foi implementado na Web API através da
 
 De maneira a que a representação dos vários ecrãs da aplicação seja dinâmica consoante a sessão do utilizador, é definido e utilizado um objeto Sessão, acessível por todas as classes do projeto, que contém informações relativamente ao voluntário autenticado.
 
-\subsection{Modelo}
+\subsubsection{Modelo}
 
 O Modelo é responsável por transformar os dados provenientes do sub-módulo API para conjuntos de DTO (\textit{Data Transfer Object}) que irão ser usados pelo sub-módulo UI para efetuar a sua representação.
 

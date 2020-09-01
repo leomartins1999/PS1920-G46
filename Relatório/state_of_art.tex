@@ -1,17 +1,20 @@
 \section{Formulação do problema}
 
-Este capítulo começa por incidir sobre as dificuldades encontradas na divulgação e inscrição por parte de voluntários em ações de voluntariado. São levantados alguns requisitos para o projeto e apresentadas algumas soluções possíveis, sendo as suas vantagens e desvantagens ponderadas para chegar à solução final. Por fim, são elaborados alguns requisitos funcionais do projeto face à solução definida, bem como a justificação da definição da arquitetura do mesmo. \par \medskip
+No presente capítulo, são introduzidos os elementos base que definem o sistema a desenvolver. Na secção 2.1, o problema estudado no projeto é introduzido em maior detalhe. A secção 2.2 apresenta os trabalhos relacionados com o presente projeto. Na secção 2.3 é realizada uma análise das vantagens e desvantagens das propostas existentes. Finalmente, a secção 2.4 descreve os requisitos funcionais do sistema. \par \medskip
 
-Tal como já foi referido, a interação voluntário-organização é tipicamente feita através de dois tipos de plataformas: redes sociais e \textit{websites} das organizações.  \medskip
+\subsection{Problema Estudado}
+A interação voluntário-organização é tipicamente feita através de dois tipos de plataformas: redes sociais (de conexões sociais) e \textit{websites} de organizações. \medskip
 
-As redes sociais, por não serem, por desenho, vocacionadas para este tipo de ações, apresentam alguns problemas de utilização, como filtragem de informação e integração de múltiplas plataformas de voluntariado na mesma rede social.  \medskip
+As redes sociais orientadas a conexões de pessoas, como por exemplo Facebook, Twitter, ou Google+, por não serem, por desenho, vocacionadas para ações de voluntariado, apresentam algumas limitações de utilização, como fraca filtragem de informação e impossibilidade de integração de múltiplas plataformas de voluntariado na mesma rede social. \medskip
 
-Por norma, cada organização tem o seu próprio \textit{website}, algo que complica o processo de navegação do voluntário, caso este esteja interessado em colaborar com múltiplas associações de voluntariado. 
+Por norma, cada organização tem o seu próprio \textit{website}, algo que complica o
+processo de navegação do voluntário, caso este esteja interessado em colaborar com múltiplas associações de voluntariado. \medskip
 
-\subsection{Requisitos não funcionais}
-Tendo em conta os problemas apresentados, o nosso projeto tem como objetivo desenvolver uma plataforma onde é disponibilizada informação relativa a ações de voluntariado, desde eventos existentes a perfis de organizações. Esta deve também auxiliar o processo de candidatura/inscrição em ações deste tipo e promover a interação entre utilizadores. \bigskip
+\subsubsection{Objetivos Gerais}
 
-A seguir descrevem-se duas plataformas que possuem objetivos semelhantes aos do presente projeto.
+O projeto tem como objetivo desenvolver uma plataforma onde é disponibilizada informação relativa a ações de voluntariado, desde eventos existentes a perfis de organizações. A plataforma a desenvolver deve também auxiliar o processo de candidatura/inscrição nas ações a levar a cabo e promover a interação entre utilizadores. \medskip
+
+A seguir descrevem-se duas plataformas que possuem objetivos semelhantes aos do presente projeto. \medskip
 
 \subsection{Estado da Arte}
 
@@ -23,24 +26,24 @@ A plataforma \textit{Online Volunteering}~\cite{online_volunteering}, desenvolvi
 
 Esta aplicação permite a filtragem das oportunidades consoante a área de interesse e também auxilia o processo de candidatura às mesmas. 
 
-\subsection{Conclusão}
+\subsection{Análise}
 
-Apesar destas plataformas disponibilizarem informação relativa a oportunidades de realizar trabalho voluntário e das mesmas auxiliarem a inscrição nestas ações, estas não promovem a interação entre utilizadores, que é fulcral para o crescimento de uma comunidade solidária, que leva ao aumento do número de participantes em ações de voluntariado. \medskip
+Apesar destas plataformas disponibilizarem informação relativa a oportunidades de realizar trabalho voluntário e das mesmas auxiliarem a inscrição nestas ações, estas não promovem a interação entre utilizadores, que é fulcral para o crescimento de uma comunidade solidária e que leva ao aumento do número de participantes em ações de voluntariado. \medskip
 
-Uma solução aplicável poderia ser o desenvolvimento de uma ferramenta que aplicasse técnicas de \textit{web scraping}. Contudo, o desenvolvimento de uma ferramenta desta natureza depende da existência de fontes de informação externas e também não cumpre com a necessidade de haver interação entre utilizadores. \medskip
+Outra abordagem possível seria o desenvolvimento de uma ferramenta que aplicasse técnicas de \textit{web scraping}. Contudo, o desenvolvimento de uma ferramenta desta natureza depende da existência de fontes de informação externas e também não cumpre com a necessidade de haver interação entre utilizadores. \medskip
 
-Uma rede social com foco em ações de voluntariado cumpre todos os requisitos descritos. Contudo, é necessário haver a migração de utilizadores para esta plataforma, algo que não é possível garantir. \medskip
+Uma rede social com foco em ações de voluntariado cumpre todos os objetivos descritos. Contudo, é necessário haver a migração de utilizadores para esta plataforma, algo que não é possível garantir. \medskip
 
-Dadas as soluções apresentadas (e as suas vantagens/desvantagens), foi tomada a decisão de desenvolver uma rede social de voluntariado.
+Dadas as soluções apresentadas e suas vantagens/desvantagens, foi tomada a decisão de desenvolver uma rede social de voluntariado.
 
 \subsection{Requisitos Funcionais}
-Tendo em conta o desenvolvimento de uma rede social de voluntariado, foram elaborados alguns requisitos funcionais do projeto:
+O sistema a desenvolver tem os seguintes requisitos funcionais:
 
 \begin{itemize}
 	\item permitir a voluntários registarem-se, criarem um perfil e interagir com a plataforma (através da criação de \textit{posts} e sinalização de interesse em eventos);
 	\item possibilitar às organizações solicitarem o registo na plataforma e também permitir às mesmas realizarem \textit{posts} e criarem eventos;
 	\item mostrar às organizações os voluntários interessados nos seus eventos e disponibilizar um contacto dos mesmos (por exemplo, e-mail);
-	\item garantir aos utilizadores da plataforma o acesso a interações como o seguimento de utilizadores, gostarem \textit{posts}, entre outros;
+	\item garantir aos utilizadores da plataforma o acesso a interações como o seguimento de utilizadores, gostarem de \textit{posts}, entre outros.
 \end{itemize}
 
 Levando em consideração os requisitos funcionais enumerados, foi tomada a decisão de elaborar o projeto em três componentes: 
