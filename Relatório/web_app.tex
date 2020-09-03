@@ -68,12 +68,26 @@ Para cada entidade (voluntários, organizações, \textit{posts} e eventos) exis
 Tal como já referido, o módulo Componentes é responsável por tratar a estruturação e apresentação da interface da aplicação assim como lidar com operações de \textit{input} por parte do utilizador. Como tal, este contém a definição de:
 
 \begin{itemize}
-	\item páginas, ou seja, o componente associado a uma página específica. Este componente define os sub-componentes que constituem a página (por exemplo, a página dos \textit{posts} é constituída por um formulário onde é possível criar um novo \textit{post} e uma lista dos \textit{posts} da plataforma);
-	\item componentes específicos por página, como por exemplo, uma lista de \textit{posts} ou um formulário para criar eventos;
-	\item componentes utilitários, responsáveis por apresentar certos aspetos comuns da aplicação.
+	\item \textbf{componentes página}. Estes componentes definem os sub-componentes que constituem a página (por exemplo, na figura 11, a página dos eventos é constituída por um formulário para criar um novo evento e a lista dos eventos existentes na plataforma);
+	\item \textbf{componentes específicos} por página, como por exemplo, uma lista de \textit{posts} ou um formulário para criar eventos;
+	\item \textbf{componentes utilitários}, responsáveis por apresentar certos aspetos comuns da aplicação.
 \end{itemize}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.38]{components_explained}
+	\caption{Exemplo de tipos de componentes na página dos eventos}
+\end{figure}
+
+\subsection{\textit{Deployment} da aplicação}
+
+A aplicação encontra-se acessível no endereço \href{https://tribute-app.duckdns.org/}{link}. A mesma foi \textit{deployed} utilizando uma máquina virtual do serviço \textit{Compute Engine} da \textit{Google Cloud Platform}.
+
+\bigskip
+
 \subsubsection{Classe Principal}
+
+A classe principal da aplicação instancia os serviços usados pelos componentes para efetuar pedidos à API e define também o roteamento da aplicação \textit{web}. No modo não autenticado, o acesso a quase todas as rotas da aplicação web é restringido. Apenas quando o cliente realiza autenticação com sucesso é permitido ao mesmo aceder às funcionalidades principais da aplicação.
 
 \iffalse
 
