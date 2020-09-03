@@ -1,12 +1,12 @@
 \section{\textit{Web App}}
 
-(descrição capítulo)
+Neste capítulo é abordado o desenvolvimento da aplicação \textit{web}. É realizada uma introdução, apresentando os objetivos e funcionalidades da mesma. São mostrados detalhes relativos à utilização da aplicação e, de seguida, apresenta-se o modelo de arquitetura utilizado no desenvolvimento da mesma. Por fim, refere-se como aceder à aplicação e define-se o seu processo de \textit{deployment}.
 
-\par \medskip
+\par \smallskip
 
 A aplicação \textit{web} é responsável por estabelecer uma interface sobre a qual as organizações podem interagir com a plataforma, disponibilizando às mesmas ferramentas que possibilitam a realização de operações como por exemplo a criação de \textit{posts} ou a realização de pesquisas sobre a plataforma.
 
-\par \medskip
+\par \smallskip
 
 Foram definidos alguns requisitos chave no início da conceptualização da aplicação, como por exemplo:
 
@@ -25,7 +25,7 @@ Levando em consideração que este componente foi desenvolvido especificamente p
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.38]{web_app_login_page}
+	\includegraphics[scale=.31]{web_app_login_page}
 	\caption{Interface de autenticação}
 \end{figure}
 
@@ -35,7 +35,7 @@ Nesta versão da aplicação, é permitido que sejam registados utilizadores do 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.38]{web_app_dashboard}
+	\includegraphics[scale=.31]{web_app_dashboard}
 	\caption{Interface de autenticação}
 \end{figure}
 
@@ -79,50 +79,75 @@ Tal como já referido, o módulo Componentes é responsável por tratar a estrut
 	\caption{Exemplo de tipos de componentes na página dos eventos}
 \end{figure}
 
-\subsection{\textit{Deployment} da aplicação}
-
-A aplicação encontra-se acessível no endereço \href{https://tribute-app.duckdns.org/}{link}. A mesma foi \textit{deployed} utilizando uma máquina virtual do serviço \textit{Compute Engine} da \textit{Google Cloud Platform}.
-
 \bigskip
 
 \subsubsection{Classe Principal}
 
 A classe principal da aplicação instancia os serviços usados pelos componentes para efetuar pedidos à API e define também o roteamento da aplicação \textit{web}. No modo não autenticado, o acesso a quase todas as rotas da aplicação web é restringido. Apenas quando o cliente realiza autenticação com sucesso é permitido ao mesmo aceder às funcionalidades principais da aplicação.
 
-\iffalse
+\subsection{\textit{Deployment} da aplicação}
 
-Neste capítulo apresentam-se detalhes relativos à conceptualização e desenvolvimento da aplicação \textit{web}. Após introduzir o componente, serão descritos os seus requisitos, seguindo com a descrição da arquitetura e módulos constituintes.
-
-\par \medskip
-
-A aplicação \textit{web} é responsável por estabelecer uma interface sobre a qual as organizações podem interagir com a plataforma, disponibilizando às mesmas ferramentas que possibilitam a realização de operações como por exemplo a criação de \textit{posts} ou a realização de pesquisas sobre a plataforma.
+A aplicação foi \textit{deployed} utilizando uma máquina virtual do serviço \textit{Compute Engine} da \textit{Google Cloud Platform}. Foram instaladas as ferramentas necessárias para executar a aplicação nesta máquina (nomeadamente \textit{Node.js}) e a mesma encontra-se instanciada numa das portas da VM. 
 
 \par \medskip
 
-Este componente foi desenvolvido usando a tecnologia React em conjunto com algumas bibliotecas adicionais, disponibilizadas sobre a plataforma NPM.
-
-\subsection{Tecnologia}
-
-Face à proposta de projeto, ouve uma alteração relativamente à tecnologia usada para desenvolver este componente. Numa abordagem inicial, foi tomada a decisão de desenvolver este módulo usando a ferramenta Angular.js. \par \medskip
-
-No entanto, após nova avaliação, optou-se por utilizar a tecnologia React. Esta alteração foi efetuada após verificar que React é a tecnologia mais usada no mercado à data da realização do projeto. \par \medskip
-
-\subsection{Funcionalidades e requisitos}
-
-Tendo em conta que este módulo é utilizado diretamente por um cliente humano, foi necessário desenvolver o mesmo de maneira a que este fosse o mais intuitivo e agradável de utilizar possível. 
+De maneira a lidar com pedidos CORS (Cross-Origin Resource Sharing), na máquina onde é executada a aplicação está instanciado um servidor \textit{web} Nginx. Este está configurado de maneira a redirecionar todos os pedidos que comecem com o preâmbulo /api para a máquina onde está \textit{deployed} a \textit{web} API. Todos os outros pedidos são redirecionados para a porta onde está a ser executada a aplicação \textit{web}.
 
 \par \medskip
 
-Para além deste requisito não funcional, é também necessário que este módulo cumpra com as seguintes necessidades:
+De maneira a associar um nome de domínio ao endereço IP da máquina onde está a ser executado o servidor \textit{web} foi utilizada a plataforma \textit{Duck DNS}, que permite reservar sem qualquer custo um número limitado de \textit{domain names}.
 
-\begin{itemize}
-	\item possibilitar a realização de operações simples de pesquisa (de voluntários, organizações, entre outros) sobre a API e apresentar os resultados destas. Estas pesquisas não necessitam de autenticação por parte do utilizador e estão disponíveis a todos os clientes da plataforma;
-	\item apresentação de uma página que indica a clientes da plataforma a aplicação sobre a qual os mesmos se podem registar e autenticar (remetendo voluntários para a aplicação móvel e organizações para a página de \textit{login} deste módulo);
-	\item permitir a autenticação de organizações e fornecer operações às mesmas que possibilitam a interação entre estas e a plataforma (criação de eventos e \textit{posts}, seguimentos de outros utilizadores).
-\end{itemize}
+\par \medskip
 
-\bigskip \bigskip
+Por fim, e utilizando as ferramentas disponibilizadas pela plataforma \textit{CertBot}, foi automaticamente emitido um certificado SSL e alterada a configuração do servidor \textit{Nginx} de maneira a que a plataforma aceitasse apenas comunicações através do protocolo HTTPS, garantindo segurança ponto-a-ponto entre máquina cliente e servidor \textit{web}.
 
-Este componente encontra-se em desenvolvimento na data da entrega da versão beta. Como tal, este capítulo apenas irá ser concluído no momento da entrega do projeto final.
+\par \medskip
 
-\fi
+A aplicação encontra-se acessível em \url{https://tribute-app.duckdns.org/}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -35,8 +35,8 @@
 \contentsline {subsection}{\numberline {6.2}Arquitetura}{24}{subsection.6.2}%
 \contentsline {subsubsection}{\numberline {6.2.1}API}{24}{subsubsection.6.2.1}%
 \contentsline {subsubsection}{\numberline {6.2.2}Componentes}{25}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Classe Principal}{26}{subsubsection.6.2.3}%
 \contentsline {subsection}{\numberline {6.3}\textit {Deployment} da aplicação}{26}{subsection.6.3}%
-\contentsline {subsubsection}{\numberline {6.3.1}Classe Principal}{26}{subsubsection.6.3.1}%
 \contentsline {section}{\numberline {7}Conclusão}{27}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Trabalho futuro}{28}{subsection.7.1}%
 \contentsline {section}{\numberline {8}Anexos}{31}{section.8}%
