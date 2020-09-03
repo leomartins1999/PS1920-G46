@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {notify} from "../../components/Notifications";
-import ImageForm from "../../components/ImageForm";
+import {notify} from "../../utils/Notifications";
+import ImageForm from "../../utils/ImageForm";
 
 function PostForm({service}) {
     const [text, setText] = useState("")

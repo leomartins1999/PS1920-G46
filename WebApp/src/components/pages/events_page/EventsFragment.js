@@ -1,7 +1,7 @@
 import React from "react";
 import renderEventCard from "./EventCard";
-import Loading from "../../components/Loading";
-import {notify} from "../../components/Notifications";
+import Loading from "../../utils/Loading";
+import {notify} from "../../utils/Notifications";
 
 class EventsFragment extends React.Component {
 

@@ -1,4 +1,4 @@
-import {API_BASE_PATH} from "../api/RequestExecutor";
+import {API_BASE_PATH} from "../../api/RequestExecutor";
 import React from "react";
 import {useImage} from "react-image";
 

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import Loading from "../../components/Loading";
+import Loading from "../../utils/Loading";
 import {CalendarIcon, LocationIcon, PersonIcon} from "@primer/octicons-react";
 import renderInterested from "./Interested";
-import Image from "../../components/Image";
-import {notify} from "../../components/Notifications";
-import ImageForm from "../../components/ImageForm";
+import Image from "../../utils/Image";
+import {notify} from "../../utils/Notifications";
+import ImageForm from "../../utils/ImageForm";
 
 function EventDisplay({service, volunteerService, event_id, session_id}) {
 

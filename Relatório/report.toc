@@ -32,12 +32,11 @@
 \contentsline {subsubsection}{\numberline {5.3.4}Modelo}{21}%
 \contentsline {section}{\numberline {6}\textit {Web App}}{23}%
 \contentsline {subsection}{\numberline {6.1}Utilização da web app}{23}%
-\contentsline {subsection}{\numberline {6.2}Sessão}{23}%
-\contentsline {subsection}{\numberline {6.3}Arquitetura}{23}%
-\contentsline {subsubsection}{\numberline {6.3.1}Páginas e componentes}{23}%
-\contentsline {subsubsection}{\numberline {6.3.2}Routing}{23}%
-\contentsline {subsubsection}{\numberline {6.3.3}API}{23}%
-\contentsline {section}{\numberline {7}Conclusão}{24}%
-\contentsline {subsection}{\numberline {7.1}Trabalho futuro}{25}%
-\contentsline {section}{\numberline {8}Anexos}{28}%
-\contentsline {subsection}{\numberline {8.1}API - Lista de \textit {endpoints}}{28}%
+\contentsline {subsection}{\numberline {6.2}Arquitetura}{24}%
+\contentsline {subsubsection}{\numberline {6.2.1}API}{24}%
+\contentsline {subsubsection}{\numberline {6.2.2}Componentes}{25}%
+\contentsline {subsubsection}{\numberline {6.2.3}Classe Principal}{25}%
+\contentsline {section}{\numberline {7}Conclusão}{26}%
+\contentsline {subsection}{\numberline {7.1}Trabalho futuro}{27}%
+\contentsline {section}{\numberline {8}Anexos}{30}%
+\contentsline {subsection}{\numberline {8.1}API - Lista de \textit {endpoints}}{30}%

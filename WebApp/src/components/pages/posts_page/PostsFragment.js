@@ -1,7 +1,7 @@
 import React from "react";
 import renderPostCard from "./PostCard";
-import Loading from "../../components/Loading";
-import {notify} from "../../components/Notifications";
+import Loading from "../../utils/Loading";
+import {notify} from "../../utils/Notifications";
 
 class PostsFragment extends React.Component {
 

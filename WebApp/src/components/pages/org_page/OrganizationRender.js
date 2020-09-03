@@ -1,7 +1,7 @@
 import {DeviceMobileIcon, GlobeIcon, MailIcon, PersonIcon} from "@primer/octicons-react";
-import ClickableIcon from "../../components/ClickableIcon";
+import ClickableIcon from "../../utils/ClickableIcon";
 import React from "react";
-import Image from "../../components/Image";
+import Image from "../../utils/Image";
 
 function OrganizationRender({org, stamp}) {
     return (

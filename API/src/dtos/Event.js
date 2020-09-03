@@ -14,7 +14,7 @@ var Event = /** @class */ (function () {
         this.name = name;
         this.description = description;
         this.location = location;
-        this.date = new Date(date + "T" + time + ":00").getTime();
+        this.date = (date && time) ? new Date(date + "T" + time + ":00").getTime() : null;
     }
     return Event;
 }());

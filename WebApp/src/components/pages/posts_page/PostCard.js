@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import {ThumbsupIcon} from "@primer/octicons-react";
-import {renderElementHeader} from "../../components/EntryHeader";
-import Image from "../../components/Image";
+import {renderElementHeader} from "../../utils/EntryHeader";
+import Image from "../../utils/Image";
 
 function PostCard({post_id, owner_id, owner_type, body, imageLink, likes, time, volunteerService, orgsService, likesPost, onLike}) {
     return (

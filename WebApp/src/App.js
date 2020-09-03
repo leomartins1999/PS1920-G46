@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 
-import NavBar from "./components/NavBar";
+import NavBar from "./components/utils/NavBar";
 
-import PostsPage from "./pages/posts_page/PostsPage";
-import VolunteersPage from "./pages/volunteers_page/VolunteersPage";
-import OrgsPage from "./pages/orgs_page/OrgsPage";
-import EventsPage from "./pages/events_page/EventsPage";
-import OrganizationPage from "./pages/org_page/OrganizationPage";
-import LoginPage from "./pages/login_page/LoginPage";
-import MobileAppPage from "./pages/mobile_app_page/MobileAppPage";
+import PostsPage from "./components/pages/posts_page/PostsPage";
+import VolunteersPage from "./components/pages/volunteers_page/VolunteersPage";
+import OrgsPage from "./components/pages/orgs_page/OrgsPage";
+import EventsPage from "./components/pages/events_page/EventsPage";
+import OrganizationPage from "./components/pages/org_page/OrganizationPage";
+import LoginPage from "./components/pages/login_page/LoginPage";
+import MobileAppPage from "./components/pages/mobile_app_page/MobileAppPage";
 
 import RequestExecutor from "./api/RequestExecutor"
 import VolunteersService from "./api/VolunteersService"
@@ -17,11 +17,11 @@ import OrgsService from "./api/OrgsService"
 import PostsService from "./api/PostsService"
 import EventsService from "./api/EventsService"
 import AuthService from "./api/AuthService"
-import RegisterPage from "./pages/register_page/RegisterPage";
-import EventPage from "./pages/event_page/EventPage";
-import VolunteerPage from "./pages/volunteer_page/VolunteerPage";
+import RegisterPage from "./components/pages/register_page/RegisterPage";
+import EventPage from "./components/pages/event_page/EventPage";
+import VolunteerPage from "./components/pages/volunteer_page/VolunteerPage";
 import {Notifications} from "react-push-notification";
-import {notify} from "./components/Notifications";
+import {notify} from "./components/utils/Notifications";
 
 const executor = RequestExecutor()
 

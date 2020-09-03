@@ -1,8 +1,8 @@
 import React from "react";
 import renderVolunteer from "./VolunteerCard";
 import {SearchIcon} from "@primer/octicons-react";
-import Loading from "../../components/Loading";
-import {notify} from "../../components/Notifications";
+import Loading from "../../utils/Loading";
+import {notify} from "../../utils/Notifications";
 
 class VolunteersFragment extends React.Component {
 

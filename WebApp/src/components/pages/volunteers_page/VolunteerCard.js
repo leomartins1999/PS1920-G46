@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../../components/Image";
+import Image from "../../utils/Image";
 
 function VolunteerCard({id, name, nrFollowers, nrFollowing}) {
 

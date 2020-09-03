@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react"
 import {DeviceMobileIcon, PersonIcon} from "@primer/octicons-react";
-import Loading from "../../components/Loading";
+import Loading from "../../utils/Loading";
 import OrganizationRender from "./OrganizationRender";
-import FollowButton from "../../components/FollowButton";
-import {notify} from "../../components/Notifications";
-import ImageForm from "../../components/ImageForm";
+import FollowButton from "../../utils/FollowButton";
+import {notify} from "../../utils/Notifications";
+import ImageForm from "../../utils/ImageForm";
 
 function OrganizationDisplay({service, org_id, id}) {
     const [org, setOrg] = useState({})

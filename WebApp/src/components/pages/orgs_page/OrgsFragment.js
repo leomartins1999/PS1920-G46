@@ -1,8 +1,8 @@
 import React from "react";
 import renderOrg from "./OrgCard";
-import Loading from "../../components/Loading";
+import Loading from "../../utils/Loading";
 import {SearchIcon} from "@primer/octicons-react";
-import {notify} from "../../components/Notifications";
+import {notify} from "../../utils/Notifications";
 
 class OrgsFragment extends React.Component {
 

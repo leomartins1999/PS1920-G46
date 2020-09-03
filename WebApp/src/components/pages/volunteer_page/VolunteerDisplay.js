@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import ClickableComponent from "../../components/ClickableIcon";
+import ClickableComponent from "../../utils/ClickableIcon";
 import {PersonIcon} from "@primer/octicons-react";
-import Loading from "../../components/Loading";
-import FollowButton from "../../components/FollowButton";
-import Image from "../../components/Image";
-import {notify} from "../../components/Notifications";
+import Loading from "../../utils/Loading";
+import FollowButton from "../../utils/FollowButton";
+import Image from "../../utils/Image";
+import {notify} from "../../utils/Notifications";
 
 function VolunteerDisplay({service, id, volunteer_id}) {
 

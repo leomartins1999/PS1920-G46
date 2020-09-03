@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {MailIcon, PersonIcon} from "@primer/octicons-react";
-import Loading from "../../components/Loading";
-import ClickableIcon from "../../components/ClickableIcon";
+import Loading from "../../utils/Loading";
+import ClickableIcon from "../../utils/ClickableIcon";
 
 function InterestedInEvent({id, service}) {
     const [volunteer, setVolunteer] = useState({})

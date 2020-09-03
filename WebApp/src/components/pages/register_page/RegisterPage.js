@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {notify} from "../../components/Notifications";
+import {notify} from "../../utils/Notifications";
 
 function RegisterPage({service, onLogin}) {
     const [email, setEmail] = useState("");

@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.String
 
-data class Event(private val json: JSONObject): Parcelable{
+data class Event(private val json: JSONObject) : Parcelable {
 
     val id: String = json.getString("_id")
     val owner_id: String = json.getString("owner_id")
@@ -18,7 +18,7 @@ data class Event(private val json: JSONObject): Parcelable{
     val name: String = json.getString("name")
     val description: String = json.getString("description")
 
-    val date = Date(json.getLong("date"))
+    val date = getDate(json)
     val location: String? = json.optString("location")
     val imageLink: String
         get() = getImageLink("events", id)
@@ -37,7 +37,12 @@ data class Event(private val json: JSONObject): Parcelable{
         return 0
     }
 
-    fun getDateString() = App.dateFormat.format(date)
+    private fun getDate(json: JSONObject): Date? {
+        val d = json.optLong("date")
+        return if (d == 0L) null else Date(d)
+    }
+
+    fun getDateString() = if (date == null) "" else App.dateFormat.format(date)
 
     override fun toString(): String {
         return "Event(id='$id', org_id='$owner_id', name='$name', description='$description', date='$date', location='$location', imageLink='$imageLink', nrInterested=$nrInterested,)"

@@ -1,6 +1,6 @@
 import React from "react";
-import {renderOrgHeader} from "../../components/EntryHeader";
-import Image from "../../components/Image";
+import {renderOrgHeader} from "../../utils/EntryHeader";
+import Image from "../../utils/Image";
 
 function EventCard({id, org_id, name, date, location, orgsService}) {
     return (
@@ -16,7 +16,7 @@ function EventCard({id, org_id, name, date, location, orgsService}) {
             <div className="card-footer d-inline-flex justify-content-center">
                 <div className="row container-fluid">
                     <div className="col-6 text-left">
-                        {new Date(date).toLocaleString()}
+                        {date ? new Date(date).toLocaleString() : ""}
                     </div>
                     <div className="col-6 text-right">
                         {location}

@@ -1,5 +1,5 @@
-//export const API_BASE_PATH = "http://localhost:8000/api"
-export const API_BASE_PATH = "https://tribute-app.duckdns.org/api"
+export const API_BASE_PATH = "http://localhost:8000/api"
+//export const API_BASE_PATH = "https://tribute-app.duckdns.org/api"
 
 function getRequestExecutor() {
     return {
@@ -47,19 +47,7 @@ function getRequestExecutor() {
             data: await readFile(file)
         }
 
-        const options = {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            mode: "cors",
-            credentials: "include",
-            body: JSON.stringify(body)
-        }
-
-        return fetch(`${API_BASE_PATH}${url}`, options)
-            .then(resp => resp.json())
-            .then(json => json.status === "error" ? Promise.reject(json.body) : Promise.resolve(json.body))
+        return put(url, body)
     }
 
     function executeRequest(method, url, body) {
