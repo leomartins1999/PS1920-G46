@@ -1,43 +1,43 @@
 \babel@toc {portuguese}{}
 \contentsline {section}{\numberline {1}Introdução}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Organização do relatório}{2}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Formulação do problema}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Problema Estudado}{5}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Objetivos Gerais}{5}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Estado da Arte}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Análise}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Requisitos Funcionais}{6}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Modelo de Arquitetura}{9}{section.3}%
-\contentsline {subsection}{\numberline {3.1}REST API}{10}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Aplicação \textit {Mobile}}{11}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Aplicação \textit {Web}}{11}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Tecnologias e ferramentas}{11}{subsection.3.4}%
-\contentsline {section}{\numberline {4}API}{13}{section.4}%
-\contentsline {subsection}{\numberline {4.1}API}{13}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Serviço}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Repositórios e acesso a base de dados}{14}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Base de Dados}{14}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Autenticação}{15}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Imagens}{15}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}Paginação e limitação de resultados}{15}{subsection.4.7}%
-\contentsline {subsection}{\numberline {4.8}Dados e imagens de utilizadores}{15}{subsection.4.8}%
-\contentsline {subsection}{\numberline {4.9}Documentação e definição da API}{16}{subsection.4.9}%
-\contentsline {section}{\numberline {5}\textit {Mobile App}}{17}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Navegabilidade e utilização da \textit {App}}{17}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Sessão}{18}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Arquitetura}{19}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}\textit {User Interface}}{19}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}API}{20}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Implementação de Sessão}{20}{subsubsection.5.3.3}%
-\contentsline {subsubsection}{\numberline {5.3.4}Modelo}{21}{subsubsection.5.3.4}%
-\contentsline {section}{\numberline {6}\textit {Web App}}{23}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Utilização da web app}{23}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Arquitetura}{24}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}API}{24}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}Componentes}{25}{subsubsection.6.2.2}%
-\contentsline {subsubsection}{\numberline {6.2.3}Classe Principal}{26}{subsubsection.6.2.3}%
-\contentsline {subsection}{\numberline {6.3}\textit {Deployment} da aplicação}{26}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Conclusão}{27}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Trabalho futuro}{28}{subsection.7.1}%
-\contentsline {section}{\numberline {8}Anexos}{31}{section.8}%
-\contentsline {subsection}{\numberline {8.1}API - Lista de \textit {endpoints}}{31}{subsection.8.1}%
+\contentsline {section}{\numberline {2}Formulação do problema}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Problema Estudado}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Objetivos Gerais}{3}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Estado da Arte}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Análise}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Requisitos Funcionais}{4}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Modelo de Arquitetura}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}REST API}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Aplicação \textit {Mobile}}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Aplicação \textit {Web}}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Tecnologias e ferramentas}{9}{subsection.3.4}%
+\contentsline {section}{\numberline {4}API}{11}{section.4}%
+\contentsline {subsection}{\numberline {4.1}API}{11}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Serviço}{12}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Repositórios e acesso a base de dados}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Base de Dados}{12}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Autenticação}{13}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Imagens}{13}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Paginação e limitação de resultados}{13}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}Dados e imagens de utilizadores}{13}{subsection.4.8}%
+\contentsline {subsection}{\numberline {4.9}Documentação e definição da API}{14}{subsection.4.9}%
+\contentsline {section}{\numberline {5}\textit {Mobile App}}{15}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Navegabilidade e utilização da \textit {App}}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Sessão}{16}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Arquitetura}{17}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}\textit {User Interface}}{17}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}API}{18}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Implementação de Sessão}{18}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.4}Modelo}{19}{subsubsection.5.3.4}%
+\contentsline {section}{\numberline {6}\textit {Web App}}{21}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Utilização da web app}{21}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Arquitetura}{22}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}API}{22}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Componentes}{23}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Classe Principal}{24}{subsubsection.6.2.3}%
+\contentsline {subsection}{\numberline {6.3}\textit {Deployment} da aplicação}{24}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Conclusão}{25}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Trabalho futuro}{26}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Anexos}{29}{section.8}%
+\contentsline {subsection}{\numberline {8.1}API - Lista de \textit {endpoints}}{29}{subsection.8.1}%
