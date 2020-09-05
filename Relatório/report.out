@@ -12,31 +12,30 @@
 \BOOKMARK [2][-]{subsection.3.3}{Aplica\347\343o Web}{section.3}% 12
 \BOOKMARK [2][-]{subsection.3.4}{Tecnologias e ferramentas}{section.3}% 13
 \BOOKMARK [1][-]{section.4}{API}{}% 14
-\BOOKMARK [2][-]{subsection.4.1}{API}{section.4}% 15
-\BOOKMARK [2][-]{subsection.4.2}{Servi\347o}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.3}{Reposit\363rios e acesso a base de dados}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.4}{Base de Dados}{section.4}% 18
-\BOOKMARK [2][-]{subsection.4.5}{Autentica\347\343o}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.6}{Imagens}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.7}{Pagina\347\343o e limita\347\343o de resultados}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.8}{Dados e imagens de utilizadores}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.9}{Documenta\347\343o e defini\347\343o da API}{section.4}% 23
-\BOOKMARK [1][-]{section.5}{Mobile App}{}% 24
-\BOOKMARK [2][-]{subsection.5.1}{Navegabilidade e utiliza\347\343o da App}{section.5}% 25
-\BOOKMARK [2][-]{subsection.5.2}{Sess\343o}{section.5}% 26
-\BOOKMARK [2][-]{subsection.5.3}{Arquitetura}{section.5}% 27
-\BOOKMARK [3][-]{subsubsection.5.3.1}{User Interface}{subsection.5.3}% 28
-\BOOKMARK [3][-]{subsubsection.5.3.2}{API}{subsection.5.3}% 29
-\BOOKMARK [3][-]{subsubsection.5.3.3}{Implementa\347\343o de Sess\343o}{subsection.5.3}% 30
-\BOOKMARK [3][-]{subsubsection.5.3.4}{Modelo}{subsection.5.3}% 31
-\BOOKMARK [1][-]{section.6}{Web App}{}% 32
-\BOOKMARK [2][-]{subsection.6.1}{Utiliza\347\343o da web app}{section.6}% 33
-\BOOKMARK [2][-]{subsection.6.2}{Arquitetura}{section.6}% 34
-\BOOKMARK [3][-]{subsubsection.6.2.1}{API}{subsection.6.2}% 35
-\BOOKMARK [3][-]{subsubsection.6.2.2}{Componentes}{subsection.6.2}% 36
-\BOOKMARK [3][-]{subsubsection.6.2.3}{Classe Principal}{subsection.6.2}% 37
-\BOOKMARK [2][-]{subsection.6.3}{Deployment da aplica\347\343o}{section.6}% 38
-\BOOKMARK [1][-]{section.7}{Conclus\343o}{}% 39
-\BOOKMARK [2][-]{subsection.7.1}{Trabalho futuro}{section.7}% 40
-\BOOKMARK [1][-]{section.8}{Anexos}{}% 41
-\BOOKMARK [2][-]{subsection.8.1}{API - Lista de endpoints}{section.8}% 42
+\BOOKMARK [2][-]{subsection.4.1}{Funcionalidades}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{Arquitetura}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Controladores}{subsection.4.2}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Servi\347os}{subsection.4.2}% 18
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Reposit\363rios}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Autentica\347\343o}{subsection.4.2}% 20
+\BOOKMARK [2][-]{subsection.4.3}{Base de dados}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.4}{Deployment da API}{section.4}% 22
+\BOOKMARK [1][-]{section.5}{Mobile App}{}% 23
+\BOOKMARK [2][-]{subsection.5.1}{Navegabilidade e utiliza\347\343o da App}{section.5}% 24
+\BOOKMARK [2][-]{subsection.5.2}{Sess\343o}{section.5}% 25
+\BOOKMARK [2][-]{subsection.5.3}{Arquitetura}{section.5}% 26
+\BOOKMARK [3][-]{subsubsection.5.3.1}{User Interface}{subsection.5.3}% 27
+\BOOKMARK [3][-]{subsubsection.5.3.2}{API}{subsection.5.3}% 28
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Implementa\347\343o de Sess\343o}{subsection.5.3}% 29
+\BOOKMARK [3][-]{subsubsection.5.3.4}{Modelo}{subsection.5.3}% 30
+\BOOKMARK [1][-]{section.6}{Web App}{}% 31
+\BOOKMARK [2][-]{subsection.6.1}{Utiliza\347\343o da web app}{section.6}% 32
+\BOOKMARK [2][-]{subsection.6.2}{Arquitetura}{section.6}% 33
+\BOOKMARK [3][-]{subsubsection.6.2.1}{API}{subsection.6.2}% 34
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Componentes}{subsection.6.2}% 35
+\BOOKMARK [3][-]{subsubsection.6.2.3}{Classe Principal}{subsection.6.2}% 36
+\BOOKMARK [2][-]{subsection.6.3}{Deployment da aplica\347\343o}{section.6}% 37
+\BOOKMARK [1][-]{section.7}{Conclus\343o}{}% 38
+\BOOKMARK [2][-]{subsection.7.1}{Trabalho futuro}{section.7}% 39
+\BOOKMARK [1][-]{section.8}{Anexos}{}% 40
+\BOOKMARK [2][-]{subsection.8.1}{API - Lista de endpoints}{section.8}% 41

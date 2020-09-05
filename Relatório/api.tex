@@ -1,10 +1,96 @@
 \section{API}
 
+(escrever introduçao dps xd)
+
+\medskip \par
+
+A \textit{web} API é responsável por estabelecer um serviço RESTful com o qual é possível comunicar sobre HTTPS e que implementa as funcionalidades da plataforma. Esta constitui o \textit{back-end} do projeto e como tal, funciona como fonte de dados para as aplicações cliente.
+
+\medskip \par
+
+Este módulo necessita de cumprir um conjunto de requisitos:
+
+\begin{itemize}
+	\item implementar as funcionalidades pretendidas da plataforma, como obtenção de listas de voluntários, registo por parte de utilizadores e outras operações;
+	\item interagir com a base de dados;
+	\item comunicar sobre HTTPS e suportar autenticação por parte dos clientes;
+\end{itemize}
+
+\medskip \par
+
+Tendo em conta o \textit{stack} tecnológico selecionado para desenvolver este projeto, a API foi  desenvolvida em Typescript (sendo que o código é compilado para Javascript) e a mesma é instanciada usando Node.js.
+
+\subsection{Funcionalidades}
+
+(operações (n esquecer hosting de imagens))
+
+(referir que definição de endpoint está na wiki)
+
+(autenticação)
+
+(paginação)
+
+\subsection{Arquitetura}
+
+(geral arquitetura)
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.35]{api_architeture}
+	\caption{Diagrama de arquitetura da API}
+\end{figure}
+
+(explicamos diagrama)
+
+(explicar classe main da aplicação - passagem router, etc.)
+
+\subsubsection{Controladores}
+
+(explicar funcionalidade)
+
+(acesso a serviço correspondente)
+
+(passagem dos parametros no body/query/... para a função de serviço... etc)
+
+\subsubsection{Serviços}
+
+(funcionalidade)
+
+(relação de hierarquia com base service)
+
+(chamada a repositórios)
+
+\subsubsection{Repositórios}
+
+(funcionalidade)
+
+(relação com base repository e explicar base repository)
+
+(falar de base repository e mongoquery)
+
+\subsubsection{Autenticação}
+
+(uso de passport.js)
+
+(suporta autenticação à base de cookies)
+
+\subsection{Base de dados}
+
+(acesso à base de dados através da driver)
+
+(talk about mongodb)
+
+\subsection{Deployment da API}
+
+xd
+
+\iffalse
+
 A \textit{Web} API (Figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP, o \textit{Service} é responsável por implementar a lógica do sistema. Existem ainda os \textit{repositórios} (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o \textit{índice de imagens} (responsável por tratar todas as operações associadas às mesmas).~\cite{nodejs_the_right_way}\par \medskip
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.50]{api_architeture}
+	\includegraphics[scale=.35]{api_architeture}
 	\caption{Diagrama de arquitetura da API}
 \end{figure}
 
@@ -56,3 +142,5 @@ Dada a natureza deste projeto, todos os dados (perfis/fotos/\textit{posts}) ser�
 
 \subsection{Documentação e definição da API}
 Toda a documentação sobre as regras e indicações relativamente à utilização desta API encontram-se na \textit{wiki} do repositório do projeto, sendo que o acesso será avaliado quando solicitado aos autores. Esta \textit{wiki} contém informações relativamente à definição mais explícita dos \textit{endpoints}, erros, entre outros.
+
+\fi
