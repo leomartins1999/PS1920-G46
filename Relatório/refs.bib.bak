@@ -8,7 +8,7 @@
   url    = {https://www.onlinevolunteering.org/},
 }
 
-@Online{estatistica_2019,
+@WWW{estatistica_2019,
   author = {Instituto Nacional de Estatística},
   editor = {Instituto Nacional de Estatística},
   date   = {2019-07-19},
@@ -25,7 +25,7 @@
          = {Decreto Lei nº 71/98 de 3 de Novembro. Diário da República n.º 254/1998, Série I-A de 1998-11-03. Assembleia da República. Lisboa},
 }
 
-@Online{bolsa_voluntariado,
+@WWW{bolsa_voluntariado,
   author = {Entrajuda},
   editor = {Entrajuda},
   date   = {2006-01-01},
@@ -50,12 +50,39 @@
   url    = {https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d},
 }
 
+@Book{oreilly_web_apis,
+  author = {Brenda Jin, Saurabh Sahni, Amir Shevat},
+  date   = {2018-09-01},
+  title  = {Designing Web APIs},
+}
+
+@Book{lauret_design_web_apis,
+  author = {Arnaud Lauret},
+  date   = {2019-11-06},
+  title  = {The Design of Web APIs},
+}
+
 @Book{nodejs_the_right_way,
   author = {Jim R. Wilson},
   date   = {2018-01-01},
   title  = {Node.js 8 the Right Way},
 }
 
-@Comment{jabref-meta: databaseType:biblatex;}
+@WWW{mean_stack_ref,
+  author       = {Coding Dojo},
+  editor       = {Coding Dojo},
+  date         = {2020-05-02},
+  title        = {What is MEAN stack},
+  url          = {https://www.codingdojo.com/what-is-the-mean-stack},
+  organization = {Coding Dojo},
+}
 
-@Comment{jabref-meta: fileDirectoryLatex-A43591-Leo-Desktop:C:\\Users\\A43591\\Desktop\\PS\\PS1920-G46\\Relatório;}
+@WWW{common_jetpack_architecture,
+  author = {Android Jetpack},
+  editor = {Android Jetpack},
+  date   = {2020-09-07},
+  title  = {Common architectural principles},
+  url    = {https://developer.android.com/jetpack/guide#common-principles},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

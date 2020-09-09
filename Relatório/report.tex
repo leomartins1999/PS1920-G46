@@ -20,8 +20,11 @@
 % graphics package
 \usepackage{graphicx}
 
-% pog
+% links to chapters
 \usepackage{hyperref}
+
+% fix references
+\usepackage{notoccite}
 
 % graphics configuration
 \graphicspath{{./images/}}
@@ -79,9 +82,13 @@
 \input{conclusion}
 \newpage
 
-\input{bib_ref}
-
-\newpage~\newpage
-\input{annex}
+% bibliography
+\bibliographystyle{unsrturl}
+\bibliography{bibrefs}
 
 \end{document}
+
+
+
+
+

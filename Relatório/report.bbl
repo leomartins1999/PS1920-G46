@@ -1,31 +1,88 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{estatistica_2019}
-Instituto~Nacional de~Estatística.
+\bibitem{INE2019}
+{Instituto Nacional de Estatística}.
 \newblock Inquérito ao trabalho voluntário, 2019.
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_destaques&DESTAQUESdest_boui=379956830&DESTAQUESmodo=2&xlang=pt}.
 
-\bibitem{decreto_lei_71/98}
+\bibitem{Republica1998}
 Assembleia da~República.
 \newblock Decreto lei nº 71/98 de 3 de novembro.
+\newblock Diário da República n.º 254/1998, Série I-A de 1998-11-03.
+  Acedido a 09/09/2020.
+\newblock URL: \url{https://dre.pt/pesquisa/-/search/223016/details/maximized}.
 
-\bibitem{bolsa_voluntariado}
+\bibitem{Entrajuda2006}
 Entrajuda.
 \newblock Bolsa do voluntariado.
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://bolsadovoluntariado.pt}.
 
-\bibitem{online_volunteering}
-United Nations.
+\bibitem{UniNations}
+{United Nations}.
 \newblock Online volunteering.
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://www.onlinevolunteering.org/}.
 
-\bibitem{mean_stack_explained}
-Jeremy~M Williams.
+\bibitem{Williams2017}
+Jeremy Williams.
 \newblock What is the mean stack ?
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://medium.com/@jeremyvsjeremy/what-is-the-mean-stack-9d11ae2cd384}.
 
-\bibitem{angular_vs_react}
+\bibitem{Cooke2020}
+Poppy Cooke.
+\newblock {MERN Stack image}.
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://morioh.com/p/aa75193629a7}.
+
+\bibitem{SCGS2020}
+{StatCounter: Global Stats}.
+\newblock Mobile operating system market share worldwide.
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://gs.statcounter.com/os-market-share/mobile/worldwide}.
+
+\bibitem{Leiva2017}
+Antonio Leiva.
+\newblock {\em Kotlin for Android Developers}.
+\newblock Lean Publishing, 2017.
+
+\bibitem{TechMagic2020}
 TechMagic.
 \newblock React vs angular vs vue.js — what to choose in 2020?
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d}.
 
-\bibitem{nodejs_the_right_way}
+\bibitem{Wilson2018}
 Jim~R. Wilson.
 \newblock {\em Node.js 8 the Right Way}.
+\newblock Pragmatic Bookshelf, 2018.
+
+\bibitem{Lauret2019}
+Arnaud Lauret.
+\newblock {\em The Design of Web APIs}.
+\newblock Manning Publications, 2019.
+
+\bibitem{Block2014}
+Glenn Block, Pablo Cibraro, Pedro Felix, Howard Dierking, and Darrel Miller.
+\newblock {\em Designing Evolvable Web APIs with ASP.NET}.
+\newblock O’Reilly Media, Inc., 2014.
+
+\bibitem{Gargenta2014}
+Marko Gargenta and Masumi Nakamura.
+\newblock {\em Learning Android: Develop Mobile Apps Using Java and Eclipse}.
+\newblock O’Reilly Media, Inc, 2014.
+
+\bibitem{AndroidJetpack2020}
+{Android Jetpack}.
+\newblock Common architectural principles.
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://developer.android.com/jetpack/guide#common-principles}.
 
 \end{thebibliography}

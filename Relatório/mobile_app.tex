@@ -1,34 +1,37 @@
-\section{\textit{Mobile App}}
 
-Este capítulo descreve o desenvolvimento e implementação da aplicação móvel. O mesmo é composto por uma introdução, seguindo-se a apresentação da navegação na aplicação e a arquitetura da mesma. Por fim, discute-se a implementação de cada sub-módulo da arquitetura.
 
-\bigskip \bigskip
-
-A aplicação móvel é uma interface de utilizador desenvolvida em \textit{Android} com o intuito de ser utilizada por voluntários.
-
-\par \bigskip \bigskip
-
-Este módulo contém alguns requisitos chave que são necessários para garantir a usabilidade da mesma por parte dos seus utilizadores. Alguns dos requisitos são:
-
-\begin{itemize}
-	\item garantir que possam ver os \textit{posts} e eventos que estão registados na plataforma;
-	\item possibilitar que possam gostar \textit{posts}, seguir utilizadores e registarem-se em eventos (ou seja, implementar a interação de uma rede social);
-	\item existência do conceito sessão de maneira a terem uma experiência personalizada, e possibilitar que possam editar o seu perfil, efetuar \textit{posts}, entre outros.
-\end{itemize}
-
-\bigskip
-
-Tal como já foi referido anteriormente, foi tomada a decisão de implementar esta aplicação no sistema operativo Android seguindo as orientações dadas pelo Android Jetpack e um conjunto de bibliotecas auxiliares.
-
-\bigskip \bigskip
+\pagebreak
+\hspace{0pt}
+\vfill
+{
+	\section{\textit{Mobile App}}
+	Este capítulo descreve o desenvolvimento e implementação da aplicação móvel. O mesmo é composto por uma introdução, seguindo-se a apresentação da navegação na aplicação e a arquitetura da mesma. Por fim, discute-se a implementação de cada sub-módulo da arquitetura.
+	
+	\par \medskip
+	
+	A aplicação móvel é uma interface de utilizador desenvolvida em \textit{Android} com o intuito de ser utilizada por voluntários.
+	
+	\par \medskip
+	
+	Este módulo contém alguns requisitos chave que são necessários para garantir a usabilidade da mesma por parte dos seus utilizadores. Alguns destes são:
+	
+	\begin{itemize}
+		\item facilitar aos mesmos a consulta de \textit{posts}, eventos, voluntários e organizações da plataforma;
+		\item permitir que estes possam registar-se e autenticar-se na aplicação;
+		\item possibilitar aos utilizadores autenticados a realização de operações como o seguimento de outros utilizadores e gosto de \textit{posts};
+	\end{itemize}
+	
+	\par \medskip
+	
+	Tal como já foi referido anteriormente, foi tomada a decisão de implementar esta aplicação no sistema operativo Android seguindo as orientações dadas pelo Android Jetpack e um conjunto de bibliotecas auxiliares~\cite{Gargenta2014}.
+}
+\vfill
+\hspace{0pt}
+\pagebreak
 
 \subsection{Navegabilidade e utilização da \textit{App}}
 
-\bigskip
-
-A interface gráfica foi desenhada para ser simples de utilizar e o mais intuitiva possível. O grafo de navegação da mesma é ilustrado na Figura 7.
-
-\newpage
+Foi desenvolvida uma interface gráfica baseada no grafo de navegação ilustrado na Figura 6.
 
 \begin{figure}[h]
 	\centering
@@ -44,21 +47,18 @@ Foram desenvolvidas quatro vistas principais de pesquisa (\textit{posts}, volunt
 
 De maneira a garantir uma experiência personalizada para cada cliente deste módulo, foram desenvolvidos ecrãs e mecanismos de de registo e autenticação de clientes.
 
-\bigskip
-
-A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como ``gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs irão ter uma vista personalizada, tal como exemplificado na Figura 8.
-
-\newpage
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.70]{unauthenticated_vs_authenticated}
 	\caption{Representação do ecrã ``Voluntários'' no estado não autenticado (esquerda) e no estado autenticado (direita) como o utilizador ``Utilizador exemplo''.}
 \end{figure}
 
+A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como ``gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs irão ter uma vista personalizada, tal como exemplificado na Figura 7.
+
 \subsection{Arquitetura}
 
-A arquitetura da aplicação é constituída por três sub-módulos principais: UI (User Interface), API e Modelo.
+Levando em consideração que este projeto utiliza o conjunto de guias dadas pelo Android Jetpack,
+a arquitetura da aplicação é a recomendada e, como tal, é constituída por três sub-módulos principais: UI (User Interface), API e Modelo~\cite{AndroidJetpack2020}.
 
 \medskip
 
@@ -76,7 +76,7 @@ Este sub-módulo engloba todos os componentes do projeto que são responsáveis 
 
 \subsubsection{API}
 
-O sub-módulo API (Figura 9) serve como \textit{proxy} entre a aplicação e a Web API. Este dispõe de um serviço que disponibiliza todas as rotas acessíveis pelos voluntários e sobre o mesmo é possível solicitar a realização de pedidos à API (como a obtenção de voluntários ou o seguimento, por parte do utilizador autenticado, de uma organização). O mesmo é assíncrono e funciona à base de \textit{callbacks}.
+O sub-módulo API (Figura 8) serve como \textit{proxy} entre a aplicação e a Web API. Este dispõe de um serviço que disponibiliza todas as rotas acessíveis pelos voluntários e sobre o mesmo é possível solicitar a realização de pedidos à API (como a obtenção de voluntários ou o seguimento, por parte do utilizador autenticado, de uma organização). O mesmo é assíncrono e funciona à base de \textit{callbacks}.
 
 \begin{figure}[h]
 	\centering
@@ -84,7 +84,7 @@ O sub-módulo API (Figura 9) serve como \textit{proxy} entre a aplicação e a W
 	\caption{Arquitetura do sub-módulo API}
 \end{figure}
 
-O realizador de pedidos trata da implementação dos métodos HTTP suportados pela Web API (GET, POST, PUT, DELETE) de forma genérica, de maneira a que o mesmo possa ser utilizado pelos controladores. Os pedidos HTTP são efetuados usando a biblioteca \textit{Volley}.
+O realizador de pedidos trata da implementação dos métodos HTTP suportados pela Web API (GET, POST, PUT, DELETE) de forma genérica, de maneira a que o mesmo possa ser utilizado pelos controladores. Os pedidos HTTPS são efetuados usando a biblioteca \textit{Volley}.
 
 \medskip
 

@@ -1,6 +1,6 @@
 \section{API}
 
-(escrever introduçao dps xd)
+Neste capítulo, é dado ênfase ao desenvolvimento da API. Como tal, é realizada uma introdução, onde são definidos os requisitos da mesma e é, de maneira reduzida, referidas as tecnologias utilizadas no desenvolvimento desta. De seguida, é apresentada a conceptualização da plataforma e as operações que esta suporta, passando posteriormente para a definição da sua arquitetura e seus sub-módulos. O capítulo é concluído com a realização de uma referência relativamente à base de dados e ao \textit{deployment} da plataforma.
 
 \medskip \par
 
@@ -18,129 +18,101 @@ Este módulo necessita de cumprir um conjunto de requisitos:
 
 \medskip \par
 
-Tendo em conta o \textit{stack} tecnológico selecionado para desenvolver este projeto, a API foi  desenvolvida em Typescript (sendo que o código é compilado para Javascript) e a mesma é instanciada usando Node.js.
+Tendo em conta o \textit{stack} tecnológico selecionado para desenvolver este projeto, a API foi  desenvolvida em Typescript (sendo que o código é compilado para Javascript) e a mesma é instanciada usando Node.js~\cite{Wilson2018}.
 
-\subsection{Funcionalidades}
+\subsection{Conceptualização}
 
-(operações (n esquecer hosting de imagens))
+Tendo em consideração que está a ser desenvolvida uma rede social de voluntariado, foi necessário definir as entidades que estariam disponíveis na plataforma. 
 
-(referir que definição de endpoint está na wiki)
+\par \medskip
 
-(autenticação)
+Relativamente aos utilizadores da plataforma, foram constituídos dois tipos: \textbf{voluntários} e \textbf{organizações}. É necessário haver esta distinção dado que na organização de uma ação de voluntariado estes são dois dos sujeitos participantes mais importantes: aqueles que a organizam (organizações) e aqueles que auxiliam a mesma voluntariamente (voluntários).
 
-(paginação)
+\par \medskip
+
+Sendo o propósito da plataforma divulgar este tipo de ações - é necessário definir mais uma entidade: \textbf{eventos}. Estes representam eventos de voluntariado (organizados por organizações registadas na plataforma) que já ocorreram ou que irão ocorrer. É importante também definir que voluntários podem colocar-se como \textit{interessados} num evento - sendo que a partir do momento que estes o façam, é disponibilizado à organização dona do evento o seu contacto.
+
+\par \medskip
+
+Dada a natureza da plataforma é necessário permitir que os utilizadores da plataforma (voluntários e organizações) possam ter uma identidade social de maneira a distinguirem-se dos outros. Sendo assim, foi definido que os utilizadores podem editar o seu perfil (com descrições, contatos e imagens) e realizar \textit{\textbf{posts}}, sendo possível a outros interagir com estes aspetos (na forma de \textit{gostar de posts} e \textit{seguir outro utilizador}).
+ 
+\subsection{Operações}
+
+Levando em consideração o conceito da plataforma definido previamente, inicializou-se então a constituição de funcionalidades da API. Definiram-se operações (invocadas através de \textit{endpoints}) que permitem a clientes da plataforma interagir com a mesma, na forma de:
+
+\begin{itemize}
+	\item consultar voluntários, organizações, \textit{posts} e eventos;
+	\item possibilitar que utilizadores possam criar e editar o seu perfil;
+	\item criar \textit{posts} e eventos;
+	\item seguir outros utilizadores, gostar de \textit{posts} e ainda marcar o interesse num evento;
+\end{itemize}
+
+A referência a todas estas operações está presente na \textit{wiki} do projeto e encontra-se anexada a este relatório.
 
 \subsection{Arquitetura}
 
-(geral arquitetura)
+A \textit{Web} API, representada na Figura 5, é composta por três módulos: \textbf{controladores}, \textbf{serviços} e \textbf{repositórios} e ainda uma classe principal, responsável por inicializar o servidor e efetuar configurações relacionadas com autenticação e definição de \textit{endpoints}~\cite{Lauret2019,Block2014}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.35]{api_architeture}
+	\includegraphics[scale=.30]{api_architeture}
 	\caption{Diagrama de arquitetura da API}
 \end{figure}
 
-(explicamos diagrama)
-
-(explicar classe main da aplicação - passagem router, etc.)
+Resumidamente, os controladores têm como responsabilidade a definição de \textit{endpoints} e a realização de chamadas as serviço, o serviço trata a implementação da lógica da aplicação e realização de chamadas aos repositórios e os repositórios são responsáveis por aceder à base de dados.
 
 \subsubsection{Controladores}
 
-(explicar funcionalidade)
+Tal como já referido, estes definem os \textit{endpoints} existentes na API e invocam o serviço correspondente. No início da execução da aplicação, é instanciada um controlador para cada entidade existente (voluntários, organizações, \textit{posts} e eventos), sendo que nessa instanciação são definidos \textit{endpoints} utilizando o Router do Express.
 
-(acesso a serviço correspondente)
+\medskip \par
 
-(passagem dos parametros no body/query/... para a função de serviço... etc)
+Os controladores tratam também de recolher os parâmetros provenientes nos pedidos HTTPS (contidos no caminho, na \textit{query string}, e no corpo do pedido) e passar os mesmos às funções do serviço, sendo que independentemente do sucesso ou não destas, estes lidam também com a realização das respostas HTTPS.
 
 \subsubsection{Serviços}
 
-(funcionalidade)
+Para cada controlador, existe associado a este um serviço. Neste, são definidas as funções que o controlador invoca de maneira a executar a operação pretendida pelo cliente da API.
 
-(relação de hierarquia com base service)
+\medskip \par
 
-(chamada a repositórios)
+Todos os serviços têm uma relação hierárquica de extensão com um serviço base, onde se encontram definidos estaticamente os repositórios de acesso à base de dados. 
+
+\medskip \par
+
+Os serviços, fazendo uso dos repositórios, interagem com a base de dados para implementar a lógica das operações, sendo que o resultado destas é devolvido assincronamente ao controlador.
 
 \subsubsection{Repositórios}
 
-(funcionalidade)
+Os repositórios têm como função interagir com a base de dados e devolver o resultado das operações efetuadas assincronamente ao serviço, de maneira a este cumprir a operação solicitada.
 
-(relação com base repository e explicar base repository)
+\medskip \par
 
-(falar de base repository e mongoquery)
+Cada objeto repositório contém uma referência para uma instância de repositório base. Este repositório base é definido genericamente e contém a implementação de operações CRUD sobre a base de dados.
 
 \subsubsection{Autenticação}
 
-(uso de passport.js)
+De maneira a garantir que os clientes da aplicação possam ter uma experiência personalizada, esta API suporta autenticação através do uso de Passport.js, configurado de maneira a fazer uso de \textit{web cookies}. A partir do momento que um utilizador tem sucesso no processo de autenticação na plataforma, todos os seus pedidos contêm informação relativamente à sessão do mesmo.
 
-(suporta autenticação à base de cookies)
+\medskip \par
+
+Certas operações na API estão protegidas de maneira a que utilizadores não autenticados não as possam efetuar (como por exemplo a realização de um \textit{post} ou a alteração de um perfil). De maneira a que um utilizador possa aceder a estas, é necessário que este tenha realizado autenticação previamente (e por sua vez, tenha realizado registo na plataforma anteriormente) e que o cliente \textit{web} utilizado por este suporte a utilização de \textit{cookies}.
 
 \subsection{Base de dados}
 
-(acesso à base de dados através da driver)
+Foi tomada a decisão de utilizar MongoDB. MongoDB é um motor de base de dados noSQL, isto é, apresenta um modelo não relacional através da utilização de coleções e documentos.
 
-(talk about mongodb)
+\medskip \par
+
+Esta escolha implica que todos os documentos numa coleção não necessitam de ter a mesma estrutura, algo que traz alguma flexibilidade e agilidade no processo de desenvolvimento sobre esta plataforma. Outra característica interessante é que os documentos seguem o formato JSON, algo que torna a integração destes dados com a aplicação simples (devido ao uso de Javascript).
+
+\medskip \par
+
+O motor foi selecionado não só para hospedar os dados associados às entidades mas também para albergar o conteúdo das imagens fornecidas pelos utilizadores.
 
 \subsection{Deployment da API}
 
-xd
+Tendo em consideração o meio em que o projeto foi desenvolvido, foi tomada a decisão de hospedar a base de dados na máquina onde está \textit{deployed} a API (hospedada no serviço Compute Engine da Google Cloud Platform). Contudo, seria mais interessante do ponto de vista de escalabilidade se a mesma fosse hospedada remotamente (através de uma solução \textit{cloud} como o Amazon Web Services ou a Google Cloud Platform).
 
-\iffalse
+\medskip \par
 
-A \textit{Web} API (Figura 5) é composta por dois módulos principais (API e Service) e um conjunto de módulos auxiliares. Enquanto que a API lida com pedidos e respostas HTTP, o \textit{Service} é responsável por implementar a lógica do sistema. Existem ainda os \textit{repositórios} (sendo que cada um se responsabiliza por implementar a sua própria lógica de acesso à base de dados) e o \textit{índice de imagens} (responsável por tratar todas as operações associadas às mesmas).~\cite{nodejs_the_right_way}\par \medskip
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=.35]{api_architeture}
-	\caption{Diagrama de arquitetura da API}
-\end{figure}
-
-\subsection{API}
-Este módulo é responsável por definir os \textit{endpoints} e lidar com a receção e envio dos pedidos/respostas HTTP. Cada \textit{endpoint} tem associada uma função que efetua a chamada ao módulo de serviço correspondente à operação solicitada pelo utilizador. \par \medskip
-
-Encontra-se anexado a este relatório a lista de endpoints da API (anexo 1). Foram implementados os \textit{endpoints} que os autores consideraram necessários para garantir o funcionamento da plataforma. É de notar que todos os pedidos definidos têm o preâmbulo \textit{/api} e que os que começam por \textit{/auth} necessitam de autenticação prévia por parte do cliente da API. \par \medskip
-
-Para além das funções já referidas, são também definidos (e utilizados) \textit{middlewares} nesta camada de maneira a garantir o cumprimento da necessidade de autenticação aquando de certas operações. A API é ainda responsável por transformar os parâmetros dados pelo cliente através do \textit{URL}, da \textit{query string} e do corpo do pedido (e do objecto sessão quando aplicável) para objetos conhecidos pelo \textit{serviço}. \medskip
-
-\subsection{Serviço}
-O módulo \textit{Service} cumpre a função de implementar a lógica da aplicação, isto é, garantir que as operações chamadas a partir da API se materializam em mudanças no modelo deste componente, seja a nível de base de dados ou tratamento de operações relativamente às imagens, entre outros. \par \medskip
-
-Este módulo tem as seguintes responsabilidades:
-\begin{itemize}
-	\item verificar a validade dos parâmetros fornecidos pela API;
-	\item executar as chamadas necessárias aos módulos adjacentes (\textit{repositories} e \textit{pictures}) de maneira a cumprir a operação solicitada (quer esta seja a inserção em base de dados ou a recolha de informações para verificar a lógica necessária);
-	\item implementar a lógica da aplicação, isto é, quando necessário, efetuar as verificações necessárias e gerar os objetos a colocar/alterar na base de dados.
-\end{itemize}
-
-\subsection{Repositórios e acesso a base de dados}
-Para cada índice na base de dados, existe uma variação de implementação de \textit{Repository}. Estas implementações fornecem métodos específicos para inserir/modificar/apagar entradas dos índices (coleção de documentos, como por exemplo: voluntários ou organizações) aos quais se referem. Estes repositórios, por sua vez, têm acesso a uma instância de \textit{BaseRepository} gerada especificamente para si (isto é, inicializada com argumentos personalizados consoante o índice). \par \medskip
-
-\textit{BaseRepository} é uma infra-estrutura implementada de maneira a ser genérica para todos os índices e que fornece implementações das operações CRUD usuais como também a possibilidade de gerar os índices de pesquisa necessários para efetuar pesquisas por valor de campos nas tabelas. \par \medskip
-
-\subsection{Base de Dados}
-O motor de base de dados escolhido foi o MongoDB que é um motor \textit{noSQL}. Este apresenta um modelo não relacional, tipicamente utilizado no desenvolvimento de redes sociais. Esta escolha é justificada pelas seguintes razões:
-
-\begin{itemize}
-	\item flexibilidade. Tendo em conta que as plataformas desta natureza têm tipicamente um crescimento rápido, é necessário que a implementação de novas funcionalidades seja um processo ágil. Num modelo \textit{SQL}, por vezes é despendido tempo de implementação a efetuar estas alterações, algo que não é necessário neste caso porque os documentos não têm um esquema fortemente definido, podendo ser inseridos dinamicamente (dois documentos com características diferentes podem ser inseridos no mesmo índice);
-	\item integração com Javascript. Os documentos inseridos nesta base de dados têm um formato JSON, algo que se integra facilmente com esta tecnologia.
-\end{itemize} 
-
-\subsection{Autenticação}
-A componente autenticação deste módulo foi desenvolvida através da ferramenta Passport.js. Esta é tipicamente utilizada em conjunto com Express e permite a fácil implementação dum objeto \textit{sessão} através do uso de \textit{cookies}. \par \medskip
-
-Aquando do pedido de autenticação bem sucedido por parte de um cliente da API, são guardadas um conjunto de características identificadoras da sessão do mesmo para que se possa personalizar a sua experiência, e neste caso, permitir ao mesmo que possa fazer o carregamento de imagens, criar um \textit{post}, entre outros. \par \medskip
-
-\subsection{Imagens}
-De maneira a implementar na sua totalidade um conceito de rede social, nesta aplicação é permitido o carregamento de imagens para a plataforma. Estas são divididas por índices, consoante a sua classe (aquilo que elas referem) e guardadas. \par \medskip
-
-O carregamento de imagens para esta plataforma é apenas possível para utilizadores autenticados, no entanto, o descarregamento das mesmas é possível a qualquer cliente da API.
-
-\subsection{Paginação e limitação de resultados}
-Todas as operações da API que tenham como resultado um conjunto de entidades (por exemplo, um conjunto de \textit{posts}), retornam por omissão um número fixo de resultados. Contudo, a nossa API suporta paginação e \textit{skipping} (isto é, saltar resultados) através dos parâmetros \textit{limit} e \textit{skip} da \textit{query string}.
-
-\subsection{Dados e imagens de utilizadores}
-Dada a natureza deste projeto, todos os dados (perfis/fotos/\textit{posts}) serão públicos para todos, e como tal, aquando do registo nas aplicações cliente, os utilizadores das mesmas serão sensibilizados relativamente à visibilidade dos seus dados.
-
-\subsection{Documentação e definição da API}
-Toda a documentação sobre as regras e indicações relativamente à utilização desta API encontram-se na \textit{wiki} do repositório do projeto, sendo que o acesso será avaliado quando solicitado aos autores. Esta \textit{wiki} contém informações relativamente à definição mais explícita dos \textit{endpoints}, erros, entre outros.
-
-\fi
+A máquina virtual foi configurada com os recursos necessários (como o Node.js) e, numa primeira fase, a aplicação foi instanciada para testes. De maneira a atribuir um nome de domínio ao endereço IP da máquina, foi utilizado o serviço Duck DNS e de seguida, utilizando o CertBot, foi emitido um certificado SSL de maneira a garantir que fosse possível a instanciação da aplicação num modo em que as comunicações fossem realizadas sobre o protocolo HTTPS.

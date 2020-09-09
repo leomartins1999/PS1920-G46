@@ -4,7 +4,7 @@ Este capítulo começa por introduzir o \textit{stack} tecnológico sobre o qual
 
 O modelo de arquitetura do presente projeto, apresentado na Figura 4, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
 
-Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o \textit{stack} MEAN \textit{stack}~\cite{mean_stack_explained} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na Figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
+Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o \textit{stack} MEAN \textit{stack}~\cite{Williams2017} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na Figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
 \begin{itemize}
 	\item familiaridade dos autores com algumas destas tecnologias (como Express.js e Node.js);
 	\item \textit{stack} utilizado no desenvolvimento de múltiplas aplicações, o que leva a existência de uma grande quantidade de recursos, como documentação e exemplos;
@@ -15,7 +15,7 @@ Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.35]{mern2}
-	\caption{Tecnologias do \textit{stack} MERN (MongoDB, Express.js, React.js, Node.js)}
+	\caption{Tecnologias do \textit{stack} MERN (MongoDB, Express.js, React.js, Node.js)~\cite{Cooke2020}}
 \end{figure}
 
 Relativamente à API, esta estabelece \textit{endpoints} onde é possível executar pedidos HTTPS de maneira a suportar autenticação e operações na infraestrutura (criação de perfil, “seguimento” de organização, inscrição em ação de voluntariado, etc.), constituindo o \textit{back-end} do projeto.
@@ -52,16 +52,16 @@ O servidor é também responsável por hospedar a base de dados, que usa o motor
 A aplicação \textit{mobile} foi desenvolvida para a plataforma Android em Kotlin. A mesma segue os princípios definidos pelo Android Jetpack, que disponibiliza ferramentas e bibliotecas que auxiliam o desenvolvimento da aplicação. As razões que levaram a esta decisão foram:
 \begin{itemize}
 	\item familiaridade dos autores com esta linguagem de programação e ferramentas (Android Jetpack);
-	\item a nível de quota de mercado dos sistemas operativos de dispositivos móveis, o Android é o mais prevalente;
-	\item o Kotlin é uma das linguagens oficiais para desenvolvimento de aplicações móveis para Android.
+	\item a nível de quota de mercado dos sistemas operativos de dispositivos móveis, o Android é o mais prevalente~\cite{SCGS2020};
+	\item o Kotlin é uma das linguagens oficiais para desenvolvimento de aplicações móveis para Android~\cite{Leiva2017}.
 \end{itemize}
 
 \subsection{Aplicação \textit{Web}}
-A aplicação \textit{web} foi desenvolvida em React~\cite{angular_vs_react}. Escolheu-se esta tecnologia pelas seguintes razões:
+A aplicação \textit{web} foi desenvolvida em React. Escolheu-se esta tecnologia pelas seguintes razões:
 
 \begin{itemize}
 	\item familiaridade dos autores com esta ferramenta;
-	\item quota de mercado (relativamente às \textit{frameworks} de Javascript utilizadas para o desenvolvimento de aplicações \textit{web}) significativa, sendo atualmente a tecnologia mais usada~\cite{angular_vs_react};
+	\item quota de mercado (relativamente às \textit{frameworks} de Javascript utilizadas para o desenvolvimento de aplicações \textit{web}) significativa, sendo atualmente a tecnologia mais usada~\cite{TechMagic2020};
 	\item fácil integração com as outras ferramentas do projeto.
 \end{itemize}
 
