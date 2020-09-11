@@ -46,7 +46,7 @@ class EventsFragment extends React.Component {
         return (
             <div className="card border-primary m-3">
                 <div className="card-header text-center">
-                    Check your events
+                    Check events for you
                     <input type="checkbox" className="ml-3" onChange={this.filterEvents}/>
                 </div>
                 <div className="card-body">

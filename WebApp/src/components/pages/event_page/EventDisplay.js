@@ -135,7 +135,7 @@ function EventDisplay({service, volunteerService, event_id, session_id}) {
                 <div className="card-header h2">{event.name}</div>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{event.description}</p>
-                    <Image type={'events'} id={event._id} cache={stamp}/>
+                    <Image type={'events'} id={event._id} cache={stamp} width="25rem"/>
                     <div/>
                     <div className="d-inline-flex justify-content-center">
                         <LocationIcon size={24}/>

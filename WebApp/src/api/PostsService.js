@@ -16,10 +16,7 @@ function getPostsService(executor){
     }
 
     function getPosts(owner_id) {
-        let url = "/posts"
-        if (owner_id) url = url.concat(`?owner_id=${owner_id}`)
-
-        return executor.get(url)
+        return executor.get(owner_id ? '/auth/posts' : "/posts");
     }
 
     function likePost(post_id){

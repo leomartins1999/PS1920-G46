@@ -49,7 +49,7 @@ class PostsFragment extends React.Component {
         return (
             <div className="card border-primary m-3">
                 <div className="card-header text-center">
-                    Check your posts
+                    Check posts for you
                     <input type="checkbox" className="ml-3" onChange={this.filterPosts}/>
                 </div>
                 <div className="card-body">

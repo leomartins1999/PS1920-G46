@@ -12,7 +12,7 @@ function PostCard({post_id, owner_id, owner_type, body, imageLink, likes, time, 
             </div>
             <div className="card-body text-center">
                 <p className="text-justify m-3">{body}</p>
-                <Image type='posts' id={post_id} link={imageLink}/>
+                <Image type='posts' id={post_id} link={imageLink} width="20rem"/>
             </div>
             <div className="card-footer d-inline-flex justify-content-center">
                 <div className="row container-fluid">

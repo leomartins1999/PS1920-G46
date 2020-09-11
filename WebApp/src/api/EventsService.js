@@ -14,7 +14,7 @@ function getEventsService(executor){
 
     function getEvents(org_id) {
         return executor.get(
-            org_id ? `/events?owner_id=${org_id}` : '/events'
+            org_id ? `/auth/events` : '/events'
         )
     }
 

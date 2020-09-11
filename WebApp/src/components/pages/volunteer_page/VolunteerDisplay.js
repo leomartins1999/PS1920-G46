@@ -35,7 +35,7 @@ function VolunteerDisplay({service, id, volunteer_id}) {
         <div>
             <div className="card border-primary m-3">
                 <div className="card-header h2">{volunteer.name}</div>
-                <Image type={'volunteers'} id={volunteer._id} fb="images/volunteer.svg"/>
+                <Image type={'volunteers'} id={volunteer._id} fb="images/volunteer.svg" width="20rem"/>
                 <div className="card-body text-center">
                     <p className="text-justify m-3">{volunteer.description}</p>
                     <div className="d-inline-flex mb-3">

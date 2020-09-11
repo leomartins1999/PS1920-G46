@@ -11,7 +11,7 @@ function EventCard({id, org_id, name, date, location, orgsService}) {
             <div className="card-body text-center">
                 <a href={`/events/${id}`} className="h3 text-center">{name}</a>
                 <div/>
-                <Image type={'events'} id={id}/>
+                <Image type={'events'} id={id} width="20rem"/>
             </div>
             <div className="card-footer d-inline-flex justify-content-center">
                 <div className="row container-fluid">
