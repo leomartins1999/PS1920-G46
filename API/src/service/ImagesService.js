@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Structures_1 = require("../Structures");
 var BaseService_1 = require("./BaseService");
 /**
@@ -76,7 +76,7 @@ var ImagesService = /** @class */ (function (_super) {
                         else {
                             image = new Buffer(body, "base64");
                         }
-                        return [4 /*yield*/, BaseService_1.default.imageRepository.setImage(type, id, image)];
+                        return [4 /*yield*/, BaseService_1["default"].imageRepository.setImage(type, id, image)];
                     case 1:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?
@@ -118,7 +118,7 @@ var ImagesService = /** @class */ (function (_super) {
             var post;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.postRepo.getPostById(post_id)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].postRepo.getPostById(post_id)];
                     case 1:
                         post = _a.sent();
                         if (post.owner_id != user_id)
@@ -136,7 +136,7 @@ var ImagesService = /** @class */ (function (_super) {
             var event;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.eventRepository.getEventById(event_id)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].eventRepository.getEventById(event_id)];
                     case 1:
                         event = _a.sent();
                         if (event.owner_id != user_id)
@@ -150,8 +150,8 @@ var ImagesService = /** @class */ (function (_super) {
      * retrieves an image
      */
     ImagesService.prototype.getImage = function (type, id) {
-        return BaseService_1.default.imageRepository.getImageById(Structures_1.getImageTypeForString(type), id);
+        return BaseService_1["default"].imageRepository.getImageById(Structures_1.getImageTypeForString(type), id);
     };
     return ImagesService;
-}(BaseService_1.default));
-exports.default = ImagesService;
+}(BaseService_1["default"]));
+exports["default"] = ImagesService;

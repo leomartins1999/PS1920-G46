@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Repository_1 = require("./Repository");
 var MongoQuery_1 = require("../MongoQuery");
 /**
@@ -15,7 +15,7 @@ var FILTER = ['_id', 'owner_id', 'name'];
  */
 var EventRepository = /** @class */ (function () {
     function EventRepository(db_name) {
-        this.repository = new Repository_1.default(db_name, COLLECTION_NAME, FILTER);
+        this.repository = new Repository_1["default"](db_name, COLLECTION_NAME, FILTER);
     }
     /**
      * inserts an event in the collection
@@ -27,7 +27,7 @@ var EventRepository = /** @class */ (function () {
      * gets events from collection
      */
     EventRepository.prototype.getEvents = function (limit, skip, owner_id) {
-        var query = new MongoQuery_1.default(limit, skip)
+        var query = new MongoQuery_1["default"](limit, skip)
             .searchFor('owner_id', owner_id)
             .sortBy('date', false);
         return this.repository.select(query);
@@ -38,7 +38,7 @@ var EventRepository = /** @class */ (function () {
     EventRepository.prototype.getEventsForOwners = function (ids, limit, skip) {
         if (ids.length === 0)
             return Promise.resolve([]);
-        var query = new MongoQuery_1.default(limit, skip)
+        var query = new MongoQuery_1["default"](limit, skip)
             .filterInArray('owner_id', ids)
             .sortBy('date', false);
         return this.repository.select(query);
@@ -53,10 +53,10 @@ var EventRepository = /** @class */ (function () {
      * updates a specific event
      */
     EventRepository.prototype.updateEvent = function (id, updates) {
-        var query = new MongoQuery_1.default()
+        var query = new MongoQuery_1["default"]()
             .searchById(id);
         return this.repository.update(query, updates);
     };
     return EventRepository;
 }());
-exports.default = EventRepository;
+exports["default"] = EventRepository;

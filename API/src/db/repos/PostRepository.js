@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Repository_1 = require("./Repository");
 var MongoQuery_1 = require("../MongoQuery");
 /**
@@ -15,7 +15,7 @@ var FILTER = ['_id', 'owner_id', 'time'];
  */
 var PostRepository = /** @class */ (function () {
     function PostRepository(db_name) {
-        this.repository = new Repository_1.default(db_name, COLLECTION_NAME, FILTER);
+        this.repository = new Repository_1["default"](db_name, COLLECTION_NAME, FILTER);
     }
     /**
      * inserts a post in the collection
@@ -29,7 +29,7 @@ var PostRepository = /** @class */ (function () {
     PostRepository.prototype.getPostsForOwners = function (limit, skip, ids) {
         if (ids.length === 0)
             return Promise.resolve([]);
-        var query = new MongoQuery_1.default(limit, skip)
+        var query = new MongoQuery_1["default"](limit, skip)
             .filterInArray('owner_id', ids)
             .sortBy('time', false);
         return this.repository.select(query);
@@ -38,7 +38,7 @@ var PostRepository = /** @class */ (function () {
      * retrieves posts from the collection
      */
     PostRepository.prototype.getPosts = function (limit, skip, owner_id) {
-        var query = new MongoQuery_1.default(limit, skip)
+        var query = new MongoQuery_1["default"](limit, skip)
             .searchFor('owner_id', owner_id)
             .sortBy('time', false);
         return this.repository.select(query);
@@ -53,10 +53,10 @@ var PostRepository = /** @class */ (function () {
      * updates a specific post
      */
     PostRepository.prototype.updatePost = function (id, post) {
-        var query = new MongoQuery_1.default()
+        var query = new MongoQuery_1["default"]()
             .searchById(id);
         return this.repository.update(query, post);
     };
     return PostRepository;
 }());
-exports.default = PostRepository;
+exports["default"] = PostRepository;

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Repository_1 = require("./src/db/repos/Repository");
 var express = require('express');
 var session = require("express-session");
@@ -65,13 +65,13 @@ var MAX_FILE_SIZE = '50mb';
 // router
 var router = express.Router();
 // setting up services and controllers
-var middlewareController = new MiddlewareController_1.default(router);
-var authController = new AuthController_1.default(new AuthService_1.default(), router);
-var volunteersController = new VolunteersController_1.default(new VolunteersService_1.default(), router);
-var orgsController = new OrgsController_1.default(new OrgsService_1.default(), router);
-var postsController = new PostsController_1.default(new PostsService_1.default(), router);
-var eventsController = new EventsController_1.default(new EventsService_1.default(), router);
-var imagesController = new ImagesController_1.default(new ImagesService_1.default(), router);
+var middlewareController = new MiddlewareController_1["default"](router);
+var authController = new AuthController_1["default"](new AuthService_1["default"](), router);
+var volunteersController = new VolunteersController_1["default"](new VolunteersService_1["default"](), router);
+var orgsController = new OrgsController_1["default"](new OrgsService_1["default"](), router);
+var postsController = new PostsController_1["default"](new PostsService_1["default"](), router);
+var eventsController = new EventsController_1["default"](new EventsService_1["default"](), router);
+var imagesController = new ImagesController_1["default"](new ImagesService_1["default"](), router);
 // handling other uris
 router.use('/', function (req, res) { return RequestHandler_1.handleError(res, 404, new Structures_1.Error("Unknown uri " + req.originalUrl)); });
 // express plugins

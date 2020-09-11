@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var hash = require('@sindresorhus/fnv1a');
 var BaseService_1 = require("./BaseService");
 var Structures_1 = require("../Structures");
@@ -69,16 +69,16 @@ var AuthService = /** @class */ (function (_super) {
             var users, id;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.userRepository.getUserByMail(mail)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].userRepository.getUserByMail(mail)];
                     case 1:
                         users = _a.sent();
                         if (users.length > 0)
                             return [2 /*return*/, Promise.reject(new Structures_1.Error('User already registered with this email.'))];
-                        return [4 /*yield*/, BaseService_1.default.userRepository.insertUser(new User_1.default(mail, password, Structures_1.UserType.Volunteer))];
+                        return [4 /*yield*/, BaseService_1["default"].userRepository.insertUser(new User_1["default"](mail, password, Structures_1.UserType.Volunteer))];
                     case 2:
                         id = _a.sent();
                         volunteer.setId(id);
-                        return [2 /*return*/, BaseService_1.default.volunteerRepo.insertVolunteer(volunteer)];
+                        return [2 /*return*/, BaseService_1["default"].volunteerRepo.insertVolunteer(volunteer)];
                 }
             });
         });
@@ -91,16 +91,16 @@ var AuthService = /** @class */ (function (_super) {
             var users, id;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.userRepository.getUserByMail(mail)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].userRepository.getUserByMail(mail)];
                     case 1:
                         users = _a.sent();
                         if (users.length > 0)
                             return [2 /*return*/, Promise.reject(new Structures_1.Error('User already registered with this email.'))];
-                        return [4 /*yield*/, BaseService_1.default.userRepository.insertUser(new User_1.default(mail, password, Structures_1.UserType.Org))];
+                        return [4 /*yield*/, BaseService_1["default"].userRepository.insertUser(new User_1["default"](mail, password, Structures_1.UserType.Org))];
                     case 2:
                         id = _a.sent();
                         org.setId(id);
-                        return [2 /*return*/, BaseService_1.default.orgRepo.insertOrg(org)];
+                        return [2 /*return*/, BaseService_1["default"].orgRepo.insertOrg(org)];
                 }
             });
         });
@@ -113,7 +113,7 @@ var AuthService = /** @class */ (function (_super) {
             var users, user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.userRepository.getUserByMail(mail)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].userRepository.getUserByMail(mail)];
                     case 1:
                         users = _a.sent();
                         if (users.length <= 0)
@@ -127,5 +127,5 @@ var AuthService = /** @class */ (function (_super) {
         });
     };
     return AuthService;
-}(BaseService_1.default));
-exports.default = AuthService;
+}(BaseService_1["default"]));
+exports["default"] = AuthService;

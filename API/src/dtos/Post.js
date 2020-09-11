@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Post = /** @class */ (function () {
     function Post(owner_id, user_type, body) {
         this.time = Date.now();
@@ -14,4 +14,4 @@ var Post = /** @class */ (function () {
     }
     return Post;
 }());
-exports.default = Post;
+exports["default"] = Post;

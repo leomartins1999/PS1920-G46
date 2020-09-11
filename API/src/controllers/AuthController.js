@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 var Org_1 = require("../dtos/Org");
 var Volunteer_1 = require("../dtos/Volunteer");
@@ -15,8 +15,8 @@ var AuthController = /** @class */ (function () {
          */
         this.register = function (req, res) {
             RequestHandler_1.handleRequest(function () { return req.body.user_type === 'volunteer' ?
-                _this.service.registerVolunteer(req.body.mail, req.body.password, new Volunteer_1.default(req.body.data)) :
-                _this.service.registerOrg(req.body.mail, req.body.password, new Org_1.default(req.body.data)); }, res, 201);
+                _this.service.registerVolunteer(req.body.mail, req.body.password, new Volunteer_1["default"](req.body.data)) :
+                _this.service.registerOrg(req.body.mail, req.body.password, new Org_1["default"](req.body.data)); }, res, 201);
         };
         /**
          * login route handler
@@ -24,8 +24,7 @@ var AuthController = /** @class */ (function () {
         this.login = function (req, res) {
             try {
                 _this.service.login(req.body.mail, req.body.password)
-                    .then(function (session) { return req.login(session, function (_) { return RequestHandler_1.handleSuccess(res, 200, { user_details: req.user }); }); })
-                    .catch(function (err) { return RequestHandler_1.handleError(res, 400, err); });
+                    .then(function (session) { return req.login(session, function (_) { return RequestHandler_1.handleSuccess(res, 200, { user_details: req.user }); }); })["catch"](function (err) { return RequestHandler_1.handleError(res, 400, err); });
             }
             catch (e) {
                 RequestHandler_1.handleError(res, 500, e);
@@ -56,4 +55,4 @@ var AuthController = /** @class */ (function () {
     };
     return AuthController;
 }());
-exports.default = AuthController;
+exports["default"] = AuthController;

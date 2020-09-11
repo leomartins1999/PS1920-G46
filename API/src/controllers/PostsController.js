@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 /**
  * defines endpoints related to posts
@@ -45,4 +45,4 @@ var PostsController = /** @class */ (function () {
     };
     return PostsController;
 }());
-exports.default = PostsController;
+exports["default"] = PostsController;

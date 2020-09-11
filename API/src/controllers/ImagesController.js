@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 /**
  * defines endpoints related to images
@@ -14,8 +14,7 @@ var ImagesController = /** @class */ (function () {
             try {
                 _this.service
                     .getImage(req.params.type, req.params.id)
-                    .then(function (body) { return ImagesController.sendImage(res, body); })
-                    .catch(function (err) { return RequestHandler_1.handleError(res, 404, err); });
+                    .then(function (body) { return ImagesController.sendImage(res, body); })["catch"](function (err) { return RequestHandler_1.handleError(res, 404, err); });
             }
             catch (e) {
                 RequestHandler_1.handleError(res, 500, e);
@@ -67,4 +66,4 @@ var ImagesController = /** @class */ (function () {
     };
     return ImagesController;
 }());
-exports.default = ImagesController;
+exports["default"] = ImagesController;

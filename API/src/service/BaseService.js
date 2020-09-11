@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var VolunteerRepository_1 = require("../db/repos/VolunteerRepository");
 var OrgRepository_1 = require("../db/repos/OrgRepository");
 var PostRepository_1 = require("../db/repos/PostRepository");
@@ -140,12 +140,12 @@ var BaseService = /** @class */ (function () {
             });
         });
     };
-    BaseService.volunteerRepo = new VolunteerRepository_1.default(DB_NAME);
-    BaseService.orgRepo = new OrgRepository_1.default(DB_NAME);
-    BaseService.postRepo = new PostRepository_1.default(DB_NAME);
-    BaseService.eventRepository = new EventRepository_1.default(DB_NAME);
-    BaseService.imageRepository = new ImageRepository_1.default(DB_NAME);
-    BaseService.userRepository = new UserRepository_1.default(DB_NAME);
+    BaseService.volunteerRepo = new VolunteerRepository_1["default"](DB_NAME);
+    BaseService.orgRepo = new OrgRepository_1["default"](DB_NAME);
+    BaseService.postRepo = new PostRepository_1["default"](DB_NAME);
+    BaseService.eventRepository = new EventRepository_1["default"](DB_NAME);
+    BaseService.imageRepository = new ImageRepository_1["default"](DB_NAME);
+    BaseService.userRepository = new UserRepository_1["default"](DB_NAME);
     return BaseService;
 }());
-exports.default = BaseService;
+exports["default"] = BaseService;

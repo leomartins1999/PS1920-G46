@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.dbUrl = void 0;
 var mongodb_1 = require("mongodb");
 var MongoQuery_1 = require("../MongoQuery");
@@ -79,8 +79,7 @@ var Repository = /** @class */ (function () {
         var _this = this;
         this.accessCollection()
             .then(function (col) { return col.createIndex(descriptor); })
-            .then(function (_) { return console.log("Success creating index for " + _this.collection_name); })
-            .catch(function (err) { return console.log("Error creating index for " + _this.collection_name + " - " + err); });
+            .then(function (_) { return console.log("Success creating index for " + _this.collection_name); })["catch"](function (err) { return console.log("Error creating index for " + _this.collection_name + " - " + err); });
     };
     /**
      * applies filter to updates to be made in object so that some fields cannot be changed
@@ -101,18 +100,16 @@ var Repository = /** @class */ (function () {
             .then(function (col) { return col.insertOne(object); })
             .then(function (res) { return res.result.ok ?
             Promise.resolve(new Structures_1.Id(res.insertedId)) :
-            Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); })
-            .catch(function (_) { return Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); });
+            Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); })["catch"](function (_) { return Promise.reject(new Structures_1.Error("Insert failed on " + _this.collection_name)); });
     };
     /**
      * select documents from the collection using the given query
      */
     Repository.prototype.select = function (query) {
         var _this = this;
-        if (query === void 0) { query = new MongoQuery_1.default(); }
+        if (query === void 0) { query = new MongoQuery_1["default"](); }
         return this.accessCollection()
-            .then(function (col) { return col.find(query.query, query.options).toArray(); })
-            .catch(function (_) { return Promise.reject(new Structures_1.Error("Error executing select on " + _this.collection_name + ".")); });
+            .then(function (col) { return col.find(query.query, query.options).toArray(); })["catch"](function (_) { return Promise.reject(new Structures_1.Error("Error executing select on " + _this.collection_name + ".")); });
     };
     /**
      * selects a specific document by its id
@@ -123,7 +120,7 @@ var Repository = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = new MongoQuery_1.default()
+                        query = new MongoQuery_1["default"]()
                             .searchById(id);
                         return [4 /*yield*/, this.select(query)];
                     case 1:
@@ -144,8 +141,7 @@ var Repository = /** @class */ (function () {
             .then(function (col) { return col.updateMany(query.query, { $set: _this.applyFilter(update) }, { upsert: true }); })
             .then(function (res) { return res.matchedCount > 0 || res.upsertedCount > 0 ?
             Promise.resolve(new Structures_1.Status('success', true)) :
-            Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + ".")); })
-            .catch(function (_) { return Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + ".")); });
+            Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + ".")); })["catch"](function (_) { return Promise.reject(new Structures_1.Error("Update failed on " + _this.collection_name + ".")); });
     };
     /**
      * removes selected documents of the collection
@@ -156,9 +152,8 @@ var Repository = /** @class */ (function () {
             .then(function (col) { return col.deleteMany(query.query); })
             .then(function (res) { return res.result.ok ?
             Promise.resolve(new Structures_1.Status('success', true)) :
-            Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + ".")); })
-            .catch(function (_) { return Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + ".")); });
+            Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + ".")); })["catch"](function (_) { return Promise.reject(new Structures_1.Error("Delete failed on " + _this.collection_name + ".")); });
     };
     return Repository;
 }());
-exports.default = Repository;
+exports["default"] = Repository;

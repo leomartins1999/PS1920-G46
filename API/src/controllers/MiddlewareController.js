@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 var Structures_1 = require("../Structures");
 /**
@@ -35,4 +35,4 @@ var MiddlewareController = /** @class */ (function () {
     };
     return MiddlewareController;
 }());
-exports.default = MiddlewareController;
+exports["default"] = MiddlewareController;

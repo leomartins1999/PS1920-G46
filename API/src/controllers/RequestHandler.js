@@ -2,7 +2,7 @@
 /*
   this file exports functions used to handle requests
 */
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.handleError = exports.handleSuccess = exports.handleRequest = void 0;
 /**
  * handle request function
@@ -16,8 +16,7 @@ function handleRequest(serviceFunction, res, successStatusCode, errorStatusCode)
     if (errorStatusCode === void 0) { errorStatusCode = 400; }
     try {
         serviceFunction()
-            .then(function (result) { return handleSuccess(res, successStatusCode, result); })
-            .catch(function (err) { return handleError(res, errorStatusCode, err); });
+            .then(function (result) { return handleSuccess(res, successStatusCode, result); })["catch"](function (err) { return handleError(res, errorStatusCode, err); });
     }
     catch (e) {
         console.log(e);

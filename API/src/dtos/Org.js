@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Org = /** @class */ (function () {
     function Org(_a) {
         var name = _a.name, description = _a.description, phone = _a.phone, siteLink = _a.siteLink, facebookLink = _a.facebookLink, linkedinLink = _a.linkedinLink;
@@ -25,4 +25,4 @@ var Org = /** @class */ (function () {
     };
     return Org;
 }());
-exports.default = Org;
+exports["default"] = Org;

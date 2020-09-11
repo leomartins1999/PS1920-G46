@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var BaseService_1 = require("./BaseService");
 var MongoQuery_1 = require("../db/MongoQuery");
 var Post_1 = require("../dtos/Post");
@@ -67,7 +67,7 @@ var PostsService = /** @class */ (function (_super) {
     PostsService.prototype.getPosts = function (limit, skip, owner_id) {
         if (limit === void 0) { limit = MongoQuery_1.DEFAULT_LIMIT; }
         if (skip === void 0) { skip = MongoQuery_1.DEFAULT_SKIP; }
-        return BaseService_1.default.postRepo.getPosts(limit, skip, owner_id);
+        return BaseService_1["default"].postRepo.getPosts(limit, skip, owner_id);
     };
     /**
      * retrieves posts for authenticated user
@@ -92,7 +92,7 @@ var PostsService = /** @class */ (function (_super) {
      * adds a post
      */
     PostsService.prototype.addPost = function (owner_id, user_type, description) {
-        return BaseService_1.default.postRepo.insertPost(new Post_1.default(owner_id, user_type, description));
+        return BaseService_1["default"].postRepo.insertPost(new Post_1["default"](owner_id, user_type, description));
     };
     /**
      * likes post
@@ -102,7 +102,7 @@ var PostsService = /** @class */ (function (_super) {
             var post, updateResult;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.postRepo.getPostById(post_id)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].postRepo.getPostById(post_id)];
                     case 1:
                         post = _a.sent();
                         if (post.likes[user_id])
@@ -110,7 +110,7 @@ var PostsService = /** @class */ (function (_super) {
                         else
                             post.likes[user_id] = user_type;
                         post.nrLikes = Object.keys(post.likes).length;
-                        return [4 /*yield*/, BaseService_1.default.postRepo.updatePost(post_id, post)];
+                        return [4 /*yield*/, BaseService_1["default"].postRepo.updatePost(post_id, post)];
                     case 2:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?
@@ -121,5 +121,5 @@ var PostsService = /** @class */ (function (_super) {
         });
     };
     return PostsService;
-}(BaseService_1.default));
-exports.default = PostsService;
+}(BaseService_1["default"]));
+exports["default"] = PostsService;

@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var BaseService_1 = require("./BaseService");
 var MongoQuery_1 = require("../db/MongoQuery");
 var Structures_1 = require("../Structures");
@@ -67,13 +67,13 @@ var VolunteersService = /** @class */ (function (_super) {
         if (limit === void 0) { limit = MongoQuery_1.DEFAULT_LIMIT; }
         if (skip === void 0) { skip = MongoQuery_1.DEFAULT_SKIP; }
         if (name === void 0) { name = null; }
-        return BaseService_1.default.volunteerRepo.getVolunteers(limit, skip, name);
+        return BaseService_1["default"].volunteerRepo.getVolunteers(limit, skip, name);
     };
     /**
      * retrieves a specific volunteer
      */
     VolunteersService.prototype.getVolunteerById = function (id) {
-        return BaseService_1.default.volunteerRepo.getVolunteerById(id);
+        return BaseService_1["default"].volunteerRepo.getVolunteerById(id);
     };
     /**
      * fetches the mail of a volunteer
@@ -83,7 +83,7 @@ var VolunteersService = /** @class */ (function (_super) {
             var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.userRepository.getUserById(volunteer_id)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].userRepository.getUserById(volunteer_id)];
                     case 1:
                         user = _a.sent();
                         if (user.user_type != Structures_1.UserType.Volunteer)
@@ -104,7 +104,7 @@ var VolunteersService = /** @class */ (function (_super) {
                     case 0:
                         if (user_id != volunteer_id)
                             return [2 /*return*/, Promise.reject(new Structures_1.Error("Unauthorized operation."))];
-                        return [4 /*yield*/, BaseService_1.default.volunteerRepo.updateVolunteer(volunteer_id, updates)];
+                        return [4 /*yield*/, BaseService_1["default"].volunteerRepo.updateVolunteer(volunteer_id, updates)];
                     case 1:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?
@@ -115,5 +115,5 @@ var VolunteersService = /** @class */ (function (_super) {
         });
     };
     return VolunteersService;
-}(BaseService_1.default));
-exports.default = VolunteersService;
+}(BaseService_1["default"]));
+exports["default"] = VolunteersService;

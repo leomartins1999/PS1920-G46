@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * representation of event
  */
@@ -18,4 +18,4 @@ var Event = /** @class */ (function () {
     }
     return Event;
 }());
-exports.default = Event;
+exports["default"] = Event;

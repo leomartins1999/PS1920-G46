@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Repository_1 = require("./Repository");
 var Image_1 = require("../../dtos/Image");
 var MongoQuery_1 = require("../MongoQuery");
@@ -49,7 +49,7 @@ var COLLECTION_NAME = 'images';
  */
 var ImageRepository = /** @class */ (function () {
     function ImageRepository(db_name) {
-        this.repository = new Repository_1.default(db_name, COLLECTION_NAME);
+        this.repository = new Repository_1["default"](db_name, COLLECTION_NAME);
     }
     /**
      * generates image id from type and object id
@@ -62,9 +62,9 @@ var ImageRepository = /** @class */ (function () {
      */
     ImageRepository.prototype.setImage = function (type, id, body) {
         var image_id = ImageRepository.generateImageId(type, id);
-        var query = new MongoQuery_1.default()
+        var query = new MongoQuery_1["default"]()
             .searchFor('id', image_id);
-        return this.repository.update(query, new Image_1.default(image_id, body));
+        return this.repository.update(query, new Image_1["default"](image_id, body));
     };
     /**
      * retrieves an image by its type and id
@@ -76,7 +76,7 @@ var ImageRepository = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         image_id = ImageRepository.generateImageId(type, id);
-                        query = new MongoQuery_1.default()
+                        query = new MongoQuery_1["default"]()
                             .searchFor('id', image_id);
                         return [4 /*yield*/, this.repository.select(query)];
                     case 1:
@@ -90,4 +90,4 @@ var ImageRepository = /** @class */ (function () {
     };
     return ImageRepository;
 }());
-exports.default = ImageRepository;
+exports["default"] = ImageRepository;

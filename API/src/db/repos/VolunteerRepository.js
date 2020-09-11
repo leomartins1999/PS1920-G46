@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Repository_1 = require("./Repository");
 var MongoQuery_1 = require("../MongoQuery");
 /**
@@ -19,7 +19,7 @@ var INDEX_DESCRIPTORS = [{ name: 'text' }];
  */
 var VolunteerRepository = /** @class */ (function () {
     function VolunteerRepository(db_name) {
-        this.repository = new Repository_1.default(db_name, COLLECTION_NAME, FILTER, INDEX_DESCRIPTORS);
+        this.repository = new Repository_1["default"](db_name, COLLECTION_NAME, FILTER, INDEX_DESCRIPTORS);
     }
     /**
      * inserts volunteer in the collection
@@ -31,7 +31,7 @@ var VolunteerRepository = /** @class */ (function () {
      * retrieves volunteers from the database
      */
     VolunteerRepository.prototype.getVolunteers = function (limit, skip, name) {
-        var query = new MongoQuery_1.default(limit, skip)
+        var query = new MongoQuery_1["default"](limit, skip)
             .sortBy('nrFollowers', false)
             .searchWithTextIndex(name);
         return this.repository.select(query);
@@ -46,10 +46,10 @@ var VolunteerRepository = /** @class */ (function () {
      * updates a specific volunteer
      */
     VolunteerRepository.prototype.updateVolunteer = function (id, updates) {
-        var query = new MongoQuery_1.default()
+        var query = new MongoQuery_1["default"]()
             .searchById(id);
         return this.repository.update(query, updates);
     };
     return VolunteerRepository;
 }());
-exports.default = VolunteerRepository;
+exports["default"] = VolunteerRepository;

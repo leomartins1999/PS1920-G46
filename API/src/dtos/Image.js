@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Image = /** @class */ (function () {
     function Image(id, content) {
         this.id = id;
@@ -7,4 +7,4 @@ var Image = /** @class */ (function () {
     }
     return Image;
 }());
-exports.default = Image;
+exports["default"] = Image;

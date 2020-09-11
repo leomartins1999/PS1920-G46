@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var randomStr = require('randomstring');
 var hash = require('@sindresorhus/fnv1a');
 var SALT_LENGTH = 8;
@@ -12,4 +12,4 @@ var User = /** @class */ (function () {
     }
     return User;
 }());
-exports.default = User;
+exports["default"] = User;

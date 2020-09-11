@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Repository_1 = require("./Repository");
 var MongoQuery_1 = require("../MongoQuery");
 /**
@@ -11,7 +11,7 @@ var COLLECTION_NAME = 'user';
  */
 var UserRepository = /** @class */ (function () {
     function UserRepository(db_name) {
-        this.repository = new Repository_1.default(db_name, COLLECTION_NAME);
+        this.repository = new Repository_1["default"](db_name, COLLECTION_NAME);
     }
     /**
      * inserts user in the collection
@@ -29,10 +29,10 @@ var UserRepository = /** @class */ (function () {
      * retrieves a specific user (by its mail)
      */
     UserRepository.prototype.getUserByMail = function (mail) {
-        var query = new MongoQuery_1.default()
+        var query = new MongoQuery_1["default"]()
             .searchFor('mail', mail);
         return this.repository.select(query);
     };
     return UserRepository;
 }());
-exports.default = UserRepository;
+exports["default"] = UserRepository;

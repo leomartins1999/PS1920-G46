@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.DEFAULT_SKIP = exports.DEFAULT_LIMIT = void 0;
 var mongodb_1 = require("mongodb");
 var Structures_1 = require("../Structures");
@@ -63,4 +63,4 @@ var MongoQuery = /** @class */ (function () {
     };
     return MongoQuery;
 }());
-exports.default = MongoQuery;
+exports["default"] = MongoQuery;

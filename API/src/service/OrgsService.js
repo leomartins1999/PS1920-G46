@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var BaseService_1 = require("./BaseService");
 var MongoQuery_1 = require("../db/MongoQuery");
 var Structures_1 = require("../Structures");
@@ -67,13 +67,13 @@ var OrgsService = /** @class */ (function (_super) {
         if (limit === void 0) { limit = MongoQuery_1.DEFAULT_LIMIT; }
         if (skip === void 0) { skip = MongoQuery_1.DEFAULT_SKIP; }
         if (name === void 0) { name = null; }
-        return BaseService_1.default.orgRepo.getOrgs(limit, skip, name);
+        return BaseService_1["default"].orgRepo.getOrgs(limit, skip, name);
     };
     /**
      * retrieves a specific org
      */
     OrgsService.prototype.getOrgById = function (id) {
-        return BaseService_1.default.orgRepo.getOrgById(id);
+        return BaseService_1["default"].orgRepo.getOrgById(id);
     };
     /**
      * updates an org
@@ -86,7 +86,7 @@ var OrgsService = /** @class */ (function (_super) {
                     case 0:
                         if (user_id != org_id)
                             return [2 /*return*/, Promise.reject(new Structures_1.Error("Unauthorized operation."))];
-                        return [4 /*yield*/, BaseService_1.default.orgRepo.updateOrg(org_id, updates)];
+                        return [4 /*yield*/, BaseService_1["default"].orgRepo.updateOrg(org_id, updates)];
                     case 1:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?
@@ -97,5 +97,5 @@ var OrgsService = /** @class */ (function (_super) {
         });
     };
     return OrgsService;
-}(BaseService_1.default));
-exports.default = OrgsService;
+}(BaseService_1["default"]));
+exports["default"] = OrgsService;

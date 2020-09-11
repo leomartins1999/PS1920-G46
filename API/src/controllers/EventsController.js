@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 var MiddlewareController_1 = require("./MiddlewareController");
 /**
@@ -51,10 +51,10 @@ var EventsController = /** @class */ (function () {
         router.get('/events', this.getEvents);
         router.get('/auth/events', this.getEventsForUser);
         router.get('/events/:event_id', this.getEventById);
-        router.post('/auth/events', MiddlewareController_1.default.orgCheck, this.addEvent);
-        router.put('/auth/events/:event_id/interested', MiddlewareController_1.default.volunteerCheck, this.interestedInEvent);
-        router.put('/auth/events/:event_id/', MiddlewareController_1.default.orgCheck, this.updateEvent);
+        router.post('/auth/events', MiddlewareController_1["default"].orgCheck, this.addEvent);
+        router.put('/auth/events/:event_id/interested', MiddlewareController_1["default"].volunteerCheck, this.interestedInEvent);
+        router.put('/auth/events/:event_id/', MiddlewareController_1["default"].orgCheck, this.updateEvent);
     };
     return EventsController;
 }());
-exports.default = EventsController;
+exports["default"] = EventsController;

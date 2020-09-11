@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var BaseService_1 = require("./BaseService");
 var MongoQuery_1 = require("../db/MongoQuery");
 var Event_1 = require("../dtos/Event");
@@ -67,19 +67,19 @@ var EventsService = /** @class */ (function (_super) {
     EventsService.prototype.getEvents = function (limit, skip, owner_id) {
         if (limit === void 0) { limit = MongoQuery_1.DEFAULT_LIMIT; }
         if (skip === void 0) { skip = MongoQuery_1.DEFAULT_SKIP; }
-        return BaseService_1.default.eventRepository.getEvents(limit, skip, owner_id);
+        return BaseService_1["default"].eventRepository.getEvents(limit, skip, owner_id);
     };
     /**
      * retrieves specific event
      */
     EventsService.prototype.getEventById = function (id) {
-        return BaseService_1.default.eventRepository.getEventById(id);
+        return BaseService_1["default"].eventRepository.getEventById(id);
     };
     /**
      * creates an event
      */
     EventsService.prototype.addEvent = function (owner_id, name, description, date, time, location) {
-        return BaseService_1.default.eventRepository.insertEvent(new Event_1.default(owner_id, name, description, date, time, location));
+        return BaseService_1["default"].eventRepository.insertEvent(new Event_1["default"](owner_id, name, description, date, time, location));
     };
     /**
      * updates an event
@@ -89,7 +89,7 @@ var EventsService = /** @class */ (function (_super) {
             var event, updateResult;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.eventRepository.getEventById(event_id)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].eventRepository.getEventById(event_id)];
                     case 1:
                         event = _a.sent();
                         if (event.owner_id != user_id)
@@ -101,7 +101,7 @@ var EventsService = /** @class */ (function (_super) {
                             delete updates.date;
                         }
                         delete updates.time;
-                        return [4 /*yield*/, BaseService_1.default.eventRepository.updateEvent(event_id, updates)];
+                        return [4 /*yield*/, BaseService_1["default"].eventRepository.updateEvent(event_id, updates)];
                     case 2:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?
@@ -119,7 +119,7 @@ var EventsService = /** @class */ (function (_super) {
             var event, updateResult;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, BaseService_1.default.eventRepository.getEventById(event_id)];
+                    case 0: return [4 /*yield*/, BaseService_1["default"].eventRepository.getEventById(event_id)];
                     case 1:
                         event = _a.sent();
                         if (event.interested[user_id])
@@ -127,7 +127,7 @@ var EventsService = /** @class */ (function (_super) {
                         else
                             event.interested[user_id] = Structures_1.UserType.Volunteer;
                         event.nrInterested = Object.keys(event.interested).length;
-                        return [4 /*yield*/, BaseService_1.default.eventRepository.updateEvent(event_id, event)];
+                        return [4 /*yield*/, BaseService_1["default"].eventRepository.updateEvent(event_id, event)];
                     case 2:
                         updateResult = _a.sent();
                         return [2 /*return*/, updateResult.success ?
@@ -147,11 +147,11 @@ var EventsService = /** @class */ (function (_super) {
                     case 0: return [4 /*yield*/, this.getIdsOfFollowing(id, user_type)];
                     case 1:
                         ids = _a.sent();
-                        return [2 /*return*/, BaseService_1.default.eventRepository.getEventsForOwners(ids, limit, skip)];
+                        return [2 /*return*/, BaseService_1["default"].eventRepository.getEventsForOwners(ids, limit, skip)];
                 }
             });
         });
     };
     return EventsService;
-}(BaseService_1.default));
-exports.default = EventsService;
+}(BaseService_1["default"]));
+exports["default"] = EventsService;

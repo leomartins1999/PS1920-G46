@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 var Structures_1 = require("../Structures");
 var MiddlewareController_1 = require("./MiddlewareController");
@@ -48,10 +48,10 @@ var VolunteersController = /** @class */ (function () {
     VolunteersController.prototype.setupRoutes = function (router) {
         router.get('/volunteers', this.getVolunteers);
         router.get('/volunteers/:volunteer_id', this.getVolunteerById);
-        router.get('/auth/volunteers/:volunteer_id/mail', MiddlewareController_1.default.orgCheck, this.getVolunteerMail);
+        router.get('/auth/volunteers/:volunteer_id/mail', MiddlewareController_1["default"].orgCheck, this.getVolunteerMail);
         router.put('/auth/volunteers/:volunteer_id/follow', this.followVolunteer);
-        router.put('/auth/volunteers/:volunteer_id', MiddlewareController_1.default.volunteerCheck, this.updateVolunteer);
+        router.put('/auth/volunteers/:volunteer_id', MiddlewareController_1["default"].volunteerCheck, this.updateVolunteer);
     };
     return VolunteersController;
 }());
-exports.default = VolunteersController;
+exports["default"] = VolunteersController;

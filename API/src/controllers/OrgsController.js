@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var RequestHandler_1 = require("./RequestHandler");
 var Structures_1 = require("../Structures");
 var MiddlewareController_1 = require("./MiddlewareController");
@@ -43,8 +43,8 @@ var OrgsController = /** @class */ (function () {
         router.get('/orgs', this.getOrgs);
         router.get('/orgs/:org_id', this.getOrgById);
         router.put('/auth/orgs/:org_id/follow', this.followOrg);
-        router.put('/auth/orgs/:org_id', MiddlewareController_1.default.orgCheck, this.updateOrg);
+        router.put('/auth/orgs/:org_id', MiddlewareController_1["default"].orgCheck, this.updateOrg);
     };
     return OrgsController;
 }());
-exports.default = OrgsController;
+exports["default"] = OrgsController;
