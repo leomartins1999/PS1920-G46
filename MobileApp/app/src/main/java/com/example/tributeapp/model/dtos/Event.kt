@@ -42,7 +42,7 @@ data class Event(private val json: JSONObject) : Parcelable {
         return if (d == 0L) null else Date(d)
     }
 
-    fun getDateString() = if (date == null) "" else App.dateFormat.format(date)
+    fun getDateString(): String = if (date == null) "" else App.dateFormat.format(date)
 
     override fun toString(): String {
         return "Event(id='$id', org_id='$owner_id', name='$name', description='$description', date='$date', location='$location', imageLink='$imageLink', nrInterested=$nrInterested,)"

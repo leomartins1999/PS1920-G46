@@ -126,7 +126,7 @@ var BaseService = /** @class */ (function () {
                             follower.following[followed_id] = followed_user_type;
                         // updating counts
                         followed.nrFollowers = Object.keys(followed.followers).length;
-                        follower.nrFollowing = Object.keys(follower.followers).length;
+                        follower.nrFollowing = Object.keys(follower.following).length;
                         return [4 /*yield*/, followed_operations.update(followed_id, followed)];
                     case 3:
                         followedUpdate = _a.sent();

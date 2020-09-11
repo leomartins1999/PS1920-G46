@@ -83,7 +83,7 @@ abstract class BaseService {
 
         // updating counts
         followed.nrFollowers = Object.keys(followed.followers).length
-        follower.nrFollowing = Object.keys(follower.followers).length
+        follower.nrFollowing = Object.keys(follower.following).length
 
         // updating entries
         const followedUpdate = await followed_operations.update(followed_id, followed)

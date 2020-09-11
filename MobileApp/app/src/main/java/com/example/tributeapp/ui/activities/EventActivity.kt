@@ -57,8 +57,9 @@ class EventActivity : AppCompatActivity() {
             View.GONE
         else location.text = event.location
 
-        if (event.date.time == 0L) date_layout.visibility = View.GONE
-        else date.text = event.getDateString()
+        val dateString = event.getDateString()
+        if (dateString.isEmpty()) date_layout.visibility = View.GONE
+        else date.text = dateString
 
         renderTextView(event.description, description)
     }
