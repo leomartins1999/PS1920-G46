@@ -1,38 +1,45 @@
 \section{Conclusão}
-Este projeto trata o desenvolvimento uma rede social de voluntariado, sendo que para tal, foram implementados três módulos: uma \textit{web} API, uma aplicação móvel e uma aplicação \textit{web}. Para cada um destes módulos foi também necessário definir a sua arquitetura e, quando aplicável, o seu design gráfico.
 
-\medskip
+O presente projeto trata o desenvolvimento de uma rede social de voluntariado, sendo que esta possibilita aos seus utilizadores criarem um perfil e interagirem com outros através de \textit{posts} e seguimentos. Contudo, o ênfase deste projeto é divulgar este tipo de ações, e como tal, permite a entidades organizadoras de eventos marcarem ações e obterem contatos de voluntários interessados em participar nos mesmos.
 
-Foram apontadas algumas conclusões durante a realização do componente API:
-\begin{itemize}
-	\item apesar dos conhecimentos relativamente à implementação de uma API já obtidos ao longo da licenciatura, tivemos alguma dificuldade no desenho e definição de requisitos funcionais da API, dado o maior nível de complexidade comparado com projetos de disciplinas anteriores. Como tal, e ao longo do projeto, têm sido realizadas iterações à mesma de maneira que esta seja o mais adequada possível;
-	\item a API, apesar de ser auto suficiente e não necessitar de outros módulos para funcionar, a mesma foi desenvolvida para comunicar em primeira mão com os outros módulos deste projeto. Como tal, é expectável que seja necessário definir \textit{endpoints} adicionais consoante as necessidades das aplicações cliente, como por exemplo a definição de um \textit{endpoint} que devolve os posts realizados por utilizadores que um certo utilizador autenticado segue.
-\end{itemize}
+\par \medskip
 
-\medskip
-
-Relativamente ao desenvolvimento da aplicação \textit{mobile}, apresentam-se também algumas inferências.
+Tendo isto em consideração, foram desenvolvidos 3 componentes:
 
 \begin{itemize}
-	\item Ao longo do lecionamento de unidades curriculares que entram em contacto com o desenvolvimento deste tipo de aplicações (nomeadamente, Programação em Dispositivos Móveis) diretamente, é sempre dado um ênfase não ao aspeto e sim à funcionalidade da mesma. Contudo, e dada a natureza deste projeto, foi dado um cuidado acrescentado à interface de utilizador.
+	\item uma \textit{web} API, que serve como fonte de dados para as aplicações cliente e que trata de definir e implementar as operações da plataforma;
+	\item uma aplicação cliente móvel, que permite a voluntários consultarem a plataforma e registarem-se, criarem um perfil e interagirem com outros utilizadores;
+	\item uma aplicação cliente \textit{web} que permite a organizações criarem o seu perfil e marcarem ações de voluntariado.
 \end{itemize}
 
-\medskip
+Contudo, este projeto teve alguns obstáculos, nomeadamente a seleção e utilização de um \textit{stack} tecnológico e o desenho e implementação da arquitetura da plataforma.
 
-A utilização de \textit{stacks} tecnológicos não impostos por unidades curriculares da licenciatura e sim selecionados pelos autores do projeto levou por vezes à necessidade dos autores consultarem não só o orientador do projeto como também artigos \textit{web}, livros e outros recursos de maneira a tentar ultrapassar obstáculos encontrados na implementação do projeto.
+\par \medskip
 
-\medskip
+Estes obstáculos apresentam-se porque ao longo da licenciatura é típico a imposição de um \textit{stack} tecnológico e a definição da arquitetura do sistema a desenvolver. Dada esta alteração de contexto, ao longo do projeto houve uma necessidade acrescentada de consultar não só o orientador como também artigos \textit{web}, livros e outros recursos de maneira a utilizar as ferramentas corretamente.
 
-Outra problemática encontrada ao longo do desenvolvimento do projeto é o facto dos autores estarem a desenhar a arquitetura dos componentes ao invés de seguir uma apresentada numa unidade curricular.
+\par \medskip
 
-\medskip
+Dado que o objetivo do projeto é desenvolver uma plataforma que poderia ser utilizada num contexto real, durante o desenvolvimento das interfaces de utilizador procurou-se dar a mesma importância ao aspeto funcional e visual das mesmas de maneira a que estas fossem simples, intuitivas e apelativas visualmente, um obstáculo novo para os autores. De maneira a ultrapassar este foram consultados guias de desenvolvimento de interfaces de utilizador.
 
-Contudo, os autores esperam que, dentro do período para a entrega do projeto, consigam concluir todos os requisitos funcionais e não funcionais do mesmo, produzindo uma plataforma que, com poucas alterações, poderia ser utilizada num contexto real e não apenas no contexto da elaboração de um trabalho final de curso.
+\par \medskip
 
+Apesar dos obstáculos apresentados, o projeto dá-se como concluído e este cumpre todos os requisitos funcionais e não funcionais definidos inicialmente, sendo que esta plataforma, com ligeiras alterações, poderia ser aplicada num contexto real e não apenas no contexto da elaboração de um trabalho final de curso. 
 
-\medskip
-
+\newpage
 
 \subsection{Trabalho futuro}
 
-No estado atual do mesmo, ainda faltam concluir algumas funcionalidades do projeto, como o desenvolvimento da aplicação \textit{web} e uma revisão geral sobre a aplicação móvel e a API de maneira a refinar o mesmo e prepará-lo para a entrega final.
+Contudo, e dada a natureza das redes sociais, estas encontram-se em constante desenvolvimento, e vão existir sempre melhorias a realizar e funcionalidades novas a desenvolver.
+
+\par \medskip
+
+De seguida, enumeram-se algumas destas:
+
+\begin{itemize}
+	\item aprimoramento do código desenvolvido nas aplicações cliente;
+	\item desenvolvimento de testes unitários;
+	\item adição de novas funcionalidades à plataforma - como comentários em \textit{posts}, noção de voluntário participante em evento e \textit{curriculum vitae} de voluntariado, que recolhe eventos em que voluntário participou;
+	\item integração de registo e autenticação através de contas existentes noutras plataformas (através de OAuth), nomeadamente, Facebook e Google; 
+	\item melhoramento das soluções de \textit{deployment} aplicadas na plataforma (através do uso de técnicas de balanceamento de carga e de escalonamento automático).
+\end{itemize}

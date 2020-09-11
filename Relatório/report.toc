@@ -39,3 +39,4 @@
 \contentsline {subsection}{\numberline {6.3}\textit {Deployment} da aplicação}{24}{subsection.6.3}%
 \contentsline {section}{\numberline {7}Conclusão}{25}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Trabalho futuro}{26}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Referências}{27}{section.8}%
