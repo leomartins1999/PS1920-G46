@@ -9,7 +9,7 @@ O modelo de arquitetura do presente projeto, apresentado na Figura 3, é constit
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.8]{architecture}
-	\caption{Modelo de arquitetura}
+	\caption{Modelo de arquitetura.}
 \end{figure}
 
 Relativamente à API, esta estabelece \textit{endpoints} onde é possível executar pedidos HTTPS de maneira a suportar autenticação e operações na infraestrutura (criação de perfil, “seguimento” de organização, inscrição em ação de voluntariado, etc.), constituindo o \textit{back-end} do projeto.
@@ -34,11 +34,13 @@ Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.35]{mern2}
-	\caption{Tecnologias do \textit{stack} MERN (MongoDB, Express.js, React.js, Node.js)~\cite{Cooke2020}}
+	\caption{Tecnologias do \textit{stack} MERN (MongoDB, Express.js, React.js, Node.js)~\cite{Cooke2020}.}
 \end{figure}
 
-\subsection{REST API}
-A REST API, definida como primeira fase do projeto, constitui o \textit{server-side} do mesmo. Este módulo é completamente independente dos outros, tendo como responsabilidade trabalhar como fonte de dados para os outros componentes (\textit{client-side}). \par \medskip 
+Este projecto é também composto por uma aplicação móvel para Android.
+
+\subsection{API}
+A API constitui o \textit{server-side} do projeto. Este módulo é completamente independente dos outros, tendo como responsabilidade trabalhar como fonte de dados para os restantes módulos (\textit{client-side}). \par \medskip 
 
 A tecnologia utilizada para desenvolver este componente foi Node.js em conjunto com vários \textit{packages} do NPM (\textit{node package manager}), como o Express e o Passport. Esta escolha é justificada por múltiplas razões:
 \begin{itemize}
@@ -46,10 +48,8 @@ A tecnologia utilizada para desenvolver este componente foi Node.js em conjunto 
 	\item popularidade da ferramenta, algo que simplifica o processo de desenvolvimento do componente devido à existência de grande quantidade de recursos sobre a mesma;
 	\item existência de suporte neste meio de execução de ferramentas para auxiliar o acesso à base de dados escolhida.
 \end{itemize}
-\par \medskip
 
 O servidor é também responsável por hospedar a base de dados, que usa o motor MongoDB. A escolha deste serviço foi efetuada devido à fácil integração do mesmo com Node.js e devido ao facto deste ter um modelo de dados baseado em documentos JSON, algo que simplifica a inserção e pesquisa sobre os mesmos.
-\par \medskip
 
 \subsection{Aplicação \textit{Mobile}}
 A aplicação \textit{mobile} foi desenvolvida para a plataforma Android em Kotlin. A mesma segue os princípios definidos pelo Android Jetpack, que disponibiliza ferramentas e bibliotecas que auxiliam o desenvolvimento da aplicação. As razões que levaram a esta decisão foram:
@@ -67,5 +67,7 @@ A aplicação \textit{web} foi desenvolvida usando React. Escolheu-se esta tecno
 	\item quota de mercado (relativamente às \textit{frameworks} de Javascript utilizadas para o desenvolvimento de aplicações \textit{web}) significativa, sendo atualmente a tecnologia mais usada~\cite{TechMagic2020};
 	\item fácil integração com as outras ferramentas do projeto.
 \end{itemize}
+
+\newpage
 
 \input{technologies}

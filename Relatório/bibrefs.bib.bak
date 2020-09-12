@@ -117,7 +117,7 @@
   date   = {2020-09-09},
   title  = {Why Use HTTPS?},
   note   = {Acedido a: 09/09/2020},
-  url    = {https://www.mongodb.com/nosql-explained},
+  url    = {https://www.cloudflare.com/learning/ssl/why-use-https/},
 }
 
 @Misc{mongoDB2020,
@@ -126,7 +126,7 @@
   date   = {2020-09-09},
   title  = {What is NoSQL?},
   note   = {Acedido a: 09/09/2020},
-  url    = {https://www.cloudflare.com/learning/ssl/why-use-https/},
+  url    = {https://www.mongodb.com/nosql-explained},
 }
 
 @Misc{AndroidJetpack2020,
@@ -159,9 +159,45 @@
 @Book{Stefanov2016,
   author    = {Stoyan Stefanov},
   date      = {2016-07-12},
-  title     = {{React: Up & Running}},
+  title     = {React: Up and Running},
   publisher = {O’Reilly Media, Inc.},
   year      = {2016},
+}
+
+@Misc{MDN2019,
+  author = {{MDN contributors}},
+  editor = {{MDN contributors}},
+  date   = {2019-03-18},
+  title  = {Cross-Origin Resource Sharing (CORS)},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://developer.mozilla.org/pt-PT/docs/Web/HTTP/CORS},
+}
+
+@Misc{ReactJS2019,
+  author = {ReactJS},
+  editor = {ReactJS},
+  date   = {2019-09-13},
+  title  = {Introducing Hooks},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://reactjs.org/docs/hooks-intro.html},
+}
+
+@Misc{ReactJS2020,
+  author = {ReactJS},
+  editor = {ReactJS},
+  date   = {2020},
+  title  = {React.Component},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://reactjs.org/docs/react-component.html},
+}
+
+@Misc{IETF2020,
+  author = {IETF},
+  editor = {IETF},
+  date   = {2020-09-18},
+  title  = {OAuth 2.0},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://oauth.net/2/},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

@@ -56,10 +56,10 @@ A \textit{Web} API, representada na Figura 5, é composta por três módulos: \t
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.30]{api_architeture}
-	\caption{Diagrama de arquitetura da API}
+	\caption{Diagrama de arquitetura da API.}
 \end{figure}
 
-Resumidamente, os \textbf{controladores} têm como responsabilidade a definição de \textit{endpoints} e a realização de chamadas aos serviços, sendo que estes últimos (\textbf{serviços}) tratam a implementação da lógica da aplicação e realização de chamadas aos repositórios. Estes (\textbf{repositórios}) são responsáveis por interagir com à base de dados.
+Resumidamente, os \textbf{controladores} têm como responsabilidade a definição de \textit{endpoints} e a realização de chamadas aos serviços, sendo que estes últimos (\textbf{serviços}) tratam a implementação da lógica da aplicação e realização de chamadas aos repositórios. Estes (\textbf{repositórios}) são responsáveis por interagir com a base de dados.
 
 \subsubsection{Controladores}
 
@@ -67,7 +67,7 @@ Tal como já referido, estes definem os \textit{endpoints} existentes na API e i
 
 \medskip \par
 
-Os controladores tratam também de recolher os parâmetros provenientes nos pedidos HTTPS (contidos no caminho, na \textit{query string}, e no corpo do pedido) e passar os mesmos às funções do serviço, sendo que independentemente do sucesso ou não destas, estes lidam também com a realização das respostas HTTPS.
+Os controladores tratam também de recolher os parâmetros provenientes nos pedidos HTTPS (contidos no caminho, na \textit{query string}, no corpo do pedido e na sessão do utilizador) e passar os mesmos às funções do serviço, sendo que independentemente do sucesso ou não destas, estes lidam também com a realização das respostas HTTPS.
 
 \subsubsection{Serviços}
 

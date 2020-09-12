@@ -85,13 +85,13 @@ Glenn Block, Pablo Cibraro, Pedro Felix, Howard Dierking, and Darrel Miller.
 MongoDB.
 \newblock What is nosql?
 \newblock Acedido a: 09/09/2020.
-\newblock URL: \url{https://www.cloudflare.com/learning/ssl/why-use-https/}.
+\newblock URL: \url{https://www.mongodb.com/nosql-explained}.
 
 \bibitem{Cloudflare2020}
 Cloudflare.
 \newblock Why use https?
 \newblock Acedido a: 09/09/2020.
-\newblock URL: \url{https://www.mongodb.com/nosql-explained}.
+\newblock URL: \url{https://www.cloudflare.com/learning/ssl/why-use-https/}.
 
 \bibitem{Gargenta2014}
 Marko Gargenta and Masumi Nakamura.
@@ -110,18 +110,42 @@ Marko Gargenta and Masumi Nakamura.
 \newblock Viewmodel overview.
 \newblock Acedido a: 09/09/2020.
 \newblock URL:
-  \url{https://developer.android.com/guide/topics/ui/layout/recyclerview}.
+  \url{https://developer.android.com/topic/libraries/architecture/viewmodel}.
 
 \bibitem{AndroidDevelopers2020}
 {Android Developers}.
 \newblock Create a list with recyclerview.
 \newblock Acedido a: 09/09/2020.
 \newblock URL:
-  \url{https://developer.android.com/topic/libraries/architecture/viewmodel}.
+  \url{https://developer.android.com/guide/topics/ui/layout/recyclerview}.
 
 \bibitem{Stefanov2016}
 Stoyan Stefanov.
 \newblock {\em React: Up and Running}.
 \newblock O’Reilly Media, Inc., 2016.
+
+\bibitem{ReactJS2020}
+ReactJS.
+\newblock React.component.
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://reactjs.org/docs/react-component.html}.
+
+\bibitem{ReactJS2019}
+ReactJS.
+\newblock Introducing hooks.
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://reactjs.org/docs/hooks-intro.html}.
+
+\bibitem{MDN2019}
+{MDN contributors}.
+\newblock Cross-origin resource sharing (cors).
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://developer.mozilla.org/pt-PT/docs/Web/HTTP/CORS}.
+
+\bibitem{IETF2020}
+IETF.
+\newblock Oauth 2.0.
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://oauth.net/2/}.
 
 \end{thebibliography}

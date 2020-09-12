@@ -10,7 +10,7 @@
 \contentsline {section}{\numberline {3}Modelo de Arquitetura}{7}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Arquitetura Geral}{7}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}\textit {Stack} Tecnológico}{8}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}REST API}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}API}{8}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Aplicação \textit {Mobile}}{9}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Aplicação \textit {Web}}{9}{subsection.3.5}%
 \contentsline {subsection}{\numberline {3.6}Tecnologias e ferramentas}{10}{subsection.3.6}%
@@ -33,12 +33,12 @@
 \contentsline {subsubsection}{\numberline {5.3.3}Implementação de Sessão}{21}{subsubsection.5.3.3}%
 \contentsline {subsubsection}{\numberline {5.3.4}Modelo}{21}{subsubsection.5.3.4}%
 \contentsline {section}{\numberline {6}\textit {Web App}}{23}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Utilização da web app}{23}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Arquitetura}{24}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}API}{24}{subsubsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.1}Utilização da \textit {Web App}}{24}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Arquitetura}{25}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}API}{25}{subsubsection.6.2.1}%
 \contentsline {subsubsection}{\numberline {6.2.2}Componentes}{25}{subsubsection.6.2.2}%
 \contentsline {subsubsection}{\numberline {6.2.3}Classe Principal}{26}{subsubsection.6.2.3}%
-\contentsline {subsection}{\numberline {6.3}\textit {Deployment} da aplicação}{26}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Conclusão}{27}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Trabalho futuro}{28}{subsection.7.1}%
-\contentsline {section}{\numberline {8}Referências}{29}{section.8}%
+\contentsline {subsection}{\numberline {6.3}Implantação da aplicação}{27}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Conclusão}{29}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Trabalho futuro}{30}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Referências}{31}{section.8}%

@@ -1,5 +1,3 @@
-
-
 \pagebreak
 \hspace{0pt}
 \vfill
@@ -36,24 +34,22 @@ Foi desenvolvida uma interface gráfica baseada no grafo de navegação ilustrad
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.65]{app_navigation.png}
-	\caption{Grafo de navegação}
+	\caption{Grafo de navegação.}
 \end{figure}
 
 Foram desenvolvidas quatro vistas principais de pesquisa (\textit{posts}, voluntários, organizações e eventos) que apresentam os dados existentes na plataforma. Existem também vistas detalhadas para estes mesmos índices (exceto \textit{posts}) para que o utilizador possa ver os detalhes destes dados.
 
-\bigskip
-
 \subsection{Sessão}
 
-De maneira a garantir uma experiência personalizada para cada cliente deste módulo, foram desenvolvidos ecrãs e mecanismos de de registo e autenticação de clientes.
+De maneira a garantir uma experiência personalizada para cada cliente deste módulo, foram desenvolvidos ecrãs e mecanismos de registo e autenticação de clientes.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.70]{unauthenticated_vs_authenticated}
-	\caption{Representação do ecrã ``Voluntários'' no estado não autenticado (esquerda) e no estado autenticado (direita) como o utilizador ``Utilizador exemplo''.}
+	\caption{Representação do ecrã ``Voluntários'' no estado não autenticado (esquerda) e no estado autenticado (direita) para o utilizador ``Utilizador exemplo''.}
 \end{figure}
 
-A partir do momento que um cliente da aplicação se encontre autenticado, certas operações como ``gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs irão ter uma vista personalizada, tal como exemplificado na Figura 7.
+A partir do momento em que um cliente da aplicação se encontre autenticado, certas operações como ``gostar'' um \textit{post} ou seguir um utilizador passam a estar disponíveis e determinados ecrãs irão ter uma vista personalizada, tal como exemplificado na Figura 7.
 
 \subsection{Arquitetura}
 
@@ -62,7 +58,11 @@ a arquitetura da aplicação é a recomendada e, como tal, é constituída por t
 
 \medskip
 
-Enquanto que a UI é responsável por conter as implementações dos mais variados aspetos da interface de utilizador (como atividades, fragmentos, navegação e outros elementos), a API trata a comunicação entre a aplicação e a Web API. Por fim, o Modelo define a estrutura dos dados fornecidos pela API e utilizados na UI assim como a implementação de uma \textit{cache} de maneira a partilhar estes dados e reduzir o número de pedidos efetuados à Web API.
+Enquanto que a UI é responsável por conter as implementações dos mais variados aspetos da interface de utilizador (como atividades, fragmentos, navegação e outros elementos), a API trata a comunicação entre a aplicação e a Web API. Por fim, o Modelo define a estrutura dos dados fornecidos pela API e utilizados na UI assim como a implementação de uma \textit{cache} de maneira a partilhar estes dados e reduzir o número de pedidos efetuados à Web API. 
+
+\medskip
+
+Estes elementos bem como a implementação do conceito de sessão são descritos em maior de detalhes nas subsecções seguintes.
 
 \subsubsection{\textit{User Interface}}
 
@@ -71,7 +71,7 @@ Este sub-módulo engloba todos os componentes do projeto que são responsáveis 
 \begin{itemize}
 	\item implementações de ecrãs, quer sejam atividades ou fragmentos. É de notar que para cada um destes existe associado um objeto ViewModel~\cite{AndroidDevelopers2019} que é responsável por manter o estado dos elementos do ecrã e também por interagir com a API quando necessário; 
 	\item adaptadores, infraestruturas responsáveis por auxiliar o processo de transformação de dados brutos numa representação dos mesmos. Estes adaptadores são utilizados em conjunto com o componente RecyclerView~\cite{AndroidDevelopers2020} - utilizado para apresentar uma lista de elementos (como voluntários ou \textit{posts}) ao utilizador;
-	\item Outros componentes utilitários, como por exemplo uma estrutura que auxilia o carregamento de imagens para a representação das mesmas.
+	\item outros componentes utilitários, como por exemplo uma estrutura que auxilia o carregamento de imagens para a representação das mesmas.
 \end{itemize} 
 
 \subsubsection{API}
@@ -80,20 +80,20 @@ O sub-módulo API (Figura 8) serve como \textit{proxy} entre a aplicação e a W
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.42]{mobile_api_architeture}
-	\caption{Arquitetura do sub-módulo API}
+	\includegraphics[scale=.58]{mobile_api_architeture}
+	\caption{Arquitetura do sub-módulo API.}
 \end{figure}
 
-O realizador de pedidos trata da implementação dos métodos HTTP suportados pela Web API (GET, POST, PUT, DELETE) de forma genérica, de maneira a que o mesmo possa ser utilizado pelos controladores. Os pedidos HTTPS são efetuados usando a biblioteca \textit{Volley}.
+O realizador de pedidos trata da implementação dos métodos HTTPS suportados pela Web API (nomeadamente GET, POST, PUT e DELETE) de forma genérica, de maneira a que o mesmo possa ser utilizado pelos controladores. Os pedidos HTTPS são efetuados usando a biblioteca Volley.
 
 \medskip
 
-Quando o pedido é concluído, é chamado o \textit{callback} definido pela estrutura que chamou o serviço, que consome a resposta do mesmo, quer esta contenha dados ou apenas sinalize sucesso. A estrutura que efetua a chamada ao serviço é também responsável por definir o \textit{callback} a executar em caso de ocorrer um erro durante o pedido.
+Quando o pedido é concluído, é chamado o \textit{callback} definido pela estrutura que chamou o serviço, que consome a resposta do mesmo, quer esta contenha dados ou apenas sinalize sucesso. A estrutura que efetua a chamada ao serviço é também responsável por definir o \textit{callback} a executar em caso de ocorrer um erro durante a operação.
 
 
 \subsubsection{Implementação de Sessão}
 
-Tendo em conta que o conceito de sessão foi implementado na Web API através da tecnologia Passport.js (que funciona à base de \textit{cookies}), foi necessário redefinir algumas infra-estruturas da biblioteca Volley de maneira a que, quando o utilizador estiver autenticado na aplicação, os pedidos efetuados pela mesma contenham a informação necessária para a Web API conseguir reconhecer o utilizador.
+Tendo em conta que o conceito de sessão foi implementado na Web API através da tecnologia Passport.js (que funciona à base de \textit{cookies}), foi necessário redefinir algumas infra-estruturas da biblioteca Volley de maneira a que, quando o utilizador estiver autenticado na aplicação, os pedidos efetuados pela mesma contenham a informação necessária para a Web API conseguir reconhecer a sessão do cliente. Esta funcionalidade foi implementada através da extensão e redefinição de alguns métodos da classe da biblioteca Volley utilizada para efetuar pedidos HTTPS.
 
 \medskip
 
@@ -105,4 +105,12 @@ O Modelo é responsável por transformar os dados provenientes do sub-módulo AP
 
 \medskip
 
-Este sub-módulo contém também a definição de uma estrutura que realiza \textit{caching} dos dados da aplicação para diminuir o número de pedidos a realizar à API.
+Este sub-módulo contém também a definição de uma estrutura que realiza \textit{caching} dos dados da aplicação para diminuir o número de pedidos a realizar à API. Esta hospeda referências para os dados dos voluntários e organizações já recolhidos através de pedidos HTTPS efetuados anteriormente (sendo que esta referência é adicionada à \textit{cache} no momento em que os dados são construídos a partir do seu objeto JSON). 
+
+\par \medskip
+
+O serviço de \textit{caching} permite ainda, através de uma operação assíncrona, solicitar os dados de um voluntário ou organização em específico, sendo que se a referência para estes dados não estiver já localizada na \textit{cache}, é efetuado um pedido HTTPS para recolher os mesmos. 
+
+\par \medskip
+
+Se os dados de um voluntário ou organização que já estava referenciada na \textit{cache} são devolvidos como consequência de um pedido HTTPS, os mesmos são atualizados com o estado mais recente destes.

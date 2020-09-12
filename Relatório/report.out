@@ -9,7 +9,7 @@
 \BOOKMARK [1][-]{section.3}{Modelo de Arquitetura}{}% 9
 \BOOKMARK [2][-]{subsection.3.1}{Arquitetura Geral}{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.2}{Stack Tecnol\363gico}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.3}{REST API}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{API}{section.3}% 12
 \BOOKMARK [2][-]{subsection.3.4}{Aplica\347\343o Mobile}{section.3}% 13
 \BOOKMARK [2][-]{subsection.3.5}{Aplica\347\343o Web}{section.3}% 14
 \BOOKMARK [2][-]{subsection.3.6}{Tecnologias e ferramentas}{section.3}% 15
@@ -32,12 +32,12 @@
 \BOOKMARK [3][-]{subsubsection.5.3.3}{Implementa\347\343o de Sess\343o}{subsection.5.3}% 32
 \BOOKMARK [3][-]{subsubsection.5.3.4}{Modelo}{subsection.5.3}% 33
 \BOOKMARK [1][-]{section.6}{Web App}{}% 34
-\BOOKMARK [2][-]{subsection.6.1}{Utiliza\347\343o da web app}{section.6}% 35
+\BOOKMARK [2][-]{subsection.6.1}{Utiliza\347\343o da Web App}{section.6}% 35
 \BOOKMARK [2][-]{subsection.6.2}{Arquitetura}{section.6}% 36
 \BOOKMARK [3][-]{subsubsection.6.2.1}{API}{subsection.6.2}% 37
 \BOOKMARK [3][-]{subsubsection.6.2.2}{Componentes}{subsection.6.2}% 38
 \BOOKMARK [3][-]{subsubsection.6.2.3}{Classe Principal}{subsection.6.2}% 39
-\BOOKMARK [2][-]{subsection.6.3}{Deployment da aplica\347\343o}{section.6}% 40
+\BOOKMARK [2][-]{subsection.6.3}{Implanta\347\343o da aplica\347\343o}{section.6}% 40
 \BOOKMARK [1][-]{section.7}{Conclus\343o}{}% 41
 \BOOKMARK [2][-]{subsection.7.1}{Trabalho futuro}{section.7}% 42
 \BOOKMARK [1][-]{section.8}{Refer\352ncias}{}% 43
