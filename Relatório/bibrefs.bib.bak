@@ -110,4 +110,13 @@
   year      = {2017},
 }
 
+@Misc{Cloudflare2020,
+  author = {Cloudflare},
+  editor = {Cloudflare},
+  date   = {2020-09-12},
+  title  = {Why Use HTTPS?},
+  note   = {Acedido a: 12/09/2020},
+  url    = {https://www.cloudflare.com/learning/ssl/why-use-https/},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

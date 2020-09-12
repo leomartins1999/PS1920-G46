@@ -1,10 +1,29 @@
 \section{Modelo de Arquitetura} 
-Este capítulo começa por introduzir o \textit{stack} tecnológico sobre o qual o projeto foi desenvolvido. O mesmo contém também um secção atribuída a cada módulo do projeto e por fim refere as tecnologias usadas no mesmo.
+Este capítulo começa por introduzir a arquitetura geral da plataforma e apresentar o \textit{stack} tecnológico selecionado para desenvolver o projeto. O mesmo contém também um secção atribuída a cada módulo do projeto e por fim refere as tecnologias usadas no mesmo.
 \par \medskip
 
-O modelo de arquitetura do presente projeto, apresentado na Figura 4, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
+\subsection{Arquitetura Geral}
 
-Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguirá o MEAN \textit{stack}~\cite{Williams2017} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na Figura 3). Foi escolhido este \textit{standard} pelas seguintes razões:
+O modelo de arquitetura do presente projeto, apresentado na Figura 3, é constituído por três módulos principais: uma REST API, e duas aplicações cliente: uma orientada à plataforma \textit{mobile} Android e outra desenvolvida para ser usada num \textit{browser}. \par \medskip
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.8]{architecture}
+	\caption{Modelo de arquitetura}
+\end{figure}
+
+Relativamente à API, esta estabelece \textit{endpoints} onde é possível executar pedidos HTTPS de maneira a suportar autenticação e operações na infraestrutura (criação de perfil, “seguimento” de organização, inscrição em ação de voluntariado, etc.), constituindo o \textit{back-end} do projeto.
+\par \medskip
+
+Relativamente ao \textit{front-end}, foram desenvolvidas duas aplicações cliente: 
+\begin{itemize}
+	\item um cliente \textit{mobile}, para a plataforma Android, usado pelos voluntários. Nesta interface será possível efetuar por parte do utilizador as operações de uso da plataforma usuais: criação de um perfil, visionamento de um \textit{feed} de \textit{posts} efetuados pelas organizações seguidas, entre outras;
+	\item um cliente \textit{browser}. Esta aplicação é direcionada às organizações e terá a finalidade de permitir às mesmas realizar \textit{posts}, criar e gerir ações de voluntariado, etc.
+\end{itemize}
+
+\subsection{\textit{Stack} Tecnológico}
+
+Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo seguiu o MEAN \textit{stack}~\cite{Williams2017} (MongoDB, Express.js, Angular, Node.js), alternando a tecnologia utilizada para desenvolver o \textit{front-end} para React em vez de Angular (também conhecido pelo MERN \textit{stack}, referido na Figura 4). Foi escolhido este \textit{standard} pelas seguintes razões:
 \begin{itemize}
 	\item familiaridade dos autores com algumas destas tecnologias (como Express.js e Node.js);
 	\item \textit{stack} utilizado no desenvolvimento de múltiplas aplicações, o que leva a existência de uma grande quantidade de recursos, como documentação e exemplos;
@@ -17,22 +36,6 @@ Tendo em conta os módulos constituintes do projeto, o desenvolvimento do mesmo 
 	\includegraphics[scale=.35]{mern2}
 	\caption{Tecnologias do \textit{stack} MERN (MongoDB, Express.js, React.js, Node.js)~\cite{Cooke2020}}
 \end{figure}
-
-Relativamente à API, esta estabelece \textit{endpoints} onde é possível executar pedidos HTTPS de maneira a suportar autenticação e operações na infraestrutura (criação de perfil, “seguimento” de organização, inscrição em ação de voluntariado, etc.), constituindo o \textit{back-end} do projeto.
-\par \medskip
-
-Relativamente ao \textit{front-end}, foram desenvolvidas duas aplicações cliente: 
-\begin{itemize}
-	\item um cliente \textit{mobile}, para a plataforma Android, usado pelos voluntários. Nesta interface será possível efetuar por parte do utilizador as operações de uso da plataforma usuais: criação de um perfil, visionamento de um \textit{feed} de \textit{posts} efetuados pelas organizações seguidas, entre outras;
-	\item um cliente \textit{browser}. Esta aplicação é direcionada às organizações e terá a finalidade de permitir às mesmas realizar \textit{posts}, criar e gerir ações de voluntariado, etc.
-\end{itemize}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=.8]{architecture}
-	\caption{Modelo de arquitetura}
-\end{figure}
-
 
 \subsection{REST API}
 A REST API, definida como primeira fase do projeto, constitui o \textit{server-side} do mesmo. Este módulo é completamente independente dos outros, tendo como responsabilidade trabalhar como fonte de dados para os outros componentes (\textit{client-side}). \par \medskip 

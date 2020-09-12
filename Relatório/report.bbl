@@ -73,6 +73,12 @@ Glenn Block, Pablo Cibraro, Pedro Felix, Howard Dierking, and Darrel Miller.
 \newblock {\em Designing Evolvable Web APIs with ASP.NET}.
 \newblock O’Reilly Media, Inc., 2014.
 
+\bibitem{Cloudflare2020}
+Cloudflare.
+\newblock Why use https?
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://www.cloudflare.com/learning/ssl/why-use-https/}.
+
 \bibitem{Gargenta2014}
 Marko Gargenta and Masumi Nakamura.
 \newblock {\em Learning Android: Develop Mobile Apps Using Java and Eclipse}.

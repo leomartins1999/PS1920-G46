@@ -1,6 +1,6 @@
 \section{API}
 
-Neste capítulo, é dado ênfase ao desenvolvimento da API. Como tal, é realizada uma introdução, onde são definidos os requisitos da mesma e é, de maneira reduzida, referidas as tecnologias utilizadas no desenvolvimento desta. De seguida, é apresentada a conceptualização da plataforma e as operações que esta suporta, passando posteriormente para a definição da sua arquitetura e seus sub-módulos. O capítulo é concluído com a realização de uma referência relativamente à base de dados e ao \textit{deployment} da plataforma.
+Neste capítulo, é dado ênfase ao desenvolvimento da API. Como tal, é realizada uma introdução, onde são definidos os requisitos da mesma e são, de maneira reduzida, referidas as tecnologias utilizadas no desenvolvimento desta. De seguida, é apresentada a conceptualização da plataforma e as operações que esta suporta, passando posteriormente para a definição da sua arquitetura e seus sub-módulos. O capítulo é concluído com a realização de uma referência relativamente à base de dados e ao \textit{deployment} da plataforma.
 
 \medskip \par
 
@@ -13,7 +13,7 @@ Este módulo necessita de cumprir um conjunto de requisitos:
 \begin{itemize}
 	\item implementar as funcionalidades pretendidas da plataforma, como obtenção de listas de voluntários, registo por parte de utilizadores e outras operações;
 	\item interagir com a base de dados;
-	\item comunicar sobre HTTPS e suportar autenticação por parte dos clientes;
+	\item comunicar sobre HTTPS e suportar autenticação por parte dos clientes.
 \end{itemize}
 
 \medskip \par
@@ -38,16 +38,16 @@ Dada a natureza da plataforma é necessário permitir que os utilizadores da pla
  
 \subsection{Operações}
 
-Levando em consideração o conceito da plataforma definido previamente, inicializou-se então a constituição de funcionalidades da API. Definiram-se operações (invocadas através de \textit{endpoints}) que permitem a clientes da plataforma interagir com a mesma, na forma de:
+Levando em consideração o conceito da plataforma definido anteriormente, inicializou-se então a constituição de funcionalidades da API. Definiram-se operações (invocadas através de \textit{endpoints}) que permitem a clientes da plataforma interagir com a mesma, na forma de:
 
 \begin{itemize}
 	\item consultar voluntários, organizações, \textit{posts} e eventos;
 	\item possibilitar que utilizadores possam criar e editar o seu perfil;
 	\item criar \textit{posts} e eventos;
-	\item seguir outros utilizadores, gostar de \textit{posts} e ainda marcar o interesse num evento;
+	\item seguir outros utilizadores, gostar de \textit{posts} e ainda marcar o interesse num evento.
 \end{itemize}
 
-A referência a todas estas operações está presente na \textit{wiki} do projeto e encontra-se anexada a este relatório.
+A referência a todas estas operações encontra-se na \href{https://github.com/leomartins1999/PS1920-G46/wiki}{\textit{wiki}} do projeto.
 
 \subsection{Arquitetura}
 
@@ -59,11 +59,11 @@ A \textit{Web} API, representada na Figura 5, é composta por três módulos: \t
 	\caption{Diagrama de arquitetura da API}
 \end{figure}
 
-Resumidamente, os controladores têm como responsabilidade a definição de \textit{endpoints} e a realização de chamadas as serviço, o serviço trata a implementação da lógica da aplicação e realização de chamadas aos repositórios e os repositórios são responsáveis por aceder à base de dados.
+Resumidamente, os \textbf{controladores} têm como responsabilidade a definição de \textit{endpoints} e a realização de chamadas aos serviços, sendo que estes últimos (\textbf{serviços}) tratam a implementação da lógica da aplicação e realização de chamadas aos repositórios. Estes (\textbf{repositórios}) são responsáveis por interagir com à base de dados.
 
 \subsubsection{Controladores}
 
-Tal como já referido, estes definem os \textit{endpoints} existentes na API e invocam o serviço correspondente. No início da execução da aplicação, é instanciada um controlador para cada entidade existente (voluntários, organizações, \textit{posts} e eventos), sendo que nessa instanciação são definidos \textit{endpoints} utilizando o Router do Express.
+Tal como já referido, estes definem os \textit{endpoints} existentes na API e invocam o serviço correspondente. No início da execução da aplicação, é instanciado um controlador para cada entidade existente (voluntários, organizações, \textit{posts} e eventos), sendo que nessa instanciação são definidos \textit{endpoints} utilizando o mecanismo de encaminhamento (\textit{routing}) do Express.
 
 \medskip \par
 
@@ -99,20 +99,26 @@ Certas operações na API estão protegidas de maneira a que utilizadores não a
 
 \subsection{Base de dados}
 
-Foi tomada a decisão de utilizar MongoDB. MongoDB é um motor de base de dados noSQL, isto é, apresenta um modelo não relacional através da utilização de coleções e documentos.
+Tal como introduzido anteriormente, foi tomada a decisão de utilizar MongoDB. MongoDB é um motor de base de dados noSQL, isto é, apresenta um modelo não relacional através da utilização de coleções e documentos.
 
 \medskip \par
 
-Esta escolha implica que todos os documentos numa coleção não necessitam de ter a mesma estrutura, algo que traz alguma flexibilidade e agilidade no processo de desenvolvimento sobre esta plataforma. Outra característica interessante é que os documentos seguem o formato JSON, algo que torna a integração destes dados com a aplicação simples (devido ao uso de Javascript).
+Esta escolha implica que todos os documentos numa coleção não necessitam de ter a mesma estrutura, algo que traz alguma flexibilidade e agilidade no processo de desenvolvimento sobre esta plataforma. Outra característica interessante é que os documentos seguem o formato JSON, simplificando a integração destes dados com a aplicação (devido ao uso de Javascript).
 
 \medskip \par
 
 O motor foi selecionado não só para hospedar os dados associados às entidades mas também para albergar o conteúdo das imagens fornecidas pelos utilizadores.
 
-\subsection{Deployment da API}
+\subsection{Implantação da API}
 
-Tendo em consideração o meio em que o projeto foi desenvolvido, foi tomada a decisão de hospedar a base de dados na máquina onde está \textit{deployed} a API (hospedada no serviço Compute Engine da Google Cloud Platform). Contudo, seria mais interessante do ponto de vista de escalabilidade se a mesma fosse hospedada remotamente (através de uma solução \textit{cloud} como o Amazon Web Services ou a Google Cloud Platform).
+Tendo em consideração o meio em que o projeto foi desenvolvido, foi tomada a decisão de hospedar a base de dados na máquina onde está implantada (\textit{deployed}) a API (hospedada no serviço Compute Engine da Google Cloud Platform). Contudo, seria mais interessante do ponto de vista de escalabilidade se a mesma fosse hospedada remotamente (através de uma solução \textit{cloud} como o Amazon Web Services ou a Google Cloud Platform) porque possibilitaria a instanciação de múltiplas aplicações API, e consequentemente, a realização de balanceamento de carga.
 
 \medskip \par
 
-A máquina virtual foi configurada com os recursos necessários (como o Node.js) e, numa primeira fase, a aplicação foi instanciada para testes. De maneira a atribuir um nome de domínio ao endereço IP da máquina, foi utilizado o serviço Duck DNS e de seguida, utilizando o CertBot, foi emitido um certificado SSL de maneira a garantir que fosse possível a instanciação da aplicação num modo em que as comunicações fossem realizadas sobre o protocolo HTTPS.
+A máquina virtual foi configurada com os recursos necessários (como o Node.js) e, numa primeira fase, a aplicação foi instanciada para testes. De maneira a atribuir um nome de domínio ao endereço IP da máquina, foi utilizado o serviço Duck DNS e de seguida, utilizando o CertBot, foi emitido um certificado SSL de maneira a garantir que fosse possível a instanciação da aplicação num modo em que as comunicações fossem realizadas sobre o protocolo HTTPS. A utilização deste protocolo torna a realização de comunicações entre cliente e servidor mais segura devido à encriptação da informação trocada entre ambos. Em plataformas nas quais ocorre a troca de dados sensíveis (como palavras-passe) entre cliente e servidor é essencial a utilização deste protocolo~\cite{Cloudflare2020}.
+
+
+
+
+
+
