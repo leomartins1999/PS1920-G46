@@ -73,12 +73,13 @@
   year      = {2018},
 }
 
-@Misc{AndroidJetpack2020,
-  author = {{Android Jetpack}},
-  editor = {Android Jetpack},
-  title  = {Common architectural principles},
+@Misc{AndroidDevelopers2019,
+  author = {{Android Developers}},
+  editor = {Android Developers},
+  date   = {2019-09-12},
+  title  = {ViewModel Overview},
   note   = {Acedido a: 09/09/2020},
-  url    = {https://developer.android.com/jetpack/guide#common-principles},
+  url    = {https://developer.android.com/guide/topics/ui/layout/recyclerview},
 }
 
 @Misc{SCGS2020,
@@ -116,7 +117,51 @@
   date   = {2020-09-09},
   title  = {Why Use HTTPS?},
   note   = {Acedido a: 09/09/2020},
+  url    = {https://www.mongodb.com/nosql-explained},
+}
+
+@Misc{mongoDB2020,
+  author = {MongoDB},
+  editor = {MongoDB},
+  date   = {2020-09-09},
+  title  = {What is NoSQL?},
+  note   = {Acedido a: 09/09/2020},
   url    = {https://www.cloudflare.com/learning/ssl/why-use-https/},
+}
+
+@Misc{AndroidJetpack2020,
+  author = {{Android Jetpack}},
+  editor = {Android Jetpack},
+  date   = {2020-09-12},
+  title  = {Common architectural principles},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://developer.android.com/jetpack/guide#common-principles},
+}
+
+@Misc{AndroidDevelopers2020,
+  author = {{Android Developers}},
+  editor = {Android Developers},
+  date   = {2020-09-12},
+  title  = {Create a List with RecyclerView},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://developer.android.com/topic/libraries/architecture/viewmodel},
+}
+
+@Misc{Fielding2000,
+  author = {Roy Thomas Fielding},
+  editor = {Roy Thomas Fielding},
+  date   = {2000},
+  title  = {Architectural Styles and the Design of Network-based Software Architectures},
+  note   = {Acedido a: 09/09/2020},
+  url    = {https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm},
+}
+
+@Book{Stefanov2016,
+  author    = {Stoyan Stefanov},
+  date      = {2016-07-12},
+  title     = {React: Up and Running},
+  publisher = {O’Reilly Media, Inc.},
+  year      = {2016},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

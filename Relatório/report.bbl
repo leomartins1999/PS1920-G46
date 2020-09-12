@@ -58,6 +58,14 @@ TechMagic.
 \newblock URL:
   \url{https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d}.
 
+\bibitem{Fielding2000}
+Roy~Thomas Fielding.
+\newblock Architectural styles and the design of network-based software
+  architectures.
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm}.
+
 \bibitem{Wilson2018}
 Jim~R. Wilson.
 \newblock {\em Node.js 8 the Right Way}.
@@ -73,11 +81,17 @@ Glenn Block, Pablo Cibraro, Pedro Felix, Howard Dierking, and Darrel Miller.
 \newblock {\em Designing Evolvable Web APIs with ASP.NET}.
 \newblock O’Reilly Media, Inc., 2014.
 
+\bibitem{mongoDB2020}
+MongoDB.
+\newblock What is nosql?
+\newblock Acedido a: 09/09/2020.
+\newblock URL: \url{https://www.cloudflare.com/learning/ssl/why-use-https/}.
+
 \bibitem{Cloudflare2020}
 Cloudflare.
 \newblock Why use https?
 \newblock Acedido a: 09/09/2020.
-\newblock URL: \url{https://www.cloudflare.com/learning/ssl/why-use-https/}.
+\newblock URL: \url{https://www.mongodb.com/nosql-explained}.
 
 \bibitem{Gargenta2014}
 Marko Gargenta and Masumi Nakamura.
@@ -90,5 +104,24 @@ Marko Gargenta and Masumi Nakamura.
 \newblock Acedido a: 09/09/2020.
 \newblock URL:
   \url{https://developer.android.com/jetpack/guide#common-principles}.
+
+\bibitem{AndroidDevelopers2019}
+{Android Developers}.
+\newblock Viewmodel overview.
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://developer.android.com/guide/topics/ui/layout/recyclerview}.
+
+\bibitem{AndroidDevelopers2020}
+{Android Developers}.
+\newblock Create a list with recyclerview.
+\newblock Acedido a: 09/09/2020.
+\newblock URL:
+  \url{https://developer.android.com/topic/libraries/architecture/viewmodel}.
+
+\bibitem{Stefanov2016}
+Stoyan Stefanov.
+\newblock {\em React: Up and Running}.
+\newblock O’Reilly Media, Inc., 2016.
 
 \end{thebibliography}
