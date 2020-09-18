@@ -1,23 +1,29 @@
-%%% app movel - funcionaliade
+%%% app movel - funcionalidade
 \begin{frame}{Aplicação Móvel - Funcionalidades}
 
 \vspace*{-3em}
 
 \begin{itemize}
-	\item Funcionalidades
-	\begin{itemize}
-		\item consultar \textbf{voluntários, organizações, eventos e posts};
-		\item permitir o registo e autenticação de voluntários através da aplicação;
-		\item possibilitar aos utilizadores autenticados interagir com a plataforma (realização de \textit{posts}, seguimentos doutros utilizadores, etc.);
-	\end{itemize}
+	\item Consultar \textbf{voluntários, organizações, eventos e posts};
+	\item permitir o registo e autenticação de voluntários através da aplicação;
+	\item possibilitar aos utilizadores autenticados interagir com a plataforma (realização de \textit{posts}, seguimentos de outros utilizadores, etc.).
 \end{itemize}
 
 \end{frame}
 
-%%% app movel - arquiteture
+%%% app movel - arquitetura
 \begin{frame}{Aplicação Móvel - Arquitetura}
+	
+\vspace*{-4em}
+	
+\begin{itemize}
+	\item \textbf{Ecrãs}: definem a interface de utilizador e o tratamento de operações de \textit{input}; Para cada ecrã, existe associado um ViewModel;
+	\item \textbf{API}: funciona como \textit{proxy} da \textit{web} API.
+\end{itemize}	
 
 \centering
-\scalebox{0.30}{\includegraphics{Figures/mobile_app_architecture}}\\
+\scalebox{0.40}{\includegraphics{Figures/mobile_app_architecture}}\\
+
+{\small Arquitetura da aplicação móvel.}
 
 \end{frame}

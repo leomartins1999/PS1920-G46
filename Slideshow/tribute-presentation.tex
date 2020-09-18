@@ -1,0 +1,125 @@
+\documentclass[newPxFont,noprogressbar,table]{beamer}
+%\documentclass[newPxFont,sthlmFooter]{beamer}
+
+%\documentclass[border=3mm,tikz,preview]{standalone}
+%\usetikzlibrary{calc,backgrounds,positioning,fit}
+
+
+\usetheme{sthlm}
+%\usecolortheme{sthlmv42}
+
+\setbeamertemplate{footline}[frame number]
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%        LOADING PACKAGES
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\usepackage[utf8]{inputenc}
+
+
+% ADDED PACKAGES
+%//////////////////////////////////////////////////////
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+ 
+\usepackage[utf8]{inputenc}
+%\usepackage[absolute,overlay]{textpos}
+% Booktabs
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{subfig}
+% Algorithm package
+\usepackage{algpseudocode} % Typesetting using the algorithmicx package
+\renewcommand{\algorithmiccomment}[1]{\bgroup\hfill//~#1\egroup} % Algorithm comment
+
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:#1 png:\OutputFile}
+\AppendGraphicsExtensions{.gif}
+
+\setlength{\tabcolsep}{5pt}
+
+% For floating point columns
+\usepackage{etoolbox} 
+\usepackage[tight-spacing=true]{siunitx}
+\robustify\bfseries
+% For bold cells using siunitx
+\newcommand{\be}[2]{%
+%	\multicolumn{1}{S[table-format=#1,
+	\multicolumn{1}{>{\columncolor[HTML]{FFCE93}}S[table-format=#1,
+		mode=text,
+		text-rm=\fontseries{b}\selectfont
+		]}{#2}}
+
+% For bold cells using siunitx
+\newcommand{\beUpperBound}[2]{%
+	%	\multicolumn{1}{S[table-format=#1,
+	\multicolumn{1}{>{\columncolor[HTML]{32CD32}}S[table-format=#1,
+		mode=text,
+		text-rm=\fontseries{b}\selectfont
+		]}{#2}}
+
+
+% Algorithm package
+\usepackage{algorithm}
+\usepackage{algpseudocode} % Typesetting using the algorithmicx package
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}    
+		\setlength\topsep{0pt}
+		\setlength\partopsep{0pt}
+}
+{ \end{itemize}            }
+
+\definecolor{sthlmOrange}{RGB}{154,51,36} % HEX #9A3324
+
+%//////////////////////////////////////////////////////////////
+
+
+\usepackage{todonotes}
+\usepackage{adjustbox}
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+%//////////////////////////////////////////////////////
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%        BEAMER OPTIONS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+%\setbeameroption{show notes}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	PRESENTATION INFORMATION
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\hypersetup{
+pdfauthor = {},
+pdfsubject = {},
+pdfkeywords = {},
+pdfmoddate= {D:\pdfdate},
+pdfcreator = {}
+}
+
+\begin{document}
+
+\input{cover}
+
+\input{index}
+
+\input{intro}
+
+\input{architeture}
+
+\input{demo}
+
+\input{future_work}
+
+\end{document}
