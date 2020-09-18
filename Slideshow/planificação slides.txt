@@ -1,0 +1,26 @@
+Slides da apresentação:
+
+X: (3 minutos)
+Capa
+índice
+Introdução
+Introdução - motivação
+Introdução - solução
+
+Y: (4 minutos)
+Arquitetura geral
+api - conceito e funcionalidade
+api - arquitetura
+
+X: (6 minutos)
+Mobile App
+Arquitetura Mobile App
+Web App
+Arquitetura Web App
+
+Y: (8 minutos)
+Demonstração mobile App
+Demonstração web app
+
+X: (2 minutos)
+Trabalho Futuro
