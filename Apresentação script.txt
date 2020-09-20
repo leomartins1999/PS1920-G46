@@ -1,36 +1,36 @@
-Capa
+***** Capa
 Apresentar projeto
 Apresentar alunos e orientador
 
-Indíce
+***** Indíce
 Apresentar tópicos de apresentação
 
-Introdução 1
+***** Introdução 1
 ...segundo um estudo realizado pelo INE em 2019, 6.4% da população portuguesa realiza voluntariado...
 ... o voluntariado é importante porque aumenta o valor do meio social onde é efetuado e promove o desenvolvimento de uma comunidade mais solidária e unida...
 ... para o voluntário, participar nesta ações permite ao mesmo adquirir competências como liderança e trabalho em equipa, que são valorizadas no meio profissional.
 
-Introdução 2
+***** Introdução 2
 ... por norma, este tipo de ações é divulgada através de 2 meios: redes sociais e websites...
 ... as redes sociais apresentam tipicamente problemas na realização de filtragem de informação porque não são desenvolvidas para este meio...
 ... tipicamente, cada organização têm o seu website, algo que torna mais complicado um voluntário trabalhar com várias organizações...
 
-Introdução 3
+***** Introdução 3
 ... apesar da existência de plataformas como a bolsa de voluntariado, que servem para agregar informação associada a este tipo de ações, estas plataformas não permitem a interação entre utilizadores, algo que poderia levar ao crescimento da adesão a estas ações...
 ... como tal, este projeto visa resolver os problemas levantados anteriormente através do desenvolvimento de uma rede social de voluntariado: onde voluntários e organizações co-habitam e interagem entre si, mantendo contudo o foco na divulgação destas ações...
 
-Arquitetura - geral
+***** Arquitetura - geral
 Levando em consideração o projeto escolhido, foi tomada a decisão de desenvolver 2 interfaces de utilizador personalizadas para os 2 dos sujeitos participativos de uma ação de voluntariado: as organizações - entidade que organiza o evento, e os voluntários - indivíduo que participa voluntariamente na ação.
 
 Para os voluntários, foi decidido desenvolver uma aplicação móvel de maneira a que estes possam consultar a plataforma de maneira simples e rápida.
 Através desta, os voluntários conseguem interagir com a plataforma através da consulta de ações marcadas, o registo e edição do seu perfil e a marcação de interesse num evento.
 
-Para as organizações, foi tomada a decisão de implementar uma aplicação web de maneira a que diferentes utilizadores possam gerir a página de uma organização. ~1
+Para as organizações, foi tomada a decisão de implementar uma aplicação web de maneira a que diferentes utilizadores possam gerir a página de uma organização.
 Nesta, as organizações podem registar-se, criar posts e eventos, consultar contactos de voluntários interessados nos seus eventos, entre outros.
 
 De maneira a que os clientes de ambas as aplicações possam interagir entre si, foi elaborada uma Web API. Esta aplicação RestFul funciona como fonte de informação para as aplicações cliente.
 
-API - Conceptualização e funcionalidades
+***** API - Conceptualização e funcionalidades
 Relativamente ao backend da plataforma, para este ser desenhado foi necessário definir um conjunto de entidades, sendo estas:
 - eventos, que representam ações de voluntariado
 - voluntários, que representam indivíduos singulares que participam nos eventos
@@ -42,7 +42,7 @@ Dadas as entidades definidas, foram desenvolvidas mecanismos para permitir:
 - a interação entre utilizadores, através de, por exemplo, o seguimento de outro utilizador ou a realização de um like num post;
 - o auxílio no recrutamento de voluntários para ações, através do fornecimento de contactos de voluntários interessados em eventos;
 
-API - Arquitetura
+***** API - Arquitetura
 Foi então implementado um serviço RestFul que permite, através de pedidos HTTPS, que as aplicações cliente possam interagir com a plataforma.
 
 A arquitetura deste serviço é composta por controladores, serviços e repositórios.
@@ -51,13 +51,18 @@ Os serviços são responsáveis por definir a lógica de negócio das operaçõe
 
 Por exemplo, no controlador dos voluntários é definido o endpoint sobre o qual é possível efetuar a consulta dos voluntários existentes. Quando o endpoint é acionado, o controlador invoca a função do serviço usada para consultar os voluntários, sendo que esta, por sua vez, invoca a função do repositório dos voluntários que consulta a base de dados e recolhe os voluntários da mesma.
 
-Móvel - funcionalidades
+***** Móvel
+A aplicação móvel foi desenvolvida para ser utilizada por voluntários. Nesta, é possível efetuar operações como por exemplo:
+- consultar voluntários, organizações, eventos e posts;
+- efetuar registo na plataforma como voluntário e subsequentemente realizar autenticação na aplicação
+- interagir com outros utilizadores através de, por exemplo, colocação de gosto no post ou seguimento de uma organização.
+
 Relativamente à aplicação móvel, foram desenvolvidos mecanismos que permitem aos clientes desta 
 - consultar as entidades existentes na plataforma (como por exemplo os voluntários e as organizações registadas)
 - registar-se e autenticar-se de maneira a que estes tenham um perfil na platafoamra
-- interagir com a mesma na forma do seguimento de outros utilizadores, realização de posts, entre outros.
+- interagir com a mesma na forma do seguimento de outros utilizadores, realização de posts, entre outros
 
-Móvel - Arquitetura
+***** Móvel - Arquitetura
 A arquitetura da aplicação móvel é composta por 3 sub-módulos: UI, Model e API.
 
 UI é responsável por definir o aspeto gráfico da aplicação e lidar com o tratamento de operações de input. Para cada elemento desta (ecrã), existe um objeto view model associado, utilizado para manter o estado da aplicação no caso da re-instanciação de um ecrã (como por exemplo, quando é mudada a orientação do ecrã do dispositivo).
@@ -68,47 +73,35 @@ O sub-módulo API funciona como proxy da web api da plataforma. Este expõe as o
 
 Por fim, o Model define as representações das entidades na aplicação (através da definição de DTOs) e contém também a implementação de uma cache de entidades na app, sendo que esta é utilizada para reduzir o número de pedidos HTTPS a efetuar sobre a web API.
 
+***** Web- funcionalidades
+Por fim, a aplicação web foi desenhada para ser utilizada por organizações e esta permite que as mesmas possam:
+- autenticar-se e editar o seu perfil;
+- criar posts e eventos;
+- interagir com a plataforma através de, por exemplo, o seguimento de outros utilizadores e o gosto em posts;
 
+Esta permite ainda que as organizações possam obter um contacto (neste caso, o email) de voluntários interessados nos seus eventos.
+***** Web- arquitetura
+A arquitetura da aplicação web é composta por 2 módulos: componentes e API e ainda uma classe principal. Nesta, é definido o encaminhamento da aplicação e são instanciados os serviços da API.
 
+O módulo API é composto por múltiplos serviços que são utilizados pelos componentes para efetuar pedidos HTTPS à web api do projeto.
 
+Os componentes tratam a implementação da interface gráfica da aplicação e ainda lidam com as operações de input efetuadas pelos clientes da aplicação.
+***** Arquitetura - implantação
+Dada a arquitetura deste projeto, foi tomada a decisão de realizar o deployment do mesmo utilizando o serviço compute engine da google cloud platform.
 
+Levando isto em consideração, após o desenvolvimento da web api, esta foi implantada numa máquina virtual. Foi associado um domain name ao IP desta máquina usando a plataforma duck dns e através do CertBot, foi emitido um certificado ssl, usado de seguida para instanciar a aplicação de maneira a esta comunicar sobre https.
 
+Após o desenvolvimento dos restantes componentes do projeto, foi tomada a decisão de implantar a aplicação web numa segunda máquina virtual.
 
+De maneira a lidar com pedidos CORS, isto é, pedidos efetuados pela aplicação a um domínio externo (nesta caso, ao domínio atribuído à web api), instanciou-se um servidor web nginx nesta segunda máquina virtual. Este servidor web nginx está configurado de maneira a redirecionar todos os pedidos que contenham no uri o preambulo /api para a máquina virtual onde está implantada a web api. Os restantes pedidos são remetidos para a porta onde está a ser executada a aplicação web.
+***** Demonstração
 
+mostrar a aplicação mobile...
 
+mostrar a aplicação web...
 
+***** Trabalho futuro
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-através da realização de ações mas também 
+Dada a natureza desta plataforma (isto é, uma rede social), irão sempre existir melhorias a efetuar e novas funcionalidades a desenvolver. Contudo, realçamos que seria interessante a:
+- adição de novas funcionalidades, como por exemplo, comentários em posts, voluntários participantes em eventos e curriculo de voluntariado - uma coleção de certificados de participação em eventos;
+- integração da plataforma com outras através do uso de OAuth, ou seja, login usando o facebook ou a google account;
