@@ -1,0 +1,114 @@
+Capa
+Apresentar projeto
+Apresentar alunos e orientador
+
+Indíce
+Apresentar tópicos de apresentação
+
+Introdução 1
+...segundo um estudo realizado pelo INE em 2019, 6.4% da população portuguesa realiza voluntariado...
+... o voluntariado é importante porque aumenta o valor do meio social onde é efetuado e promove o desenvolvimento de uma comunidade mais solidária e unida...
+... para o voluntário, participar nesta ações permite ao mesmo adquirir competências como liderança e trabalho em equipa, que são valorizadas no meio profissional.
+
+Introdução 2
+... por norma, este tipo de ações é divulgada através de 2 meios: redes sociais e websites...
+... as redes sociais apresentam tipicamente problemas na realização de filtragem de informação porque não são desenvolvidas para este meio...
+... tipicamente, cada organização têm o seu website, algo que torna mais complicado um voluntário trabalhar com várias organizações...
+
+Introdução 3
+... apesar da existência de plataformas como a bolsa de voluntariado, que servem para agregar informação associada a este tipo de ações, estas plataformas não permitem a interação entre utilizadores, algo que poderia levar ao crescimento da adesão a estas ações...
+... como tal, este projeto visa resolver os problemas levantados anteriormente através do desenvolvimento de uma rede social de voluntariado: onde voluntários e organizações co-habitam e interagem entre si, mantendo contudo o foco na divulgação destas ações...
+
+Arquitetura - geral
+Levando em consideração o projeto escolhido, foi tomada a decisão de desenvolver 2 interfaces de utilizador personalizadas para os 2 dos sujeitos participativos de uma ação de voluntariado: as organizações - entidade que organiza o evento, e os voluntários - indivíduo que participa voluntariamente na ação.
+
+Para os voluntários, foi decidido desenvolver uma aplicação móvel de maneira a que estes possam consultar a plataforma de maneira simples e rápida.
+Através desta, os voluntários conseguem interagir com a plataforma através da consulta de ações marcadas, o registo e edição do seu perfil e a marcação de interesse num evento.
+
+Para as organizações, foi tomada a decisão de implementar uma aplicação web de maneira a que diferentes utilizadores possam gerir a página de uma organização. ~1
+Nesta, as organizações podem registar-se, criar posts e eventos, consultar contactos de voluntários interessados nos seus eventos, entre outros.
+
+De maneira a que os clientes de ambas as aplicações possam interagir entre si, foi elaborada uma Web API. Esta aplicação RestFul funciona como fonte de informação para as aplicações cliente.
+
+API - Conceptualização e funcionalidades
+Relativamente ao backend da plataforma, para este ser desenhado foi necessário definir um conjunto de entidades, sendo estas:
+- eventos, que representam ações de voluntariado
+- voluntários, que representam indivíduos singulares que participam nos eventos
+- organizações, que representam entidades que organizam eventos
+- posts, que funcionam apenas como um meio de interação entre utilizadores.
+
+Dadas as entidades definidas, foram desenvolvidas mecanismos para permitir:
+- a adição e edição de entidades da plataforma, como por exemplo a criação de posts ou edição de perfis;
+- a interação entre utilizadores, através de, por exemplo, o seguimento de outro utilizador ou a realização de um like num post;
+- o auxílio no recrutamento de voluntários para ações, através do fornecimento de contactos de voluntários interessados em eventos;
+
+API - Arquitetura
+Foi então implementado um serviço RestFul que permite, através de pedidos HTTPS, que as aplicações cliente possam interagir com a plataforma.
+
+A arquitetura deste serviço é composta por controladores, serviços e repositórios.
+Os controladores são responsáveis por definir os endpoints da aplicação e lidar com pedidos HTTPS. Estes invocam o serviço correspondente de maneira a efetuar a operação solicitada pela aplicação cliente.
+Os serviços são responsáveis por definir a lógica de negócio das operações da aplicação, sendo que estes fazem uso de repositórios para interagir com a base de dados.
+
+Por exemplo, no controlador dos voluntários é definido o endpoint sobre o qual é possível efetuar a consulta dos voluntários existentes. Quando o endpoint é acionado, o controlador invoca a função do serviço usada para consultar os voluntários, sendo que esta, por sua vez, invoca a função do repositório dos voluntários que consulta a base de dados e recolhe os voluntários da mesma.
+
+Móvel - funcionalidades
+Relativamente à aplicação móvel, foram desenvolvidos mecanismos que permitem aos clientes desta 
+- consultar as entidades existentes na plataforma (como por exemplo os voluntários e as organizações registadas)
+- registar-se e autenticar-se de maneira a que estes tenham um perfil na platafoamra
+- interagir com a mesma na forma do seguimento de outros utilizadores, realização de posts, entre outros.
+
+Móvel - Arquitetura
+A arquitetura da aplicação móvel é composta por 3 sub-módulos: UI, Model e API.
+
+UI é responsável por definir o aspeto gráfico da aplicação e lidar com o tratamento de operações de input. Para cada elemento desta (ecrã), existe um objeto view model associado, utilizado para manter o estado da aplicação no caso da re-instanciação de um ecrã (como por exemplo, quando é mudada a orientação do ecrã do dispositivo).
+
+Este objeto ViewModel tem como responsabilidades a disponbilização dos dados a serem apresentados na interface de utilizador e o recolhimento destes quer seja através da realização de uma chamada ao módulo API, quer seja pela invocação da cache de entidades da aplicação.
+
+O sub-módulo API funciona como proxy da web api da plataforma. Este expõe as operações que os voluntários podem efetuar sobre a plataforma, desde o seguimento de outro voluntário à consulta dos eventos marcados na plataforma.
+
+Por fim, o Model define as representações das entidades na aplicação (através da definição de DTOs) e contém também a implementação de uma cache de entidades na app, sendo que esta é utilizada para reduzir o número de pedidos HTTPS a efetuar sobre a web API.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+através da realização de ações mas também 
